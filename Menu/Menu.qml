@@ -163,7 +163,7 @@ FocusScope {
                         if (root.state === "home")
                             return "../assets/collections/logo/"+home.currentGame.collections.get(0).shortName+".png"
                         if (root.state === "games")
-                            return "../assets/collections/logo/"+api.collections.get(currentCollectionIndex).shortName+".png"
+                            return "../assets/collections/logo/"+allCollections[currentCollectionIndex].shortName+".png"
                     }
                     fillMode: Image.PreserveAspectFit
                     horizontalAlignment: Image.AlignHCenter

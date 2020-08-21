@@ -21,8 +21,13 @@ FocusScope {
     // [1] = COLLECTIONS
     // [2] = GAMES
     property int currentMenuIndex: api.memory.get("currentMenuIndex") || 0
+    property var allCollections: {
+        let collections =  api.collections.toVarArray()
+        collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
+        return collections
+    }
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex") || 0
-    property var currentCollection: api.collections.get(currentCollectionIndex)
+    property var currentCollection: allCollections[currentCollectionIndex]
 
     property variant dataMenu: [
         { name: "home" },
@@ -48,7 +53,7 @@ FocusScope {
     }
 
     // Additional data to display manufacturers and release dates
-    property variant dataConsoles:  
+    property variant dataConsoles: {
         "amstradcpc":       { manufacturer: "amstrad",              release: "1984",    color: "#000000", altColor: "#252525" },
         "apple2":           { manufacturer: "apple",                release: "1977",    color: "#000000", altColor: "#252525" },
         "atari2600":        { manufacturer: "atari",                release: "1977",    color: "#000000", altColor: "#252525" },
@@ -104,6 +109,7 @@ FocusScope {
         "gog":              { manufacturer: "pc",                   release: "2008",    color: "#000000", altColor: "#252525" },
         "steam":            { manufacturer: "pc",                   release: "2003",    color: "#010314", altColor: "#252525" },
         "arcade":           { manufacturer: null,                   release: null,      color: "#D00E2D", altColor: "#9B071E" },
+        "all":              { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "daphne":           { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "fba":              { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "fbneo":            { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },

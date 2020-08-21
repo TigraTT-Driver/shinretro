@@ -1,5 +1,6 @@
 import QtQuick 2.8
-import QtGraphicalEffects 1.12
+import QtGraphicalEffects 1.15
+import QtQml.Models 2.15
 import "../Global"
 
 FocusScope {
@@ -71,7 +72,8 @@ FocusScope {
 
             focus: collections.focus
 
-            model: api.collections
+            // model: api.collections
+            model: allCollections
             currentIndex: currentCollectionIndex
 
             delegate: CollectionsItems {}
@@ -136,7 +138,7 @@ FocusScope {
                         if (event.isAutoRepeat)
                             currentCollectionIndex = 0
                         else
-                            currentCollectionIndex = api.collections.count - 1
+                            currentCollectionIndex = allCollections.length - 1
                     else
                         currentCollectionIndex--;
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)
@@ -145,9 +147,9 @@ FocusScope {
                 if (event.key == Qt.Key_Right) {
                     event.accepted = true;
 
-                    if (currentCollectionIndex >= api.collections.count - 1)
+                    if (currentCollectionIndex >= allCollections.length - 1)
                         if (event.isAutoRepeat)
-                            currentCollectionIndex = api.collections.count - 1;
+                            currentCollectionIndex = allCollections.length - 1;
                         else
                             currentCollectionIndex = 0;
                     else
@@ -172,7 +174,8 @@ FocusScope {
 
         clip: true
         currentIndex: currentCollectionIndex
-        model: api.collections
+        // model: api.collections
+        model: allCollections
         delegate: CollectionsDetails {}
 
         pathItemCount: 3

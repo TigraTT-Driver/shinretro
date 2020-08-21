@@ -5,7 +5,7 @@ Item {
     id: item_collection
 
     property var isCurrentItem: PathView.isCurrentItem
-    property var collectionAltColor: dataConsoles[model.shortName].altColor
+    property var collectionAltColor: dataConsoles[modelData.shortName].altColor
 
     width: PathView.currentWidth
     height: PathView.currentHeight
@@ -26,7 +26,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/collections/bg/"+model.shortName+".jpg"
+                source: "../assets/collections/bg/"+modelData.shortName+".jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 
