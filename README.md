@@ -5,6 +5,7 @@ neoretrō is a theme for Pegasus-frontend.
 
 ## Work in progress
 - clean the code...
+- add a "all games" collection
 - revise games details in `Games`
 - revise UI for controls
 - revise collections PathView to keep consistent spacing
