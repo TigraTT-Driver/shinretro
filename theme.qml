@@ -24,6 +24,47 @@ FocusScope {
     property var allCollections: {
         let collections =  api.collections.toVarArray()
         collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
+
+        // FOR TESTING PURPOSES
+        collections.unshift({"name": "3do", "shortName": "3do", "games": collections[6].games})
+        collections.unshift({"name": "amstradcpc", "shortName": "amstradcpc", "games": collections[6].games})
+        collections.unshift({"name": "apple2", "shortName": "apple2", "games": collections[6].games})
+        collections.unshift({"name": "atari2600", "shortName": "atari2600", "games": collections[6].games})
+        collections.unshift({"name": "atari5200", "shortName": "atari5200", "games": collections[6].games})
+        collections.unshift({"name": "atarist", "shortName": "atarist", "games": collections[6].games})
+        collections.unshift({"name": "atari7800", "shortName": "atari7800", "games": collections[6].games})
+        collections.unshift({"name": "atarilynx", "shortName": "atarilynx", "games": collections[6].games})
+        collections.unshift({"name": "atarijaguar", "shortName": "atarijaguar", "games": collections[6].games})
+        
+        collections.unshift({"name": "cps1", "shortName": "cps1", "games": collections[6].games})
+        collections.unshift({"name": "cps2", "shortName": "cps2", "games": collections[6].games})
+        collections.unshift({"name": "cps3", "shortName": "cps3", "games": collections[6].games})
+        collections.unshift({"name": "colecovision", "shortName": "colecovision", "games": collections[6].games})
+        collections.unshift({"name": "c64", "shortName": "c64", "games": collections[6].games})
+        collections.unshift({"name": "amiga", "shortName": "amiga", "games": collections[6].games})
+        collections.unshift({"name": "intellivision", "shortName": "intellivision", "games": collections[6].games})
+        collections.unshift({"name": "msx", "shortName": "msx", "games": collections[6].games})
+        collections.unshift({"name": "msx2", "shortName": "msx2", "games": collections[6].games})
+
+        collections.unshift({"name": "turbografx16", "shortName": "turbografx16", "games": collections[6].games})
+        collections.unshift({"name": "pcfx", "shortName": "pcfx", "games": collections[6].games})
+        collections.unshift({"name": "fds", "shortName": "fds", "games": collections[6].games})
+        collections.unshift({"name": "wiiu", "shortName": "wiiu", "games": collections[6].games})
+        collections.unshift({"name": "atomiswave", "shortName": "atomiswave", "games": collections[6].games})
+        collections.unshift({"name": "sega32x", "shortName": "sega32x", "games": collections[6].games})
+        collections.unshift({"name": "zxspectrum", "shortName": "zxspectrum", "games": collections[6].games})
+        collections.unshift({"name": "vectrex", "shortName": "vectrex", "games": collections[6].games})
+        collections.unshift({"name": "neogeocd", "shortName": "neogeocd", "games": collections[6].games})
+        collections.unshift({"name": "ps2", "shortName": "ps2", "games": collections[6].games})
+        collections.unshift({"name": "gog", "shortName": "gog", "games": collections[6].games})
+        collections.unshift({"name": "steam", "shortName": "steam", "games": collections[6].games})
+        collections.unshift({"name": "daphne", "shortName": "daphne", "games": collections[6].games})
+        collections.unshift({"name": "fba", "shortName": "fba", "games": collections[6].games})
+        collections.unshift({"name": "fbneo", "shortName": "fbneo", "games": collections[6].games})
+        collections.unshift({"name": "mame", "shortName": "mame", "games": collections[6].games})
+        collections.unshift({"name": "3ds", "shortName": "3ds", "games": collections[6].games})
+        // END TESTING
+
         return collections
     }
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex") || 0
@@ -104,17 +145,16 @@ FocusScope {
         "ngp":              { manufacturer: "snk",                  release: "1998",    color: "#93192D", altColor: "#6B0909" },
         "ngpc":             { manufacturer: "snk",                  release: "1999",    color: "#460674", altColor: "#5C056B" },
         "psx":              { manufacturer: "sony",                 release: "1994",    color: "#D9BE36", altColor: "#252525" },
-        "ps2":              { manufacturer: "sony",                 release: "2000",    color: "#000000", altColor: "#252525" },
+        "ps2":              { manufacturer: "sony",                 release: "2000",    color: "#3144B1", altColor: "#00224C" },
         "psp":              { manufacturer: "sony",                 release: "2004",    color: "#050C10", altColor: "#6A818C" },
         "gog":              { manufacturer: "pc",                   release: "2008",    color: "#000000", altColor: "#252525" },
         "steam":            { manufacturer: "pc",                   release: "2003",    color: "#010314", altColor: "#252525" },
         "arcade":           { manufacturer: null,                   release: null,      color: "#D00E2D", altColor: "#9B071E" },
-        "all":              { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
+        "all":              { manufacturer: null,                   release: null,      color: "#FFD019", altColor: "#FF9919" },
         "daphne":           { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "fba":              { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "fbneo":            { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
-        "mame":             { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
-        "scummvm":          { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" }
+        "mame":             { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" }
     }
 
     // state: api.memory.get("currentPageState") || "home_lastPlayed"
