@@ -5,7 +5,7 @@ Item {
     property var isCurrentItem: PathView.isCurrentItem
     property var manufacturer: dataConsoles[modelData.shortName].manufacturer
     property var release: dataConsoles[modelData.shortName].release
-    property var manufacturerColor: dataManufacturers[manufacturer].color || "black"
+    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -92,12 +92,12 @@ Item {
                             anchors.fill: parent
                             sourceSize.width: width
                             sourceSize.height: height
-                            source: "../assets/manufacturers/logo/"+manufacturer+".svg"
+                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
                             fillMode: Image.PreserveAspectFit
                         }
                     }
 
-                    visible: img_manufacturer.status === Image.Ready
+                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
                 }
 
 

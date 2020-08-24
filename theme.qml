@@ -1,5 +1,6 @@
 import QtQuick 2.8
 import QtMultimedia 5.9
+import SortFilterProxyModel 0.2
 
 import "Home"
 import "Collections"
@@ -21,11 +22,21 @@ FocusScope {
     // [1] = COLLECTIONS
     // [2] = GAMES
     property int currentMenuIndex: api.memory.get("currentMenuIndex") || 0
+
     property var allCollections: {
-        let collections =  api.collections.toVarArray()
-        collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
+        const collections_array = api.collections.toVarArray()
+        let collections = []
+
+        for (let i=0; i<collections_array.length; i++) {
+
+            let shortname = (dataLaunchbox[collections_array[i].shortName] === undefined) ? collections_array[i].shortName : dataLaunchbox[collections_array[i].shortName]
+            collections.push({ "name": collections_array[i].name, "shortName": shortname, "games": collections_array[i].games })
+        }
+
+        // collections.unshift({"name": "favorites", "shortName": "favorites", "games": allFavorites})
 
         // // FOR TESTING PURPOSES
+        // collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
         // collections.unshift({"name": "3do", "shortName": "3do", "games": collections[6].games})
         // collections.unshift({"name": "amstradcpc", "shortName": "amstradcpc", "games": collections[6].games})
         // collections.unshift({"name": "apple2", "shortName": "apple2", "games": collections[6].games})
@@ -65,6 +76,7 @@ FocusScope {
 
         return collections
     }
+
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex") || 0
     property var currentCollection: allCollections[currentCollectionIndex]
 
@@ -74,13 +86,6 @@ FocusScope {
         { name: "games" }
     ]
 
-    // property variant dataStates: {
-    //     "gameList":         { xPosition: -root.width *2 },
-    //     "collectionsPage":  { xPosition: -root.width },
-    //     "home_lastPlayed":  { xPosition: 0 },
-    //     "home_favorites":   { xPosition: 0 }
-    // }
-
     property variant dataManufacturers: {
         "sega":     { color: "#17569b" },
         "sony":     { color: "#1D1D1D" },
@@ -89,6 +94,63 @@ FocusScope {
         "nintendo": { color: "#E11919" },
         "various":  { color: "#18A46E" },
         "valve":    { color: "#010314" }
+    }
+
+    property variant dataLaunchbox: {
+        "amstrad cpc" :                             "amstradcpc",
+        "apple ii" :                                "apple2",
+        "atari 2600" :                              "atari2600",
+        "atari 5200" :                              "atari5200",
+        "atari st" :                                "atarist",
+        "atari 7800" :                              "atari7800",
+        "atari lynx" :                              "atarilynx",
+        "atari jaguar" :                            "atarijaguar",
+        "capcom cps1" :                             "cps1",
+        "capcom cps2" :                             "cps2",
+        "capcom cps3" :                             "cps3",
+        "commodore 64" :                            "c64",
+        "commodore amiga" :                         "amiga",
+        "mattel intellivision" :                    "intellivision",
+        "microsoft msx" :                           "msx",
+        "microsoft msx2" :                          "msx2",
+        "pc engine supergrafx" :                    "pcengine",
+        "nec turbografx-16" :                       "turbografx16",
+        "pc engine supergrafx" :                    "supergrafx",
+        "nec pc-fx" :                               "pcfx",
+        "nintendo entertainment system" :           "nes",
+        "nintendo famicom disk system" :            "fds",
+        "nintendo game boy" :                       "gb",
+        "super nintendo entertainment system" :     "snes",
+        "nintendo 64" :                             "n64",
+        "nintendo game boy color" :                 "gbc",
+        "nintendo game boy advance" :               "gba",
+        "nintendo gamecube" :                       "gc",
+        "nintendo ds" :                             "nds",
+        "nintendo wii" :                            "wii",
+        "nintendo 3ds" :                            "3ds",
+        "nintendo wii u" :                          "wiiu",
+        "3do interactive multiplayer" :             "3do",
+        "sammy atomiswave" :                        "atomiswave",
+        "sega master system" :                      "mastersystem",
+        "sega genesis" :                            "genesis",
+        "sega mega drive" :                         "megadrive",
+        "sega game gear" :                          "gamegear",
+        "sega cd" :                                 "segacd",
+        "sega 32x" :                                "sega32x",
+        "sega saturn" :                             "saturn",
+        "sega dreamcast" :                          "dreamcast",
+        "sinclair zx spectrum" :                    "zxspectrum",
+        "gce vectrex" :                             "vectrex",
+        "snk neo geo aes" :                         "neogeo",
+        "snk neo geo mvs":                          "neogeo",
+        "snk neo geo cd" :                          "neogeocd",
+        "snk neo geo pocket" :                      "ngp",
+        "snk neo geo pocket color" :                "ngpc",
+        "sony playstation" :                        "psx",
+        "sony playstation 2" :                      "ps2",
+        "sony psp" :                                "psp",
+        "final burn alpha" :                        "fba",
+        "final burn neo" :                          "fbneo"
     }
 
     // Additional data to display manufacturers and release dates
@@ -153,6 +215,12 @@ FocusScope {
         "fba":              { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "fbneo":            { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" },
         "mame":             { manufacturer: null,                   release: null,      color: "#000000", altColor: "#252525" }
+    }
+
+    SortFilterProxyModel {
+        id: allFavorites
+        sourceModel: api.allGames
+        filters: ValueFilter { roleName: "favorite"; value: true; }
     }
 
     // state: api.memory.get("currentPageState") || "home_lastPlayed"
@@ -280,7 +348,7 @@ FocusScope {
         }
         focus: true
     }
-    
+
     Keys.onPressed: {
         if (api.keys.isPrevPage(event)) {
             event.accepted = true;
