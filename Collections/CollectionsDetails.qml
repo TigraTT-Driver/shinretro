@@ -3,9 +3,9 @@ import QtGraphicalEffects 1.12
 
 Item {
     property var isCurrentItem: PathView.isCurrentItem
-    property var manufacturer: dataConsoles[model.shortName].manufacturer
-    property var release: dataConsoles[model.shortName].release
-    property var manufacturerColor: dataManufacturers[manufacturer].color || "black"
+    property var manufacturer: dataConsoles[modelData.shortName].manufacturer
+    property var release: dataConsoles[modelData.shortName].release
+    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -31,7 +31,7 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/collections/logo/"+model.shortName+".png"
+                    source: "../assets/collections/logo/"+modelData.shortName+".png"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                 }
@@ -43,7 +43,7 @@ Item {
                     bottom: txt_collection_games.top
                     horizontalCenter: txt_collection_games.horizontalCenter
                 }
-                text: model.name
+                text: modelData.name
                 font {
                     family: global.fonts.condensed
                     pixelSize: vpx(42)
@@ -60,7 +60,7 @@ Item {
                     topMargin: vpx(25)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
-                text: model.games.count+" games available"
+                text: modelData.games.count+" games available"
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(20)
@@ -92,12 +92,12 @@ Item {
                             anchors.fill: parent
                             sourceSize.width: width
                             sourceSize.height: height
-                            source: "../assets/manufacturers/logo/"+manufacturer+".svg"
+                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
                             fillMode: Image.PreserveAspectFit
                         }
                     }
 
-                    visible: img_manufacturer.status === Image.Ready
+                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
                 }
 
 
