@@ -1,6 +1,5 @@
 import QtQuick 2.8
 import QtGraphicalEffects 1.15
-import QtQml.Models 2.15
 import "../Global"
 
 FocusScope {
