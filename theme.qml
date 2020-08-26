@@ -24,14 +24,7 @@ FocusScope {
     property int currentMenuIndex: api.memory.get("currentMenuIndex") || 0
 
     property var allCollections: {
-        const collections_array = api.collections.toVarArray()
-        let collections = []
-
-        for (let i=0; i<collections_array.length; i++) {
-
-            let shortname = (dataLaunchbox[collections_array[i].shortName] === undefined) ? collections_array[i].shortName : dataLaunchbox[collections_array[i].shortName]
-            collections.push({ "name": collections_array[i].name, "shortName": shortname, "games": collections_array[i].games })
-        }
+        const collections = api.collections.toVarArray()
 
         // collections.unshift({"name": "favorites", "shortName": "favorites", "games": allFavorites})
 
@@ -94,6 +87,10 @@ FocusScope {
         "nintendo": { color: "#E11919" },
         "various":  { color: "#18A46E" },
         "valve":    { color: "#010314" }
+    }
+
+    function clearShortname(shortname) {
+        return dataLaunchbox[shortname] ? dataLaunchbox[shortname] : shortname
     }
 
     property variant dataLaunchbox: {

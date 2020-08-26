@@ -28,7 +28,7 @@ FocusScope {
 
     Rectangle {
         id: skew_color
-        readonly property var touch_color: dataConsoles[currentCollection.shortName].color
+        readonly property var touch_color: dataConsoles[clearShortname(currentCollection.shortName)].color
 
         width: parent.width * 0.28
         height: parent.height

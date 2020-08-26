@@ -3,8 +3,9 @@ import QtGraphicalEffects 1.12
 
 Item {
     property var isCurrentItem: PathView.isCurrentItem
-    property var manufacturer: dataConsoles[modelData.shortName].manufacturer
-    property var release: dataConsoles[modelData.shortName].release
+    property var shortname: clearShortname(modelData.shortName)
+    property var manufacturer: dataConsoles[shortname].manufacturer
+    property var release: dataConsoles[shortname].release
     property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
@@ -31,7 +32,7 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/collections/logo/"+modelData.shortName+".png"
+                    source: "../assets/collections/logo/"+shortname+".png"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                 }
@@ -125,7 +126,7 @@ Item {
         anchors.fill: parent
         sourceComponent: cpnt_collection_details
         asynchronous: true
-        active: ( root.state === "collections" ) 
+        active: ( root.state === "collections" )
     }
 
 
