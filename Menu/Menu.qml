@@ -72,13 +72,11 @@ FocusScope {
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
-                                weight: Font.Bold
                                 pixelSize: parent.height * 0.6
                             }
                         }
                     }
                 }
-
 
                 delegate: MenuItems {}
 
@@ -101,14 +99,11 @@ FocusScope {
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
-                                weight: Font.Bold
                                 pixelSize: parent.height * 0.6
                             }
                         }
                     }
                 }
-
-
 
                 highlight: MenuItemsHighlighted {}
                 highlightRangeMode: ListView.ApplyRange
