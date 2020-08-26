@@ -113,7 +113,6 @@ FocusScope {
         "mattel intellivision" :                    "intellivision",
         "microsoft msx" :                           "msx",
         "microsoft msx2" :                          "msx2",
-        "pc engine supergrafx" :                    "pcengine",
         "nec turbografx-16" :                       "turbografx16",
         "pc engine supergrafx" :                    "supergrafx",
         "nec pc-fx" :                               "pcfx",
