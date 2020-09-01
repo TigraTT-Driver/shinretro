@@ -3,16 +3,15 @@ import QtQuick 2.8
 Item {
     property var isCurrentItem: ListView.isCurrentItem
 
-    width: txt_menu_metrics.width + vpx(18)
-    height: txt_menu_metrics.height + vpx(8)
-    y: -vpx(6)
+    width: txt_menu_metrics.width
+    height: txt_menu_metrics.height
 
     TextMetrics {
         id: txt_menu_metrics
         text: modelData.name
         font {
-            family: montserratMedium.name
-            italic: true
+            family: global.fonts.condensed
+            weight: Font.Bold
             capitalization: Font.AllUppercase
             pixelSize: vpx(16)
         }
@@ -26,17 +25,14 @@ Item {
             horizontalCenter: parent.horizontalCenter
         }
 
-        topPadding: -vpx(2)
-        leftPadding: -vpx(8)
-
         text: modelData.name
-        color: isCurrentItem ? "white" : "black"
+        color: "black"
         Behavior on color {
             ColorAnimation { duration: 150; }
         }
         font {
-            family: montserratMedium.name
-            italic: isCurrentItem
+            family: global.fonts.condensed
+            weight: isCurrentItem ? Font.Bold : Font.Medium
             capitalization: Font.AllUppercase
             pixelSize: vpx(16)
         }

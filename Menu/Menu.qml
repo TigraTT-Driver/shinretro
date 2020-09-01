@@ -44,7 +44,7 @@ FocusScope {
                     left: parent.left
                     leftMargin: vpx(50)
                 }
-                
+
                 orientation: ListView.Horizontal
                 currentIndex: currentMenuIndex
                 onCurrentIndexChanged: {
@@ -72,13 +72,11 @@ FocusScope {
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
-                                weight: Font.Bold
                                 pixelSize: parent.height * 0.6
                             }
                         }
                     }
                 }
-
 
                 delegate: MenuItems {}
 
@@ -101,14 +99,11 @@ FocusScope {
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
-                                weight: Font.Bold
                                 pixelSize: parent.height * 0.6
                             }
                         }
                     }
                 }
-
-
 
                 highlight: MenuItemsHighlighted {}
                 highlightRangeMode: ListView.ApplyRange
@@ -161,9 +156,9 @@ FocusScope {
                         if (home.currentGame === null || root.state === "collections")
                             return "";
                         if (root.state === "home")
-                            return "../assets/collections/logo/"+home.currentGame.collections.get(0).shortName+".png"
+                            return "../assets/collections/logo/"+clearShortname(home.currentGame.collections.get(0).shortName)+".png"
                         if (root.state === "games")
-                            return "../assets/collections/logo/"+allCollections[currentCollectionIndex].shortName+".png"
+                            return "../assets/collections/logo/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".png"
                     }
                     fillMode: Image.PreserveAspectFit
                     horizontalAlignment: Image.AlignHCenter

@@ -12,11 +12,6 @@ FocusScope {
     property int currentFavoritesIndex: 0
     property bool lastIsDefault: true
 
-
-    // property int currentLastPlayedGameIndex: (home.state === "last_played_default") ? sort_last_played_base.mapToSource(0) : sort_last_played_base.mapToSource(currentLastPlayedIndex+1)
-    // property int currentGameIndex: (home.state === "last_played_default" || home.state === "last_played" ) ? currentLastPlayedGameIndex : sort_favorites.mapToSource(currentFavoritesIndex)
-    // property var currentGame: api.allGames.get(currentGameIndex)
-
     property var currentGame: {
         if (home.state === "last_played_default")
             return api.allGames.get(sort_last_played_base.mapToSource(0))

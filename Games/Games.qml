@@ -37,10 +37,10 @@ FocusScope {
             }
         }
     }
-    
+
     Rectangle {
         id: skew_color
-        readonly property var touch_color: dataConsoles[currentCollection.shortName].color
+        readonly property var touch_color: dataConsoles[clearShortname(currentCollection.shortName)].color
         width: parent.width * 0.42
         height: parent.height
         antialiasing: true
@@ -179,7 +179,7 @@ FocusScope {
                                     width: vpx(1)
                                     color: "black"
                                 }
-                                
+
                                 Text {
                                     id: txt_players
                                     property var convertPlayer: currentGame.players > 1 ? "1-"+currentGame.players+" PLAYERS" : "1 PLAYER"
@@ -198,7 +198,7 @@ FocusScope {
                                 width: txt_favorited.contentWidth + vpx(20)
                                 height: txt_favorited.contentHeight + vpx(10)
                                 color: "#ED3496"
-                                
+
                                 Text {
                                     id: txt_favorited
                                     anchors.centerIn: parent
@@ -223,7 +223,7 @@ FocusScope {
                                         width: vpx(1)
                                         color: "black"
                                     }
-                                    
+
                                     Text {
                                         id: txt_genre
                                         anchors.centerIn: parent
@@ -265,11 +265,11 @@ FocusScope {
                         }
 
 
-                    }         
+                    }
                 }
 
             }
-                
+
             Loader {
                 id: loader_gameList_details
                 width: parent.width * 0.67
@@ -453,7 +453,7 @@ FocusScope {
             cellWidth: width /5
             cellHeight: height /2
             anchors.horizontalCenter: parent.horizontalCenter
-            
+
             clip: true
             // interactive: false
 
@@ -491,7 +491,7 @@ FocusScope {
                     Loader {
                         id: loader_gameList_game
                         anchors.fill: parent
-                        
+
                         asynchronous: true
                         sourceComponent: GameItem {}
                         active: games.focus
@@ -569,7 +569,7 @@ FocusScope {
                     api.memory.set("currentCollectionIndex", currentCollectionIndex)
                     currentGameIndex = 0
                 }
-                
+
             }
 
         }

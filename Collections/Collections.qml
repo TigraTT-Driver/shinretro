@@ -1,12 +1,12 @@
 import QtQuick 2.8
-import QtGraphicalEffects 1.15
-import QtQml.Models 2.15
+import QtGraphicalEffects 1.12
 import "../Global"
 
 FocusScope {
     focus: collections.focus
 
     readonly property int baseItemWidth: root.width /8
+    readonly property var touch_color: dataConsoles[clearShortname(currentCollection.shortName)].color
 
     Behavior on focus {
         ParallelAnimation {
@@ -29,7 +29,6 @@ FocusScope {
 
     Rectangle {
         id: skew_color
-        readonly property var touch_color: dataConsoles[currentCollection.shortName].color
 
         width: parent.width * 0.28
         height: parent.height
@@ -41,7 +40,6 @@ FocusScope {
         Behavior on color {
             ColorAnimation { duration: 250; }
         }
-
 
         transform: Matrix4x4 {
             property real a: 12 * Math.PI / 180

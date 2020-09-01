@@ -5,7 +5,8 @@ Item {
     id: item_collection
 
     property var isCurrentItem: PathView.isCurrentItem
-    property var collectionAltColor: dataConsoles[modelData.shortName].altColor
+    property var shortname: clearShortname(modelData.shortName)
+    property var collectionAltColor: dataConsoles[shortname].altColor
 
     width: PathView.currentWidth
     height: PathView.currentHeight
@@ -26,7 +27,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/collections/bg/"+modelData.shortName+".jpg"
+                source: "../assets/collections/bg/"+shortname+".jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 
@@ -61,7 +62,7 @@ Item {
                     NumberAnimation { duration: 250; }
                 }
             }
-                
+
         }
 
     }
@@ -73,5 +74,5 @@ Item {
         asynchronous: true
         active: ( root.state === "collections" )
     }
-    
+
 }
