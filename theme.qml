@@ -30,6 +30,9 @@ FocusScope {
 
         // // FOR TESTING PURPOSES
         // collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
+        // collections.unshift({"name": "ps3", "shortName": "ps3", "games": collections[0].games})
+        // collections.unshift({"name": "switch", "shortName": "switch", "games": collections[0].games})
+        // collections.unshift({"name": "wiiware", "shortName": "wiiware", "games": collections[0].games})
         // collections.unshift({"name": "3do", "shortName": "3do", "games": collections[6].games})
         // collections.unshift({"name": "amstradcpc", "shortName": "amstradcpc", "games": collections[6].games})
         // collections.unshift({"name": "apple2", "shortName": "apple2", "games": collections[6].games})
@@ -182,8 +185,10 @@ FocusScope {
         "gc":               { manufacturer: "nintendo",             release: "2001",    color: "#441BA3", altColor: "#24066A" },
         "nds":              { manufacturer: "nintendo",             release: "2004",    color: "#B4B4B4", altColor: "#363636" },
         "wii":              { manufacturer: "nintendo",             release: "2006",    color: "#75C4D4", altColor: "#D2EBF0" },
+        "wiiware":          { manufacturer: "nintendo",             release: "2008",    color: "#75C4D4", altColor: "#D2EBF0" },
         "3ds":              { manufacturer: "nintendo",             release: "2011",    color: "#000000", altColor: "#252525" },
         "wiiu":             { manufacturer: "nintendo",             release: "2012",    color: "#000000", altColor: "#252525" },
+        "switch":           { manufacturer: "nintendo",             release: "2017",    color: "#e60012", altColor: "#B10210" },
         "3do":              { manufacturer: "panasonic",            release: "1993",    color: "#000000", altColor: "#252525" },
         "atomiswave":       { manufacturer: "sammy",                release: "2003",    color: "#000000", altColor: "#252525" },
         "mastersystem":     { manufacturer: "sega",                 release: "1985",    color: "#A71010", altColor: "#790303" },
@@ -203,6 +208,7 @@ FocusScope {
         "psx":              { manufacturer: "sony",                 release: "1994",    color: "#D9BE36", altColor: "#252525" },
         "ps2":              { manufacturer: "sony",                 release: "2000",    color: "#3144B1", altColor: "#00224C" },
         "psp":              { manufacturer: "sony",                 release: "2004",    color: "#050C10", altColor: "#6A818C" },
+        "ps3":              { manufacturer: "sony",                 release: "2006",    color: "#0D1114", altColor: "#1F1F1F" },
         "gog":              { manufacturer: "pc",                   release: "2008",    color: "#000000", altColor: "#252525" },
         "steam":            { manufacturer: "pc",                   release: "2003",    color: "#010314", altColor: "#252525" },
         "arcade":           { manufacturer: null,                   release: null,      color: "#D00E2D", altColor: "#9B071E" },
