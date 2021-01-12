@@ -511,6 +511,10 @@ FocusScope {
 
             Keys.onPressed: {
 
+                if (event.isAutoRepeat) {
+                    return
+                }
+
                 if (api.keys.isAccept(event)) {
                     event.accepted = true;
                     if (currentGame !== null) {
