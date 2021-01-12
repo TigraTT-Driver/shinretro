@@ -30,9 +30,9 @@ FocusScope {
 
         // // FOR TESTING PURPOSES
         // collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
-        collections.unshift({"name": "ps3", "shortName": "ps3", "games": collections[0].games})
-        collections.unshift({"name": "switch", "shortName": "switch", "games": collections[0].games})
-        collections.unshift({"name": "wiiware", "shortName": "wiiware", "games": collections[0].games})
+        // collections.unshift({"name": "ps3", "shortName": "ps3", "games": collections[0].games})
+        // collections.unshift({"name": "switch", "shortName": "switch", "games": collections[0].games})
+        // collections.unshift({"name": "wiiware", "shortName": "wiiware", "games": collections[0].games})
         // collections.unshift({"name": "3do", "shortName": "3do", "games": collections[6].games})
         // collections.unshift({"name": "amstradcpc", "shortName": "amstradcpc", "games": collections[6].games})
         // collections.unshift({"name": "apple2", "shortName": "apple2", "games": collections[6].games})
@@ -349,6 +349,10 @@ FocusScope {
             top: root.top
         }
         focus: true
+    }
+
+    Text {
+        text: currentCollectionIndex
     }
 
     Keys.onPressed: {
