@@ -351,10 +351,6 @@ FocusScope {
         focus: true
     }
 
-    Text {
-        text: currentCollectionIndex
-    }
-
     Keys.onPressed: {
         if (api.keys.isPrevPage(event)) {
             event.accepted = true;
