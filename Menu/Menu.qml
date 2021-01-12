@@ -153,7 +153,7 @@ FocusScope {
                     sourceSize.width: width
                     asynchronous: true
                     source: {
-                        if (home.currentGame === null || root.state === "collections")
+                        if (root.state === "collections")
                             return "";
                         if (root.state === "home")
                             return "../assets/collections/logo/"+clearShortname(home.currentGame.collections.get(0).shortName)+".png"
