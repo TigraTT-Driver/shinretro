@@ -1,4 +1,4 @@
-# neoretrō v0.12
+# neoretrō v0.13
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
 neoretrō is a theme for Pegasus-frontend.
