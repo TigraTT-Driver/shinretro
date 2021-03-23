@@ -179,6 +179,7 @@ FocusScope {
         "fds":              { manufacturer: "nintendo",             release: "1986",    color: "#000000", altColor: "#252525" },
         "gb":               { manufacturer: "nintendo",             release: "1989",    color: "#031268", altColor: "#010D50" },
         "snes":             { manufacturer: "nintendo",             release: "1990",    color: "#84E8A7", altColor: "#65A57B" },
+        "virtualboy":       { manufacturer: "nintendo",             release: "1995",    color: "#e60012", altColor: "#B10210" },
         "n64":              { manufacturer: "nintendo",             release: "1996",    color: "#45832D", altColor: "#356F20" },
         "gbc":              { manufacturer: "nintendo",             release: "1998",    color: "#997F03", altColor: "#725E00" },
         "gba":              { manufacturer: "nintendo",             release: "2001",    color: "#1E02B4", altColor: "#19077C" },
