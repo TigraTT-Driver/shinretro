@@ -1,4 +1,4 @@
-# neoretrō v0.131
+# neoretrō dark v0.131
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
 neoretrō is a theme for Pegasus-frontend.
@@ -27,11 +27,11 @@ neoretrō is a theme for Pegasus-frontend.
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/valsou/neoretro/readme_assets/assets/neoretro_v01_home.jpg" title="neoretrō home" />
+<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/home.png" title="neoretrō home" />
 
-<img src="https://raw.githubusercontent.com/valsou/neoretro/readme_assets/assets/neoretro_v01_collections.jpg" title="neoretrō collections" />
+<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/collection.png" title="neoretrō collections" />
 
-<img src="https://raw.githubusercontent.com/valsou/neoretro/readme_assets/assets/neoretro_v01_games.jpg" title="neoretrō games" />
+<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/games.png" title="neoretrō games" />
 
 ## Changelog
 v0.131
