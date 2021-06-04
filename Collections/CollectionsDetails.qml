@@ -20,8 +20,8 @@ Item {
 
             Item {
                 id: img_collection_logo
-                width: vpx(325)
-                height: vpx(115)
+                width: vpx(250)
+                height: vpx(100)
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: parent.top
@@ -32,13 +32,14 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/collections/logo/"+shortname+".png"
+                    source: "../assets/logos/"+shortname+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                 }
             }
 
             Text {
+                color: "white"
                 width: parent.width * 0.7
                 anchors {
                     bottom: txt_collection_games.top
@@ -58,15 +59,15 @@ Item {
                 id: txt_collection_games
                 anchors {
                     top: img_collection_logo.bottom
-                    topMargin: vpx(25)
+                    topMargin: vpx(10)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
-                text: modelData.games.count+" games available"
+                text: modelData.games.count+" jogos disponíveis"
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(20)
                 }
-                color: "black"
+                color: "#B3BDF4"
             }
 
             Row {
@@ -79,10 +80,10 @@ Item {
                 spacing: vpx(10)
 
                 Rectangle {
-                    width: vpx(75)
-                    height: vpx(25)
-                    color: manufacturerColor
-
+                    width: vpx(60)
+                    height: vpx(30)
+                    //color: manufacturerColor
+                    color: "transparent"
                     Item {
                         width: vpx(55)
                         height: vpx(15)
@@ -111,10 +112,10 @@ Item {
                     font {
                         family: montserratBold.name
                         weight: Font.Medium
-                        pixelSize: vpx(18)
+                        pixelSize: vpx(14)
                     }
                     bottomPadding: vpx(2)
-                    color: manufacturerColor
+                    color: "white"
                 }
             }
 

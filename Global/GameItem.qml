@@ -103,10 +103,10 @@ Item {
             anchors.centerIn: parent
             radius: width
 
-            color: "#00991E"
+            color: "#8E63EC"
             Text {
                 anchors.centerIn: parent
-                text: "A"
+                text: "X"
                 font {
                     family: global.fonts.sans
                     weight: Font.Bold
@@ -122,7 +122,7 @@ Item {
             color: "transparent"
             border {
                 width: vpx(5)
-                color: "#ED3496"
+                color: "#F3C03B"
             }
             visible: model.favorite && root.state === "games"
         }

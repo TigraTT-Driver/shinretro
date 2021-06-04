@@ -80,7 +80,7 @@ Item {
                     spacing: vpx(5)
 
                     Text {
-                        text: "Developed by"
+                        text: "Desenvolvido por"
                         font {
                             family: global.fonts.sans
                             weight: Font.Light
@@ -115,7 +115,7 @@ Item {
                         
                         Text {
                             id: txt_players
-                            property var convertPlayer: model.players > 1 ? "1-"+model.players+" PLAYERS" : "1 PLAYER"
+                            property var convertPlayer: model.players > 1 ? "1-"+model.players+" JOGADORES" : "1 JOGADOR"
                             anchors.centerIn: parent
                             text: convertPlayer
                             font {
@@ -164,7 +164,7 @@ Item {
                         Text {
                             id: txt_game_description
                             width: parent.width
-                            text: (model.description || model.summary) ? (model.description || model.summary) : "No description."
+                            text: (model.description || model.summary) ? (model.description || model.summary) : "Sem descrição."
                             font {
                                 family: global.fonts.condensed
                                 weight: Font.Light

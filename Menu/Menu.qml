@@ -12,7 +12,7 @@ FocusScope {
         radius: 24
         samples: 22
         spread: 0.2
-        color: "#35000000"
+        color: "#1C1E2E"
         source: parent
     }
 
@@ -21,10 +21,10 @@ FocusScope {
         height: parent.height + 2
         x: -1
         y: -1
-        color: "white"
+        color: "#202335"
         border {
             width: 1
-            color: "#D1D1D1"
+            color: "#1C1E2E"
         }
 
         Item {
@@ -62,13 +62,16 @@ FocusScope {
                         anchors {
                             left: parent.left
                         }
-                        color: "white"
+                        color: "#414767"
                         radius: width /4
+                        border.color: "#414767"
                         border {
                             width: vpx(1)
+                            
                         }
                         Text {
-                            text: "LB"
+                            text: "L"
+                            color: "#202335"
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
@@ -89,13 +92,15 @@ FocusScope {
                         anchors {
                             right: parent.right
                         }
-                        color: "white"
+                        color: "#414767"
                         radius: width /4
+                        border.color: "#414767"
                         border {
                             width: vpx(1)
                         }
                         Text {
-                            text: "RB"
+                            text: "R"
+                            color: "#202335"
                             anchors.centerIn: parent
                             font {
                                 family: global.fonts.sans
@@ -128,21 +133,22 @@ FocusScope {
             width: height * 2.5
             height: parent.height * 0.65
             anchors {
-                right: parent.right; rightMargin: parent.width * 0.19
+                right: parent.right; 
+                rightMargin: parent.width * 0.04
                 verticalCenter: parent.verticalCenter
             }
 
-            Image {
-                anchors {
-                    left: parent.left; leftMargin: -width *2
-                    verticalCenter: parent.verticalCenter
-                }
-                width: vpx(25)
-                source: "../assets/controls/button_LT.png"
-                sourceSize.width: width
-                fillMode: Image.PreserveAspectFit
-                visible: root.state === "games"
-            }
+            // Image {
+            //     anchors {
+            //         left: parent.left; leftMargin: -width *2
+            //         verticalCenter: parent.verticalCenter
+            //     }
+            //     width: vpx(25)
+            //     source: "../assets/buttons/button_LT.png"
+            //     sourceSize.width: width
+            //     fillMode: Image.PreserveAspectFit
+            //     visible: root.state === "games"
+            // }
 
             Component {
                 id: cpnt_helper_collection
@@ -156,9 +162,9 @@ FocusScope {
                         if (root.state === "collections")
                             return "";
                         if (root.state === "home")
-                            return "../assets/collections/logo/"+clearShortname(home.currentGame.collections.get(0).shortName)+".png"
+                            return "../assets/logos/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
                         if (root.state === "games")
-                            return "../assets/collections/logo/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".png"
+                            return "../assets/logos/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
                     }
                     fillMode: Image.PreserveAspectFit
                     horizontalAlignment: Image.AlignHCenter
@@ -185,17 +191,17 @@ FocusScope {
                 visible: status === Loader.Ready
             }
 
-            Image {
-                anchors {
-                    right: parent.right; rightMargin: -width *2
-                    verticalCenter: parent.verticalCenter
-                }
-                width: vpx(25)
-                source: "../assets/controls/button_RT.png"
-                sourceSize.width: width
-                fillMode: Image.PreserveAspectFit
-                visible: root.state === "games"
-            }
+            // Image {
+            //     anchors {
+            //         right: parent.right; rightMargin: -width *2
+            //         verticalCenter: parent.verticalCenter
+            //     }
+            //     width: vpx(25)
+            //     source: "../assets/buttons/button_RT.png"
+            //     sourceSize.width: width
+            //     fillMode: Image.PreserveAspectFit
+            //     visible: root.state === "games"
+            // }
 
             visible: ["home","games"].includes(root.state)
         }

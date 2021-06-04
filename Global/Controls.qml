@@ -57,7 +57,7 @@ Item {
 
         Image {
             height: vpx(16)
-            source: "../assets/controls/button_"+input_button+".svg"
+            source: "../assets/buttons/button_"+input_button+".svg"
             fillMode: Image.PreserveAspectFit
         }
     }

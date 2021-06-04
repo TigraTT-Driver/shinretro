@@ -38,6 +38,7 @@ FocusScope {
         }
     }
 
+    //Color retangle
     Rectangle {
         id: skew_color
         readonly property var touch_color: dataConsoles[clearShortname(currentCollection.shortName)].color
@@ -45,7 +46,8 @@ FocusScope {
         height: parent.height
         antialiasing: true
         anchors {
-            left: parent.left; leftMargin: parent.width * 0.77
+            left: parent.left
+            leftMargin: parent.width * 0.77
         }
         color: touch_color
         Behavior on color {
@@ -66,7 +68,7 @@ FocusScope {
     // Game details
     Item {
         id: item_game_details
-        width: parent.width * 0.75
+        width: parent.width * 0.92 //0.75
         anchors {
             top: parent.top
             bottom: games_bottom.top
@@ -88,7 +90,7 @@ FocusScope {
                     Text {
                         id: txt_releaseYear
                         anchors {
-                            top: parent.top; topMargin: -vpx(45)
+                            top: parent.top; topMargin: -vpx(30)
                         }
 
                         text: currentGame.releaseYear || "N/A"
@@ -98,7 +100,7 @@ FocusScope {
                             italic: true
                             pixelSize: vpx(140)
                         }
-                        color: "#F0F0F0"
+                        color: "#202335"
 
                         Behavior on text {
                             PropertyAnimation {
@@ -113,15 +115,7 @@ FocusScope {
 
                     }
 
-                    // RATING
-                    RatingStars {
-                        readonly property var rating: (currentGame.rating *5).toFixed(1)
-                        anchors {
-                            top: parent.top; topMargin: parent.height * 0.1
-                            right: parent.right
-                        }
-                    }
-
+                    
                     // TITLE + DEVELOPER + PLAYERS + GENRES + DESCRIPTION
                     Column {
                         spacing: vpx(10)
@@ -140,21 +134,21 @@ FocusScope {
                             }
                             maximumLineCount: 2
                             wrapMode: Text.Wrap
-                            color: "black"
+                            color: "white"
                         }
 
                         Row {
                             spacing: vpx(5)
 
                             Text {
-                                text: "Developed by"
+                                text: "Desenvolvido por"
                                 font {
                                     family: global.fonts.sans
                                     weight: Font.Light
                                     italic: true
                                     pixelSize: vpx(14)
                                 }
-                                color: "black"
+                                color: "#757BA0"
                             }
 
                             Text {
@@ -164,7 +158,19 @@ FocusScope {
                                     weight: Font.Medium
                                     pixelSize: vpx(14)
                                 }
-                                color: "black"
+                                color: "white"
+                            }
+                        }
+
+                        Row {
+                            spacing: vpx(5)
+                            // RATING
+                            RatingStars {
+                                readonly property var rating: (currentGame.rating *5).toFixed(1)
+                                // anchors {
+                                //     top: parent.top; topMargin: parent.height * 0.1
+                                //     right: parent.right
+                                // }
                             }
                         }
 
@@ -174,10 +180,10 @@ FocusScope {
                             Rectangle {
                                 width: txt_players.contentWidth + vpx(20)
                                 height: txt_players.contentHeight + vpx(10)
-                                color: "black"
+                                color: "#1C1E2E"
                                 border {
                                     width: vpx(1)
-                                    color: "black"
+                                    color: "#1C1E2E"
                                 }
 
                                 Text {
@@ -197,18 +203,18 @@ FocusScope {
                             Rectangle {
                                 width: txt_favorited.contentWidth + vpx(20)
                                 height: txt_favorited.contentHeight + vpx(10)
-                                color: "#ED3496"
+                                color: "#33F3C03B"
 
                                 Text {
                                     id: txt_favorited
                                     anchors.centerIn: parent
-                                    text: "FAVORITED"
+                                    text: "FAVORITO"
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Black
                                         pixelSize: vpx(12)
                                     }
-                                    color: "white"
+                                    color: "#F3C03B"
                                 }
                                 visible: currentGame.favorite
                             }
@@ -218,10 +224,10 @@ FocusScope {
                                 delegate: Rectangle {
                                     width: txt_genre.contentWidth + vpx(20)
                                     height: txt_genre.contentHeight + vpx(10)
-                                    color: "white"
+                                    color: "#1C1E2E"
                                     border {
                                         width: vpx(1)
-                                        color: "black"
+                                        color: "#1C1E2E"
                                     }
 
                                     Text {
@@ -233,16 +239,17 @@ FocusScope {
                                             weight: Font.Medium
                                             pixelSize: vpx(12)
                                         }
-                                        color: "black"
+                                        color: "white"
                                     }
                                     visible: (modelData !== "")
                                 }
                             }
                         }
 
+                        //Description
                         Item {
                             width: parent.width
-                            height: vpx(69)
+                            height: vpx(100)
                             // anchors.bottom: parent.bottom
 
                             PegasusUtils.AutoScroll {
@@ -250,7 +257,7 @@ FocusScope {
                                 Text {
                                     id: txt_game_description
                                     width: parent.width
-                                    text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : "No description."
+                                    text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : "Sem descrição."
                                     font {
                                         family: global.fonts.condensed
                                         weight: Font.Light
@@ -259,7 +266,7 @@ FocusScope {
                                     wrapMode: Text.WordWrap
                                     elide: Text.ElideRight
                                     horizontalAlignment: Text.AlignJustify
-                                    color: "black"
+                                    color: "#757BA0"
                                 }
                             }
                         }
@@ -305,7 +312,7 @@ FocusScope {
                                 width: img_game_boxart.paintedWidth + vpx(15)
                                 height: img_game_boxart.paintedHeight + vpx(15)
                                 anchors.centerIn: img_game_boxart
-                                color: "white"
+                                color: "#1C1E2E"
                             }
 
                             DropShadow {
@@ -344,71 +351,6 @@ FocusScope {
                         }
 
 
-
-                        // Flipable {
-                        //     id: flipable_cover
-                        //     anchors.fill: parent
-
-                        //     property bool flipped: false
-
-                        //     front: Image {
-                        //         id: img_game_boxart
-                        //         source: currentGame.assets.boxFront || currentGame.assets.logo
-                        //         anchors.fill: parent
-                        //         // sourceSize.width: width
-                        //         // sourceSize.height: height
-                        //         fillMode: Image.PreserveAspectFit
-                        //         horizontalAlignment: Image.AlignHCenter
-                        //         verticalAlignment: Image.AlignVCenter
-                        //         asynchronous: true
-
-                        //         Behavior on source {
-                        //             PropertyAnimation {
-                        //                 target: img_game_boxart
-                        //                 property: "opacity"
-                        //                 from: 0
-                        //                 to: 1
-                        //                 duration: 600
-                        //                 easing.type: Easing.OutExpo
-                        //             }
-                        //         }
-                        //     }
-
-                        //     back: Video {
-                        //         id: video_game
-                        //         anchors.fill: parent
-                        //         source: currentGame.assets.video
-                        //         fillMode: VideoOutput.PreserveAspectFit
-                        //         muted: true
-                        //         loops: 3
-                        //         autoPlay: true
-                        //     }
-
-                        //     transform: Rotation {
-                        //         id: rotation
-                        //         origin.x: flipable_cover.width/2
-                        //         origin.y: flipable_cover.height/2
-                        //         axis.x: 1; axis.y: 0; axis.z: 0     // set axis.y to 1 to rotate around y-axis
-                        //         angle: 0    // the default angle
-                        //     }
-
-                        //     states: State {
-                        //         name: "back"
-                        //         PropertyChanges { target: rotation; angle: 180 }
-                        //         when: flipable_cover.flipped
-                        //     }
-
-                        //     transitions: Transition {
-                        //         NumberAnimation { target: rotation; property: "angle"; duration: 250 }
-                        //     }
-
-                        //     Timer {
-                        //         interval: 5000; running: true; repeat: true
-                        //         onTriggered: flipable_cover.flipped = !flipable_cover.flipped
-                        //     }
-
-                        // }
-
                     }
 
                     Loader {
@@ -428,29 +370,41 @@ FocusScope {
         visible: currentGame !== null
     }
 
-    Text {
+    Item {
         anchors.centerIn: parent
-        text: "No favorites."
-        font {
-            family: robotoSlabRegular.name
-            pixelSize: vpx(42)
-        }
         visible: currentGame === null && (games.state === "favorites")
+        Column {
+            Text {
+                anchors.centerIn: parent
+                text: "Sem favoritos :("
+                color: "#7981A8"
+                font {
+                    family: robotoSlabRegular.name
+                    pixelSize: vpx(42)
+                }
+                
+            }
+        }
     }
 
+    // Games
     Item {
         id: games_bottom
         width: parent.width
-        height: parent.height * 0.51
+        height: parent.height * 0.50
         anchors {
             bottom: parent.bottom
         }
 
+        Column {
+            
+        }
+
         GridView {
             id: gv_games
-            width: parent.width * 0.77
+            width: parent.width * 0.92 //0.75
             height: vpx(260)
-            cellWidth: width /5
+            cellWidth: width /6
             cellHeight: height /2
             anchors.horizontalCenter: parent.horizontalCenter
 
@@ -516,6 +470,8 @@ FocusScope {
                 }
 
                 if (api.keys.isAccept(event)) {
+                    //Accept game sound
+                    sfxAccept.play();
                     event.accepted = true;
                     if (currentGame !== null) {
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)
@@ -526,6 +482,8 @@ FocusScope {
                 }
 
                 if (api.keys.isFilters(event)) {
+                    //Accept game sound
+                    sfxBack.play();
                     event.accepted = true;
                     if (games.state === "all") {
                         games.state = "favorites"
@@ -536,6 +494,8 @@ FocusScope {
                 }
 
                 if (api.keys.isCancel(event)) {
+                    //Accept game sound
+                    sfxBack.play();
                     event.accepted = true;
                     currentMenuIndex = 1
                 }
@@ -548,7 +508,29 @@ FocusScope {
 
                 }
 
+                if (event.key == Qt.Key_Left ) {
+                    //navigation sound
+                    sfxNav.play();
+                }
+
+                if (event.key == Qt.Key_Right) {
+                    //navigation sound
+                    sfxNav.play();
+                }
+                if (event.key == Qt.Key_Down) {
+                    //navigation sound
+                    sfxNav.play();
+                }
+
+                if (event.key == Qt.Key_Up) {
+                    sfxNav.play();
+                }
+
                 if (api.keys.isPageDown(event)) {
+
+                    //navigation sound
+                    sfxNav.play();
+
                     event.accepted = true;
 
                     if (currentCollectionIndex <= 0)
@@ -561,6 +543,10 @@ FocusScope {
                 }
 
                 if (api.keys.isPageUp(event)) {
+
+                    //navigation sound
+                    sfxNav.play();
+
                     event.accepted = true;
 
                     if (currentCollectionIndex >= api.collections.count - 1) {
@@ -578,35 +564,22 @@ FocusScope {
 
         }
 
+        
+        //Navgation bar
         Component {
             id: cpnt_helper_nav
-
             Item {
-                anchors.fill: parent
-
+                
                 Rectangle {
                     property int heightBar: parent.height - vpx(50)
                     anchors {
-                        horizontalCenter: parent.horizontalCenter
-                        top: parent.top; topMargin: vpx(8)
+                        left: parent.left; 
+                        leftMargin: parent.width + 30
+                        top: parent.top; topMargin: vpx(6)
                     }
                     width: vpx(2)
                     height: heightBar * ( (currentGameIndex + 1) / gv_games.count )
-                    color: "#F0F0F0"
-                }
-
-                Text {
-                    id: helper_count
-                    anchors {
-                        horizontalCenter: parent.horizontalCenter
-                        bottom: parent.bottom; bottomMargin: vpx(6)
-                    }
-                    text: (currentGameIndex + 1)+"/"+gv_games.count
-                    font {
-                        family: robotoSlabLight.name
-                        pixelSize: vpx(14)
-                    }
-
+                    color: "#757BA0"
                 }
             }
         }
@@ -627,33 +600,64 @@ FocusScope {
 
     }
 
+    // Counter grid
+    Row {
+        // anchors {
+        //     bottom: parent.bottom; bottomMargin: vpx(35)
+        //     right: parent.right; 
+        //     rightMargin: + 115
+        // }
+        anchors {
+            bottom: parent.bottom; bottomMargin: vpx(25)
+            right: parent.right; 
+            rightMargin: parent.width * 0.06
+            //verticalCenter: parent.verticalCenter
+        }
+        Text {
+            id: helper_count
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                bottom: parent.bottom; bottomMargin: vpx(6)
+            }
+            text: (currentGameIndex + 1)+"/"+gv_games.count
+            color: "white"
+            font {
+                family: robotoSlabLight.name
+                pixelSize: vpx(14)
+            }
+
+        }
+    }
+
+    // Bottons
     Row {
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(15)
-            left: parent.left; leftMargin: parent.width * 0.15
+            left: parent.left
+            leftMargin: parent.width * 0.05
         }
-        spacing: vpx(150)
+        spacing: vpx(20)
 
         Controls {
             id: button_B
 
-            message: "GO <b>BACK</b>"
+            message: "<b>VOLTAR</b>"
 
-            text_color: "black"
-            front_color: "#E6140D"
-            back_color: "white"
-            input_button: "B"
+            text_color: "#E06C9A"
+            front_color: "#26E06C9A"
+            back_color: "#26E06C9A"
+            input_button: "A"
         }
 
         Controls {
             id: button_X
 
-            message: currentGame !== null && currentGame.favorite ? "REMOVE <b>FAVORITE</b>" : "ADD <b>FAVORITE</b>"
+            message: currentGame !== null && currentGame.favorite ? "REMOVER DOS <b>FAVORITOS</b>" : "ADICIONAR AOS <b>FAVORITO</b>"
 
-            text_color: "white"
-            front_color: "#1C2C98"
-            back_color: "#1C2C98"
-            input_button: "X_reverse"
+            text_color: "#F3C03B"
+            front_color: "#26F3C03B"
+            back_color: "#26F3C03B"
+            input_button: "B"
 
             visible: currentGame !== null
         }
@@ -661,11 +665,11 @@ FocusScope {
         Controls {
             id: button_Y
 
-            message: ( games.state === "all" ) ? "SHOW <b>ALL ·</b> FAVORITES" : "SHOW ALL <b>· FAVORITES</b>"
+            message: ( games.state === "all" ) ? "MOSTRAR TODOS OS <b>FAVORITOS</b>" : "MOSTRAR TODOS OS <b>FAVORITOS</b>"
 
-            text_color: "black"
-            front_color: "#FDB200"
-            back_color: "white"
+            text_color: "#66D2EC"
+            front_color: "#2666D2EC"
+            back_color: "#2666D2EC"
             input_button: "Y"
         }
     }

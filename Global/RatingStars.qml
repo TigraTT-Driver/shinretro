@@ -30,7 +30,7 @@ Item {
             return "#B5714B"
         }
         else if (rate < 4) {
-            return "#F4F4F4"
+            return "#202335"
         }
         else {
             return "#FFCE00"
@@ -84,39 +84,38 @@ Item {
             top: rating_stars.top; topMargin: -vpx(2)
             left: rating_stars.left; leftMargin: -vpx(3)
         }
-        color: getBackgroundColor(rating)
-        antialiasing: true
+        color: "#25283B"//getBackgroundColor(rating)
+        // antialiasing: true
 
-        transform: Matrix4x4 {
-            property real a: 12 * Math.PI / 180
-            matrix: Qt.matrix4x4(
-                1,      -Math.tan(a),       0,      0,
-                0,      1,                  0,      0,
-                0,      0,                  1,      0,
-                0,      0,                  0,      1
-            )
-        }
+        // transform: Matrix4x4 {
+        //     property real a: 12 * Math.PI / 180
+        //     matrix: Qt.matrix4x4(
+        //         1,      -Math.tan(a),       0,      0,
+        //         0,      1,                  0,      0,
+        //         0,      0,                  1,      0,
+        //         0,      0,                  0,      1
+        //     )
+        // }
     }
 
     Text {
         id: txt_rating
         anchors {
-            top: rect_stars.top; topMargin: -vpx(1)
+            top: rect_stars.top; topMargin: -vpx(-0)
             left: rect_stars.right; leftMargin: vpx(3)
         
         }
         text: rating
         font {
             family: global.fonts.sans
-            pixelSize: vpx(16)
+            pixelSize: vpx(14)
         }
-        color: "black"
+        color: "#757BA0"
     }
 
     Row {
         id: rating_stars
         spacing: vpx(4)
-
         Repeater {
             model: starsMatrix
             delegate: Loader {

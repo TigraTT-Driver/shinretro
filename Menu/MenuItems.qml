@@ -25,8 +25,8 @@ Item {
             horizontalCenter: parent.horizontalCenter
         }
 
-        text: modelData.name
-        color: "black"
+        text: modelData.title
+        color:  isCurrentItem ? "#7981A8": "#414767"
         Behavior on color {
             ColorAnimation { duration: 150; }
         }

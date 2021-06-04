@@ -27,7 +27,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/collections/bg/"+shortname+".jpg"
+                source: "../assets/background/"+shortname+".jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 
@@ -43,8 +43,8 @@ Item {
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent
-                color: "white"
-                opacity: isCurrentItem ? 0 : 0.85
+                color: "#1C1E2E"
+                opacity: isCurrentItem ? 0 : 0.90
                 Behavior on opacity {
                     NumberAnimation { duration: 300; }
                 }

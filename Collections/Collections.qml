@@ -119,7 +119,15 @@ FocusScope {
 
             Keys.onPressed: {
 
+                if (event.isAutoRepeat) {
+                    return
+                }
+
                 if (api.keys.isAccept(event)) {
+
+                    //Accept game sound
+                    sfxBack.play();
+
                     event.accepted = true;
                     currentMenuIndex = 2
                 }
@@ -127,9 +135,16 @@ FocusScope {
                 if (api.keys.isCancel(event)) {
                     event.accepted = true;
                     currentMenuIndex = 0
+
+                    //PrevPage sound
+                    sfxBack.play();
                 }
 
                 if (event.key == Qt.Key_Left) {
+
+                    //navigation sound
+                    sfxNav.play();
+
                     event.accepted = true;
                     if (currentCollectionIndex <= 0)
                         if (event.isAutoRepeat)
@@ -142,6 +157,10 @@ FocusScope {
                 }
 
                 if (event.key == Qt.Key_Right) {
+
+                    //navigation sound
+                    sfxNav.play();
+
                     event.accepted = true;
 
                     if (currentCollectionIndex >= allCollections.length - 1)
@@ -200,6 +219,7 @@ FocusScope {
     }
 
     Text {
+        color: "white"
         anchors {
             right: parent.right; rightMargin: vpx(35)
             top: parent.top; topMargin: vpx(160)
@@ -211,33 +231,39 @@ FocusScope {
         }
     }
 
-    Controls {
-        id: button_B
+    // Bottons
+    Row {
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
-            left: parent.left; leftMargin: vpx(40)
+            right: parent.right
+            rightMargin: parent.width * 0.05
+        }
+        spacing: vpx(20)
+
+        Controls {
+            id: button_A
+
+            message: "JOGOS DE <b>"+currentCollection.name+"</b>"
+            text_color: "#8E63EC"
+            front_color: "#338E63EC"
+            back_color: "#338E63EC"
+            input_button: "X"
         }
 
-        message: "GO <b>BACK</b>"
+        Controls {
+            id: button_B
 
-        text_color: "black"
-        front_color: "#E6140D"
-        back_color: "white"
-        input_button: "B"
-    }
+            message: "<b>VOLTAR</b>"
 
-    Controls {
-        id: button_A
-        anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
-            right: parent.right; rightMargin: vpx(150)
+            text_color: "#E06C9A"
+            front_color: "#26E06C9A"
+            back_color: "#26E06C9A"
+            input_button: "A"
         }
 
-        message: "<b>"+currentCollection.name+"</b> GAMES"
-        text_color: "white"
-        front_color: "#00991E"
-        back_color: "#00991E"
-        input_button: "A_reverse"
+        
+
+        
     }
 
 }

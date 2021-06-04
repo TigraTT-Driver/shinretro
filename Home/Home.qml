@@ -84,7 +84,7 @@ FocusScope {
         anchors {
             left: parent.left; leftMargin: parent.width * 0.08
         }
-        color: "#000000"
+        color: "#1C1E2E"
 
         transform: Matrix4x4 {
             property real a: 12 * Math.PI / 180
@@ -100,7 +100,7 @@ FocusScope {
 
     Column {
         id: main
-        width: parent.width * 0.75
+        width: parent.width * 0.90 //0.75
         height: childrenRect.height
         anchors {
             horizontalCenter: parent.horizontalCenter
@@ -109,7 +109,7 @@ FocusScope {
         spacing: vpx(10)
 
         Text {
-            text: ( home.state === "last_played" || home.state === "last_played_default" ) ? "– Continue playing" : "Continue playing"
+            text: ( home.state === "last_played" || home.state === "last_played_default" ) ? "Continue jogando" : "Continue jogando"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -169,18 +169,35 @@ FocusScope {
 
                 Keys.onPressed: {
 
+                    
+                    if (event.isAutoRepeat) {
+                        return
+                    }
+
                     if (api.keys.isAccept(event)) {
+
+                        //Accept game
+                        sfxAccept.play();
+
                         event.accepted = true;
                         api.memory.set("currentMenuIndex", currentMenuIndex)
                         currentGame.launch()
                     }
 
                     if (event.key == Qt.Key_Right) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         home.state = "last_played"
                     }
 
                     if (event.key == Qt.Key_Down && sort_favorites.count > 0) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         lastIsDefault = true
                         home.state = "favorites"
@@ -190,6 +207,7 @@ FocusScope {
 
             }
 
+            
             GridView {
                 id: gv_lastPlayed
                 width: main.width * 0.6
@@ -238,6 +256,7 @@ FocusScope {
 
                 Keys.onPressed: {
 
+
                     if (event.isAutoRepeat) {
                         return
                     }
@@ -245,10 +264,18 @@ FocusScope {
                     if (api.keys.isAccept(event)) {
                         event.accepted = true;
                         api.memory.set("currentMenuIndex", currentMenuIndex)
+
+                        //Accept game sound
+                        sfxAccept.play();
+
                         currentGame.launch()
                     }
-
+                    
                     if (event.key == Qt.Key_Left) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         if ( [0,3].includes(currentLastPlayedIndex) )
                             home.state = "last_played_default"
@@ -257,12 +284,20 @@ FocusScope {
                     }
 
                     if (event.key == Qt.Key_Right) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         if ( [0,1,3,4].includes(currentLastPlayedIndex) )
                             currentLastPlayedIndex++
                     }
 
                     if (event.key == Qt.Key_Down) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         if ( [0,1,2].includes(currentLastPlayedIndex) ) {
                             currentLastPlayedIndex +=3
@@ -275,6 +310,10 @@ FocusScope {
                     }
 
                     if (event.key == Qt.Key_Up) {
+
+                        //navigation sound
+                        sfxNav.play();
+
                         event.accepted = true;
                         if ( [3,4,5].includes(currentLastPlayedIndex) )
                             currentLastPlayedIndex -=3
@@ -286,7 +325,7 @@ FocusScope {
         }
 
         Text {
-            text: ( home.state === "favorites" ) ? "– Favorites" : "Favorites"
+            text: ( home.state === "favorites" ) ? "– Favoritos" : "Jogos favoritos"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -352,11 +391,33 @@ FocusScope {
                 if (api.keys.isAccept(event)) {
                     event.accepted = true;
                     api.memory.set("currentMenuIndex", currentMenuIndex)
+
+                    //Accept game sound
+                    sfxAccept.play();
+
                     currentGame.launch()
+                }
+
+                
+                if (event.key == Qt.Key_Left) {
+                    //navigation sound
+                    sfxNav.play();
+                }
+
+                if (event.key == Qt.Key_Right) {
+                    //navigation sound
+                    sfxNav.play();
+                }
+
+                if (event.key == Qt.Key_Down) {
+                    //navigation sound
+                    sfxNav.play();
                 }
 
                 if (event.key == Qt.Key_Up) {
                     event.accepted = true;
+                    //navigation sound
+                    sfxNav.play();
                     home.state = lastIsDefault ? "last_played_default" : "last_played"
                 }
 
@@ -366,50 +427,10 @@ FocusScope {
 
     }
 
-    // // Collection logo
-    // Item {
-    //     width: vpx(140)
-    //     height: vpx(35)
-    //     anchors {
-    //         bottom: parent.bottom; bottomMargin: vpx(35)
-    //         left: parent.left; leftMargin: vpx(380)
-    //     }
-
-    //     Image {
-    //         id: img_home_collection
-    //         anchors.fill: parent
-    //         sourceSize.width: width
-    //         asynchronous: true
-    //         source: "../assets/collections/logo/"+currentGame.collections.get(0).shortName+"_mono.svg"
-    //         fillMode: Image.PreserveAspectFit
-    //         verticalAlignment: Image.AlignVCenter
-    //     }
-
-    // }
-
-    // Controls {
-    //     width: childrenRect.width
-    //     height: vpx(20)
-
-    //     anchors {
-    //         bottom: parent.bottom; bottomMargin: vpx(40)
-    //         left: parent.left; leftMargin: parent.width * 0.13
-    //     }
-
-    //     button_value: "A"
-    //     message: "PLAY <b>"+currentGame.title+"</b>"
-
-    //     // message: "PLAY <b>"+currentGame.title+"</b>"
-
-    //     // text_color: "white"
-    //     // front_color: "#00991E"
-    //     // back_color: "#00991E"
-    //     // input_button: "A_reverse"
-    // }
 
     Row {
         id: play_message
-        width: parent.width * 0.74
+        width: parent.width * 0.90//0.74
         height: vpx(18)
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
@@ -420,11 +441,11 @@ FocusScope {
         Rectangle {
             width: vpx(4)
             height: parent.height
-            color: "#00991E"
+            color: "#8E63EC"
         }
 
         Text {
-            text: "PLAY <b>"+currentGame.title+"</b>"
+            text: "JOGAR <b>"+currentGame.title+"</b>"
             font {
                 family: global.fonts.sans
                 weight: Font.Light
@@ -437,5 +458,6 @@ FocusScope {
 
 
     }
+
 
 }
