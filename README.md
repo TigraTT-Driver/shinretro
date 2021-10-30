@@ -23,15 +23,17 @@ neoretrō is a theme for Pegasus-frontend.
 ## Metadata in use
 - boxFront
 - screenshot
+- titlescreen (fallback for screenshot)
 - wheel
+- background
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/home.png" title="neoretrō home" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home.png" title="neoretro-dark home" />
 
-<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/collection.png" title="neoretrō collections" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection.png" title="neoretro-dark collections" />
 
-<img src="https://raw.githubusercontent.com/luciano-work/neoretro/master/assets/screenshot/games.png" title="neoretrō games" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games.png" title="neoretro-dark games" />
 
 ## Changelog
 v0.131
