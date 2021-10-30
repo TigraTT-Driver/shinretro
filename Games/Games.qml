@@ -347,7 +347,7 @@ BackgroundImage {
 
                             Image {
                                 id: img_game_boxart
-                                source: currentGame.assets.boxFront || currentGame.assets.logo
+                                source: currentGame.assets.screenshots[0] || currentGame.assets.titlescreen
                                 anchors {
                                     fill: parent
                                 }
