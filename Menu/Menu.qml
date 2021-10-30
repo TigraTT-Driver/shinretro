@@ -1,4 +1,4 @@
-import QtQuick 2.8
+import QtQuick 2.15
 import QtGraphicalEffects 1.12
 import "../Global"
 
@@ -71,7 +71,7 @@ FocusScope {
                         ColorOverlay {
                             anchors.fill: menu_input_LB
                             source: menu_input_LB
-                        color: "#414767"
+                            color: "#414767"
                         }
                     }
                 }
@@ -96,7 +96,7 @@ FocusScope {
                         ColorOverlay {
                             anchors.fill: menu_input_RB
                             source: menu_input_RB
-                        color: "#414767"
+                            color: "#414767"
                         }
                     }
                 }

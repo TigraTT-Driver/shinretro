@@ -1,5 +1,7 @@
-import QtQuick 2.8
-import QtMultimedia 5.9
+import QtQuick 2.15
+import QtGraphicalEffects 1.12
+import QtMultimedia 5.15
+import QtQml.Models 2.15
 import SortFilterProxyModel 0.2
 
 import "Home"
