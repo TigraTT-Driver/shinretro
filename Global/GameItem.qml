@@ -3,47 +3,111 @@ import QtGraphicalEffects 1.12
 import QtMultimedia 5.15
 
 Item {
-    id: cpnt_gameList_game
+id: root
 
-    Item {
-        anchors.fill: parent
+    readonly property var collectionAltColor: dataConsoles[clearShortname(currentCollection.shortName)].altColor
+    // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
+    function steamAppID (gameData) {
+        var str = gameData.assets.boxFront.split("header");
+        return str[0];
+    }
 
-        Image {
-            id: img_game_screenshot
-            source: model.assets.screenshot || model.assets.background
-            anchors.fill: parent
-            asynchronous: true
-            fillMode: Image.PreserveAspectCrop
-        }
+    function steamBoxFront(gameData) {
+        return steamAppID(gameData) + "/library_600x900_2x.jpg"
+    }
 
-        // Desaturate {
-        //     anchors.fill: img_game_screenshot
-        //     source: img_game_screenshot
-        //     desaturation: doubleFocus ? 0 : 1
-        //     Behavior on desaturation {
-        //         NumberAnimation { duration: 200; }
-        //     }
-        // }
 
-        // Rectangle {
-        //     anchors.fill: parent
-        //     color: "#80000000"
-        //     opacity: doubleFocus
-        //     Behavior on opacity {
-        //         NumberAnimation { duration: 200; }
-        //     }
-        // }
-
-        Image {
-            id: img_game_logo
-            source: model.assets.logo
-            anchors {
-                fill: parent
-                margins: parent.width * 0.15
+    function logo(data) {
+    if (data != null) {
+        if (data.assets.boxFront.includes("header.jpg")) 
+            return steamBoxFront(data);
+        else {
+            if (data.assets.boxFront != "")
+                return data.assets.boxFront;
             }
-            asynchronous: true
-            fillMode: Image.PreserveAspectFit
         }
+        return "";
+    }
+
+    signal activated
+    signal highlighted
+    signal unhighlighted
+
+    property bool selected
+    property var gameData: modelData
+
+
+    // In order to use the retropie icons here we need to do a little collection specific hack
+    property bool playVideo: gameData ? gameData.assets.videoList.length : ""
+    scale: selected ? 1 : 0.95
+    Behavior on scale { NumberAnimation { duration: 100 } }
+    z: selected ? 10 : 1
+
+    onSelectedChanged: {
+        if (selected && playVideo)
+            fadescreenshot.restart();
+        else {
+            fadescreenshot.stop();
+            screenshot.opacity = 1;
+            container.opacity = 1;
+        }
+    }
+
+    // NOTE: Fade out the bg so there is a smooth transition into the video
+    Timer {
+    id: fadescreenshot
+
+        interval: 1200
+        onTriggered: {
+            screenshot.opacity = 0;
+        }
+    }
+
+    Item 
+    {
+    id: container
+
+        anchors.fill: parent
+        Behavior on opacity { NumberAnimation { duration: 200 } }
+
+        Image {
+        id: boxFront
+
+            anchors.fill: parent
+            anchors.margins: vpx(3)
+            property var boxFrontImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.boxFront
+            source: modelData ? boxFrontImage || "" : ""
+            fillMode: Image.PreserveAspectFit
+            sourceSize: Qt.size(boxFront.width, boxFront.height)
+            smooth: true
+            asynchronous: true
+            scale: selected ? 1.1 : 1
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+            Rectangle {
+                anchors.fill: parent
+                color: "transparent"
+                border {
+                    width: vpx(6)
+                    color: collectionAltColor
+                }
+                opacity: isCurrentItem
+                Behavior on opacity {
+                    NumberAnimation { duration: 200; }
+                }
+            }
+        }
+        
+    }
+
+    // List specific input
+    Keys.onPressed: {
+        // Accept
+        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+            event.accepted = true;
+            activated();        
+        }
+    }
+
 
         Text {
             anchors.fill: parent
@@ -59,84 +123,7 @@ Item {
             verticalAlignment : Text.AlignVCenter
             wrapMode: Text.Wrap
 
-            visible: model.assets.logo === ""
+            visible: model.assets.boxFront === ""
             
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "black"
-            opacity: doubleFocus ? 0.8 : 0
-            Behavior on opacity {
-                NumberAnimation { duration: 200; }
-            }
-        }
-
-        // Rectangle {
-        //     width: vpx(25)
-        //     height: vpx(25)
-        //     color: doubleFocus ? "#00991E" : "#191919"
-        //     anchors {
-        //         top: parent.top
-        //         left: parent.left
-        //     }
-
-        //     Image {
-        //         id: img_heart
-        //         width: vpx(12)
-        //         height: vpx(12)
-        //         sourceSize.width: width
-        //         sourceSize.height: height
-        //         anchors {
-        //             bottom: parent.bottom; bottomMargin: vpx(5)
-        //             right: parent.right; rightMargin: vpx(5)
-        //         }
-        //         source: "../assets/heart.png"
-        //         fillMode: Image.PreserveAspectFit
-        //     }
-
-        //     visible: (root.state !== "home" && model.favorite)
-        // }
-
-        Rectangle {
-            width: parent.height * 0.2
-            height: width
-            anchors.centerIn: parent
-            radius: width
-
-            color: "#8E63EC"
-            Text {
-                anchors.centerIn: parent
-                text: "X"
-                font {
-                    family: global.fonts.sans
-                    weight: Font.Bold
-                    pixelSize: parent.height * 0.75
-                }
-                color: "white"
-            }
-            visible: doubleFocus
-        }
-
-        Rectangle {
-            anchors.fill: parent
-            color: "transparent"
-            border {
-                width: vpx(5)
-                color: "#F3C03B"
-            }
-            visible: model.favorite && root.state === "games"
-        }
-
-        // Image {
-        //     width: parent.width * 0.6
-        //     sourceSize.width: width
-        //     anchors.centerIn: parent
-        //     source: "../assets/controls/button_A_reverse"
-        //     fillMode: Image.PreserveAspectFit
-        //     visible: doubleFocus
-        // }
-        
+        }       
     }
-
-}
