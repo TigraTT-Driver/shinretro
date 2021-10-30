@@ -153,7 +153,7 @@ FocusScope {
                         Loader {
                             anchors.fill: parent
                             asynchronous: true
-                            sourceComponent: GameItem {}
+                            sourceComponent: GameItemHome {}
                             active: home.focus
                             visible: status === Loader.Ready
                         }
@@ -244,7 +244,7 @@ FocusScope {
                         Loader {
                             anchors.fill: parent
                             asynchronous: true
-                            sourceComponent: GameItem {}
+                            sourceComponent: GameItemHome {}
                             active: home.focus
                             visible: status == Loader.Ready
                         }
@@ -369,7 +369,7 @@ FocusScope {
                     Loader {
                         anchors.fill: parent
                         asynchronous: true
-                        sourceComponent: GameItem {}
+                        sourceComponent: GameItemHome {}
                         active: home.focus
                         visible: status === Loader.Ready
                     }
