@@ -60,23 +60,18 @@ FocusScope {
                         width: parent.width * 0.55
                         height: parent.height
                         anchors {
-                            left: parent.left
+                            right: parent.right
                         }
+                        color: "transparent"
+                        Image {
+                            id: menu_input_LB
+                            source: "../assets/buttons/input_LB.svg"
+                            fillMode: Image.PreserveAspectFit
+                        }
+                        ColorOverlay {
+                            anchors.fill: menu_input_LB
+                            source: menu_input_LB
                         color: "#414767"
-                        radius: width /4
-                        border.color: "#414767"
-                        border {
-                            width: vpx(1)
-                            
-                        }
-                        Text {
-                            text: "L"
-                            color: "#202335"
-                            anchors.centerIn: parent
-                            font {
-                                family: global.fonts.sans
-                                pixelSize: parent.height * 0.6
-                            }
                         }
                     }
                 }
@@ -92,20 +87,16 @@ FocusScope {
                         anchors {
                             right: parent.right
                         }
-                        color: "#414767"
-                        radius: width /4
-                        border.color: "#414767"
-                        border {
-                            width: vpx(1)
+                        color: "transparent"
+                        Image {
+                            id: menu_input_RB
+                            source: "../assets/buttons/input_RB.svg"
+                            fillMode: Image.PreserveAspectFit
                         }
-                        Text {
-                            text: "R"
-                            color: "#202335"
-                            anchors.centerIn: parent
-                            font {
-                                family: global.fonts.sans
-                                pixelSize: parent.height * 0.6
-                            }
+                        ColorOverlay {
+                            anchors.fill: menu_input_RB
+                            source: menu_input_RB
+                        color: "#414767"
                         }
                     }
                 }

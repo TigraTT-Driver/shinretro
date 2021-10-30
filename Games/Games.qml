@@ -639,38 +639,38 @@ FocusScope {
         spacing: vpx(20)
 
         Controls {
-            id: button_B
+            id: button_R
 
             message: "<b>VOLTAR</b>"
 
             text_color: "#E06C9A"
             front_color: "#26E06C9A"
             back_color: "#26E06C9A"
-            input_button: "A"
+            input_button: "BTN-R"
         }
 
         Controls {
-            id: button_X
+            id: button_L
 
             message: currentGame !== null && currentGame.favorite ? "REMOVER DOS <b>FAVORITOS</b>" : "ADICIONAR AOS <b>FAVORITO</b>"
 
             text_color: "#F3C03B"
             front_color: "#26F3C03B"
             back_color: "#26F3C03B"
-            input_button: "B"
+            input_button: "BTN-L"
 
             visible: currentGame !== null
         }
 
         Controls {
-            id: button_Y
+            id: button_U
 
             message: ( games.state === "all" ) ? "MOSTRAR TODOS OS <b>FAVORITOS</b>" : "MOSTRAR TODOS OS <b>FAVORITOS</b>"
 
             text_color: "#66D2EC"
             front_color: "#2666D2EC"
             back_color: "#2666D2EC"
-            input_button: "Y"
+            input_button: "BTN-U"
         }
     }
 
