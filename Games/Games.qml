@@ -423,14 +423,14 @@ BackgroundImage {
             id: gv_games
             width: parent.width * 0.92 //0.75
             height: vpx(260)
-            cellWidth: width /6
-            cellHeight: height /2
+            cellWidth: width /4
+            cellHeight: height
             anchors.horizontalCenter: parent.horizontalCenter
 
             clip: true
             // interactive: false
 
-            preferredHighlightBegin: height * 0.5
+            preferredHighlightBegin: height
             preferredHighlightEnd: height * 0.5
 
             currentIndex: currentGameIndex
