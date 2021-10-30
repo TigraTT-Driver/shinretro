@@ -312,8 +312,7 @@ FocusScope {
         id: rect_main
         width: parent.width
         height: parent.height
-        color: "#25283B" //bacground
-
+        color: "#25283B" //background
     }
 
     Home {
