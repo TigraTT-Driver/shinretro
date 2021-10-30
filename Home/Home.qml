@@ -109,7 +109,7 @@ FocusScope {
         spacing: vpx(10)
 
         Text {
-            text: ( home.state === "last_played" || home.state === "last_played_default" ) ? "Continue jogando" : "Continue jogando"
+            text: ( home.state === "last_played" || home.state === "last_played_default" ) ? "- Continue playing" : "Continue playing"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -325,7 +325,7 @@ FocusScope {
         }
 
         Text {
-            text: ( home.state === "favorites" ) ? "– Favoritos" : "Jogos favoritos"
+            text: ( home.state === "favorites" ) ? "– Favorites" : "Favorites"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -445,7 +445,7 @@ FocusScope {
         }
 
         Text {
-            text: "JOGAR <b>"+currentGame.title+"</b>"
+            text: "PLAY <b>"+currentGame.title+"</b>"
             font {
                 family: global.fonts.sans
                 weight: Font.Light

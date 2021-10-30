@@ -141,7 +141,7 @@ FocusScope {
                             spacing: vpx(5)
 
                             Text {
-                                text: "Desenvolvido por"
+                                text: "Developed by"
                                 font {
                                     family: global.fonts.sans
                                     weight: Font.Light
@@ -208,7 +208,7 @@ FocusScope {
                                 Text {
                                     id: txt_favorited
                                     anchors.centerIn: parent
-                                    text: "FAVORITO"
+                                    text: "FAVORITED"
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Black
@@ -376,7 +376,7 @@ FocusScope {
         Column {
             Text {
                 anchors.centerIn: parent
-                text: "Sem favoritos :("
+                text: "No favorites."
                 color: "#7981A8"
                 font {
                     family: robotoSlabRegular.name
@@ -641,7 +641,7 @@ FocusScope {
         Controls {
             id: button_R
 
-            message: "<b>VOLTAR</b>"
+            message: "GO <b>BACK</b>"
 
             text_color: "#E06C9A"
             front_color: "#26E06C9A"
@@ -652,7 +652,7 @@ FocusScope {
         Controls {
             id: button_L
 
-            message: currentGame !== null && currentGame.favorite ? "REMOVER DOS <b>FAVORITOS</b>" : "ADICIONAR AOS <b>FAVORITO</b>"
+            message: currentGame !== null && currentGame.favorite ? "REMOVE <b>FAVORITE</b>" : "ADD <b>FAVORITE</b>"
 
             text_color: "#F3C03B"
             front_color: "#26F3C03B"
@@ -665,7 +665,7 @@ FocusScope {
         Controls {
             id: button_U
 
-            message: ( games.state === "all" ) ? "MOSTRAR TODOS OS <b>FAVORITOS</b>" : "MOSTRAR TODOS OS <b>FAVORITOS</b>"
+            message: ( games.state === "all" ) ? "SHOW <b>ALL ·</b> FAVORITES" : "SHOW ALL <b>· FAVORITES</b>"
 
             text_color: "#66D2EC"
             front_color: "#2666D2EC"

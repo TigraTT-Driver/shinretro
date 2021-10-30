@@ -79,9 +79,9 @@ FocusScope {
     property var currentCollection: allCollections[currentCollectionIndex]
 
     property variant dataMenu: [
-        { name: "home", title: "Inicio"},
-        { name: "collections", title: "coleção"},
-        { name: "games", title: "jogos"}
+        { name: "home", title: "home"},
+        { name: "collections", title: "collections"},
+        { name: "games", title: "games"}
     ]
 
     property variant dataManufacturers: {

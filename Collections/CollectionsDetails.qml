@@ -62,7 +62,7 @@ Item {
                     topMargin: vpx(10)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
-                text: modelData.games.count+" jogos disponíveis"
+                text: modelData.games.count+" games available"
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(20)

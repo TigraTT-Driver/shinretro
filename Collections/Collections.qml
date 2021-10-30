@@ -243,7 +243,7 @@ FocusScope {
         Controls {
             id: button_D
 
-            message: "JOGOS DE <b>"+currentCollection.name+"</b>"
+            message: "<b>"+currentCollection.name+"</b> GAMES"
             text_color: "#8E63EC"
             front_color: "#338E63EC"
             back_color: "#338E63EC"
@@ -253,7 +253,7 @@ FocusScope {
         Controls {
             id: button_R
 
-            message: "<b>VOLTAR</b>"
+            message: "GO <b>BACK</b>"
 
             text_color: "#E06C9A"
             front_color: "#26E06C9A"
