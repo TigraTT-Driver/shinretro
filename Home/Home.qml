@@ -95,7 +95,15 @@ FocusScope {
                 0,      0,                  0,      1
             )
         }
-
+        BackgroundImage {
+            id: backgroundimage
+            game: currentGame
+            anchors {
+                left: parent.left; right: parent.right
+                top: parent.top; bottom: parent.bottom
+            }
+        opacity: 0.255
+        }
     }
 
     Column {

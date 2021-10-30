@@ -6,6 +6,17 @@ import "qrc:/qmlutils" as PegasusUtils
 import "../Global"
 
 FocusScope {
+
+BackgroundImage {
+    id: backgroundimage
+    game: currentGame
+    anchors {
+      left: parent.left; right: parent.right
+      top: parent.top; bottom: parent.bottom
+    }
+    opacity: 0.255
+}
+
     focus: games.focus
 
     state: "all"
@@ -67,6 +78,7 @@ FocusScope {
 
     // Game details
     Item {
+
         id: item_game_details
         width: parent.width * 0.92 //0.75
         anchors {
@@ -101,6 +113,13 @@ FocusScope {
                             pixelSize: vpx(140)
                         }
                         color: "#202335"
+                        layer.enabled: true
+                        layer.effect: DropShadow {
+                            verticalOffset: 20
+                            color: "#1C1E2E"
+                            radius: 5
+                            samples: 200
+                        }
 
                         Behavior on text {
                             PropertyAnimation {
@@ -266,7 +285,7 @@ FocusScope {
                                     wrapMode: Text.WordWrap
                                     elide: Text.ElideRight
                                     horizontalAlignment: Text.AlignJustify
-                                    color: "#757BA0"
+                                    color: "white"
                                 }
                             }
                         }
