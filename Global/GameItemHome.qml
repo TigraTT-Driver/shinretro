@@ -126,7 +126,18 @@ id: root
             Behavior on opacity {
                 NumberAnimation { duration: 200; }
             }
+            Component {
+            id: gameVideo
+
+                GameVideo {
+                    width: collectionList.cellWidth
+                    height: collectionList.cellHeight
+                    game: search ? search.currentGame(collectionList.currentIndex) : ""
+                    selected: collectionList.focus
+                }
+            }
         }
+
         Rectangle {
         id: regborder
 
