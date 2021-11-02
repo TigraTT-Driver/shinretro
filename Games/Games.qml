@@ -115,10 +115,12 @@ BackgroundImage {
                         color: "#202335"
                         layer.enabled: true
                         layer.effect: DropShadow {
-                            verticalOffset: 20
+                            spread: 1.0
+                            verticalOffset: 5
+                            horizontalOffset: 5
                             color: "#1C1E2E"
                             radius: 5
-                            samples: 200
+                            samples: 11
                         }
 
                         Behavior on text {

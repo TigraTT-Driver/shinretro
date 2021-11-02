@@ -66,6 +66,7 @@ FocusScope {
                         Image {
                             id: menu_input_LB
                             source: "../assets/buttons/input_LB.svg"
+                            height: vpx(26)
                             fillMode: Image.PreserveAspectFit
                         }
                         ColorOverlay {
@@ -91,6 +92,7 @@ FocusScope {
                         Image {
                             id: menu_input_RB
                             source: "../assets/buttons/input_RB.svg"
+                            height: vpx(26)
                             fillMode: Image.PreserveAspectFit
                         }
                         ColorOverlay {
