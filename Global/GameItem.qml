@@ -69,7 +69,6 @@ id: root
 
         anchors.fill: parent
         Behavior on opacity { NumberAnimation { duration: 200 } }
-
         Image {
         id: boxFront
 
@@ -84,10 +83,12 @@ id: root
             scale: selected ? 1.1 : 1
             Behavior on opacity { NumberAnimation { duration: 200 } }
             Rectangle {
-                anchors.fill: parent
+                anchors.centerIn: boxFront
+                width: boxFront.paintedWidth + vpx(15)
+                height: boxFront.paintedHeight + vpx(15)
                 color: "transparent"
                 border {
-                    width: vpx(6)
+                    width: vpx(8)
                     color: collectionAltColor
                 }
                 opacity: isCurrentItem
