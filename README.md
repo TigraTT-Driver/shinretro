@@ -1,7 +1,7 @@
 # neoretrō dark v0.131
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
-neoretrō is a theme for Pegasus-frontend.
+neoretro-dark is a theme for Pegasus-frontend.
 
 ## Work in progress
 - clean the code...
@@ -12,8 +12,6 @@ neoretrō is a theme for Pegasus-frontend.
 - revise UI/UX of `Home`
 - revise GridView/ListView for showing games
 - revise the manner of showing favorited games in the GridView/ListView and on the "details" box
-- add the possibility to see video assets in `Games`
-- add a darker theme
 - add Steam/Gog collections
 - revise and add new backgrounds/logos for collections and manufacturers (better use .png)
 - add sfx sounds
