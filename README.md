@@ -26,6 +26,7 @@ neoretrō is a theme for Pegasus-frontend.
 - titlescreen (fallback for screenshot)
 - wheel
 - background
+- video
 
 ## Screenshots
 
