@@ -308,7 +308,7 @@ BackgroundImage {
                 visible: status === Loader.Ready
             }
 
-            // BOX ART
+            // Screenshot + Video
             Item {
                 width: parent.width * 0.3
                 height: parent.height
@@ -317,38 +317,38 @@ BackgroundImage {
                 }
 
                 Item {
-                    id: item_game_boxart
+                    id: item_game_screenshot
                     width: parent.width
                     height: parent.height * 0.85
                     anchors.verticalCenter: parent.verticalCenter
 
                     Component {
-                        id: cpnt_game_boxart
+                        id: cpnt_game_screenshot
 
                         Item {
                             anchors.fill: parent
 
                             Rectangle {
-                                id: rect_boxart
-                                width: img_game_boxart.paintedWidth + vpx(15)
-                                height: img_game_boxart.paintedHeight + vpx(15)
-                                anchors.centerIn: img_game_boxart
+                                id: rect_screenshot
+                                width: img_game_screenshot.paintedWidth + vpx(15)
+                                height: img_game_screenshot.paintedHeight + vpx(15)
+                                anchors.centerIn: img_game_screenshot
                                 color: "#1C1E2E"
                             }
 
                             DropShadow {
-                                anchors.fill: rect_boxart
+                                anchors.fill: rect_screenshot
                                 horizontalOffset: 0
                                 verticalOffset: vpx(5)
                                 radius: 24
                                 samples: 22
                                 spread: 0.2
                                 color: "#35000000"
-                                source: rect_boxart
+                                source: rect_screenshot
                             }
 
                             Image {
-                                id: img_game_boxart
+                                id: img_game_screenshot
                                 source: currentGame.assets.screenshots[0] || currentGame.assets.titlescreen
                                 anchors {
                                     fill: parent
@@ -360,7 +360,7 @@ BackgroundImage {
 
                                 Behavior on source {
                                     PropertyAnimation {
-                                        target: img_game_boxart
+                                        target: img_game_screenshot
                                         property: "opacity"
                                         from: 0
                                         to: 1
@@ -369,16 +369,21 @@ BackgroundImage {
                                     }
                                 }
                             }
+
+                            GameVideo {
+                                game: currentGame
+                                width: img_game_screenshot.paintedWidth
+                                height: img_game_screenshot.paintedHeight
+                                anchors.centerIn: img_game_screenshot
+                            }                          
                         }
-
-
                     }
 
                     Loader {
-                        id: loader_game_boxart
+                        id: loader_game_screenshot
                         anchors.fill: parent
                         asynchronous: true
-                        sourceComponent: cpnt_game_boxart
+                        sourceComponent: cpnt_game_screenshot
                         active: games.focus && currentGame !== null
                         visible: status === Loader.Ready
                     }

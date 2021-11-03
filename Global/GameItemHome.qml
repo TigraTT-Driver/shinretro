@@ -126,7 +126,9 @@ id: root
             Behavior on opacity {
                 NumberAnimation { duration: 200; }
             }
+
         }
+
         Rectangle {
         id: regborder
 
