@@ -278,7 +278,7 @@ BackgroundImage {
                                 Text {
                                     id: txt_game_description
                                     width: parent.width
-                                    text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : "Sem descrição."
+                                    text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : "without description"
                                     font {
                                         family: global.fonts.condensed
                                         weight: Font.Light
