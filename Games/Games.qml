@@ -552,7 +552,7 @@ BackgroundImage {
                     sfxNav.play();
                 }
 
-                if (api.keys.isPageDown(event)) {
+                if (api.keys.isPageDown(event) && !event.isAutoRepeat) {
 
                     //navigation sound
                     sfxNav.play();
@@ -568,7 +568,7 @@ BackgroundImage {
                     currentGameIndex = 0
                 }
 
-                if (api.keys.isPageUp(event)) {
+                if (api.keys.isPageUp(event) && !event.isAutoRepeat) {
 
                     //navigation sound
                     sfxNav.play();
