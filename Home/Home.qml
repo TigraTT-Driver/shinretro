@@ -401,7 +401,7 @@ FocusScope {
                     api.memory.set("currentMenuIndex", currentMenuIndex)
 
                     //Accept game sound
-                    sfxAccept.play();
+                    sfxPlay.play();
 
                     currentGame.launch()
                 }
