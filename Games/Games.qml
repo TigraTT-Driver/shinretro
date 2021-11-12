@@ -497,7 +497,7 @@ BackgroundImage {
 
                 if (api.keys.isAccept(event)) {
                     //Accept game sound
-                    sfxAccept.play();
+                    sfxPlay.play();
                     event.accepted = true;
                     if (currentGame !== null) {
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)

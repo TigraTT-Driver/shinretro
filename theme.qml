@@ -401,5 +401,11 @@ FocusScope {
         volume: 1.0
     }
 
+    SoundEffect {
+        id: sfxPlay
+        source: "assets/sounds/play.wav"
+        volume: 1.0
+    }
+
 
 }
