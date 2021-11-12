@@ -552,46 +552,35 @@ BackgroundImage {
                     sfxNav.play();
                 }
 
-                if (api.keys.isPageDown(event) && !event.isAutoRepeat) {
-
-                    //navigation sound
-                    sfxNav.play();
-
-                    event.accepted = true;
-
-                    if (currentCollectionIndex <= 0)
-                        currentCollectionIndex = api.collections.count - 1
-                    else
-                        currentCollectionIndex--;
-
-                    api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                    currentGameIndex = 0
-                }
-
-                if (api.keys.isPageUp(event) && !event.isAutoRepeat) {
-
-                    //navigation sound
-                    sfxNav.play();
-
-                    event.accepted = true;
-
-                    if (currentCollectionIndex >= api.collections.count - 1) {
-                        currentCollectionIndex = 0;
+                if (api.keys.isPageUp(event) || api.keys.isPageDown(event)) {
+                    if (event.isAutoRepeat) {
+                        event.accepted = false;
+                        return;
                     }
-                    else {
-                        currentCollectionIndex++;
+                    else{
+                        event.accepted = true;
+                        sfxNav.play();
+                        if (api.keys.isPageUp(event)) {
+                            if (currentCollectionIndex >= api.collections.count - 1) {
+                                currentCollectionIndex = 0;
+                            }
+                            else {
+                                currentCollectionIndex++;
+                            }
+                        }   
+                        else {
+                            if (currentCollectionIndex <= 0)
+                                currentCollectionIndex = api.collections.count - 1
+                            else
+                                currentCollectionIndex--;
+                        }
+                        api.memory.set("currentCollectionIndex", currentCollectionIndex)
+                        currentGameIndex = 0
                     }
-
-                    api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                    currentGameIndex = 0
                 }
-
             }
-
-        }
-
-        
-        //Navgation bar
+        }      
+            //Navgation bar
         Component {
             id: cpnt_helper_nav
             Item {
