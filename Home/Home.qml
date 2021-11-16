@@ -78,11 +78,11 @@ FocusScope {
 
     Rectangle {
         id: skew_color
-        width: parent.width * 0.77
         height: parent.height
         antialiasing: true
         anchors {
             left: parent.left; leftMargin: parent.width * 0.08
+            right: parent.right; rightMargin: parent.width * 0.16
         }
         color: "#1C1E2E"
 
@@ -102,13 +102,13 @@ FocusScope {
                 left: parent.left; right: parent.right
                 top: parent.top; bottom: parent.bottom
             }
-        opacity: 0.255
+            opacity: 0.255
         }
     }
 
     Column {
         id: main
-        width: parent.width * 0.90 //0.75
+        width: parent.width * 0.9
         height: childrenRect.height
         anchors {
             horizontalCenter: parent.horizontalCenter
@@ -127,6 +127,7 @@ FocusScope {
 
         Row {
             height: vpx(280)
+            opacity: ( home.state === "last_played" || home.state === "last_played_default" ) ? 1 : 0.5
             ListView {
                 id: lv_lastPlayed_big
                 width: main.width * 0.4
@@ -147,7 +148,6 @@ FocusScope {
                     Item {
                         anchors {
                             fill: parent
-                            margins: vpx(5)
                         }
 
                         Loader {
@@ -167,8 +167,6 @@ FocusScope {
                 highlightMoveDuration: vpx(150)
                 interactive: false
 
-
-
                 focus: ( home.state === "last_played_default" )
 
                 Component.onCompleted: {
@@ -177,6 +175,47 @@ FocusScope {
 
                 Keys.onPressed: {
 
+                    if (event.isAutoRepeat) {
+                        return
+                    }
+
+                    if (api.keys.isAccept(event)) {
+
+                        //Accept game
+                        sfxAccept.play();
+
+                        event.accepted = true;
+                        api.memory.set("currentMenuIndex", currentMenuIndex)
+                        currentGame.launch()
+                    }
+
+                    if (event.key == Qt.Key_Right) {
+
+                        //navigation sound
+                        sfxNav.play();
+
+                        event.accepted = true;
+                        home.state = "last_played"
+                    }
+
+                    if (event.key == Qt.Key_Down && sort_favorites.count > 0) {
+
+                        //navigation sound
+                        sfxNav.play();
+
+                        event.accepted = true;
+                        lastIsDefault = true
+                        home.state = "favorites"
+                    }
+                }
+            }
+            /*GameItemHome {
+                id: lv_lastPlayed_big
+                width: main.width * 0.4
+                height: parent.height
+                gameData: sort_last_played_big[0]
+
+                Keys.onReleased: {
                     
                     if (event.isAutoRepeat) {
                         return
@@ -210,12 +249,9 @@ FocusScope {
                         lastIsDefault = true
                         home.state = "favorites"
                     }
-
                 }
-
             }
-
-            
+            */
             GridView {
                 id: gv_lastPlayed
                 width: main.width * 0.6
@@ -238,7 +274,6 @@ FocusScope {
                     Item {
                         anchors {
                             fill: parent
-                            margins: vpx(5)
                         }
 
                         Loader {
@@ -263,7 +298,6 @@ FocusScope {
                 }
 
                 Keys.onPressed: {
-
 
                     if (event.isAutoRepeat) {
                         return
@@ -326,14 +360,12 @@ FocusScope {
                         if ( [3,4,5].includes(currentLastPlayedIndex) )
                             currentLastPlayedIndex -=3
                     }
-
                 }
-
             }
         }
 
         Text {
-            text: ( home.state === "favorites" ) ? "– Favorites" : "Favorites"
+            text: ( home.state === "favorites" ) ? "- Favorites" : "Favorites"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -345,6 +377,7 @@ FocusScope {
             id: lv_favorites
             width: parent.width
             height: vpx(160)
+            opacity: home.state === "favorites" ? 1 : 0.5
 
             orientation: ListView.Horizontal
 
@@ -428,17 +461,13 @@ FocusScope {
                     sfxNav.play();
                     home.state = lastIsDefault ? "last_played_default" : "last_played"
                 }
-
             }
-
         }
-
     }
-
 
     Row {
         id: play_message
-        width: parent.width * 0.90//0.74
+        width: parent.width * 0.9
         height: vpx(18)
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
@@ -451,21 +480,14 @@ FocusScope {
             height: parent.height
             color: "#8E63EC"
         }
+        Controls {
+            id: button_D
 
-        Text {
-            text: "PLAY <b>"+currentGame.title+"</b>"
-            font {
-                family: global.fonts.sans
-                weight: Font.Light
-                capitalization: Font.AllUppercase
-                pixelSize: parent.height * 0.8
-            }
-            topPadding: vpx(1)
-            color: "white"
+            message: "Play <b>"+currentGame.title+"</b>"
+            text_color: "white"
+            front_color: "transparent"
+            back_color: "transparent"
+            input_button: "BTN-D"
         }
-
-
     }
-
-
 }

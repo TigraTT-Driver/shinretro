@@ -19,7 +19,7 @@ import QtGraphicalEffects 1.12
 import QtMultimedia 5.15
 
 Item {
-id: root
+    id: root
     property var collectionAltColor: dataConsoles[clearShortname(currentCollection.shortName)].altColor
     // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
     function steamAppID (gameData) {
@@ -78,15 +78,27 @@ id: root
         }
     }
 
-    Item 
-    {
-    id: container
-
+    Item {
+        id: container
         anchors.fill: parent
         Behavior on opacity { NumberAnimation { duration: 200 } }
 
         Image {
-        id: screenshot
+            id: marquee
+
+            anchors.fill: parent
+            source: modelData ? modelData.assets.marquee : ""
+            fillMode: Image.PreserveAspectFit
+            sourceSize: Qt.size(screenshot.width, screenshot.height)
+            smooth: false
+            asynchronous: true
+            scale: selected ? 1.1 : 1
+            visible: modelData.assets.marquee && !doubleFocus
+            Behavior on opacity { NumberAnimation { duration: 200 } } 
+        }
+
+        Image {
+            id: screenshot
 
             anchors.fill: parent
             anchors.margins: vpx(3)
@@ -96,6 +108,7 @@ id: root
             smooth: false
             asynchronous: true
             scale: selected ? 1.1 : 1
+            visible: !modelData.assets.marquee || doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } } 
         }
 
@@ -112,6 +125,7 @@ id: root
             asynchronous: true
             smooth: true
             scale: selected ? 1.1 : 1
+            visible: !modelData.assets.marquee || doubleFocus
             Behavior on scale { NumberAnimation { duration: 100 } }
             z: 10
         }
@@ -138,9 +152,9 @@ id: root
             anchors.leftMargin: 1
             anchors.bottomMargin: 1
             anchors.topMargin: 1
-            border.width: vpx(1)
-            border.color: "white"
-            opacity: 0.1
+            border.width: vpx(3)
+            border.color: "#1C1E2E"
+            opacity: 0.5
         }
         
     }
@@ -155,43 +169,42 @@ id: root
     }
 
 
-        Text {
-            anchors.fill: parent
-            text: model.title
-            font {
-                family: global.fonts.sans
-                weight: Font.Medium
-                pixelSize: vpx(16)
-            }
-            color: "white"
-
-            horizontalAlignment : Text.AlignHCenter
-            verticalAlignment : Text.AlignVCenter
-            wrapMode: Text.Wrap
-
-            visible: model.assets.logo === ""
-            
+    Text {
+        anchors.fill: parent
+        text: model.title
+        font {
+            family: global.fonts.sans
+            weight: Font.Medium
+            pixelSize: vpx(16)
         }
+        color: "white"
 
-        Rectangle {
-            anchors.fill: parent
-            color: "transparent"
-            opacity: doubleFocus ? 0.8 : 0
-            Behavior on opacity {
-                NumberAnimation { duration: 200; }
-            }
-        }
+        horizontalAlignment : Text.AlignHCenter
+        verticalAlignment : Text.AlignVCenter
+        wrapMode: Text.Wrap
 
-        Rectangle {
-            anchors.fill: parent
-            color: "transparent"
-            border {
-                width: vpx(5)
-                color: "#F3C03B"
-            }
-            visible: model.favorite && root.state === "games"
-        }
+        visible: model.assets.logo === ""
         
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        opacity: doubleFocus ? 0.8 : 0
+        Behavior on opacity {
+            NumberAnimation { duration: 200; }
+        }
+    }
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        border {
+            width: vpx(5)
+            color: "#F3C03B"
+        }
+        visible: model.favorite && root.state === "games"
+    }
+    
+}
 

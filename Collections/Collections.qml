@@ -50,7 +50,6 @@ FocusScope {
                 0,      0,                  0,      1
             )
         }
-
     }
 
     Item {
@@ -173,9 +172,7 @@ FocusScope {
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)
                 }
             }
-
         }
-
     }
 
     PathView {
@@ -215,7 +212,6 @@ FocusScope {
 
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
-
     }
 
     Text {
@@ -260,10 +256,5 @@ FocusScope {
             back_color: "#26E06C9A"
             input_button: "BTN-R"
         }
-
-        
-
-        
     }
-
 }

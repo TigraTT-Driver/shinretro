@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.12
 import QtMultimedia 5.15
 
 Item {
-id: root
+    id: root
 
     readonly property var collectionAltColor: dataConsoles[clearShortname(currentCollection.shortName)].altColor
     // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
@@ -18,9 +18,9 @@ id: root
 
 
     function logo(data) {
-    if (data != null) {
-        if (data.assets.boxFront.includes("header.jpg")) 
-            return steamBoxFront(data);
+       if (data != null) {
+            if (data.assets.boxFront.includes("header.jpg")) 
+                return steamBoxFront(data);
         else {
             if (data.assets.boxFront != "")
                 return data.assets.boxFront;
@@ -55,7 +55,7 @@ id: root
 
     // NOTE: Fade out the bg so there is a smooth transition into the video
     Timer {
-    id: fadescreenshot
+        id: fadescreenshot
 
         interval: 1200
         onTriggered: {
@@ -63,14 +63,13 @@ id: root
         }
     }
 
-    Item 
-    {
-    id: container
+    Item  {
+        id: container
 
         anchors.fill: parent
         Behavior on opacity { NumberAnimation { duration: 200 } }
         Image {
-        id: boxFront
+            id: boxFront
 
             anchors.fill: parent
             anchors.margins: vpx(3)
@@ -97,7 +96,6 @@ id: root
                 }
             }
         }
-        
     }
 
     // List specific input
@@ -109,22 +107,21 @@ id: root
         }
     }
 
+    Text {
+        anchors.fill: parent
+        text: model.title
+        font {
+            family: global.fonts.sans
+            weight: Font.Medium
+            pixelSize: vpx(16)
+        }
+        color: "white"
 
-        Text {
-            anchors.fill: parent
-            text: model.title
-            font {
-                family: global.fonts.sans
-                weight: Font.Medium
-                pixelSize: vpx(16)
-            }
-            color: "white"
+        horizontalAlignment : Text.AlignHCenter
+        verticalAlignment : Text.AlignVCenter
+        wrapMode: Text.Wrap
 
-            horizontalAlignment : Text.AlignHCenter
-            verticalAlignment : Text.AlignVCenter
-            wrapMode: Text.Wrap
-
-            visible: model.assets.boxFront === ""
-            
-        }       
+        visible: model.assets.boxFront === ""
+        
     }
+}
