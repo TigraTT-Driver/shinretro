@@ -13,7 +13,7 @@ neoretro-dark is a theme for Pegasus-frontend.
 - revise the manner of showing favorited games in the GridView/ListView and on the "details" box
 - revise and add new backgrounds/logos for collections and manufacturers (better use .png)
 - add different `Games` layouts
-- add a `Settings` page to tweak some options (show controls, black/white theme, disable sfx sounds, `Games` UI layouts, language)
+- add a `Settings` page to tweak some options (show controls, different color schemes, onscreen control icons changer, colorfull/monochrome icons, disable sfx sounds, `Games` UI layouts, language)
 
 ## Metadata in use
 - boxFront
