@@ -39,7 +39,7 @@ Item {
             }
 
             Text {
-                color: "white"
+                color: theme.text
                 width: parent.width * 0.7
                 anchors {
                     bottom: txt_collection_games.top
@@ -115,7 +115,7 @@ Item {
                         pixelSize: vpx(14)
                     }
                     bottomPadding: vpx(2)
-                    color: "white"
+                    color: theme.text
                 }
             }
 

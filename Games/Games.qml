@@ -120,13 +120,13 @@ FocusScope {
                                 italic: true
                                 pixelSize: vpx(140)
                             }
-                            color: "#202335"
+                            color: theme.main
                             layer.enabled: true
                             layer.effect: DropShadow {
                                 spread: 1.0
                                 verticalOffset: 5
                                 horizontalOffset: 5
-                                color: "#1C1E2E"
+                                color: theme.secondary
                                 radius: 5
                                 samples: 11
                             }
@@ -163,7 +163,7 @@ FocusScope {
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
-                                color: "white"
+                                color: theme.text
                             }
 
                             Row {
@@ -187,7 +187,7 @@ FocusScope {
                                         weight: Font.Medium
                                         pixelSize: vpx(14)
                                     }
-                                    color: "white"
+                                    color: theme.text
                                 }
                             }
 
@@ -209,10 +209,10 @@ FocusScope {
                                 Rectangle {
                                     width: txt_players.contentWidth + vpx(20)
                                     height: txt_players.contentHeight + vpx(10)
-                                    color: "#1C1E2E"
+                                    color: theme.secondary
                                     border {
                                         width: vpx(1)
-                                        color: "#1C1E2E"
+                                        color: theme.secondary
                                     }
 
                                     Text {
@@ -225,7 +225,7 @@ FocusScope {
                                             weight: Font.Black
                                             pixelSize: vpx(12)
                                         }
-                                        color: "white"
+                                        color: theme.text
                                     }
                                 }
 
@@ -253,10 +253,10 @@ FocusScope {
                                     delegate: Rectangle {
                                         width: txt_genre.contentWidth + vpx(20)
                                         height: txt_genre.contentHeight + vpx(10)
-                                        color: "#1C1E2E"
+                                        color: theme.secondary
                                         border {
                                             width: vpx(1)
-                                            color: "#1C1E2E"
+                                            color: theme.secondary
                                         }
 
                                         Text {
@@ -268,7 +268,7 @@ FocusScope {
                                                 weight: Font.Medium
                                                 pixelSize: vpx(12)
                                             }
-                                            color: "white"
+                                            color: theme.text
                                         }
                                         visible: (modelData !== "")
                                     }
@@ -295,7 +295,7 @@ FocusScope {
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
                                         horizontalAlignment: Text.AlignJustify
-                                        color: "white"
+                                        color: theme.text
                                     }
                                 }
                             }
@@ -339,7 +339,7 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth + vpx(15)
                                     height: img_game_screenshot.paintedHeight + vpx(15)
                                     anchors.centerIn: img_game_screenshot
-                                    color: "#1C1E2E"
+                                    color: theme.secondary
                                 }
 
                                 DropShadow {
@@ -670,7 +670,7 @@ FocusScope {
                     right: parent.right;
                 }
                 text: (currentGameIndex + 1)+"/"+gv_games.count
-                color: "white"
+                color: theme.text
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(14)

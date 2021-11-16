@@ -12,7 +12,7 @@ FocusScope {
         radius: 24
         samples: 22
         spread: 0.2
-        color: "#1C1E2E"
+        color: theme.secondary
         source: parent
     }
 
@@ -21,10 +21,10 @@ FocusScope {
         height: parent.height + 2
         x: -1
         y: -1
-        color: "#202335"
+        color: theme.main
         border {
             width: 1
-            color: "#1C1E2E"
+            color: theme.secondary
         }
 
         Item {

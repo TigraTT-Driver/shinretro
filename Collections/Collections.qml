@@ -215,7 +215,7 @@ FocusScope {
     }
 
     Text {
-        color: "white"
+        color: theme.text
         anchors {
             right: parent.right; rightMargin: vpx(35)
             top: parent.top; topMargin: vpx(160)

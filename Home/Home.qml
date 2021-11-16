@@ -84,7 +84,7 @@ FocusScope {
             left: parent.left; leftMargin: parent.width * 0.08
             right: parent.right; rightMargin: parent.width * 0.16
         }
-        color: "#1C1E2E"
+        color: theme.secondary
 
         transform: Matrix4x4 {
             property real a: 12 * Math.PI / 180
@@ -122,7 +122,7 @@ FocusScope {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
             }
-            color: "white"
+            color: theme.text
         }
 
         Row {
@@ -370,7 +370,7 @@ FocusScope {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
             }
-            color: "white"
+            color: theme.text
         }
 
         ListView {
@@ -484,7 +484,7 @@ FocusScope {
             id: button_D
 
             message: "Play <b>"+currentGame.title+"</b>"
-            text_color: "white"
+            text_color: theme.text
             front_color: "transparent"
             back_color: "transparent"
             input_button: "BTN-D"

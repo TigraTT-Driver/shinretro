@@ -115,7 +115,7 @@ Item {
             weight: Font.Medium
             pixelSize: vpx(16)
         }
-        color: "white"
+        color: theme.text
 
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter

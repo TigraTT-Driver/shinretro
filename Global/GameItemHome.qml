@@ -153,7 +153,7 @@ Item {
             anchors.bottomMargin: 1
             anchors.topMargin: 1
             border.width: vpx(3)
-            border.color: "#1C1E2E"
+            border.color: theme.secondary
             opacity: 0.5
         }
         
@@ -177,7 +177,7 @@ Item {
             weight: Font.Medium
             pixelSize: vpx(16)
         }
-        color: "white"
+        color: theme.text
 
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter
