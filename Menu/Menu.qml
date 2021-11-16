@@ -72,7 +72,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_LB
                                 source: menu_input_LB
-                                color: theme.textalt
+                                color: "#414767"
                             }
                         }
                     }
@@ -92,7 +92,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_RB
                                 source: menu_input_RB
-                                color: theme.textalt
+                                color: "#414767"
                             }
                         }
                     }
@@ -142,7 +142,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_LT
                                 source: menu_input_LT
-                                color: theme.textalt
+                                color: "#414767"
                             }
                         }
                 }
@@ -175,11 +175,6 @@ FocusScope {
                                 duration: 600
                                 easing.type: Easing.OutExpo
                             }
-                        }
-                        ColorOverlay {
-                            anchors.fill: img_helper_collection
-                            source: img_helper_collection
-                            color: theme.icons
                         }
 
                         visible: ["home","games"].includes(root.state)
@@ -219,7 +214,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_RT
                                 source: menu_input_RT
-                                color: theme.textalt
+                                color: "#414767"
                             }
                         }
                 }

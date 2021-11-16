@@ -56,15 +56,9 @@ Item {
         }
 
         Image {
-            id: icon_btn
             height: vpx(20)
             source: "../assets/buttons/input_"+input_button+".svg"
             fillMode: Image.PreserveAspectFit
-            ColorOverlay {
-                anchors.fill: icon_btn
-                source: icon_btn
-                color: theme.icons
-            }
         }
     }
 }

@@ -240,7 +240,7 @@ FocusScope {
             id: button_D
 
             message: "<b>"+currentCollection.name+"</b> GAMES"
-            text_color: theme.accepted
+            text_color: "#8E63EC"
             front_color: "#338E63EC"
             back_color: "#338E63EC"
             input_button: "BTN-D"
@@ -251,7 +251,7 @@ FocusScope {
 
             message: "GO <b>BACK</b>"
 
-            text_color: theme.cancel
+            text_color: "#E06C9A"
             front_color: "#26E06C9A"
             back_color: "#26E06C9A"
             input_button: "BTN-R"

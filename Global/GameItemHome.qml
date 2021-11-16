@@ -131,7 +131,7 @@ Item {
         }
         Rectangle {
             anchors.fill: parent
-            color: theme.background
+            color: "black"
                 border {
                     width: vpx(6)
                     color: collectionAltColor
@@ -201,7 +201,7 @@ Item {
         color: "transparent"
         border {
             width: vpx(5)
-            color: theme.favorite
+            color: "#F3C03B"
         }
         visible: model.favorite && root.state === "games"
     }

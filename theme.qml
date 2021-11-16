@@ -26,15 +26,7 @@ FocusScope {
             secondary: "#1C1E2E",
             background: "#25283b",
             text: "white",
-            textalt: "#414767",
-            accent: "#757BA0",
-            accentalt:"#7981A8",
-            icons: "white",
-            favorite: "#F3C03B",
-            accepted: "#8E63EC",
-            cancel: "#E06C9A",
-            details: "#F3C03B",
-            filters: "#66D2EC"
+            icons: "white"
         }
     }
 
@@ -44,19 +36,11 @@ FocusScope {
             secondary: "#e3e1d1",
             background: "#dad7c4",
             text: "black",
-            textalt: "#beb898",
-            accent: "#8a845f",
-            accentalt:"#867e57",
-            icons: "black",
-            favorite: "#F3C03B",
-            accepted: "#8E63EC",
-            cancel: "#E06C9A",
-            details: "#F3C03B",
-            filters: "#66D2EC"
+            icons: "black"
         }
     }
 
-    property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark ;
+    property var theme : api.memory.get('theme') === 'themeDark' ? themeDark : themeLight ;
 
     // [0] = HOME
     // [1] = COLLECTIONS

@@ -110,7 +110,7 @@ Item {
             family: global.fonts.sans
             pixelSize: vpx(14)
         }
-        color: theme.accent
+        color: "#757BA0"
     }
 
     Row {

@@ -85,7 +85,7 @@ id: root
         verticalOffset: 0
         radius: 20.0
         samples: 15
-        color: theme.background
+        color: "#000000"
         source: videocontainer
         opacity: selected ? 0.5 : 0
         Behavior on opacity { NumberAnimation { duration: 100 } }
