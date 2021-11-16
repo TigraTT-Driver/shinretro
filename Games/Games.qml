@@ -177,7 +177,7 @@ FocusScope {
                                         italic: true
                                         pixelSize: vpx(14)
                                     }
-                                    color: "#757BA0"
+                                    color: theme.accent
                                 }
 
                                 Text {
@@ -243,7 +243,7 @@ FocusScope {
                                             weight: Font.Black
                                             pixelSize: vpx(12)
                                         }
-                                        color: "#F3C03B"
+                                        color: theme.favorite
                                     }
                                     visible: currentGame.favorite
                                 }
@@ -407,7 +407,7 @@ FocusScope {
                 Text {
                     anchors.centerIn: parent
                     text: "No favorites."
-                    color: "#7981A8"
+                    color: theme.accentalt
                     font {
                         family: robotoSlabRegular.name
                         pixelSize: vpx(42)
@@ -463,7 +463,7 @@ FocusScope {
 
                         Rectangle {
                             anchors.fill: parent
-                            color: "#E5E5E5"
+                            color: theme.background
                             visible: !loader_gameList_game.visible
                         }
 
@@ -593,7 +593,7 @@ FocusScope {
                         }
                         width: vpx(2)
                         height: heightBar * ( (currentGameIndex + 1) / gv_games.count )
-                        color: "#757BA0"
+                        color: theme.accent
                     }
                 }
             }
@@ -632,7 +632,7 @@ FocusScope {
 
                     message: "GO <b>BACK</b>"
 
-                    text_color: "#E06C9A"
+                    text_color: theme.cancel
                     front_color: "#26E06C9A"
                     back_color: "#26E06C9A"
                     input_button: "BTN-R"
@@ -643,7 +643,7 @@ FocusScope {
 
                     message: currentGame !== null && currentGame.favorite ? "REMOVE <b>FAVORITE</b>" : "ADD <b>FAVORITE</b>"
 
-                    text_color: "#F3C03B"
+                    text_color: theme.details
                     front_color: "#26F3C03B"
                     back_color: "#26F3C03B"
                     input_button: "BTN-L"
@@ -654,9 +654,9 @@ FocusScope {
                 Controls {
                     id: button_U
 
-                    message: ( games.state === "all" ) ? "SHOW <b>FAVORITES</b> " : "SHOW <b>ALL</b>"
+                    message: ( games.state === "all" ) ? "SHOW <b>ALL</b> · FAVORITES" : "SHOW ALL · <b>FAVORITES</b>"
 
-                    text_color: "#66D2EC"
+                    text_color: theme.filters
                     front_color: "#2666D2EC"
                     back_color: "#2666D2EC"
                     input_button: "BTN-U"

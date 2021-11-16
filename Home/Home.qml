@@ -478,7 +478,7 @@ FocusScope {
         Rectangle {
             width: vpx(4)
             height: parent.height
-            color: "#8E63EC"
+            color: theme.accepted
         }
         Controls {
             id: button_D
