@@ -20,6 +20,44 @@ FocusScope {
     FontLoader { id: robotoSlabThin; source: "./assets/fonts/RobotoSlab-Thin.ttf" }
     FontLoader { id: robotoSlabRegular; source: "./assets/fonts/RobotoSlab-Regular.ttf" }
 
+    property var themeDark: {
+        return {
+            main: "#202335",
+            secondary: "#1C1E2E",
+            background: "#25283b",
+            text: "white",
+            textalt: "#414767",
+            accent: "#757BA0",
+            accentalt:"#7981A8",
+            icons: "white",
+            favorite: "#F3C03B",
+            accepted: "#8E63EC",
+            cancel: "#E06C9A",
+            details: "#F3C03B",
+            filters: "#66D2EC"
+        }
+    }
+
+    property var themeLight: {
+        return {
+            main: "white",
+            secondary: "#EBEBEB",
+            background: "white",
+            text: "black",
+            textalt: "#2C2C2C",
+            accent: "#10AEBE",
+            accentalt:"#2D2D2D",
+            icons: "black",
+            favorite: "#cc8f00",
+            accepted: "#00991E",
+            cancel: "#E6140D",
+            details: "#1C2C98",
+            filters: "#996b00"
+        }
+    }
+
+    property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark ;
+
     // [0] = HOME
     // [1] = COLLECTIONS
     // [2] = GAMES
@@ -316,7 +354,7 @@ FocusScope {
         id: rect_main
         width: parent.width
         height: parent.height
-        color: "#25283B" //background
+        color: theme.background
     }
 
     Home {

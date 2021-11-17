@@ -7,6 +7,6 @@ Item {
         anchors {
             bottom: parent.bottom; bottomMargin: -vpx(4)
         }
-        color: "#7981A8"
+        color: theme.accentalt
     }
 }

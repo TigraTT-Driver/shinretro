@@ -50,7 +50,6 @@ FocusScope {
                 0,      0,                  0,      1
             )
         }
-
     }
 
     Item {
@@ -173,9 +172,7 @@ FocusScope {
                         api.memory.set("currentCollectionIndex", currentCollectionIndex)
                 }
             }
-
         }
-
     }
 
     PathView {
@@ -215,11 +212,10 @@ FocusScope {
 
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
-
     }
 
     Text {
-        color: "white"
+        color: theme.text
         anchors {
             right: parent.right; rightMargin: vpx(35)
             top: parent.top; topMargin: vpx(160)
@@ -244,9 +240,9 @@ FocusScope {
             id: button_D
 
             message: "<b>"+currentCollection.name+"</b> GAMES"
-            text_color: "#8E63EC"
-            front_color: "#338E63EC"
-            back_color: "#338E63EC"
+            text_color: theme.accepted
+            front_color: theme.accepted.replace(/#/g, "#33");
+            back_color: theme.accepted.replace(/#/g, "#33");
             input_button: "BTN-D"
         }
 
@@ -255,15 +251,10 @@ FocusScope {
 
             message: "GO <b>BACK</b>"
 
-            text_color: "#E06C9A"
-            front_color: "#26E06C9A"
-            back_color: "#26E06C9A"
+            text_color: theme.cancel
+            front_color: theme.cancel.replace(/#/g, "#26");
+            back_color: theme.cancel.replace(/#/g, "#26");
             input_button: "BTN-R"
         }
-
-        
-
-        
     }
-
 }

@@ -12,7 +12,7 @@ FocusScope {
         radius: 24
         samples: 22
         spread: 0.2
-        color: "#1C1E2E"
+        color: theme.secondary
         source: parent
     }
 
@@ -21,185 +21,211 @@ FocusScope {
         height: parent.height + 2
         x: -1
         y: -1
-        color: "#202335"
+        color: theme.main
         border {
             width: 1
-            color: "#1C1E2E"
+            color: theme.secondary
         }
 
         Item {
-            id: menu_inner
-            width: parent.width
-            height: parent.height * 0.24
+            width: parent.width * 0.9
+            height: parent.height * 0.7
             anchors {
+                horizontalCenter: parent.horizontalCenter
                 verticalCenter: parent.verticalCenter
             }
 
-            ListView {
-                id: lv_menu
-                implicitWidth: contentItem.childrenRect.width
+            Item {
+                id: menu_inner
+                width: parent.width * 0.5
                 height: parent.height
-
                 anchors {
-                    left: parent.left
-                    leftMargin: vpx(50)
+                    verticalCenter: parent.verticalCenter
                 }
 
-                orientation: ListView.Horizontal
-                currentIndex: currentMenuIndex
-                onCurrentIndexChanged: {
-                    api.memory.set("currentMenuIndex", currentMenuIndex)
-                }
+                ListView {
+                    id: lv_menu
+                    width: contentItem.childrenRect.width
+                    height: vpx(22)
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                    }
 
-                model: dataMenu
+                    orientation: ListView.Horizontal
+                    currentIndex: currentMenuIndex
+                    onCurrentIndexChanged: {
+                        api.memory.set("currentMenuIndex", currentMenuIndex)
+                    }
 
-                header: Item {
-                    width: vpx(68)
-                    height: vpx(18)
-                    Rectangle {
-                        width: parent.width * 0.55
-                        height: parent.height
-                        anchors {
-                            right: parent.right
-                        }
-                        color: "transparent"
+                    model: dataMenu
+
+                    header: Item {
+                        width: vpx(60)
+                        height: vpx(22)
                         Image {
                             id: menu_input_LB
-                            source: "../assets/buttons/input_LB.svg"
-                            height: vpx(26)
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: "../assets/buttons/input_BTN-LB"
+                            width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
-                        }
-                        ColorOverlay {
-                            anchors.fill: menu_input_LB
-                            source: menu_input_LB
-                            color: "#414767"
+                            ColorOverlay {
+                                anchors.fill: menu_input_LB
+                                source: menu_input_LB
+                                color: theme.textalt
+                            }
                         }
                     }
-                }
 
-                delegate: MenuItems {}
+                    delegate: MenuItems {}
 
-                footer: Item {
-                    width: vpx(68)
-                    height: vpx(18)
-                    Rectangle {
-                        width: parent.width * 0.55
-                        height: parent.height
-                        anchors {
-                            right: parent.right
-                        }
-                        color: "transparent"
+                    footer: Item {
+                        width: vpx(60)
+                        height: vpx(22)
                         Image {
                             id: menu_input_RB
-                            source: "../assets/buttons/input_RB.svg"
-                            height: vpx(26)
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: "../assets/buttons/input_BTN-RB.svg"
+                            width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
+                            ColorOverlay {
+                                anchors.fill: menu_input_RB
+                                source: menu_input_RB
+                                color: theme.textalt
+                            }
+                        }
+                    }
+
+                    highlight: MenuItemsHighlighted {}
+                    highlightRangeMode: ListView.ApplyRange
+                    highlightResizeDuration: root.width * 0.1
+                    highlightResizeVelocity: root.width * 0.1
+                    highlightMoveDuration: root.width * 0.1
+                    highlightMoveVelocity: -1
+
+                    interactive: false
+
+                    focus: menu.focus
+
+                    Component.onCompleted: positionViewAtIndex(currentMenuIndex, ListView.Beginning)
+
+                    spacing: vpx(20)
+                }
+            }
+
+            Item {
+                width: parent.width * 0.5
+                height: parent.height
+                anchors {
+                    right: parent.right; 
+                    verticalCenter: parent.verticalCenter
+                }
+
+                Item {
+                        width: vpx(60)
+                        height: vpx(22)
+                        anchors {
+                            right: parent.right;
+                            rightMargin: vpx(290)
+                            verticalCenter: parent.verticalCenter
+                        }
+                        Image {
+                            id: menu_input_LT
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: "../assets/buttons/input_BTN-LT.svg"
+                            width: parent.width * 0.55
+                            //sourceSize.width: width
+                            fillMode: Image.PreserveAspectFit
+                            visible: root.state === "games"
+                            ColorOverlay {
+                                anchors.fill: menu_input_LT
+                                source: menu_input_LT
+                                color: theme.textalt
+                            }
+                        }
+                }
+
+                Component {
+                    id: cmpt_helper_collection
+
+                    Image {
+                        id: img_helper_collection
+
+                        sourceSize.width: width
+                        asynchronous: true
+                        source: {
+                            if (root.state === "collections")
+                                return "";
+                            if (root.state === "home")
+                                return "../assets/logos/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
+                            if (root.state === "games")
+                                return "../assets/logos/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
+                        }
+                        fillMode: Image.PreserveAspectFit
+                        horizontalAlignment: Image.AlignHCenter
+                        verticalAlignment: Image.AlignVCenter
+                        Behavior on source {
+                            PropertyAnimation {
+                                target: img_helper_collection
+                                property: "opacity"
+                                from: 0
+                                to: 1
+                                duration: 600
+                                easing.type: Easing.OutExpo
+                            }
                         }
                         ColorOverlay {
-                            anchors.fill: menu_input_RB
-                            source: menu_input_RB
-                            color: "#414767"
+                            anchors.fill: img_helper_collection
+                            source: img_helper_collection
+                            color: theme.icons
                         }
+
+                        visible: ["home","games"].includes(root.state)
                     }
                 }
 
-                highlight: MenuItemsHighlighted {}
-                highlightRangeMode: ListView.ApplyRange
-                highlightResizeDuration: root.width * 0.1
-                highlightResizeVelocity: root.width * 0.1
-                highlightMoveDuration: root.width * 0.1
-                highlightMoveVelocity: -1
-
-                interactive: false
-
-                focus: menu.focus
-
-                Component.onCompleted: positionViewAtIndex(currentMenuIndex, ListView.Beginning)
-
-                spacing: vpx(70)
-
-            }
-
-        }
-
-        Item {
-            width: height * 2.5
-            height: parent.height * 0.65
-            anchors {
-                right: parent.right; 
-                rightMargin: parent.width * 0.04
-                verticalCenter: parent.verticalCenter
-            }
-
-            // Image {
-            //     anchors {
-            //         left: parent.left; leftMargin: -width *2
-            //         verticalCenter: parent.verticalCenter
-            //     }
-            //     width: vpx(25)
-            //     source: "../assets/buttons/button_LT.png"
-            //     sourceSize.width: width
-            //     fillMode: Image.PreserveAspectFit
-            //     visible: root.state === "games"
-            // }
-
-            Component {
-                id: cpnt_helper_collection
-
-                Image {
-                    id: img_helper_collection
-                    anchors.fill: parent
-                    sourceSize.width: width
+                Loader {
+                    id: loader_helper_collection
+                    sourceComponent: cmpt_helper_collection
+                    width: vpx(250)
+                    height: parent.height
+                    anchors {
+                        right: parent.right
+                        rightMargin: vpx(35)
+                    }
                     asynchronous: true
-                    source: {
-                        if (root.state === "collections")
-                            return "";
-                        if (root.state === "home")
-                            return "../assets/logos/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
-                        if (root.state === "games")
-                            return "../assets/logos/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
-                    }
-                    fillMode: Image.PreserveAspectFit
-                    horizontalAlignment: Image.AlignHCenter
-                    verticalAlignment: Image.AlignVCenter
-                    Behavior on source {
-                        PropertyAnimation {
-                            target: img_helper_collection
-                            property: "opacity"
-                            from: 0
-                            to: 1
-                            duration: 600
-                            easing.type: Easing.OutExpo
-                        }
-                    }
+                    active: ["home","games"].includes(root.state)
+                    visible: status === Loader.Ready
                 }
+
+                Item {
+                        width: vpx(60)
+                        height: vpx(22)
+                        anchors {
+                            right: parent.right; leftMargin: -width *2
+                            verticalCenter: parent.verticalCenter
+                        }
+                        Image {
+                            id: menu_input_RT
+                            anchors.right: parent.right
+                            anchors.verticalCenter: parent.verticalCenter
+                            source: "../assets/buttons/input_BTN-RT.svg"
+                            width: parent.width * 0.55
+                            //sourceSize.width: width
+                            fillMode: Image.PreserveAspectFit
+                            visible: root.state === "games"
+                            ColorOverlay {
+                                anchors.fill: menu_input_RT
+                                source: menu_input_RT
+                                color: theme.textalt
+                            }
+                        }
+                }
+
+                visible: ["home","games"].includes(root.state)
             }
-
-            Loader {
-                id: loader_helper_collection
-                anchors.fill: parent
-                asynchronous: true
-                sourceComponent: cpnt_helper_collection
-                active: ["home","games"].includes(root.state)
-                visible: status === Loader.Ready
-            }
-
-            // Image {
-            //     anchors {
-            //         right: parent.right; rightMargin: -width *2
-            //         verticalCenter: parent.verticalCenter
-            //     }
-            //     width: vpx(25)
-            //     source: "../assets/buttons/button_RT.png"
-            //     sourceSize.width: width
-            //     fillMode: Image.PreserveAspectFit
-            //     visible: root.state === "games"
-            // }
-
-            visible: ["home","games"].includes(root.state)
         }
-
-
     }
-
 }

@@ -30,7 +30,7 @@ Item {
             return "#B5714B"
         }
         else if (rate < 4) {
-            return "#202335"
+            return theme.main
         }
         else {
             return "#FFCE00"
@@ -84,7 +84,7 @@ Item {
             top: rating_stars.top; topMargin: -vpx(2)
             left: rating_stars.left; leftMargin: -vpx(3)
         }
-        color: "#25283B"//getBackgroundColor(rating)
+        color: theme.background//getBackgroundColor(rating)
         // antialiasing: true
 
         // transform: Matrix4x4 {
@@ -110,7 +110,7 @@ Item {
             family: global.fonts.sans
             pixelSize: vpx(14)
         }
-        color: "#757BA0"
+        color: theme.accent
     }
 
     Row {

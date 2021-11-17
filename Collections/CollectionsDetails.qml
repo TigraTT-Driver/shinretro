@@ -35,11 +35,16 @@ Item {
                     source: "../assets/logos/"+shortname+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
+                    ColorOverlay {
+                        anchors.fill: img_logo
+                        source: img_logo
+                        color: theme.icons
+                    }
                 }
             }
 
             Text {
-                color: "white"
+                color: theme.text
                 width: parent.width * 0.7
                 anchors {
                     bottom: txt_collection_games.top
@@ -67,7 +72,7 @@ Item {
                     family: robotoSlabLight.name
                     pixelSize: vpx(20)
                 }
-                color: "#B3BDF4"
+                color: theme.accent
             }
 
             Row {
@@ -96,6 +101,11 @@ Item {
                             sourceSize.height: height
                             source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
                             fillMode: Image.PreserveAspectFit
+                            ColorOverlay {
+                                anchors.fill: img_manufacturer
+                                source: img_manufacturer
+                                color: theme.icons
+                            }
                         }
                     }
 
@@ -115,7 +125,7 @@ Item {
                         pixelSize: vpx(14)
                     }
                     bottomPadding: vpx(2)
-                    color: "white"
+                    color: theme.text
                 }
             }
 

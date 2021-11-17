@@ -26,7 +26,7 @@ Item {
         }
 
         text: modelData.title
-        color:  isCurrentItem ? "#7981A8": "#414767"
+        color:  isCurrentItem ? theme.accentalt: theme.textalt
         Behavior on color {
             ColorAnimation { duration: 150; }
         }
@@ -40,4 +40,3 @@ Item {
     }
 
 }
-
