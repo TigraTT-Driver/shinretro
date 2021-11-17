@@ -1,4 +1,4 @@
-# neoretro-dark v0.131.1
+# neoretro-dark v0.131.2
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
 neoretro-dark is a theme for Pegasus-frontend.
