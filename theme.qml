@@ -40,19 +40,19 @@ FocusScope {
 
     property var themeLight: {
         return {
-            main: "#dfdcca",
-            secondary: "#e3e1d1",
-            background: "#dad7c4",
+            main: "white",
+            secondary: "#EBEBEB",
+            background: "white",
             text: "black",
-            textalt: "#beb898",
-            accent: "#8a845f",
-            accentalt:"#867e57",
+            textalt: "#2C2C2C",
+            accent: "#10AEBE",
+            accentalt:"#2D2D2D",
             icons: "black",
-            favorite: "#F3C03B",
-            accepted: "#8E63EC",
-            cancel: "#E06C9A",
-            details: "#F3C03B",
-            filters: "#66D2EC"
+            favorite: "#cc8f00",
+            accepted: "#00991E",
+            cancel: "#E6140D",
+            details: "#1C2C98",
+            filters: "#996b00"
         }
     }
 

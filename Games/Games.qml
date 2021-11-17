@@ -232,7 +232,7 @@ FocusScope {
                                 Rectangle {
                                     width: txt_favorited.contentWidth + vpx(20)
                                     height: txt_favorited.contentHeight + vpx(10)
-                                    color: "#33F3C03B"
+                                    color: theme.favorite.replace(/#/g, "#33");
 
                                     Text {
                                         id: txt_favorited
@@ -635,8 +635,8 @@ FocusScope {
                     message: "GO <b>BACK</b>"
 
                     text_color: theme.cancel
-                    front_color: "#26E06C9A"
-                    back_color: "#26E06C9A"
+                    front_color: theme.cancel.replace(/#/g, "#26");
+                    back_color: theme.cancel.replace(/#/g, "#26");
                     input_button: "BTN-R"
                 }
 
@@ -646,8 +646,8 @@ FocusScope {
                     message: currentGame !== null && currentGame.favorite ? "REMOVE <b>FAVORITE</b>" : "ADD <b>FAVORITE</b>"
 
                     text_color: theme.details
-                    front_color: "#26F3C03B"
-                    back_color: "#26F3C03B"
+                    front_color: theme.details.replace(/#/g, "#26");
+                    back_color: theme.details.replace(/#/g, "#26");
                     input_button: "BTN-L"
 
                     visible: currentGame !== null
@@ -659,8 +659,8 @@ FocusScope {
                     message: ( games.state === "all" ) ? "SHOW <b>ALL</b> · FAVORITES" : "SHOW ALL · <b>FAVORITES</b>"
 
                     text_color: theme.filters
-                    front_color: "#2666D2EC"
-                    back_color: "#2666D2EC"
+                    front_color: theme.filters.replace(/#/g, "#26");
+                    back_color: theme.filters.replace(/#/g, "#26");
                     input_button: "BTN-U"
                 }
             }

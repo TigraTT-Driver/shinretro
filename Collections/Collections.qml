@@ -241,8 +241,8 @@ FocusScope {
 
             message: "<b>"+currentCollection.name+"</b> GAMES"
             text_color: theme.accepted
-            front_color: "#338E63EC"
-            back_color: "#338E63EC"
+            front_color: theme.accepted.replace(/#/g, "#33");
+            back_color: theme.accepted.replace(/#/g, "#33");
             input_button: "BTN-D"
         }
 
@@ -252,8 +252,8 @@ FocusScope {
             message: "GO <b>BACK</b>"
 
             text_color: theme.cancel
-            front_color: "#26E06C9A"
-            back_color: "#26E06C9A"
+            front_color: theme.cancel.replace(/#/g, "#26");
+            back_color: theme.cancel.replace(/#/g, "#26");
             input_button: "BTN-R"
         }
     }
