@@ -523,7 +523,7 @@ FocusScope {
                         //Accept game sound
                         sfxBack.play();
                         event.accepted = true;
-                        currentMenuIndex = 1
+                        currentMenuIndex = 2
                     }
 
                     if (api.keys.isDetails(event)) {

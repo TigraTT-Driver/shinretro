@@ -209,49 +209,7 @@ FocusScope {
                     }
                 }
             }
-            /*GameItemHome {
-                id: lv_lastPlayed_big
-                width: main.width * 0.4
-                height: parent.height
-                gameData: sort_last_played_big[0]
-
-                Keys.onReleased: {
-                    
-                    if (event.isAutoRepeat) {
-                        return
-                    }
-
-                    if (api.keys.isAccept(event)) {
-
-                        //Accept game
-                        sfxAccept.play();
-
-                        event.accepted = true;
-                        api.memory.set("currentMenuIndex", currentMenuIndex)
-                        currentGame.launch()
-                    }
-
-                    if (event.key == Qt.Key_Right) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        home.state = "last_played"
-                    }
-
-                    if (event.key == Qt.Key_Down && sort_favorites.count > 0) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        lastIsDefault = true
-                        home.state = "favorites"
-                    }
-                }
-            }
-            */
+            
             GridView {
                 id: gv_lastPlayed
                 width: main.width * 0.6
