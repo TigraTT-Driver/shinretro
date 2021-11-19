@@ -128,12 +128,12 @@ FocusScope {
                     sfxAccept.play();
 
                     event.accepted = true;
-                    currentMenuIndex = 2
+                    currentMenuIndex = 3
                 }
 
                 if (api.keys.isCancel(event)) {
                     event.accepted = true;
-                    currentMenuIndex = 0
+                    currentMenuIndex = 1
 
                     //PrevPage sound
                     sfxBack.play();

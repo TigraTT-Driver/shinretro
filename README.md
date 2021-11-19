@@ -1,4 +1,4 @@
-# neoretro-dark v0.131.1
+# neoretro-dark v0.131.3
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
 neoretro-dark is a theme for Pegasus-frontend.
@@ -11,9 +11,8 @@ neoretro-dark is a theme for Pegasus-frontend.
 - revise UI/UX of `Home` / video playback of selected game
 - revise GridView/ListView for showing games / dynamic grid collums based on artwork size
 - revise the manner of showing favorited games in the GridView/ListView and on the "details" box
-- revise and add new backgrounds/logos for collections and manufacturers (better use .png)
-- add different `Games` layouts
-- add a `Settings` page to tweak some options (show controls, different color schemes, onscreen control icons changer, colorfull/monochrome icons, disable sfx sounds, `Games` UI layouts, language)
+- revise and add new backgrounds/logos for collections and manufacturers (svg logos, better use .png for backgrounds)
+- Implement all settings from the Settings Page
 
 ## Metadata in use
 - boxFront
@@ -25,11 +24,17 @@ neoretro-dark is a theme for Pegasus-frontend.
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home.png" title="neoretro-dark home" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home_dark.png" title="neoretro-dark home" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home_light.png" title="neoretro-light home" />
 
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection.png" title="neoretro-dark collections" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection_dark.png" title="neoretro-dark collections" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection_light.png" title="neoretro-light collections" />
 
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games.png" title="neoretro-dark games" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_dark.png" title="neoretro-dark games" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_light.png" title="neoretro-light games" />
+
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_dark.png" title="neoretro-dark settings" />
+<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_light.png" title="neoretro-light settings" />
 
 ## Changelog
 v0.131

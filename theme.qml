@@ -8,6 +8,7 @@ import "Home"
 import "Collections"
 import "Menu"
 import "Games"
+import "Settings"
 
 FocusScope {
     id: root
@@ -58,10 +59,12 @@ FocusScope {
 
     property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark ;
 
-    // [0] = HOME
-    // [1] = COLLECTIONS
-    // [2] = GAMES
-    property int currentMenuIndex: api.memory.get("currentMenuIndex") || 0
+    // [0] = Settings
+    // [1] = HOME
+    // [2] = COLLECTIONS
+    // [3] = GAMES
+
+    property int currentMenuIndex: api.memory.get("currentMenuIndex") || 1
 
     property var allCollections: {
         const collections = api.collections.toVarArray()
@@ -117,6 +120,7 @@ FocusScope {
     property var currentCollection: allCollections[currentCollectionIndex]
 
     property variant dataMenu: [
+        { name: "settings", title: "settings"},
         { name: "home", title: "home"},
         { name: "collections", title: "collections"},
         { name: "games", title: "games"}
@@ -276,6 +280,42 @@ FocusScope {
 
     transitions: [
         Transition {
+            from: "settings"
+            to: "home"
+            PropertyAnimation {
+                target: settings;
+                property: "x";
+                from: 0;
+                to: -root.width;
+                duration: 150
+            }
+            PropertyAnimation {
+                target: home;
+                property: "x";
+                from: root.width;
+                to: 0;
+                duration: 150
+            }
+        },
+        Transition {
+            from: "home"
+            to: "settings"
+            PropertyAnimation {
+                target: settings;
+                property: "x";
+                from: -root.width;
+                to: 0;
+                duration: 150
+            }
+            PropertyAnimation {
+                target: home;
+                property: "x";
+                from: 0;
+                to: root.width;
+                duration: 150
+            }
+        },
+        Transition {
             from: "home"
             to: "collections"
             PropertyAnimation {
@@ -355,6 +395,16 @@ FocusScope {
         width: parent.width
         height: parent.height
         color: theme.background
+    }
+
+    Settings {
+        id: settings
+        width: root.width
+        height: root.height  * 0.9
+        anchors.bottom: root.bottom
+        focus: ( root.state === "settings" )
+        opacity: focus
+        visible: opacity
     }
 
     Home {
