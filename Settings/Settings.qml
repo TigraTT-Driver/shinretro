@@ -86,7 +86,7 @@ FocusScope {
         ListElement {
             settingName: "Controls Scheme"
             settingKey: "controlScheme"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "Universal,XBOX,PS"
         }
     }
