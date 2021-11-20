@@ -4,7 +4,8 @@ import "../Global"
 
 FocusScope {
     focus: menu.focus
-
+    property var controlScheme: api.memory.get('controlScheme')
+    property var logoVariant: api.memory.get('logoVariant')
     DropShadow {
         anchors.fill: parent
         horizontalOffset: 0
@@ -66,13 +67,13 @@ FocusScope {
                             id: menu_input_LB
                             anchors.left: parent.left
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/input_BTN-LB"
+                            source: "../assets/buttons/"+controlScheme+"/input_BTN-LB.svg"
                             width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
                             ColorOverlay {
                                 anchors.fill: menu_input_LB
                                 source: menu_input_LB
-                                color: theme.textalt
+                                color: theme.accentalt
                             }
                         }
                     }
@@ -86,13 +87,13 @@ FocusScope {
                             id: menu_input_RB
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/input_BTN-RB.svg"
+                            source: "../assets/buttons/"+controlScheme+"/input_BTN-RB.svg"
                             width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
                             ColorOverlay {
                                 anchors.fill: menu_input_RB
                                 source: menu_input_RB
-                                color: theme.textalt
+                                color: theme.accentalt
                             }
                         }
                     }
@@ -134,7 +135,7 @@ FocusScope {
                             id: menu_input_LT
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/input_BTN-LT.svg"
+                            source: "../assets/buttons/"+controlScheme+"/input_BTN-LT.svg"
                             width: parent.width * 0.55
                             //sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
@@ -142,7 +143,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_LT
                                 source: menu_input_LT
-                                color: theme.textalt
+                                color: theme.accentalt
                             }
                         }
                 }
@@ -159,9 +160,9 @@ FocusScope {
                             if (root.state === "collections")
                                 return "";
                             if (root.state === "home")
-                                return "../assets/logos/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
+                                return "../assets/logos/"+logoVariant+"/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
                             if (root.state === "games")
-                                return "../assets/logos/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
+                                return "../assets/logos/"+logoVariant+"/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
                         }
                         fillMode: Image.PreserveAspectFit
                         horizontalAlignment: Image.AlignHCenter
@@ -211,7 +212,7 @@ FocusScope {
                             id: menu_input_RT
                             anchors.right: parent.right
                             anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/input_BTN-RT.svg"
+                            source: "../assets/buttons/"+controlScheme+"/input_BTN-RT.svg"
                             width: parent.width * 0.55
                             //sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
@@ -219,7 +220,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_RT
                                 source: menu_input_RT
-                                color: theme.textalt
+                                color: theme.accentalt
                             }
                         }
                 }
