@@ -4,7 +4,7 @@ import "../Global"
 
 FocusScope {
     focus: menu.focus
-
+    property var logoVariant: api.memory.get('logoVariant')
     DropShadow {
         anchors.fill: parent
         horizontalOffset: 0
@@ -159,9 +159,9 @@ FocusScope {
                             if (root.state === "collections")
                                 return "";
                             if (root.state === "home")
-                                return "../assets/logos/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
+                                return "../assets/logos/"+logoVariant+"/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
                             if (root.state === "games")
-                                return "../assets/logos/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
+                                return "../assets/logos/"+logoVariant+"/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
                         }
                         fillMode: Image.PreserveAspectFit
                         horizontalAlignment: Image.AlignHCenter

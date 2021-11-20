@@ -67,25 +67,25 @@ FocusScope {
         }
         ListElement {
             settingName: "Mute Sounds"
-            settingsKey: "mutesfx"
+            settingKey: "mutesfx"
             settingSubtitle: "-WIP-"
             setting: "No,Yes"
         }
         ListElement {
             settingName: "Logo Variant"
-            settingsKey: "logoVariant"
+            settingKey: "logoVariant"
             settingSubtitle: "-WIP-"
-            setting: "Monochrome,Colorfull"
+            setting: "mono,color"
         }
         ListElement {
             settingName: "Show Controls"
-            settingsKey: "osc"
+            settingKey: "osc"
             settingSubtitle: "-WIP-"
             setting: "Yes,No"
         }
         ListElement {
             settingName: "Controls Scheme"
-            settingsKey: "controlScheme"
+            settingKey: "controlScheme"
             settingSubtitle: "-WIP-"
             setting: "Universal,XBOX,PS"
         }
@@ -102,13 +102,13 @@ FocusScope {
         id: homeSettingsModel
         ListElement {
             settingName: "Video Playback"
-            settingsKey: "homeVideo"
+            settingKey: "homeVideo"
             settingSubtitle: "-WIP-"
             setting: "Yes,No"
         }
         ListElement {
             settingName: "Mute Video"
-            settingsKey: "homeVideoMute"
+            settingKey: "homeVideoMute"
             settingSubtitle: "-WIP-"
             setting: "No,Yes"
         }
@@ -125,19 +125,19 @@ FocusScope {
         id: gameSettingsModel
         ListElement {
             settingName: "Games Layout"
-            settingsKey: "gamesLayout"
+            settingKey: "gamesLayout"
             settingSubtitle: "-WIP-"
             setting: "BoxArt-Grid"
         }
         ListElement {
             settingName: "Video Playback"
-            settingsKey: "gameVideo"
+            settingKey: "gameVideo"
             settingSubtitle: "-WIP-"
             setting: "Yes,No"
         }
         ListElement {
             settingName: "Mute Video"
-            settingsKey: "gameVideoMute"
+            settingKey: "gameVideoMute"
             settingSubtitle: "-WIP-"
             setting: "No,Yes"
         }
