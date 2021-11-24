@@ -4,56 +4,54 @@ import SortFilterProxyModel 0.2
 import "../Global"
 
 FocusScope {
-    focus: home.focus
-
-    state: "last_played_default"
-
     property int currentLastPlayedIndex: 0
     property int currentFavoritesIndex: 0
-    property bool lastIsDefault: true
+    property var previousLastplayed: lastplayed_left
 
-    property var currentGame: {
-        if (home.state === "last_played_default")
-            return api.allGames.get(sort_last_played_base.mapToSource(0))
-        if (home.state === "last_played")
-            return api.allGames.get(sort_last_played_base.mapToSource(currentLastPlayedIndex+1))
-        if (home.state === "favorites")
-            return api.allGames.get(sort_favorites.mapToSource(currentFavoritesIndex))
+    readonly property var currentGame: {
+        if (lastplayed_left.focus)
+            return sort_lastplayed_base.get(0)
+        if (lastplayed_right.focus)
+            return sort_lastplayed_base.get(currentLastPlayedIndex+1)
+        if (favorites.focus)
+            return sort_favorites_base.get(currentFavoritesIndex)
         else
             return null
     }
 
+    Component.onCompleted: lastplayed_left.focus = true
+
     SortFilterProxyModel {
-        id: sort_last_played_base
+        id: sort_lastplayed_base
         sourceModel: api.allGames
         sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder; }
     }
 
     SortFilterProxyModel {
-        id: sort_favorites
+        id: sort_favorites_base
         sourceModel: api.allGames
         sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder; }
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
 
-    // 9 games to show maximum
+    // 10 games to show maximum
     SortFilterProxyModel {
         id: sort_favorites_limited
-        sourceModel: sort_favorites
-        filters: IndexFilter { maximumIndex: 9; }
+        sourceModel: sort_favorites_base
+        filters: IndexFilter { maximumIndex: 19; }
     }
 
     // 1 game to show maximum
     SortFilterProxyModel {
-        id: sort_last_played_big
-        sourceModel: sort_last_played_base
+        id: sort_lastplayed_left
+        sourceModel: sort_lastplayed_base
         filters: IndexFilter { maximumIndex: 0; }
     }
 
     // 6 games to show maximum
     SortFilterProxyModel {
-        id: sort_last_played
-        sourceModel: sort_last_played_base
+        id: sort_lastplayed_right
+        sourceModel: sort_lastplayed_base
         filters: IndexFilter { minimumIndex: 1; maximumIndex: 6; }
     }
 
@@ -76,6 +74,7 @@ FocusScope {
         }
     }
 
+    // Skewed background
     Rectangle {
         id: skew_color
         height: parent.height
@@ -106,6 +105,7 @@ FocusScope {
         }
     }
 
+    // Build page as a big column
     Column {
         id: main
         width: parent.width * 0.9
@@ -116,8 +116,9 @@ FocusScope {
         }
         spacing: vpx(10)
 
+        // Continue playing text
         Text {
-            text: ( home.state === "last_played" || home.state === "last_played_default" ) ? "- Continue playing" : "Continue playing"
+            text: ( lastplayed_left.focus || lastplayed_right.focus ) ? "<b>Continue playing</b>" : "Continue playing"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -125,53 +126,32 @@ FocusScope {
             color: theme.text
         }
 
-        Row {
+        // Continue playing games
+        Item {
+            width: parent.width
             height: vpx(280)
-            opacity: ( home.state === "last_played" || home.state === "last_played_default" ) ? 1 : 0.5
-            ListView {
-                id: lv_lastPlayed_big
-                width: main.width * 0.4
-                height: parent.height
 
-                orientation: ListView.Horizontal
+            opacity: (lastplayed_left.focus || lastplayed_right.focus) ? 1 : 0.5
 
-                currentIndex: 0
-                model: sort_last_played_big
-                delegate: Item {
-                    readonly property bool isCurrentItem: ListView.isCurrentItem
-                    readonly property bool isFocused: activeFocus
-                    readonly property bool doubleFocus: lv_lastPlayed_big.focus && isCurrentItem
-
-                    width: ListView.view.width
-                    height: ListView.view.height
-
-                    Item {
-                        anchors {
-                            fill: parent
-                        }
-
-                        Loader {
-                            anchors.fill: parent
-                            asynchronous: true
-                            sourceComponent: GameItemHome {}
-                            active: home.focus
-                            visible: status === Loader.Ready
-                        }
-                    }
+            // Big field
+            Loader {
+                id: lastplayed_left
+                active: home.focus
+                width: parent.width * 0.4
+                anchors {
+                    top: parent.top; topMargin: vpx(10)
+                    bottom: parent.bottom; bottomMargin: vpx(10)
                 }
 
-                // clip: true
-
-                highlightRangeMode: ListView.ApplyRange
-                snapMode: ListView.NoSnap
-                highlightMoveDuration: vpx(150)
-                interactive: false
-
-                focus: ( home.state === "last_played_default" )
-
-                Component.onCompleted: {
-                    positionViewAtIndex(0, ListView.SnapPosition)
+                asynchronous: true
+                sourceComponent: GameItemHome {
+                    gameData: sort_lastplayed_left.get(0)
+                    selected: lastplayed_left.focus
                 }
+                visible: sort_lastplayed_left.get(0) && status == Loader.Ready
+
+                focus: false
+                onFocusChanged: { if(focus) previousLastplayed = lastplayed_left }
 
                 Keys.onPressed: {
 
@@ -180,81 +160,62 @@ FocusScope {
                     }
 
                     if (api.keys.isAccept(event)) {
-
-                        //Accept game
-                        sfxAccept.play();
+                        sfxPlay.play();
 
                         event.accepted = true;
                         api.memory.set("currentMenuIndex", currentMenuIndex)
                         currentGame.launch()
                     }
 
-                    if (event.key == Qt.Key_Right) {
-
-                        //navigation sound
+                    if ([Qt.Key_Right, Qt.Key_Down].includes(event.key)) {
                         sfxNav.play();
-
                         event.accepted = true;
-                        home.state = "last_played"
-                    }
 
-                    if (event.key == Qt.Key_Down && sort_favorites.count > 0) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        lastIsDefault = true
-                        home.state = "favorites"
+                        if (event.key == Qt.Key_Right && sort_lastplayed_right.count > 0) lastplayed_right.focus = true
+                        if (event.key == Qt.Key_Down && sort_favorites_limited.count > 0) favorites.focus = true
                     }
                 }
             }
             
             GridView {
-                id: gv_lastPlayed
-                width: main.width * 0.6
+                id: lastplayed_right
+                width: parent.width * 0.59
                 height: parent.height
+                anchors.right: parent.right
+
                 cellWidth: width /3
                 cellHeight: height /2
-
                 currentIndex: currentLastPlayedIndex
                 onCurrentIndexChanged: currentLastPlayedIndex = currentIndex
 
-                model: sort_last_played
+                model: sort_lastplayed_right
                 delegate: Item {
-                    readonly property bool isCurrentItem: GridView.isCurrentItem
-                    readonly property bool isFocused: activeFocus
-                    readonly property bool doubleFocus: gv_lastPlayed.focus && isCurrentItem
+                    readonly property var isSelected: GridView.isCurrentItem
 
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
 
-                    Item {
+                    Loader {
+                        active: home.focus
                         anchors {
-                            fill: parent
+                            top: parent.top; topMargin: vpx(10)
+                            right: parent.right;
+                            bottom: parent.bottom; bottomMargin: vpx(10)
+                            left: parent.left; leftMargin: vpx(10)
                         }
 
-                        Loader {
-                            anchors.fill: parent
-                            asynchronous: true
-                            sourceComponent: GameItemHome {}
-                            active: home.focus
-                            visible: status == Loader.Ready
+                        asynchronous: true
+                        sourceComponent: GameItemHome {
+                            gameData: modelData
+                            selected: lastplayed_right.focus && isSelected
                         }
+                        visible: status == Loader.Ready
                     }
                 }
-
-                // clip: true
-
                 highlightMoveDuration: vpx(150)
+                focus: false
                 interactive: false
-
-                focus: ( home.state === "last_played" )
-
-                Component.onCompleted: {
-                    positionViewAtIndex(currentLastPlayedIndex, GridView.SnapPosition)
-                }
-
+                onFocusChanged: { if(focus) previousLastplayed = lastplayed_right }
                 Keys.onPressed: {
 
                     if (event.isAutoRepeat) {
@@ -263,67 +224,37 @@ FocusScope {
 
                     if (api.keys.isAccept(event)) {
                         event.accepted = true;
+                        sfxPlay.play();
+
                         api.memory.set("currentMenuIndex", currentMenuIndex)
-
-                        //Accept game sound
-                        sfxAccept.play();
-
                         currentGame.launch()
                     }
                     
+                    if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Down, Qt.Key_Left].includes(event.key)) {
+                        event.accepted = true;
+                        sfxNav.play();
+                    }
+
                     if (event.key == Qt.Key_Left) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        if ( [0,3].includes(currentLastPlayedIndex) )
-                            home.state = "last_played_default"
-                        else
-                            currentLastPlayedIndex--
+                        if ([0,3].includes(currentLastPlayedIndex)) lastplayed_left.focus = true
+                        else currentLastPlayedIndex--
                     }
 
-                    if (event.key == Qt.Key_Right) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        if ( [0,1,3,4].includes(currentLastPlayedIndex) )
-                            currentLastPlayedIndex++
-                    }
+                    if (event.key == Qt.Key_Right && [0,1,3,4].includes(currentLastPlayedIndex)) currentLastPlayedIndex++
 
                     if (event.key == Qt.Key_Down) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        if ( [0,1,2].includes(currentLastPlayedIndex) ) {
-                            currentLastPlayedIndex +=3
-                        }
-
-                        else if (sort_favorites.count > 0) {
-                            lastIsDefault = false
-                            home.state = "favorites"
-                        }
+                        if ([0,1,2].includes(currentLastPlayedIndex))  currentLastPlayedIndex += 3
+                        else if (sort_favorites_limited.count > 0) favorites.focus = true
                     }
 
-                    if (event.key == Qt.Key_Up) {
-
-                        //navigation sound
-                        sfxNav.play();
-
-                        event.accepted = true;
-                        if ( [3,4,5].includes(currentLastPlayedIndex) )
-                            currentLastPlayedIndex -=3
-                    }
+                    if (event.key == Qt.Key_Up && [3,4,5].includes(currentLastPlayedIndex) ) currentLastPlayedIndex -= 3
                 }
             }
         }
 
+        // Favorites text
         Text {
-            text: ( home.state === "favorites" ) ? "- Favorites" : "Favorites"
+            text: ( favorites.focus ) ? "<b>Favorites</b>" : "Favorites"
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -331,39 +262,74 @@ FocusScope {
             color: theme.text
         }
 
-        ListView {
-            id: lv_favorites
+        // No Favorites
+        Rectangle {
             width: parent.width
             height: vpx(160)
-            opacity: home.state === "favorites" ? 1 : 0.5
 
+            color: theme.secondary
+            opacity: 0.5
+            visible: sort_favorites_limited.count == 0
+
+            transform: Matrix4x4 {
+                property real a: 12 * Math.PI / 180
+                matrix: Qt.matrix4x4(
+                    1,      -Math.tan(a),       0,      0,
+                    0,      1,                  0,      0,
+                    0,      0,                  1,      0,
+                    0,      0,                  0,      1
+                )
+            }
+
+            Text {
+                anchors.fill: parent
+
+                text: "No favorites set"
+                horizontalAlignment : Text.AlignHCenter
+                verticalAlignment : Text.AlignVCenter
+                font {
+                    family: robotoSlabLight.name
+                    pixelSize: vpx(22)
+                }
+                color: theme.textalt
+            }
+        }
+
+        // Favorites games
+        ListView {
+            id: favorites
+            width: parent.width
+            height: vpx(160)
+            anchors.topMargin: vpx(10)
+            spacing: 20
+            opacity: focus ? 1 : 0.5
             orientation: ListView.Horizontal
-
             currentIndex: currentFavoritesIndex
             onCurrentIndexChanged: currentFavoritesIndex = currentIndex
+            visible: sort_favorites_limited.count > 0
 
             model: sort_favorites_limited
             delegate: Item {
-                readonly property bool isCurrentItem: ListView.isCurrentItem
-                readonly property bool isFocused: activeFocus
-                readonly property bool doubleFocus: lv_favorites.focus && isCurrentItem
+                readonly property var isSelected: ListView.isCurrentItem
 
                 width: ListView.view.width /5
                 height: ListView.view.height * 0.9
 
-                Item {
+                Loader {
+                    active: home.focus
                     anchors {
-                        fill: parent
-                        margins: vpx(5)
+                        top: parent.top; topMargin: vpx(10)
+                        right: parent.right;
+                        bottom: parent.bottom; bottomMargin: vpx(10)
+                        left: parent.left;
                     }
 
-                    Loader {
-                        anchors.fill: parent
-                        asynchronous: true
-                        sourceComponent: GameItemHome {}
-                        active: home.focus
-                        visible: status === Loader.Ready
+                    asynchronous: true
+                    sourceComponent: GameItemHome {
+                        gameData: modelData
+                        selected: favorites.focus && isSelected
                     }
+                    visible: status === Loader.Ready
                 }
             }
 
@@ -375,13 +341,8 @@ FocusScope {
             preferredHighlightBegin: width * 0.4
             preferredHighlightEnd: width * 0.6
 
-            focus: ( home.state === "favorites" )
-
-            Component.onCompleted: {
-                    positionViewAtIndex(currentFavoritesIndex, ListView.SnapPosition)
-            }
-
-            Keys.onPressed: {
+            focus: false
+            Keys.onReleased: {
 
                 if (event.isAutoRepeat) {
                     return
@@ -389,35 +350,17 @@ FocusScope {
 
                 if (api.keys.isAccept(event)) {
                     event.accepted = true;
-                    api.memory.set("currentMenuIndex", currentMenuIndex)
-
-                    //Accept game sound
                     sfxPlay.play();
 
+                    api.memory.set("currentMenuIndex", currentMenuIndex)
                     currentGame.launch()
                 }
 
-                
-                if (event.key == Qt.Key_Left) {
-                    //navigation sound
-                    sfxNav.play();
-                }
-
-                if (event.key == Qt.Key_Right) {
-                    //navigation sound
-                    sfxNav.play();
-                }
-
-                if (event.key == Qt.Key_Down) {
-                    //navigation sound
-                    sfxNav.play();
-                }
-
-                if (event.key == Qt.Key_Up) {
+                if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Left].includes(event.key)) {
                     event.accepted = true;
-                    //navigation sound
                     sfxNav.play();
-                    home.state = lastIsDefault ? "last_played_default" : "last_played"
+
+                    if (event.key == Qt.Key_Up) previousLastplayed.focus = true
                 }
             }
         }
@@ -432,6 +375,7 @@ FocusScope {
             horizontalCenter: parent.horizontalCenter
         }
         spacing: vpx(8)
+        visible: currentGame
 
         Rectangle {
             width: vpx(4)

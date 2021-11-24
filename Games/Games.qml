@@ -7,36 +7,23 @@ import "../Global"
 
 FocusScope {
 
-    BackgroundImage {
-        id: backgroundimage
-        game: currentGame
-        anchors {
-            left: parent.left; right: parent.right
-            top: parent.top; bottom: parent.bottom
-        }
-        opacity: 0.255
-    }
-
-    focus: games.focus
-
-    state: "all"
-
     property int currentGameIndex: 0
     property var currentGame: {
         if (gv_games.count === 0)
             return null;
         if (games.state === "favorites")
             return currentCollection.games.get(filteredGames.mapToSource(currentGameIndex))
-
         return currentCollection.games.get(currentGameIndex)
     }
+
+    focus: games.focus
+    state: "all"
 
     SortFilterProxyModel {
         id: filteredGames
         sourceModel: currentCollection.games
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
-
     Behavior on focus {
         ParallelAnimation {
             PropertyAnimation {
@@ -49,6 +36,18 @@ FocusScope {
         }
     }
 
+    // Background image
+    BackgroundImage {
+        id: backgroundimage
+        game: currentGame
+        anchors {
+            left: parent.left; right: parent.right
+            top: parent.top; bottom: parent.bottom
+        }
+        opacity: 0.255
+    }
+
+    
     // Skewed background
     Rectangle {
         id: skew_color
@@ -76,6 +75,7 @@ FocusScope {
         }
     }
 
+    // Content
     Item {
         width: parent.width * 0.90
         anchors {
@@ -381,6 +381,7 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth
                                     height: img_game_screenshot.paintedHeight
                                     anchors.centerIn: img_game_screenshot
+                                    playing: true
                                 }
                             }
                         }
@@ -400,6 +401,7 @@ FocusScope {
             visible: currentGame !== null
         }
 
+        // No favorite found
         Item {
             anchors.centerIn: parent
             visible: currentGame === null && (games.state === "favorites")
@@ -497,7 +499,7 @@ FocusScope {
 
                     if (api.keys.isAccept(event)) {
                         //Accept game sound
-                        sfxAccept.play();
+                        sfxPlay.play();
                         event.accepted = true;
                         if (currentGame !== null) {
                             api.memory.set("currentCollectionIndex", currentCollectionIndex)
@@ -582,7 +584,7 @@ FocusScope {
                 }
             }
             
-            //Navgation bar
+            //Navigation bar
             Component {
                 id: cpnt_helper_nav
                 Item {

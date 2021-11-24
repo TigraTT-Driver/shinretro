@@ -57,6 +57,7 @@ FocusScope {
         }
     }
 
+    // Load settings
     property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark ;
     property var logoVariant : api.memory.get('logoVariant') === 'color' ? color : mono ;
     property var controlScheme : api.memory.get('controlScheme') === 'PS' ? PS : Universal ;
@@ -496,6 +497,4 @@ FocusScope {
         source: "assets/sounds/play.wav"
         volume: 1.0
     }
-
-
 }
