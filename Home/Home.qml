@@ -10,11 +10,11 @@ FocusScope {
 
     readonly property var currentGame: {
         if (lastplayed_left.focus)
-            return sort_lastplayed_base.get(0)
+            return api.allGames.get(sort_lastplayed_base.mapToSource(0))
         if (lastplayed_right.focus)
-            return sort_lastplayed_base.get(currentLastPlayedIndex+1)
+            return api.allGames.get(sort_lastplayed_base.mapToSource(currentLastPlayedIndex+1))
         if (favorites.focus)
-            return sort_favorites_base.get(currentFavoritesIndex)
+            return api.allGames.get(sort_favorites_base.mapToSource(currentFavoritesIndex))
         else
             return null
     }
