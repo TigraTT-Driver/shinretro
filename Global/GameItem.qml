@@ -17,13 +17,23 @@ Item {
     }
 
 
-    function logo(data) {
-       if (data != null) {
+    function boxArt(data) {
+        if (data != null) {
             if (data.assets.boxFront.includes("header.jpg")) 
                 return steamBoxFront(data);
         else {
             if (data.assets.boxFront != "")
                 return data.assets.boxFront;
+            else if (data.assets.poster != "")
+                return data.assets.poster;
+            else if (data.assets.banner != "")
+                return data.assets.banner;
+            else if (data.assets.tile != "")
+                return data.assets.tile;
+            else if (data.assets.cartridge != "")
+                return data.assets.cartridge;
+            else if (data.assets.logo != "")
+                return data.assets.logo;
             }
         }
         return "";
@@ -73,8 +83,7 @@ Item {
 
             anchors.fill: parent
             anchors.margins: vpx(3)
-            property var boxFrontImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.boxFront
-            source: modelData ? boxFrontImage || "" : ""
+            source: boxArt(gameData)
             fillMode: Image.PreserveAspectFit
             sourceSize: Qt.size(boxFront.width, boxFront.height)
             smooth: true
