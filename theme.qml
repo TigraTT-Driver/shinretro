@@ -58,9 +58,10 @@ FocusScope {
     }
 
     // Load settings
-    property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark ;
-    property var logoVariant : api.memory.get('logoVariant') === 'color' ? color : mono ;
-    property var controlScheme : api.memory.get('controlScheme') === 'PS' ? PS : Universal ;
+    property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark
+    property var logoVariant : api.memory.get('logoVariant') || "mono"
+    property var controlScheme : api.memory.get('controlScheme') || "Universal"
+    property var osc : api.memory.get('osc') || "No"
 
     // [0] = Settings
     // [1] = HOME

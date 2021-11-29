@@ -370,12 +370,12 @@ FocusScope {
         id: play_message
         width: parent.width * 0.9
         height: vpx(18)
+        visible: osc === "No" && currentGame
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             horizontalCenter: parent.horizontalCenter
         }
         spacing: vpx(8)
-        visible: currentGame
 
         Rectangle {
             width: vpx(4)

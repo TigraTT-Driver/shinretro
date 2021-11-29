@@ -7,7 +7,6 @@ Item {
     property var manufacturer: dataConsoles[shortname].manufacturer || null
     property var release: dataConsoles[shortname].release || null
     property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
-    property var logoVariant: api.memory.get('logoVariant') 
 
     width: PathView.view.width
     height: PathView.view.height

@@ -4,8 +4,6 @@ import "../Global"
 
 FocusScope {
     focus: menu.focus
-    property var controlScheme: api.memory.get('controlScheme')
-    property var logoVariant: api.memory.get('logoVariant')
     DropShadow {
         anchors.fill: parent
         horizontalOffset: 0
@@ -63,6 +61,7 @@ FocusScope {
                     header: Item {
                         width: vpx(60)
                         height: vpx(22)
+                        visible: osc === "No"
                         Image {
                             id: menu_input_LB
                             anchors.left: parent.left
@@ -83,6 +82,7 @@ FocusScope {
                     footer: Item {
                         width: vpx(60)
                         height: vpx(22)
+                        visible: osc === "No"
                         Image {
                             id: menu_input_RB
                             anchors.right: parent.right
@@ -126,6 +126,7 @@ FocusScope {
                 Item {
                         width: vpx(60)
                         height: vpx(22)
+                        visible: osc === "No"
                         anchors {
                             right: parent.right;
                             rightMargin: vpx(290)
@@ -204,6 +205,7 @@ FocusScope {
                 Item {
                         width: vpx(60)
                         height: vpx(22)
+                        visible: osc === "No"
                         anchors {
                             right: parent.right; leftMargin: -width *2
                             verticalCenter: parent.verticalCenter

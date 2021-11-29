@@ -78,10 +78,10 @@ FocusScope {
             setting: "mono,color"
         }
         ListElement {
-            settingName: "Show Controls"
+            settingName: "Hide Controls"
             settingKey: "osc"
-            settingSubtitle: "-WIP-"
-            setting: "Yes,No"
+            settingSubtitle: ""
+            setting: "No,Yes"
         }
         ListElement {
             settingName: "Controls Scheme"
@@ -121,6 +121,23 @@ FocusScope {
         }
     }
 
+        ListModel {
+        id: collectionSettingsModel
+        ListElement {
+            settingName: "Accent Color"
+            settingKey: "accentColor"
+            settingSubtitle: "-WIP-"
+            setting: "dimm,bright"
+        }
+    }
+
+    property var collectionPage: {
+        return {
+            pageName: "Collection Screen",
+            listmodel: collectionSettingsModel
+        }
+    }
+
     ListModel {
         id: gameSettingsModel
         ListElement {
@@ -150,7 +167,7 @@ FocusScope {
         }
     }
 
-    property var settingsArr: [generalPage, homePage, gamePage]
+    property var settingsArr: [generalPage, homePage, collectionPage, gamePage]
 
     property real itemheight: vpx(50)
 
@@ -364,6 +381,7 @@ FocusScope {
     }
     // Buttons
     Row {
+        visible: osc === "No"
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             right: parent.right
