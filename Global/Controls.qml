@@ -8,7 +8,6 @@ Item {
     property var front_color: parent.front_color
     property var back_color: parent.back_color
     property var input_button: parent.input_button
-    property var controlScheme: api.memory.get('controlScheme')
     
     width: childrenRect.width
     height: childrenRect.height

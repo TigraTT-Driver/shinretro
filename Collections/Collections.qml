@@ -229,6 +229,7 @@ FocusScope {
 
     // Bottons
     Row {
+        visible: osc === "No"
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             right: parent.right
