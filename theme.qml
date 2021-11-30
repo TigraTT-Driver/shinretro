@@ -21,6 +21,7 @@ FocusScope {
     FontLoader { id: robotoSlabThin; source: "./assets/fonts/RobotoSlab-Thin.ttf" }
     FontLoader { id: robotoSlabRegular; source: "./assets/fonts/RobotoSlab-Regular.ttf" }
 
+    // Color schemes
     property var themeDark: {
         return {
             main: "#202335",
@@ -62,6 +63,30 @@ FocusScope {
     property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('osc') || "No"
+    property var mutesfx : {
+        if (api.memory.get('mutesfx') == "Yes") {
+            return "0.0";
+        } else {
+            return "1.0";
+        }
+    }
+    property var homeVideo : api.memory.get('homeVideo') || "Yes"
+    property var homeVideoMute : {
+        if (api.memory.get('homeVideoMute') == "Yes") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    property var accentColor : api.memory.get('accentColor') || "dimm"
+    property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
+    property var gamesVideoMute : {
+        if (api.memory.get('gamesVideoMute') == "Yes") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // [0] = Settings
     // [1] = HOME
@@ -478,24 +503,24 @@ FocusScope {
     SoundEffect {
         id: sfxNav
         source: "assets/sounds/navigation.wav"
-        volume: 1.0
+        volume: mutesfx
     }
 
     SoundEffect {
         id: sfxBack
         source: "assets/sounds/back.wav"
-        volume: 1.0
+        volume: mutesfx
     }
 
     SoundEffect {
         id: sfxAccept
         source: "assets/sounds/accept.wav"
-        volume: 1.0
+        volume: mutesfx
     }
 
     SoundEffect {
         id: sfxPlay
         source: "assets/sounds/play.wav"
-        volume: 1.0
+        volume: mutesfx
     }
 }

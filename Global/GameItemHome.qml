@@ -70,8 +70,9 @@ Item {
         GameVideo {
             game: gameData
             anchors.fill: parent
-            playing: selected
+            playing: selected && homeVideo != "No"
             scale: selected ? 1.1 : 1
+            sound: homeVideoMute
             //visible: selected
         }
 

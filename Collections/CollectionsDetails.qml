@@ -39,6 +39,7 @@ Item {
                         anchors.fill: img_logo
                         source: img_logo
                         color: theme.icons
+                        visible: logoVariant !== "color"
                     }
                 }
             }

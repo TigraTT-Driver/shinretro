@@ -381,7 +381,8 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth
                                     height: img_game_screenshot.paintedHeight
                                     anchors.centerIn: img_game_screenshot
-                                    playing: true
+                                    playing: gamesVideo != "No"
+                                    sound: gamesVideoMute
                                 }
                             }
                         }
