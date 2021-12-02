@@ -6,8 +6,15 @@ Item {
 
     property var isCurrentItem: PathView.isCurrentItem
     property var shortname: clearShortname(modelData.shortName)
-    property var collectionAltColor: dataConsoles[shortname].altColor
-
+    property var collectionAltColorDimm: dataConsoles[shortname].altColor
+    property var collectionAltColorBright: dataConsoles[shortname].altColorBright
+    property var collectionAltColor: {
+        if (accentColor == "bright") {
+            return collectionAltColorBright;
+        } else {
+            return collectionAltColorDimm;
+        }
+    }
     width: PathView.currentWidth
     height: PathView.currentHeight
 

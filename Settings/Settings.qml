@@ -126,7 +126,7 @@ FocusScope {
         ListElement {
             settingName: "Accent Color"
             settingKey: "accentColor"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "dimm,bright"
         }
     }
