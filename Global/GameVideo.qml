@@ -7,6 +7,7 @@ id: root
 
     property var game
     property bool playing
+    property bool sound
 
     onGameChanged: {
         videoPreviewLoader.sourceComponent = undefined;
@@ -39,7 +40,7 @@ id: root
             anchors.fill: parent
             source: game.assets.videoList.length ? game.assets.videoList[0] : ""
             fillMode: VideoOutput.PreserveAspectCrop
-            muted: false
+            muted: sound
             loops: MediaPlayer.Infinite
             autoPlay: true
         }

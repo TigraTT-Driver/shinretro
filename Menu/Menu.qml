@@ -182,6 +182,7 @@ FocusScope {
                             anchors.fill: img_helper_collection
                             source: img_helper_collection
                             color: theme.icons
+                            visible: logoVariant !== "color"
                         }
 
                         visible: ["home","games"].includes(root.state)

@@ -51,7 +51,15 @@ FocusScope {
     // Skewed background
     Rectangle {
         id: skew_color
-        readonly property var touch_color: dataConsoles[clearShortname(currentCollection.shortName)].color
+        readonly property var touch_colorDimm: dataConsoles[clearShortname(currentCollection.shortName)].color
+        readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].colorBright
+        readonly property var touch_color: {
+            if (accentColor == "bright") {
+                return touch_colorBright;
+            } else {
+                return touch_colorDimm;
+            }
+        }
         width: parent.width * 0.42
         height: parent.height
         antialiasing: true
@@ -381,7 +389,8 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth
                                     height: img_game_screenshot.paintedHeight
                                     anchors.centerIn: img_game_screenshot
-                                    playing: true
+                                    playing: gamesVideo != "No"
+                                    sound: gamesVideoMute
                                 }
                             }
                         }

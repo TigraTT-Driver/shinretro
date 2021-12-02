@@ -68,13 +68,13 @@ FocusScope {
         ListElement {
             settingName: "Mute Sounds"
             settingKey: "mutesfx"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "No,Yes"
         }
         ListElement {
             settingName: "Logo Variant"
             settingKey: "logoVariant"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "mono,color"
         }
         ListElement {
@@ -103,13 +103,13 @@ FocusScope {
         ListElement {
             settingName: "Video Playback"
             settingKey: "homeVideo"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "Yes,No"
         }
         ListElement {
             settingName: "Mute Video"
             settingKey: "homeVideoMute"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "No,Yes"
         }
     }
@@ -126,7 +126,7 @@ FocusScope {
         ListElement {
             settingName: "Accent Color"
             settingKey: "accentColor"
-            settingSubtitle: "-WIP-"
+            settingSubtitle: ""
             setting: "dimm,bright"
         }
     }
@@ -148,14 +148,14 @@ FocusScope {
         }
         ListElement {
             settingName: "Video Playback"
-            settingKey: "gameVideo"
-            settingSubtitle: "-WIP-"
+            settingKey: "gamesVideo"
+            settingSubtitle: ""
             setting: "Yes,No"
         }
         ListElement {
             settingName: "Mute Video"
-            settingKey: "gameVideoMute"
-            settingSubtitle: "-WIP-"
+            settingKey: "gamesVideoMute"
+            settingSubtitle: ""
             setting: "No,Yes"
         }
     }
