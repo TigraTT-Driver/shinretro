@@ -79,6 +79,7 @@ FocusScope {
         }
     }
     property var accentColor : api.memory.get('accentColor') || "dimm"
+    property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
     property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
     property var gamesVideoMute : {
         if (api.memory.get('gamesVideoMute') == "Yes") {
@@ -95,53 +96,12 @@ FocusScope {
 
     property int currentMenuIndex: api.memory.get("currentMenuIndex") || 1
 
+    // List of game collections
     property var allCollections: {
         const collections = api.collections.toVarArray()
-
-        // collections.unshift({"name": "favorites", "shortName": "favorites", "games": allFavorites})
-
-        // // FOR TESTING PURPOSES
-        // collections.unshift({"name": "all games", "shortName": "all", "games": api.allGames})
-        // collections.unshift({"name": "ps3", "shortName": "ps3", "games": collections[0].games})
-        // collections.unshift({"name": "switch", "shortName": "switch", "games": collections[0].games})
-        // collections.unshift({"name": "wiiware", "shortName": "wiiware", "games": collections[0].games})
-        // collections.unshift({"name": "3do", "shortName": "3do", "games": collections[6].games})
-        // collections.unshift({"name": "amstradcpc", "shortName": "amstradcpc", "games": collections[6].games})
-        // collections.unshift({"name": "apple2", "shortName": "apple2", "games": collections[6].games})
-        // collections.unshift({"name": "atari2600", "shortName": "atari2600", "games": collections[6].games})
-        // collections.unshift({"name": "atari5200", "shortName": "atari5200", "games": collections[6].games})
-        // collections.unshift({"name": "atarist", "shortName": "atarist", "games": collections[6].games})
-        // collections.unshift({"name": "atari7800", "shortName": "atari7800", "games": collections[6].games})
-        // collections.unshift({"name": "atarilynx", "shortName": "atarilynx", "games": collections[6].games})
-        // collections.unshift({"name": "atarijaguar", "shortName": "atarijaguar", "games": collections[6].games})
-        // collections.unshift({"name": "cps1", "shortName": "cps1", "games": collections[6].games})
-        // collections.unshift({"name": "cps2", "shortName": "cps2", "games": collections[6].games})
-        // collections.unshift({"name": "cps3", "shortName": "cps3", "games": collections[6].games})
-        // collections.unshift({"name": "colecovision", "shortName": "colecovision", "games": collections[6].games})
-        // collections.unshift({"name": "c64", "shortName": "c64", "games": collections[6].games})
-        // collections.unshift({"name": "amiga", "shortName": "amiga", "games": collections[6].games})
-        // collections.unshift({"name": "intellivision", "shortName": "intellivision", "games": collections[6].games})
-        // collections.unshift({"name": "msx", "shortName": "msx", "games": collections[6].games})
-        // collections.unshift({"name": "msx2", "shortName": "msx2", "games": collections[6].games})
-        // collections.unshift({"name": "turbografx16", "shortName": "turbografx16", "games": collections[6].games})
-        // collections.unshift({"name": "pcfx", "shortName": "pcfx", "games": collections[6].games})
-        // collections.unshift({"name": "fds", "shortName": "fds", "games": collections[6].games})
-        // collections.unshift({"name": "wiiu", "shortName": "wiiu", "games": collections[6].games})
-        // collections.unshift({"name": "atomiswave", "shortName": "atomiswave", "games": collections[6].games})
-        // collections.unshift({"name": "sega32x", "shortName": "sega32x", "games": collections[6].games})
-        // collections.unshift({"name": "zxspectrum", "shortName": "zxspectrum", "games": collections[6].games})
-        // collections.unshift({"name": "vectrex", "shortName": "vectrex", "games": collections[6].games})
-        // collections.unshift({"name": "neogeocd", "shortName": "neogeocd", "games": collections[6].games})
-        // collections.unshift({"name": "ps2", "shortName": "ps2", "games": collections[6].games})
-        // collections.unshift({"name": "gog", "shortName": "gog", "games": collections[6].games})
-        // collections.unshift({"name": "steam", "shortName": "steam", "games": collections[6].games})
-        // collections.unshift({"name": "daphne", "shortName": "daphne", "games": collections[6].games})
-        // collections.unshift({"name": "fba", "shortName": "fba", "games": collections[6].games})
-        // collections.unshift({"name": "fbneo", "shortName": "fbneo", "games": collections[6].games})
-        // collections.unshift({"name": "mame", "shortName": "mame", "games": collections[6].games})
-        // collections.unshift({"name": "3ds", "shortName": "3ds", "games": collections[6].games})
-        // // END TESTING
-
+        if (allGamesCollection != "No") {
+            collections.unshift({"name": "All", "shortName": "all", "games": api.allGames})
+        }
         return collections
     }
 
@@ -154,16 +114,6 @@ FocusScope {
         { name: "collections", title: "collections"},
         { name: "games", title: "games"}
     ]
-
-    property variant dataManufacturers: {
-        "sega":     { color: "#17569b" },
-        "sony":     { color: "#1D1D1D" },
-        "snk":      { color: "#359CD2" },
-        "nec":      { color: "#2E1D81" },
-        "nintendo": { color: "#E11919" },
-        "various":  { color: "#18A46E" },
-        "valve":    { color: "#010314" }
-    }
 
     function clearShortname(shortname) {
         return dataLaunchbox[shortname] ? dataLaunchbox[shortname] : shortname
@@ -287,15 +237,16 @@ FocusScope {
         "psp":              { manufacturer: "sony",                 release: "2004",    color: "#26050C10", altColor: "#6A818C",    colorBright: "#050C10", altColorBright: "#6A818C" },
         "ps3":              { manufacturer: "sony",                 release: "2006",    color: "#260D1114", altColor: "#1F1F1F",    colorBright: "#0D1114", altColorBright: "#1F1F1F" },
         "gog":              { manufacturer: "pc",                   release: "2008",    color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
-        "ports":            { manufacturer: "pc",                   release: "",        color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
-        "scummvm":          { manufacturer: "pc",                   release: "",        color: "#26997F03", altColor: "#725E00",    colorBright: "#997F03", altColorBright: "#725E00" },
+        "ports":            { manufacturer: "pc",                   release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
+        "scummvm":          { manufacturer: "pc",                   release: null,      color: "#26997F03", altColor: "#725E00",    colorBright: "#997F03", altColorBright: "#725E00" },
         "steam":            { manufacturer: "valve",                release: "2003",    color: "#26010314", altColor: "#252525",    colorBright: "#010314", altColorBright: "#252525" },
-        "arcade":           { manufacturer: "pc",                   release: "1990",    color: "#26D00E2D", altColor: "#9B071E",    colorBright: "#D00E2D", altColorBright: "#9B071E" },
+        "arcade":           { manufacturer: "arcade",               release: null,      color: "#26D00E2D", altColor: "#9B071E",    colorBright: "#D00E2D", altColorBright: "#9B071E" },
         "all":              { manufacturer: null,                   release: null,      color: "#26FFD019", altColor: "#FF9919",    colorBright: "#FFD019", altColorBright: "#FF9919" },
-        "daphne":           { manufacturer: null,                   release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
-        "fba":              { manufacturer: null,                   release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
-        "fbneo":            { manufacturer: null,                   release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
-        "mame":             { manufacturer: null,                   release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" }
+        "daphne":           { manufacturer: "arcade",               release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
+        "fba":              { manufacturer: "arcade",               release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
+        "fbneo":            { manufacturer: "arcade",               release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
+        "mame":             { manufacturer: "arcade",               release: null,      color: "#26000000", altColor: "#252525",    colorBright: "#000000", altColorBright: "#252525" },
+        "android":          { manufacturer: "OpenHandsetAlliance",  release: null,      color: "#2677c159", altColor: "#478230",    colorBright: "#77c159", altColorBright: "#478230" }
     }
 
     SortFilterProxyModel {

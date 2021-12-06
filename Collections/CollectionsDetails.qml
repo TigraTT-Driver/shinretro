@@ -6,7 +6,6 @@ Item {
     property var shortname: clearShortname(modelData.shortName)
     property var manufacturer: dataConsoles[shortname].manufacturer || null
     property var release: dataConsoles[shortname].release || null
-    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -88,13 +87,7 @@ Item {
                 Rectangle {
                     width: vpx(60)
                     height: vpx(30)
-                    color: {
-                        if (logoVariant == "color") {
-                            return manufacturerColor;
-                        } else {
-                            return "transparent";
-                        }
-                    }
+                    color: "transparent"
                     Item {
                         width: vpx(55)
                         height: vpx(15)
@@ -111,7 +104,6 @@ Item {
                                 anchors.fill: img_manufacturer
                                 source: img_manufacturer
                                 color: theme.icons
-                                visible: logoVariant !== "color"
                             }
                         }
                     }
