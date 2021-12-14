@@ -99,6 +99,39 @@ Item {
             scale: selected ? 1.1 : 1
             Behavior on opacity { NumberAnimation { duration: 200 } }
             Rectangle {
+                id: favicon
+                anchors { 
+                    right: parent.right; rightMargin: (parent.width - boxFront.paintedWidth)/2 + vpx(3);
+                    top: parent.top; topMargin: (parent.height - boxFront.paintedHeight)/2 + vpx(3) 
+                }
+                width: vpx(40)
+                height: width
+                //radius: width/2
+                color: theme.favorite.replace(/#/g, "#77");
+                visible: gameData.favorite
+                Image {
+                    id: favicon_icon
+                    source: "../assets/star-fill.svg"
+                    asynchronous: true
+                    anchors.fill: parent
+                    anchors.margins: vpx(8) 
+                    ColorOverlay {
+                        anchors.fill: favicon_icon
+                        source: favicon_icon
+                        color: theme.favorite
+                    }           
+                }
+                transform: Matrix4x4 {
+            property real a: 12 * Math.PI / 180
+            matrix: Qt.matrix4x4(
+                1,      -Math.tan(a),       0,      0,
+                0,      1,                  0,      0,
+                0,      0,                  1,      0,
+                0,      0,                  0,      1
+            )
+        }
+            }
+            Rectangle {
                 anchors.centerIn: boxFront
                 width: boxFront.paintedWidth + vpx(15)
                 height: boxFront.paintedHeight + vpx(15)
