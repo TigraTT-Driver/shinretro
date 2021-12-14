@@ -54,33 +54,6 @@ Item {
     property bool selected
     property var gameData: modelData
 
-
-    // In order to use the retropie icons here we need to do a little collection specific hack
-    property bool playVideo: gameData ? gameData.assets.videoList.length : ""
-    scale: selected ? 1 : 0.95
-    Behavior on scale { NumberAnimation { duration: 100 } }
-    z: selected ? 10 : 1
-
-    onSelectedChanged: {
-        if (selected && playVideo)
-            fadescreenshot.restart();
-        else {
-            fadescreenshot.stop();
-            screenshot.opacity = 1;
-            container.opacity = 1;
-        }
-    }
-
-    // NOTE: Fade out the bg so there is a smooth transition into the video
-    Timer {
-        id: fadescreenshot
-
-        interval: 1200
-        onTriggered: {
-            screenshot.opacity = 0;
-        }
-    }
-
     Item  {
         id: container
 
@@ -122,14 +95,14 @@ Item {
                     }           
                 }
                 transform: Matrix4x4 {
-            property real a: 12 * Math.PI / 180
-            matrix: Qt.matrix4x4(
-                1,      -Math.tan(a),       0,      0,
-                0,      1,                  0,      0,
-                0,      0,                  1,      0,
-                0,      0,                  0,      1
-            )
-        }
+                    property real a: 12 * Math.PI / 180
+                    matrix: Qt.matrix4x4(
+                        1,      -Math.tan(a),       0,      0,
+                        0,      1,                  0,      0,
+                        0,      0,                  1,      0,
+                        0,      0,                  0,      1
+                    )
+                }
             }
             Rectangle {
                 anchors.centerIn: boxFront
