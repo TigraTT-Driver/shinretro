@@ -129,6 +129,12 @@ FocusScope {
             settingSubtitle: ""
             setting: "dimm,bright"
         }
+        ListElement {
+            settingName: 'Show "All games" collection'
+            settingKey: "allGamesCollection"
+            settingSubtitle: ""
+            setting: "Yes,No"
+        }
     }
 
     property var collectionPage: {

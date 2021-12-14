@@ -12,7 +12,9 @@ FocusScope {
         if (gv_games.count === 0)
             return null;
         if (games.state === "favorites")
-            return currentCollection.games.get(filteredGames.mapToSource(currentGameIndex))
+            return currentCollection.games.get(filteredGamesFav.mapToSource(currentGameIndex))
+        if (games.state === "multiplayer")
+            return currentCollection.games.get(filteredGamesMulti.mapToSource(currentGameIndex))    
         return currentCollection.games.get(currentGameIndex)
     }
 
@@ -20,10 +22,16 @@ FocusScope {
     state: "all"
 
     SortFilterProxyModel {
-        id: filteredGames
+        id: filteredGamesFav
         sourceModel: currentCollection.games
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
+    SortFilterProxyModel {
+        id: filteredGamesMulti
+        sourceModel: currentCollection.games
+        filters: RangeFilter { roleName: "players"; minimumValue: 2; }
+    }
+
     Behavior on focus {
         ParallelAnimation {
             PropertyAnimation {
@@ -455,7 +463,9 @@ FocusScope {
 
                 model: {
                     if (games.state === "favorites")
-                        return filteredGames
+                        return filteredGamesFav
+                    if (games.state === "multiplayer")
+                        return filteredGamesMulti    
                     return currentCollection.games
                 }
                 delegate: Item {
@@ -524,6 +534,9 @@ FocusScope {
                         event.accepted = true;
                         if (games.state === "all") {
                             games.state = "favorites"
+                        }
+                        else if (games.state === "favorites") {
+                            games.state = "multiplayer"
                         }
                         else {
                             games.state = "all"
@@ -668,8 +681,13 @@ FocusScope {
                 Controls {
                     id: button_U
 
-                    message: ( games.state === "all" ) ? "SHOW <b>ALL</b> · FAVORITES" : "SHOW ALL · <b>FAVORITES</b>"
-
+                    message: {
+                        if (games.state === "favorites")
+                            return "SHOW ALL · <b>FAVORITES</b> · MULTIPLAYER"
+                        if (games.state === "multiplayer")
+                            return "SHOW ALL · FAVORITES · <b>MULTIPLAYER</b>"    
+                        return "SHOW <b>ALL</b> · FAVORITES · MULTIPLAYER"
+                    }
                     text_color: theme.filters
                     front_color: theme.filters.replace(/#/g, "#26");
                     back_color: theme.filters.replace(/#/g, "#26");

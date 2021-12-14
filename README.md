@@ -1,4 +1,4 @@
-# neoretro-dark v0.131.4
+# neoretro-dark v0.131.5
 
 
 <img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
@@ -6,11 +6,9 @@ neoretro-dark is a theme for Pegasus-frontend.
 
 ## Work in progress
 - clean the code...
-- add a "all games" collection
 - revise games details in `Games`
 - revise collections PathView to keep consistent spacing
 - revise GridView/ListView for showing games / dynamic grid collums based on artwork size
-- revise the manner of showing favorited games in the GridView/ListView and on the "details" box
 - revise and add new backgrounds/logos for collections and manufacturers (svg logos, better use .png for backgrounds)
 - Implement all settings from the Settings Page
 

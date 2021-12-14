@@ -40,39 +40,57 @@ Item {
     Component {
         id: no_star
         Image {
-            source: "../assets/no_star.png"
+            id: star_frame
+            source: "../assets/star-frame"
             width: vpx(12)
             height: vpx(12)
             asynchronous: true
             sourceSize.width: width
             sourceSize.height: height
             fillMode: Image.PreserveAspectFit
+            ColorOverlay {
+                anchors.fill: star_frame
+                source: star_frame
+                color: theme.accentalt
+            }
         }
     }
 
     Component {
         id: half_star
         Image {
-            source: "../assets/half_star.png"
+            id: star_half
+            source: "../assets/star-half.svg"
             width: vpx(12)
             height: vpx(12)
             asynchronous: true
             sourceSize.width: width
             sourceSize.height: height
             fillMode: Image.PreserveAspectFit
+            ColorOverlay {
+                anchors.fill: star_half
+                source: star_half
+                color: theme.favorite
+            }
         }
     }
 
     Component {
         id: star
         Image {
-            source: "../assets/star.png"
+            id: star_fill
+            source: "../assets/star-fill.svg"
             width: vpx(12)
             height: vpx(12)
             asynchronous: true
             sourceSize.width: width
             sourceSize.height: height
             fillMode: Image.PreserveAspectFit
+            ColorOverlay {
+                anchors.fill: star_fill
+                source: star_fill
+                color: theme.favorite
+            }
         }
     }
 
