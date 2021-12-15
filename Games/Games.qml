@@ -59,8 +59,8 @@ FocusScope {
     // Skewed background
     Rectangle {
         id: skew_color
-        readonly property var touch_colorDimm: dataConsoles[clearShortname(currentCollection.shortName)].color
-        readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].colorBright
+        readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
+        readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
         readonly property var touch_color: {
             if (accentColor == "bright") {
                 return touch_colorBright;
