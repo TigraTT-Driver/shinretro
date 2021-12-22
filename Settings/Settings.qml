@@ -53,122 +53,101 @@ FocusScope {
 
     ListModel {
         id: settingsModel
-        ListElement {
-            settingName: "Language"
-            settingKey: "lang"
-            settingSubtitle: "-WIP-"
-            setting: "English"
-        }
-        ListElement {
-            settingName: "Color Scheme"
-            settingKey: "theme"
-            settingSubtitle: ""
-            setting: "themeDark,themeLight"
-        }
-        ListElement {
-            settingName: "Mute Sounds"
-            settingKey: "mutesfx"
-            settingSubtitle: ""
-            setting: "No,Yes"
-        }
-        ListElement {
-            settingName: "Logo Variant"
-            settingKey: "logoVariant"
-            settingSubtitle: ""
-            setting: "mono,color"
-        }
-        ListElement {
-            settingName: "Hide Controls"
-            settingKey: "osc"
-            settingSubtitle: ""
-            setting: "No,Yes"
-        }
-        ListElement {
-            settingName: "Controls Scheme"
-            settingKey: "controlScheme"
-            settingSubtitle: ""
-            setting: "Universal,XBOX,PS"
+        Component.onCompleted: {
+            [
+            [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "eng,ger" ],
+            [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "themeDark,themeLight" ],
+            [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
+            [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
+            [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
+            [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,XBOX,PS" ]
+            ].forEach(function(element) {
+                append({
+                            settingName: element[0],
+                            settingKey: element[1],
+                            settingSubtitle: element[2],
+                            setting: element[3]
+                        });
+            });
         }
     }
 
     property var generalPage: {
         return {
-            pageName: "General",
+            pageName: dataText[lang].settings_general,
             listmodel: settingsModel
         }
     }
 
     ListModel {
         id: homeSettingsModel
-        ListElement {
-            settingName: "Video Playback"
-            settingKey: "homeVideo"
-            settingSubtitle: ""
-            setting: "Yes,No"
-        }
-        ListElement {
-            settingName: "Mute Video"
-            settingKey: "homeVideoMute"
-            settingSubtitle: ""
-            setting: "No,Yes"
+        Component.onCompleted: {
+            [
+            [ dataText[lang].settings_global_videoPlayback,  "homeVideo",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoMute,  "homeVideoMute",  "",  "No,Yes" ]
+            ].forEach(function(element) {
+                append({
+                            settingName: element[0],
+                            settingKey: element[1],
+                            settingSubtitle: element[2],
+                            setting: element[3]
+                        });
+            });
         }
     }
 
     property var homePage: {
         return {
-            pageName: "Home Screen",
+            pageName: dataText[lang].menu_home,
             listmodel: homeSettingsModel
         }
     }
 
-        ListModel {
+    ListModel {
         id: collectionSettingsModel
-        ListElement {
-            settingName: "Accent Color"
-            settingKey: "accentColor"
-            settingSubtitle: ""
-            setting: "dimm,bright"
-        }
-        ListElement {
-            settingName: 'Show "All games" collection'
-            settingKey: "allGamesCollection"
-            settingSubtitle: ""
-            setting: "Yes,No"
+        Component.onCompleted: {
+            [
+            [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
+            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ]
+            ].forEach(function(element) {
+                append({
+                            settingName: element[0],
+                            settingKey: element[1],
+                            settingSubtitle: element[2],
+                            setting: element[3]
+                        });
+            });
         }
     }
 
     property var collectionPage: {
         return {
-            pageName: "Collection Screen",
+            pageName: dataText[lang].menu_collections,
             listmodel: collectionSettingsModel
         }
     }
 
     ListModel {
         id: gameSettingsModel
-        ListElement {
-            settingName: "Games Layout"
-            settingKey: "gamesLayout"
-            settingSubtitle: "-WIP-"
-            setting: "BoxArt-Grid"
-        }
-        ListElement {
-            settingName: "Video Playback"
-            settingKey: "gamesVideo"
-            settingSubtitle: ""
-            setting: "Yes,No"
-        }
-        ListElement {
-            settingName: "Mute Video"
-            settingKey: "gamesVideoMute"
-            settingSubtitle: ""
-            setting: "No,Yes"
+        Component.onCompleted: {
+            [
+            [ dataText[lang].settings_games_layout,  "gamesLayout",  "-WIP-",  "BoxArt-Grid" ],
+            [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  "No,Yes" ]
+            ].forEach(function(element) {
+                append({
+                            settingName: element[0],
+                            settingKey: element[1],
+                            settingSubtitle: element[2],
+                            setting: element[3]
+                        });
+            });
         }
     }
 
     property var gamePage: {
         return {
-            pageName: "Game Screen",
+            pageName: dataText[lang].menu_games,
             listmodel: gameSettingsModel
         }
     }
@@ -398,7 +377,7 @@ FocusScope {
         Controls {
             id: button_D
 
-            message: "OK"
+            message: dataText[lang].global_select
             text_color: theme.accepted
             front_color: theme.accepted.replace(/#/g, "#33");
             back_color: theme.accepted.replace(/#/g, "#33");
@@ -408,7 +387,7 @@ FocusScope {
         Controls {
             id: button_R
 
-            message: "GO <b>BACK</b>"
+            message: dataText[lang].global_back
 
             text_color: theme.cancel
             front_color: theme.cancel.replace(/#/g, "#26");

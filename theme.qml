@@ -57,8 +57,88 @@ FocusScope {
             filters: "#996b00"
         }
     }
+    // Text strings
+    property variant dataText: {
+    "eng": {
+        global_back: "GO <b>BACK</b>",
+        global_select: "OK",
+        global_games: "GAMES",
+        global_noFavorites: "No favorites set",
+        collection_all: "All",
+        collectionDetails_gamesAvailable: "games available",
+        games_na: "N/A",
+        games_developedBy: "Developed by",
+        games_players: "PLAYERS",
+        games_player: "1 PLAYER",
+        games_favorited: "FAVORITED",
+        games_withoutDescription: "without description",
+        games_removeFavorite: "REMOVE <b>FAVORITE</b>",
+        games_addFavorite: "ADD <b>FAVORITE</b>",
+        games_filterFavorites: "SHOW ALL · <b>FAVORITES</b> · MULTIPLAYER",
+        games_filterMultiplayer: "SHOW ALL · FAVORITES · <b>MULTIPLAYER</b>",
+        games_filterAll: "SHOW <b>ALL</b> · FAVORITES · MULTIPLAYER",
+        home_continue: "Continue playing",
+        home_favorites: "Favorites",
+        home_play: "Play",
+        settings_general: "General",
+        settings_general_language: "Language",
+        settings_general_colorScheme: "Color scheme",
+        settings_general_muteSounds: "Mute sounds",
+        settings_general_logoVariant: "Logo variation",
+        settings_general_hideOSC: "Hide controls",
+        settings_general_OSCScheme: "Controls scheme",
+        settings_global_videoPlayback: "Video playback",
+        settings_global_videoMute: "Mute video",
+        settings_collection_showAll: 'Show "All games" collection',
+        settings_collection_accentColor: "Accent Color",
+        settings_games_layout: "Games layout",
+        menu_settings: "settings",
+        menu_home: "home",
+        menu_collections: "collections",
+        menu_games:"games"
+    },
+    "ger": {
+        global_back: "<b>ZURÜCK</b>",
+        global_select: "OK",
+        global_games: "SPIELE",
+        global_noFavorites: "Keine Favoriten gesetzt",
+        collection_all: "Alle",
+        collectionDetails_gamesAvailable: "Spiele verfügbar",
+        games_na: "K.A.",
+        games_developedBy: "Entwickelt von",
+        games_players: "SPIELER",
+        games_player: "1 SPIELER",
+        games_favorited: "FAVORISIERT",
+        games_withoutDescription: "ohne Beschreibung",
+        games_removeFavorite: "<b>FAVORIT</b> entfernen",
+        games_addFavorite: "<b>FAVORIT</b> hinzufügen",
+        games_filterFavorites: "ZEIGE ALLE · <b>FAVORITEN</b> · MEHRSPIELER",
+        games_filterMultiplayer: "ZEIGE ALLE · FAVORITEN · <b>MEHRSPIELER</b>",
+        games_filterAll: "ZEIGE <b>ALLE</b> · FAVORITEN · MEHRSPIELER",
+        home_continue: "Weiterspielen",
+        home_favorites: "Favoriten",
+        home_play: "Spiele",
+        settings_general: "Allgemein",
+        settings_general_language: "Sprache",
+        settings_general_colorScheme: "Farbschema",
+        settings_general_muteSounds: "Töne stummschalten",
+        settings_general_logoVariant: "Logo-Variation",
+        settings_general_hideOSC: "Steuerung ausblenden",
+        settings_general_OSCScheme: "Steuerungschema",
+        settings_global_videoPlayback: "Videowiedergabe",
+        settings_global_videoMute: "Video stummschalten",
+        settings_collection_showAll: 'Sammlung "Alle Spiele" anzeigen',
+        settings_collection_accentColor: "Akzentfarbe",
+        settings_games_layout: "Spiele-Layout",
+        menu_settings: "Optionen",
+        menu_home: "Start",
+        menu_collections: "Sammlungen",
+        menu_games:"Spiele"
+    }                
+}
 
     // Load settings
+    property var lang: api.memory.get('lang') || "eng"
     property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark
     property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
@@ -100,7 +180,7 @@ FocusScope {
     property var allCollections: {
         const collections = api.collections.toVarArray()
         if (allGamesCollection != "No") {
-            collections.unshift({"name": "All", "shortName": "all", "games": api.allGames})
+            collections.unshift({"name":  dataText[lang].collection_all, "shortName": "all", "games": api.allGames})
         }
         return collections
     }
@@ -109,10 +189,10 @@ FocusScope {
     property var currentCollection: allCollections[currentCollectionIndex]
 
     property variant dataMenu: [
-        { name: "settings", title: "settings"},
-        { name: "home", title: "home"},
-        { name: "collections", title: "collections"},
-        { name: "games", title: "games"}
+        { name: "settings", title: dataText[lang].menu_settings},
+        { name: "home", title: dataText[lang].menu_home},
+        { name: "collections", title: dataText[lang].menu_collections},
+        { name: "games", title: dataText[lang].menu_games}
     ]
 
     function clearShortname(shortname) {

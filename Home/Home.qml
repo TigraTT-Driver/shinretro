@@ -118,7 +118,7 @@ FocusScope {
 
         // Continue playing text
         Text {
-            text: ( lastplayed_left.focus || lastplayed_right.focus ) ? "<b>Continue playing</b>" : "Continue playing"
+            text: ( lastplayed_left.focus || lastplayed_right.focus ) ? "<b>"+dataText[lang].home_continue+"</b>" : dataText[lang].home_continue
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -254,7 +254,7 @@ FocusScope {
 
         // Favorites text
         Text {
-            text: ( favorites.focus ) ? "<b>Favorites</b>" : "Favorites"
+            text: ( favorites.focus ) ? "<b>"+dataText[lang].home_favorites+"</b>" : dataText[lang].home_favorites
             font {
                 family: robotoSlabLight.name
                 pixelSize: vpx(22)
@@ -284,7 +284,7 @@ FocusScope {
             Text {
                 anchors.fill: parent
 
-                text: "No favorites set"
+                text: dataText[lang].global_noFavorites
                 horizontalAlignment : Text.AlignHCenter
                 verticalAlignment : Text.AlignVCenter
                 font {
@@ -384,8 +384,7 @@ FocusScope {
         }
         Controls {
             id: button_D
-
-            message: "Play <b>"+currentGame.title+"</b>"
+            message: dataText[lang].home_play+" <b>"+currentGame.title+"</b>"
             text_color: theme.text
             front_color: "transparent"
             back_color: "transparent"

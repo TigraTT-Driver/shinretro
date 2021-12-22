@@ -129,7 +129,7 @@ FocusScope {
                                 top: parent.top; topMargin: -vpx(30)
                             }
 
-                            text: currentGame.releaseYear || "N/A"
+                            text: currentGame.releaseYear || dataText[lang].games_na
                             font {
                                 family: global.fonts.sans
                                 weight: Font.Black
@@ -186,7 +186,7 @@ FocusScope {
                                 spacing: vpx(5)
 
                                 Text {
-                                    text: "Developed by"
+                                    text: dataText[lang].games_developedBy
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Light
@@ -233,7 +233,7 @@ FocusScope {
 
                                     Text {
                                         id: txt_players
-                                        property var convertPlayer: currentGame.players > 1 ? "1-"+currentGame.players+" PLAYERS" : "1 PLAYER"
+                                        property var convertPlayer: currentGame.players > 1 ? "1-"+currentGame.players+" "+dataText[lang].games_players : dataText[lang].games_player
                                         anchors.centerIn: parent
                                         text: convertPlayer
                                         font {
@@ -253,7 +253,7 @@ FocusScope {
                                     Text {
                                         id: txt_favorited
                                         anchors.centerIn: parent
-                                        text: "FAVORITED"
+                                        text: dataText[lang].games_favorited
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
@@ -302,7 +302,7 @@ FocusScope {
                                     Text {
                                         id: txt_game_description
                                         width: parent.width
-                                        text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : "without description"
+                                        text: (currentGame.description || currentGame.summary) ? (currentGame.description || currentGame.summary) : dataText[lang].games_withoutDescription
                                         font {
                                             family: global.fonts.condensed
                                             weight: Font.Light
@@ -425,7 +425,7 @@ FocusScope {
             Column {
                 Text {
                     anchors.centerIn: parent
-                    text: "No favorites."
+                    text: dataText[lang].global_noFavorites
                     color: theme.accentalt
                     font {
                         family: robotoSlabRegular.name
@@ -657,7 +657,7 @@ FocusScope {
                 Controls {
                     id: button_R
 
-                    message: "GO <b>BACK</b>"
+                    message: dataText[lang].global_back
 
                     text_color: theme.cancel
                     front_color: theme.cancel.replace(/#/g, "#26");
@@ -668,7 +668,7 @@ FocusScope {
                 Controls {
                     id: button_L
 
-                    message: currentGame !== null && currentGame.favorite ? "REMOVE <b>FAVORITE</b>" : "ADD <b>FAVORITE</b>"
+                    message: currentGame !== null && currentGame.favorite ? dataText[lang].games_removeFavorite : dataText[lang].games_addFavorite
 
                     text_color: theme.details
                     front_color: theme.details.replace(/#/g, "#26");
@@ -683,10 +683,10 @@ FocusScope {
 
                     message: {
                         if (games.state === "favorites")
-                            return "SHOW ALL · <b>FAVORITES</b> · MULTIPLAYER"
+                            return dataText[lang].games_filterFavorites
                         if (games.state === "multiplayer")
-                            return "SHOW ALL · FAVORITES · <b>MULTIPLAYER</b>"    
-                        return "SHOW <b>ALL</b> · FAVORITES · MULTIPLAYER"
+                            return dataText[lang].games_filterMultiplayer    
+                        return dataText[lang].games_filterAll
                     }
                     text_color: theme.filters
                     front_color: theme.filters.replace(/#/g, "#26");
