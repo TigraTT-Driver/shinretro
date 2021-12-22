@@ -6,8 +6,8 @@ FocusScope {
     focus: collections.focus
 
     readonly property int baseItemWidth: root.width /8
-    readonly property var touch_colorDimm: dataConsoles[clearShortname(currentCollection.shortName)].color
-    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].colorBright
+    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
+    readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
     readonly property var touch_color: {
         if (accentColor == "bright") {
             return touch_colorBright;
@@ -248,7 +248,7 @@ FocusScope {
         Controls {
             id: button_D
 
-            message: "<b>"+currentCollection.name+"</b> GAMES"
+            message: "<b>"+currentCollection.name+"</b> "+dataText[lang].global_games
             text_color: theme.accepted
             front_color: theme.accepted.replace(/#/g, "#33");
             back_color: theme.accepted.replace(/#/g, "#33");
@@ -258,7 +258,7 @@ FocusScope {
         Controls {
             id: button_R
 
-            message: "GO <b>BACK</b>"
+            message: dataText[lang].global_back
 
             text_color: theme.cancel
             front_color: theme.cancel.replace(/#/g, "#26");

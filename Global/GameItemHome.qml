@@ -5,15 +5,8 @@ import QtMultimedia 5.15
 Item {
     id: root
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
-    readonly property var currentGameCollectionAltColorDimm:  dataConsoles[clearShortname(currentGameCollection.shortName)].altColor
-    readonly property var currentGameCollectionAltColorBright:  dataConsoles[clearShortname(currentGameCollection.shortName)].altColorBright
-    readonly property var currentGameCollectionAltColor: {
-        if (accentColor == "bright") {
-            return currentGameCollectionAltColorBright;
-        } else {
-            return currentGameCollectionAltColorDimm;
-        }
-    }
+    readonly property var currentGameCollectionAltColor:  dataConsoles[clearShortname(currentGameCollection.shortName)].altColor
+
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
         return str[0];
