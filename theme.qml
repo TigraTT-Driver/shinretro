@@ -22,8 +22,8 @@ FocusScope {
     FontLoader { id: robotoSlabRegular; source: "./assets/fonts/RobotoSlab-Regular.ttf" }
 
     // Color schemes
-    property var themeDark: {
-        return {
+    property variant colorScheme: {
+        "Dark": {
             main: "#202335",
             secondary: "#1C1E2E",
             background: "#25283b",
@@ -37,11 +37,8 @@ FocusScope {
             cancel: "#E06C9A",
             details: "#F3C03B",
             filters: "#66D2EC"
-        }
-    }
-
-    property var themeLight: {
-        return {
+        },
+         "Light": {
             main: "white",
             secondary: "#EBEBEB",
             background: "white",
@@ -55,8 +52,24 @@ FocusScope {
             cancel: "#E6140D",
             details: "#1C2C98",
             filters: "#996b00"
-        }
+        },
+        "OzoneDark": {
+            main: "#2D2D2D",
+            secondary: "#333333",
+            background: "#2D2D2D",
+            text: "white",
+            textalt: "#9F9FA1",
+            accent: "#00D9AE",
+            accentalt:"white",
+            icons: "white",
+            favorite: "#F3C03B",
+            accepted: "#996b00",
+            cancel: "#E6140D",
+            details: "#00991E",
+            filters: "#5365df"
+        }   
     }
+
     // Text strings
     property variant dataText: {
         "eng": {
@@ -135,11 +148,11 @@ FocusScope {
             menu_collections: "Sammlungen",
             menu_games:"Spiele"
         }                
-}
+    }
 
     // Load settings
     property var lang: api.memory.get('lang') || "eng"
-    property var theme : api.memory.get('theme') === 'themeLight' ? themeLight : themeDark
+    property var theme: api.memory.get('theme') || "Dark"
     property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('osc') || "No"
@@ -454,7 +467,7 @@ FocusScope {
         id: rect_main
         width: parent.width
         height: parent.height
-        color: theme.background
+        color: colorScheme[theme].background
     }
 
     Settings {

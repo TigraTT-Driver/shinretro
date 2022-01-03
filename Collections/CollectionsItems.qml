@@ -43,7 +43,7 @@ Item {
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent
-                color: theme.secondary
+                color: colorScheme[theme].secondary
                 opacity: isCurrentItem ? 0 : 0.90
                 Behavior on opacity {
                     NumberAnimation { duration: 300; }

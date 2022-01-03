@@ -136,13 +136,13 @@ FocusScope {
                                 italic: true
                                 pixelSize: vpx(140)
                             }
-                            color: theme.main
+                            color: colorScheme[theme].main
                             layer.enabled: true
                             layer.effect: DropShadow {
                                 spread: 1.0
                                 verticalOffset: 5
                                 horizontalOffset: 5
-                                color: theme.secondary
+                                color: colorScheme[theme].secondary
                                 radius: 5
                                 samples: 11
                             }
@@ -179,7 +179,7 @@ FocusScope {
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
-                                color: theme.text
+                                color: colorScheme[theme].text
                             }
 
                             Row {
@@ -193,7 +193,7 @@ FocusScope {
                                         italic: true
                                         pixelSize: vpx(14)
                                     }
-                                    color: theme.accent
+                                    color: colorScheme[theme].accent
                                 }
 
                                 Text {
@@ -203,7 +203,7 @@ FocusScope {
                                         weight: Font.Medium
                                         pixelSize: vpx(14)
                                     }
-                                    color: theme.text
+                                    color: colorScheme[theme].text
                                 }
                             }
 
@@ -225,10 +225,10 @@ FocusScope {
                                 Rectangle {
                                     width: txt_players.contentWidth + vpx(20)
                                     height: txt_players.contentHeight + vpx(10)
-                                    color: theme.secondary
+                                    color: colorScheme[theme].secondary
                                     border {
                                         width: vpx(1)
-                                        color: theme.secondary
+                                        color: colorScheme[theme].secondary
                                     }
 
                                     Text {
@@ -241,14 +241,14 @@ FocusScope {
                                             weight: Font.Black
                                             pixelSize: vpx(12)
                                         }
-                                        color: theme.text
+                                        color: colorScheme[theme].text
                                     }
                                 }
 
                                 Rectangle {
                                     width: txt_favorited.contentWidth + vpx(20)
                                     height: txt_favorited.contentHeight + vpx(10)
-                                    color: theme.favorite.replace(/#/g, "#33");
+                                    color: colorScheme[theme].favorite.replace(/#/g, "#33");
 
                                     Text {
                                         id: txt_favorited
@@ -259,7 +259,7 @@ FocusScope {
                                             weight: Font.Black
                                             pixelSize: vpx(12)
                                         }
-                                        color: theme.favorite
+                                        color: colorScheme[theme].favorite
                                     }
                                     visible: currentGame.favorite
                                 }
@@ -269,10 +269,10 @@ FocusScope {
                                     delegate: Rectangle {
                                         width: txt_genre.contentWidth + vpx(20)
                                         height: txt_genre.contentHeight + vpx(10)
-                                        color: theme.secondary
+                                        color: colorScheme[theme].secondary
                                         border {
                                             width: vpx(1)
-                                            color: theme.secondary
+                                            color: colorScheme[theme].secondary
                                         }
 
                                         Text {
@@ -284,7 +284,7 @@ FocusScope {
                                                 weight: Font.Medium
                                                 pixelSize: vpx(12)
                                             }
-                                            color: theme.text
+                                            color: colorScheme[theme].text
                                         }
                                         visible: (modelData !== "")
                                     }
@@ -311,7 +311,7 @@ FocusScope {
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
                                         horizontalAlignment: Text.AlignJustify
-                                        color: theme.text
+                                        color: colorScheme[theme].text
                                     }
                                 }
                             }
@@ -355,7 +355,7 @@ FocusScope {
                                     width: img_game_screenshot.paintedWidth + vpx(15)
                                     height: img_game_screenshot.paintedHeight + vpx(15)
                                     anchors.centerIn: img_game_screenshot
-                                    color: theme.secondary
+                                    color: colorScheme[theme].secondary
                                 }
 
                                 DropShadow {
@@ -426,7 +426,7 @@ FocusScope {
                 Text {
                     anchors.centerIn: parent
                     text: dataText[lang].global_noFavorites
-                    color: theme.accentalt
+                    color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
                         pixelSize: vpx(42)
@@ -484,7 +484,7 @@ FocusScope {
 
                         Rectangle {
                             anchors.fill: parent
-                            color: theme.background
+                            color: colorScheme[theme].background
                             visible: !loader_gameList_game.visible
                         }
 
@@ -619,7 +619,7 @@ FocusScope {
                         }
                         width: vpx(2)
                         height: heightBar * ( (currentGameIndex + 1) / gv_games.count )
-                        color: theme.accent
+                        color: colorScheme[theme].accent
                     }
                 }
             }
@@ -659,9 +659,9 @@ FocusScope {
 
                     message: dataText[lang].global_back
 
-                    text_color: theme.cancel
-                    front_color: theme.cancel.replace(/#/g, "#26");
-                    back_color: theme.cancel.replace(/#/g, "#26");
+                    text_color: colorScheme[theme].cancel
+                    front_color: colorScheme[theme].cancel.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].cancel.replace(/#/g, "#26");
                     input_button: "BTN-R"
                 }
 
@@ -670,9 +670,9 @@ FocusScope {
 
                     message: currentGame !== null && currentGame.favorite ? dataText[lang].games_removeFavorite : dataText[lang].games_addFavorite
 
-                    text_color: theme.details
-                    front_color: theme.details.replace(/#/g, "#26");
-                    back_color: theme.details.replace(/#/g, "#26");
+                    text_color: colorScheme[theme].details
+                    front_color: colorScheme[theme].details.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].details.replace(/#/g, "#26");
                     input_button: "BTN-L"
 
                     visible: currentGame !== null
@@ -688,9 +688,9 @@ FocusScope {
                             return dataText[lang].games_filterMultiplayer    
                         return dataText[lang].games_filterAll
                     }
-                    text_color: theme.filters
-                    front_color: theme.filters.replace(/#/g, "#26");
-                    back_color: theme.filters.replace(/#/g, "#26");
+                    text_color: colorScheme[theme].filters
+                    front_color: colorScheme[theme].filters.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].filters.replace(/#/g, "#26");
                     input_button: "BTN-U"
                 }
             }
@@ -702,7 +702,7 @@ FocusScope {
                     right: parent.right;
                 }
                 text: (currentGameIndex + 1)+"/"+gv_games.count
-                color: theme.text
+                color: colorScheme[theme].text
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(14)

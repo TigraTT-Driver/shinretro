@@ -63,7 +63,7 @@ Item {
             ColorOverlay {
                 anchors.fill: icon_btn
                 source: icon_btn
-                color: theme.icons
+                color: colorScheme[theme].icons
             }
         }
     }

@@ -26,7 +26,7 @@ Item {
         }
 
         text: modelData.title
-        color:  isCurrentItem ? theme.accentalt: theme.textalt
+        color:  isCurrentItem ? colorScheme[theme].accentalt: colorScheme[theme].textalt
         Behavior on color {
             ColorAnimation { duration: 150; }
         }

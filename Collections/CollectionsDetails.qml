@@ -37,14 +37,14 @@ Item {
                     ColorOverlay {
                         anchors.fill: img_logo
                         source: img_logo
-                        color: theme.icons
+                        color: colorScheme[theme].icons
                         visible: logoVariant !== "color"
                     }
                 }
             }
 
             Text {
-                color: theme.text
+                color: colorScheme[theme].text
                 width: parent.width * 0.7
                 anchors {
                     bottom: txt_collection_games.top
@@ -72,7 +72,7 @@ Item {
                     family: robotoSlabLight.name
                     pixelSize: vpx(20)
                 }
-                color: theme.accent
+                color: colorScheme[theme].accent
             }
 
             Row {
@@ -103,7 +103,7 @@ Item {
                             ColorOverlay {
                                 anchors.fill: img_manufacturer
                                 source: img_manufacturer
-                                color: theme.icons
+                                color: colorScheme[theme].icons
                             }
                         }
                     }
@@ -124,7 +124,7 @@ Item {
                         pixelSize: vpx(14)
                     }
                     bottomPadding: vpx(2)
-                    color: theme.text
+                    color: colorScheme[theme].text
                 }
             }
 

@@ -30,7 +30,7 @@ Item {
             return "#B5714B"
         }
         else if (rate < 4) {
-            return theme.main
+            return colorScheme[theme].main
         }
         else {
             return "#FFCE00"
@@ -51,7 +51,7 @@ Item {
             ColorOverlay {
                 anchors.fill: star_frame
                 source: star_frame
-                color: theme.accentalt
+                color: colorScheme[theme].accentalt
             }
         }
     }
@@ -70,7 +70,7 @@ Item {
             ColorOverlay {
                 anchors.fill: star_half
                 source: star_half
-                color: theme.favorite
+                color: colorScheme[theme].favorite
             }
         }
     }
@@ -89,7 +89,7 @@ Item {
             ColorOverlay {
                 anchors.fill: star_fill
                 source: star_fill
-                color: theme.favorite
+                color: colorScheme[theme].favorite
             }
         }
     }
@@ -102,7 +102,7 @@ Item {
             top: rating_stars.top; topMargin: -vpx(2)
             left: rating_stars.left; leftMargin: -vpx(3)
         }
-        color: theme.background//getBackgroundColor(rating)
+        color: colorScheme[theme].background//getBackgroundColor(rating)
         // antialiasing: true
 
         // transform: Matrix4x4 {
@@ -128,7 +128,7 @@ Item {
             family: global.fonts.sans
             pixelSize: vpx(14)
         }
-        color: theme.accent
+        color: colorScheme[theme].accent
     }
 
     Row {

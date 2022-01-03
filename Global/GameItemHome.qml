@@ -148,7 +148,7 @@ Item {
             anchors.bottomMargin: 1
             anchors.topMargin: 1
             border.width: vpx(3)
-            border.color: theme.secondary
+            border.color: colorScheme[theme].secondary
             opacity: 0.5
             scale: selected ? 1.1 : 1
         }
@@ -163,7 +163,7 @@ Item {
             weight: Font.Medium
             pixelSize: vpx(16)
         }
-        color: theme.text
+        color: colorScheme[theme].text
 
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter
