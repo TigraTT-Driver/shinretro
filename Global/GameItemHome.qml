@@ -5,7 +5,13 @@ import QtMultimedia 5.15
 Item {
     id: root
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
-    readonly property var currentGameCollectionAltColor:  dataConsoles[clearShortname(currentGameCollection.shortName)].altColor
+    readonly property var currentGameCollectionAltColor:{
+        if (accentColorNr != 0) {
+            dataConsoles[clearShortname(currentGameCollection.shortName)].altColor
+        } else {
+            dataConsoles[clearShortname(currentGameCollection.shortName)].altColor2
+        }
+    }
 
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");

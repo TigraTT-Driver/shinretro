@@ -5,7 +5,13 @@ import QtMultimedia 5.15
 Item {
     id: root
 
-    readonly property var collectionAltColor:  dataConsoles[clearShortname(currentCollection.shortName)].altColor
+    readonly property var collectionAltColor:{
+        if (accentColorNr != 0) {
+            dataConsoles[clearShortname(currentCollection.shortName)].altColor
+        } else {
+            dataConsoles[clearShortname(currentCollection.shortName)].altColor2
+        }
+    }    
 
     // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
     function steamAppID (gameData) {

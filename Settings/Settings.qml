@@ -108,6 +108,7 @@ FocusScope {
         Component.onCompleted: {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
+            [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ]
             ].forEach(function(element) {
                 append({
