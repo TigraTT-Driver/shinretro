@@ -161,9 +161,9 @@ FocusScope {
                             if (root.state === "collections")
                                 return "";
                             if (root.state === "home")
-                                return "../assets/logos/"+logoVariant+"/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
+                                return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
                             if (root.state === "games")
-                                return "../assets/logos/"+logoVariant+"/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
+                                return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
                         }
                         fillMode: Image.PreserveAspectFit
                         horizontalAlignment: Image.AlignHCenter

@@ -33,7 +33,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/background/"+shortname+".jpg"
+                source: "../assets/collections/"+shortname+"/art.jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 

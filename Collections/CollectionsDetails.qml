@@ -31,7 +31,7 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/logos/"+logoVariant+"/"+shortname+".svg"
+                    source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     ColorOverlay {
