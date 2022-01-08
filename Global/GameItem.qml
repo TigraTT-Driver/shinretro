@@ -5,7 +5,13 @@ import QtMultimedia 5.15
 Item {
     id: root
 
-    readonly property var collectionAltColor:  dataConsoles[clearShortname(currentCollection.shortName)].altColor
+    readonly property var collectionAltColor:{
+        if (accentColorNr != 0) {
+            dataConsoles[clearShortname(currentCollection.shortName)].altColor
+        } else {
+            dataConsoles[clearShortname(currentCollection.shortName)].altColor2
+        }
+    }    
 
     // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
     function steamAppID (gameData) {
@@ -73,7 +79,7 @@ Item {
                 width: vpx(40)
                 height: width
                 //radius: width/2
-                color: theme.favorite.replace(/#/g, "#77");
+                color: colorScheme[theme].favorite.replace(/#/g, "#77");
                 visible: gameData.favorite
                 Image {
                     id: favicon_icon
@@ -84,7 +90,7 @@ Item {
                     ColorOverlay {
                         anchors.fill: favicon_icon
                         source: favicon_icon
-                        color: theme.favorite
+                        color: colorScheme[theme].favorite
                     }           
                 }
                 transform: Matrix4x4 {
@@ -131,7 +137,7 @@ Item {
             weight: Font.Medium
             pixelSize: vpx(16)
         }
-        color: theme.text
+        color: colorScheme[theme].text
 
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter

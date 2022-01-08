@@ -11,7 +11,7 @@ FocusScope {
         radius: 24
         samples: 22
         spread: 0.2
-        color: theme.secondary
+        color: colorScheme[theme].secondary
         source: parent
     }
 
@@ -20,10 +20,10 @@ FocusScope {
         height: parent.height + 2
         x: -1
         y: -1
-        color: theme.main
+        color: colorScheme[theme].main
         border {
             width: 1
-            color: theme.secondary
+            color: colorScheme[theme].secondary
         }
 
         Item {
@@ -72,7 +72,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_LB
                                 source: menu_input_LB
-                                color: theme.accentalt
+                                color: colorScheme[theme].accentalt
                             }
                         }
                     }
@@ -93,7 +93,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_RB
                                 source: menu_input_RB
-                                color: theme.accentalt
+                                color: colorScheme[theme].accentalt
                             }
                         }
                     }
@@ -144,7 +144,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_LT
                                 source: menu_input_LT
-                                color: theme.accentalt
+                                color: colorScheme[theme].accentalt
                             }
                         }
                 }
@@ -161,9 +161,9 @@ FocusScope {
                             if (root.state === "collections")
                                 return "";
                             if (root.state === "home")
-                                return "../assets/logos/"+logoVariant+"/"+clearShortname(home.currentGame.collections.get(0).shortName)+".svg"
+                                return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
                             if (root.state === "games")
-                                return "../assets/logos/"+logoVariant+"/"+clearShortname(allCollections[currentCollectionIndex].shortName)+".svg"
+                                return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
                         }
                         fillMode: Image.PreserveAspectFit
                         horizontalAlignment: Image.AlignHCenter
@@ -181,7 +181,7 @@ FocusScope {
                         ColorOverlay {
                             anchors.fill: img_helper_collection
                             source: img_helper_collection
-                            color: theme.icons
+                            color: colorScheme[theme].icons
                             visible: logoVariant !== "color"
                         }
 
@@ -223,7 +223,7 @@ FocusScope {
                             ColorOverlay {
                                 anchors.fill: menu_input_RT
                                 source: menu_input_RT
-                                color: theme.accentalt
+                                color: colorScheme[theme].accentalt
                             }
                         }
                 }

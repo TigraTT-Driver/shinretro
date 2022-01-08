@@ -6,7 +6,13 @@ Item {
 
     property var isCurrentItem: PathView.isCurrentItem
     property var shortname: clearShortname(modelData.shortName)
-    property var collectionAltColor: dataConsoles[shortname].altColor
+    property var collectionAltColor:{
+        if (accentColorNr != 0) {
+            dataConsoles[shortname].altColor
+        } else {
+            dataConsoles[shortname].altColor2
+        }
+    }
 
     width: PathView.currentWidth
     height: PathView.currentHeight
@@ -27,7 +33,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/background/"+shortname+".jpg"
+                source: "../assets/collections/"+shortname+"/art.jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 
@@ -43,7 +49,7 @@ Item {
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent
-                color: theme.secondary
+                color: colorScheme[theme].secondary
                 opacity: isCurrentItem ? 0 : 0.90
                 Behavior on opacity {
                     NumberAnimation { duration: 300; }

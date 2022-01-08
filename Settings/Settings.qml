@@ -35,7 +35,7 @@ FocusScope {
         anchors {
             left: parent.left; leftMargin: parent.width * 0.23
         }
-        color: theme.secondary
+        color: colorScheme[theme].secondary
         Behavior on color {
             ColorAnimation { duration: 250; }
         }
@@ -56,7 +56,7 @@ FocusScope {
         Component.onCompleted: {
             [
             [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "eng,ger" ],
-            [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "themeDark,themeLight" ],
+            [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
@@ -108,6 +108,7 @@ FocusScope {
         Component.onCompleted: {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
+            [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ]
             ].forEach(function(element) {
                 append({
@@ -193,7 +194,7 @@ FocusScope {
                         capitalization: Font.AllUppercase
                         pixelSize: vpx(22)
                     }
-                    color: theme.text
+                    color: colorScheme[theme].text
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2
 
@@ -285,7 +286,7 @@ FocusScope {
                 id: settingNameText
                 
                     text: settingSubtitle != "" ? settingName + " " + settingSubtitle + ": " : settingName + ": "
-                    color: theme.text
+                    color: colorScheme[theme].text
                     font {
                         family: global.fonts.condensed
                         pixelSize: vpx(20)
@@ -304,7 +305,7 @@ FocusScope {
                 id: settingtext; 
                 
                     text: settingList[savedIndex]; 
-                    color: theme.accent
+                    color: colorScheme[theme].accent
                     font {
                         family: global.fonts.condensed
                         pixelSize: vpx(20)
@@ -324,7 +325,7 @@ FocusScope {
                         right: parent.right; rightMargin: vpx(25)
                         bottom: parent.bottom
                     }
-                    color: theme.text
+                    color: colorScheme[theme].text
                     opacity: selected ? 0.1 : 0
                     height: vpx(1)
                 }
@@ -378,9 +379,9 @@ FocusScope {
             id: button_D
 
             message: dataText[lang].global_select
-            text_color: theme.accepted
-            front_color: theme.accepted.replace(/#/g, "#33");
-            back_color: theme.accepted.replace(/#/g, "#33");
+            text_color: colorScheme[theme].accepted
+            front_color: colorScheme[theme].accepted.replace(/#/g, "#33");
+            back_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             input_button: "BTN-D"
         }
 
@@ -389,9 +390,9 @@ FocusScope {
 
             message: dataText[lang].global_back
 
-            text_color: theme.cancel
-            front_color: theme.cancel.replace(/#/g, "#26");
-            back_color: theme.cancel.replace(/#/g, "#26");
+            text_color: colorScheme[theme].cancel
+            front_color: colorScheme[theme].cancel.replace(/#/g, "#26");
+            back_color: colorScheme[theme].cancel.replace(/#/g, "#26");
             input_button: "BTN-R"
         }
     }

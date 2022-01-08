@@ -223,7 +223,7 @@ FocusScope {
     }
 
     Text {
-        color: theme.text
+        color: colorScheme[theme].text
         anchors {
             right: parent.right; rightMargin: vpx(35)
             top: parent.top; topMargin: vpx(160)
@@ -249,9 +249,9 @@ FocusScope {
             id: button_D
 
             message: "<b>"+currentCollection.name+"</b> "+dataText[lang].global_games
-            text_color: theme.accepted
-            front_color: theme.accepted.replace(/#/g, "#33");
-            back_color: theme.accepted.replace(/#/g, "#33");
+            text_color: colorScheme[theme].accepted
+            front_color: colorScheme[theme].accepted.replace(/#/g, "#33");
+            back_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             input_button: "BTN-D"
         }
 
@@ -260,9 +260,9 @@ FocusScope {
 
             message: dataText[lang].global_back
 
-            text_color: theme.cancel
-            front_color: theme.cancel.replace(/#/g, "#26");
-            back_color: theme.cancel.replace(/#/g, "#26");
+            text_color: colorScheme[theme].cancel
+            front_color: colorScheme[theme].cancel.replace(/#/g, "#26");
+            back_color: colorScheme[theme].cancel.replace(/#/g, "#26");
             input_button: "BTN-R"
         }
     }
