@@ -144,7 +144,7 @@ FocusScope {
                 }
 
                 asynchronous: true
-                sourceComponent: GameItemHome {
+                sourceComponent: HomeItemGame {
                     gameData: sort_lastplayed_left.get(0)
                     selected: lastplayed_left.focus
                 }
@@ -205,7 +205,7 @@ FocusScope {
                         }
 
                         asynchronous: true
-                        sourceComponent: GameItemHome {
+                        sourceComponent: HomeItemGame {
                             gameData: modelData
                             selected: lastplayed_right.focus && isSelected
                         }
@@ -325,7 +325,7 @@ FocusScope {
                     }
 
                     asynchronous: true
-                    sourceComponent: GameItemHome {
+                    sourceComponent: HomeItemGame {
                         gameData: modelData
                         selected: favorites.focus && isSelected
                     }
