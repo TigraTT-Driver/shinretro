@@ -72,7 +72,7 @@ FocusScope {
 
     // Text strings
     property variant dataText: {
-        "eng": {
+        "en": {
             global_back: "GO <b>BACK</b>",
             global_select: "OK",
             global_games: "GAMES",
@@ -111,7 +111,7 @@ FocusScope {
             menu_collections: "collections",
             menu_games:"games"
         },
-        "ger": {
+        "de": {
             global_back: "<b>ZURÜCK</b>",
             global_select: "OK",
             global_games: "SPIELE",
@@ -153,7 +153,7 @@ FocusScope {
     }
 
     // Load settings
-    property var lang: api.memory.get('lang') || "eng"
+    property var lang: api.memory.get('lang') || "en"
     property var theme: api.memory.get('theme') || "Dark"
     property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
