@@ -98,6 +98,7 @@ FocusScope {
             settings_general_colorScheme: "Color scheme",
             settings_general_muteSounds: "Mute sounds",
             settings_general_logoVariant: "Logo variation",
+            settings_general_region: "Region",
             settings_general_hideOSC: "Hide controls",
             settings_general_OSCScheme: "Controls scheme",
             settings_global_videoPlayback: "Video playback",
@@ -137,6 +138,7 @@ FocusScope {
             settings_general_colorScheme: "Farbschema",
             settings_general_muteSounds: "Töne stummschalten",
             settings_general_logoVariant: "Logo-Variation",
+            settings_general_region: "Region",
             settings_general_hideOSC: "Steuerung ausblenden",
             settings_general_OSCScheme: "Steuerungschema",
             settings_global_videoPlayback: "Videowiedergabe",
@@ -156,6 +158,7 @@ FocusScope {
     property var lang: api.memory.get('lang') || "en"
     property var theme: api.memory.get('theme') || "Dark"
     property var logoVariant : api.memory.get('logoVariant') || "mono"
+    property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('osc') || "No"
     property var mutesfx : {
