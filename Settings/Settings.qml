@@ -133,7 +133,7 @@ FocusScope {
         id: gameSettingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_games_layout,  "gamesLayout",  "-WIP-",  "BoxArt-Grid" ],
+            [ dataText[lang].settings_games_layout,  "gamesLayout",  "",  "BoxArt-Grid,Screenshot-Grid" ],
             [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  "Yes,No" ],
             [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  "No,Yes" ]
             ].forEach(function(element) {

@@ -328,91 +328,33 @@ FocusScope {
                     active: games.focus && currentGame !== null
                     visible: status === Loader.Ready
                 }
-
-                // Screenshot / Video
                 Item {
-                    width: parent.width * 0.3
-                    height: parent.height
+                    width: parent.width * 0.31
+                    height: parent.height * 0.9
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                     }
+                    Loader {
+                        id: loader_top_video
+                        anchors.fill: parent
 
-                    Item {
-                        id: item_game_screenshot
-                        width: parent.width
-                        height: parent.height * 0.9
-                        anchors.verticalCenter: parent.verticalCenter
+                        asynchronous: true
+                        sourceComponent: GameItemTopVideo  {}
+                        active: games.focus && gamesLayout === "BoxArt-Grid"
+                        visible: status === Loader.Ready
+                    }
+                    Loader {
+                        id: loader_top_boxart
+                        anchors.fill: parent
 
-                        Component {
-                            id: cpnt_game_screenshot
-
-                            Item {
-                                anchors.fill: parent
-
-                                Rectangle {
-                                    id: rect_screenshot
-                                    width: img_game_screenshot.paintedWidth + vpx(15)
-                                    height: img_game_screenshot.paintedHeight + vpx(15)
-                                    anchors.centerIn: img_game_screenshot
-                                    color: colorScheme[theme].secondary
-                                }
-
-                                DropShadow {
-                                    anchors.fill: rect_screenshot
-                                    horizontalOffset: 0
-                                    verticalOffset: vpx(5)
-                                    radius: 24
-                                    samples: 22
-                                    spread: 0.2
-                                    color: "#35000000"
-                                    source: rect_screenshot
-                                }
-
-                                Image {
-                                    id: img_game_screenshot
-                                    source: currentGame.assets.screenshots[0] || currentGame.assets.titlescreen
-                                    anchors {
-                                        fill: parent
-                                    }
-                                    fillMode: Image.PreserveAspectFit
-                                    horizontalAlignment: Image.AlignHCenter
-                                    verticalAlignment: Image.AlignVCenter
-                                    asynchronous: true
-
-                                    Behavior on source {
-                                        PropertyAnimation {
-                                            target: img_game_screenshot
-                                            property: "opacity"
-                                            from: 0
-                                            to: 1
-                                            duration: 600
-                                            easing.type: Easing.OutExpo
-                                        }
-                                    }
-                                }
-
-                                GameVideo {
-                                    game: currentGame
-                                    width: img_game_screenshot.paintedWidth
-                                    height: img_game_screenshot.paintedHeight
-                                    anchors.centerIn: img_game_screenshot
-                                    playing: gamesVideo != "No"
-                                    sound: gamesVideoMute
-                                }
-                            }
-                        }
-
-                        Loader {
-                            id: loader_game_screenshot
-                            anchors.fill: parent
-                            asynchronous: true
-                            sourceComponent: cpnt_game_screenshot
-                            active: games.focus && currentGame !== null
-                            visible: status === Loader.Ready
-                        }
+                        asynchronous: true
+                        sourceComponent: GameItemTopBoxFront {}
+                        active: games.focus && gamesLayout === "Screenshot-Grid"
+                        visible: status === Loader.Ready
                     }
                 }
+
             }
 
             visible: currentGame !== null
@@ -485,16 +427,25 @@ FocusScope {
                         Rectangle {
                             anchors.fill: parent
                             color: colorScheme[theme].background
-                            visible: !loader_gameList_game.visible
+                            visible: !loader_gameList_boxart.visible && !loader_gameList_screenshot.visible 
                         }
 
                         Loader {
-                            id: loader_gameList_game
+                            id: loader_gameList_boxart
                             anchors.fill: parent
 
                             asynchronous: true
-                            sourceComponent: GameItem {}
-                            active: games.focus
+                            sourceComponent: GameItemGridBoxFront {}
+                            active: games.focus && gamesLayout === "BoxArt-Grid"
+                            visible: status === Loader.Ready
+                        }
+                        Loader {
+                            id: loader_gameList_screenshot
+                            anchors.fill: parent
+
+                            asynchronous: true
+                            sourceComponent: GameItemGridScreenshot {selected: GridView.isCurrentItem}
+                            active: games.focus && gamesLayout === "Screenshot-Grid"
                             visible: status === Loader.Ready
                         }
                     }

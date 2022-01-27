@@ -179,6 +179,7 @@ FocusScope {
     property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
+    property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
     property var gamesVideoMute : {
         if (api.memory.get('gamesVideoMute') == "Yes") {
