@@ -108,11 +108,11 @@ Item {
             }
             Rectangle {
                 anchors.centerIn: boxFront
-                width: boxFront.paintedWidth + vpx(15)
-                height: boxFront.paintedHeight + vpx(15)
+                width: boxFront.paintedWidth + vpx(8)
+                height: boxFront.paintedHeight + vpx(8)
                 color: "transparent"
                 border {
-                    width: vpx(8)
+                    width: vpx(5)
                     color: collectionAltColor
                 }
                 opacity: isCurrentItem
