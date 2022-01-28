@@ -69,11 +69,14 @@ FocusScope {
                             source: "../assets/buttons/"+controlScheme+"/input_BTN-LB.svg"
                             width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
-                            ColorOverlay {
-                                anchors.fill: menu_input_LB
-                                source: menu_input_LB
-                                color: colorScheme[theme].accentalt
-                            }
+                            antialiasing: true
+                            visible: false
+                        }
+                        ColorOverlay {
+                            anchors.fill: menu_input_LB
+                            source: menu_input_LB
+                            color: colorScheme[theme].accentalt
+                            antialiasing: true 
                         }
                     }
 
@@ -90,11 +93,14 @@ FocusScope {
                             source: "../assets/buttons/"+controlScheme+"/input_BTN-RB.svg"
                             width: parent.width * 0.55
                             fillMode: Image.PreserveAspectFit
-                            ColorOverlay {
-                                anchors.fill: menu_input_RB
-                                source: menu_input_RB
-                                color: colorScheme[theme].accentalt
-                            }
+                            antialiasing: true
+                            visible: false
+                        }
+                        ColorOverlay {
+                            anchors.fill: menu_input_RB
+                            source: menu_input_RB
+                            color: colorScheme[theme].accentalt
+                            antialiasing: true                    
                         }
                     }
 
@@ -124,69 +130,75 @@ FocusScope {
                 }
 
                 Item {
-                        width: vpx(60)
-                        height: vpx(22)
-                        visible: osc === "No"
-                        anchors {
-                            right: parent.right;
-                            rightMargin: vpx(290)
-                            verticalCenter: parent.verticalCenter
-                        }
-                        Image {
-                            id: menu_input_LT
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/"+controlScheme+"/input_BTN-LT.svg"
-                            width: parent.width * 0.55
-                            //sourceSize.width: width
-                            fillMode: Image.PreserveAspectFit
-                            visible: root.state === "games"
-                            ColorOverlay {
-                                anchors.fill: menu_input_LT
-                                source: menu_input_LT
-                                color: colorScheme[theme].accentalt
-                            }
-                        }
+                    width: vpx(60)
+                    height: vpx(22)
+                    visible: osc === "No"
+                    anchors {
+                        right: parent.right;
+                        rightMargin: vpx(290)
+                        verticalCenter: parent.verticalCenter
+                    }
+                    Image {
+                        id: menu_input_LT
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "../assets/buttons/"+controlScheme+"/input_BTN-LT.svg"
+                        width: parent.width * 0.55
+                        //sourceSize.width: width
+                        fillMode: Image.PreserveAspectFit
+                        antialiasing: true
+                        visible: false
+                    }
+                    ColorOverlay {
+                        anchors.fill: menu_input_LT
+                        source: menu_input_LT
+                        color: colorScheme[theme].accentalt
+                        antialiasing: true
+                        visible: root.state === "games"
+                    }
                 }
 
                 Component {
                     id: cmpt_helper_collection
-
-                    Image {
-                        id: img_helper_collection
-
-                        sourceSize.width: width
-                        asynchronous: true
-                        source: {
-                            if (root.state === "collections")
-                                return "";
-                            if (root.state === "home")
-                                return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
-                            if (root.state === "games")
-                                return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
-                        }
-                        fillMode: Image.PreserveAspectFit
-                        horizontalAlignment: Image.AlignHCenter
-                        verticalAlignment: Image.AlignVCenter
-                        Behavior on source {
-                            PropertyAnimation {
-                                target: img_helper_collection
-                                property: "opacity"
-                                from: 0
-                                to: 1
-                                duration: 600
-                                easing.type: Easing.OutExpo
+                    Item{
+                        visible: ["home","games"].includes(root.state)
+                        Image {
+                            id: img_helper_collection
+                            anchors.fill: parent
+                            sourceSize.width: width
+                            asynchronous: true
+                            source: {
+                                if (root.state === "collections")
+                                    return "";
+                                if (root.state === "home")
+                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
+                                if (root.state === "games")
+                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
                             }
+                            fillMode: Image.PreserveAspectFit
+                            horizontalAlignment: Image.AlignHCenter
+                            verticalAlignment: Image.AlignVCenter
+                            Behavior on source {
+                                PropertyAnimation {
+                                    target: img_helper_collection
+                                    property: "opacity"
+                                    from: 0
+                                    to: 1
+                                    duration: 600
+                                    easing.type: Easing.OutExpo
+                                }
+                            }
+                            visible: logoVariant == "color"
+                            antialiasing: true
                         }
-                        ColorOverlay {
+                        ColorOverlay{
                             anchors.fill: img_helper_collection
                             source: img_helper_collection
                             color: colorScheme[theme].icons
                             visible: logoVariant !== "color"
+                            antialiasing: true
                         }
-
-                        visible: ["home","games"].includes(root.state)
-                    }
+                    }    
                 }
 
                 Loader {
@@ -204,30 +216,32 @@ FocusScope {
                 }
 
                 Item {
-                        width: vpx(60)
-                        height: vpx(22)
-                        visible: osc === "No"
-                        anchors {
-                            right: parent.right; leftMargin: -width *2
-                            verticalCenter: parent.verticalCenter
-                        }
-                        Image {
-                            id: menu_input_RT
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/"+controlScheme+"/input_BTN-RT.svg"
-                            width: parent.width * 0.55
-                            //sourceSize.width: width
-                            fillMode: Image.PreserveAspectFit
-                            visible: root.state === "games"
-                            ColorOverlay {
-                                anchors.fill: menu_input_RT
-                                source: menu_input_RT
-                                color: colorScheme[theme].accentalt
-                            }
-                        }
+                    width: vpx(60)
+                    height: vpx(22)
+                    visible: osc === "No"
+                    anchors {
+                        right: parent.right; leftMargin: -width *2
+                        verticalCenter: parent.verticalCenter
+                    }
+                    Image {
+                        id: menu_input_RT
+                        anchors.right: parent.right
+                        anchors.verticalCenter: parent.verticalCenter
+                        source: "../assets/buttons/"+controlScheme+"/input_BTN-RT.svg"
+                        width: parent.width * 0.55
+                        //sourceSize.width: width
+                        fillMode: Image.PreserveAspectFit
+                        antialiasing: true
+                        visible: false
+                    }
+                    ColorOverlay {
+                        anchors.fill: menu_input_RT
+                        source: menu_input_RT
+                        color: colorScheme[theme].accentalt
+                        visible: root.state === "games"
+                        antialiasing: true
+                    }
                 }
-
                 visible: ["home","games"].includes(root.state)
             }
         }

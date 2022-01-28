@@ -141,13 +141,16 @@ Item {
                 source: "../assets/star-fill.svg"
                 asynchronous: true
                 anchors.fill: parent
-                anchors.margins: vpx(8) 
-                ColorOverlay {
-                    anchors.fill: favicon_icon
-                    source: favicon_icon
-                    color: colorScheme[theme].favorite
-                }           
+                anchors.margins: vpx(8)
+                visible: false
+                antialiasing: true 
             }
+            ColorOverlay {
+                anchors.fill: favicon_icon
+                source: favicon_icon
+                color: colorScheme[theme].favorite
+                antialiasing: true
+            }      
             transform: Matrix4x4 {
                 property real a: 12 * Math.PI / 180
                 matrix: Qt.matrix4x4(

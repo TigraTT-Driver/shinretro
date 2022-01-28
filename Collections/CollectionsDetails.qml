@@ -34,12 +34,15 @@ Item {
                     source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    ColorOverlay {
-                        anchors.fill: img_logo
-                        source: img_logo
-                        color: colorScheme[theme].icons
-                        visible: logoVariant !== "color"
-                    }
+                    visible: logoVariant == "color"
+                    antialiasing: true
+                }
+                ColorOverlay {
+                    anchors.fill: img_logo
+                    source: img_logo
+                    color: colorScheme[theme].icons
+                    visible: logoVariant !== "color"
+                    antialiasing: true
                 }
             }
 
@@ -100,11 +103,14 @@ Item {
                             sourceSize.height: height
                             source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
                             fillMode: Image.PreserveAspectFit
-                            ColorOverlay {
-                                anchors.fill: img_manufacturer
-                                source: img_manufacturer
-                                color: colorScheme[theme].icons
-                            }
+                            visible: false
+                            antialiasing: true
+                        }
+                        ColorOverlay {
+                            anchors.fill: img_manufacturer
+                            source: img_manufacturer
+                            color: colorScheme[theme].icons
+                            antialiasing: true
                         }
                     }
 

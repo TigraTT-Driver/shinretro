@@ -39,57 +39,75 @@ Item {
 
     Component {
         id: no_star
-        Image {
-            id: star_frame
-            source: "../assets/star-frame"
+        Item{
             width: vpx(12)
             height: vpx(12)
-            asynchronous: true
-            sourceSize.width: width
-            sourceSize.height: height
-            fillMode: Image.PreserveAspectFit
+            Image {
+                id: star_frame
+                source: "../assets/star-frame"
+                anchors.fill: parent
+                asynchronous: true
+                sourceSize.width: width
+                sourceSize.height: height
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                antialiasing: true 
+            }
             ColorOverlay {
                 anchors.fill: star_frame
                 source: star_frame
                 color: colorScheme[theme].accentalt
+                antialiasing: true 
             }
         }
     }
 
     Component {
         id: half_star
-        Image {
-            id: star_half
-            source: "../assets/star-half.svg"
+        Item{
             width: vpx(12)
             height: vpx(12)
-            asynchronous: true
-            sourceSize.width: width
-            sourceSize.height: height
-            fillMode: Image.PreserveAspectFit
+            Image {
+                id: star_half
+                source: "../assets/star-half.svg"
+                anchors.fill: parent
+                asynchronous: true
+                sourceSize.width: width
+                sourceSize.height: height
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                antialiasing: true 
+            }
             ColorOverlay {
                 anchors.fill: star_half
                 source: star_half
                 color: colorScheme[theme].favorite
+                antialiasing: true 
             }
         }
     }
 
     Component {
         id: star
-        Image {
-            id: star_fill
-            source: "../assets/star-fill.svg"
+        Item{
             width: vpx(12)
             height: vpx(12)
-            asynchronous: true
-            sourceSize.width: width
-            sourceSize.height: height
-            fillMode: Image.PreserveAspectFit
+            Image {
+                id: star_fill
+                source: "../assets/star-fill.svg"
+                anchors.fill: parent
+                asynchronous: true
+                sourceSize.width: width
+                sourceSize.height: height
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                antialiasing: true 
+            }                
             ColorOverlay {
                 anchors.fill: star_fill
                 source: star_fill
                 color: colorScheme[theme].favorite
+                antialiasing: true
             }
         }
     }
