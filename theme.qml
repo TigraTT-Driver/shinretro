@@ -72,7 +72,7 @@ FocusScope {
 
     // Text strings
     property variant dataText: {
-        "eng": {
+        "en": {
             global_back: "GO <b>BACK</b>",
             global_select: "OK",
             global_games: "GAMES",
@@ -98,6 +98,7 @@ FocusScope {
             settings_general_colorScheme: "Color scheme",
             settings_general_muteSounds: "Mute sounds",
             settings_general_logoVariant: "Logo variation",
+            settings_general_region: "Region",
             settings_general_hideOSC: "Hide controls",
             settings_general_OSCScheme: "Controls scheme",
             settings_global_videoPlayback: "Video playback",
@@ -106,12 +107,14 @@ FocusScope {
             settings_collection_accentColor: "Accent color brightness",
             settings_collection_accentColorNr: "Accent colors",
             settings_games_layout: "Games layout",
+            settings_games_gridItemsPerRow: "Game grid - items per row",
+            settings_games_gridItemsViewableRows: "Game grid - viewable rows",
             menu_settings: "settings",
             menu_home: "home",
             menu_collections: "collections",
             menu_games:"games"
         },
-        "ger": {
+        "de": {
             global_back: "<b>ZURÜCK</b>",
             global_select: "OK",
             global_games: "SPIELE",
@@ -137,6 +140,7 @@ FocusScope {
             settings_general_colorScheme: "Farbschema",
             settings_general_muteSounds: "Töne stummschalten",
             settings_general_logoVariant: "Logo-Variation",
+            settings_general_region: "Region",
             settings_general_hideOSC: "Steuerung ausblenden",
             settings_general_OSCScheme: "Steuerungschema",
             settings_global_videoPlayback: "Videowiedergabe",
@@ -145,6 +149,8 @@ FocusScope {
             settings_collection_accentColor: "Akzentfarbhelligkeit",
             settings_collection_accentColorNr: "Akzentfarben",
             settings_games_layout: "Spiele-Layout",
+            settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
+            settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
             menu_settings: "Optionen",
             menu_home: "Start",
             menu_collections: "Sammlungen",
@@ -153,9 +159,10 @@ FocusScope {
     }
 
     // Load settings
-    property var lang: api.memory.get('lang') || "eng"
+    property var lang: api.memory.get('lang') || "en"
     property var theme: api.memory.get('theme') || "Dark"
     property var logoVariant : api.memory.get('logoVariant') || "mono"
+    property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('osc') || "No"
     property var mutesfx : {
@@ -176,6 +183,9 @@ FocusScope {
     property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
+    property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
+    property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
+    property var gamesGridVR : api.memory.get('gamesGridVR') || 1
     property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
     property var gamesVideoMute : {
         if (api.memory.get('gamesVideoMute') == "Yes") {
@@ -274,75 +284,76 @@ FocusScope {
 
     // Additional data to display manufacturers and release dates
     property variant dataConsoles: {
-        "apple2":           { manufacturer: "apple",                release: "1977", color: "#009ddc", altColor: "#0080b3" , altColor2: "#61bb46" },
+        "3do":              { manufacturer: "panasonic",            release: "1993", color: "#0000A0", altColor: "#000080" , altColor2: "#FFE41B" },
+        "3ds":              { manufacturer: "nintendo",             release: "2011", color: "#C02424", altColor: "#961d1d" , altColor2: "#929497" },
+        "64dd":             { manufacturer: "nintendo",             release: "1999", color: "#233387", altColor: "#1a2765" , altColor2: "#238B41" },        
+        "all":              { manufacturer: null,                   release: null,   color: "#851740", altColor: "#6d1234" , altColor2: "#364792" },
+        "amiga":            { manufacturer: "commodore",            release: "1985", color: "#192753", altColor: "#121b3b" , altColor2: "#ED2224" },
         "amstradcpc":       { manufacturer: "amstrad",              release: "1984", color: "#942647", altColor: "#7a1f3a" , altColor2: "#00A651" },
+        "android":          { manufacturer: "OpenHandsetAlliance",  release: null,   color: "#77c159", altColor: "#5ca83e" , altColor2: "#478230" },
+        "apple2":           { manufacturer: "apple",                release: "1977", color: "#009ddc", altColor: "#0080b3" , altColor2: "#61bb46" },
+        "arcade":           { manufacturer: "arcade",               release: null,   color: "#FCE236", altColor: "#fbda04" , altColor2: "#5D9EED" },
         "atari2600":        { manufacturer: "atari",                release: "1977", color: "#C1272A", altColor: "#941e20" , altColor2: "#1C267D" },
         "atari5200":        { manufacturer: "atari",                release: "1982", color: "#1c6eb8", altColor: "#175e9b" , altColor2: "#973e3a" },
-        "atarist":          { manufacturer: "atari",                release: "1985", color: "#357BB7", altColor: "#2e6a9e" , altColor2: "#949494" },
         "atari7800":        { manufacturer: "atari",                release: "1986", color: "#333333", altColor: "#1a1a1a" , altColor2: "#AA2C39" },
-        "atarilynx":        { manufacturer: "atari",                release: "1989", color: "#262626", altColor: "#0d0d0d" , altColor2: "#F38900" },
         "atarijaguar":      { manufacturer: "atari",                release: "1993", color: "#232326", altColor: "#0c0c0d" , altColor2: "#ff0000" },
+        "atarilynx":        { manufacturer: "atari",                release: "1989", color: "#262626", altColor: "#0d0d0d" , altColor2: "#F38900" },
+        "atarist":          { manufacturer: "atari",                release: "1985", color: "#357BB7", altColor: "#2e6a9e" , altColor2: "#949494" },
+        "atomiswave":       { manufacturer: "sammy",                release: "2003", color: "#FF6B00", altColor: "#cc5500" , altColor2: "#029205" },
+        "c64":              { manufacturer: "commodore",            release: "1982", color: "#968971", altColor: "#847862" , altColor2: "#FD4120" },
+        "colecovision":     { manufacturer: "coleco",               release: "1982", color: "#EF8185", altColor: "#ea6166" , altColor2: "#A4DDF0" },
         "cps1":             { manufacturer: "capcom",               release: "1988", color: "#000000", altColor: "#252525" , altColor2: "#252525" },
         "cps2":             { manufacturer: "capcom",               release: "1993", color: "#000000", altColor: "#252525" , altColor2: "#252525" },
         "cps3":             { manufacturer: "capcom",               release: "1996", color: "#000000", altColor: "#252525" , altColor2: "#252525" },
-        "colecovision":     { manufacturer: "coleco",               release: "1982", color: "#EF8185", altColor: "#ea6166" , altColor2: "#A4DDF0" },
-        "c64":              { manufacturer: "commodore",            release: "1982", color: "#968971", altColor: "#847862" , altColor2: "#FD4120" },
-        "amiga":            { manufacturer: "commodore",            release: "1985", color: "#192753", altColor: "#121b3b" , altColor2: "#ED2224" },
-        "intellivision":    { manufacturer: "mattel",               release: "1979", color: "#2b201d", altColor: "#0f0b0a" , altColor2: "#d4c1a0" },
-        "msx":              { manufacturer: "microsoft",            release: "1983", color: "#9d9b91", altColor: "#878578" , altColor2: "#89283b" },
-        "msx2":             { manufacturer: "microsoft",            release: "1985", color: "#b7b7b7", altColor: "#a6a6a6" , altColor2: "#7c3036" },
-        "pcengine":         { manufacturer: "nec",                  release: "1987", color: "#FE0000", altColor: "#cc0000" , altColor2: "#D9D9D9" },
-        "turbografx16":     { manufacturer: "nec",                  release: "1987", color: "#333333", altColor: "#1a1a1a" , altColor2: "#F79226" },
-        "supergrafx":       { manufacturer: "nec",                  release: "1989", color: "#000000", altColor: "#1a1a1a" , altColor2: "#b2b2b2" },
-        "pcfx":             { manufacturer: "nec",                  release: "1994", color: "#5C3073", altColor: "#48265a" , altColor2: "#FEC101" },
-        "nes":              { manufacturer: "nintendo",             release: "1983", color: "#EA2C27", altColor: "#d11b15" , altColor2: "#1A1919" },
-        "fds":              { manufacturer: "nintendo",             release: "1986", color: "#A71636", altColor: "#87122b" , altColor2: "#C7AF89" },
-        "gb":               { manufacturer: "nintendo",             release: "1989", color: "#2D308E", altColor: "#252774" , altColor2: "#9B2063" },
-        "snes":             { manufacturer: "nintendo",             release: "1990", color: "#007544", altColor: "#004d2d" , altColor2: "#0A2A8D" },
-        "n64":              { manufacturer: "nintendo",             release: "1996", color: "#238B41", altColor: "#19662f" , altColor2: "#233387" },
-        "gbc":              { manufacturer: "nintendo",             release: "1998", color: "#2D308E", altColor: "#252774" , altColor2: "#7642B6" },
-        "gba":              { manufacturer: "nintendo",             release: "2001", color: "#280FBE", altColor: "#1f0b8e" , altColor2: "#5C67A9" },
-        "pokemini":         { manufacturer: "nintendo",             release: "2001", color: "#FCE200", altColor: "#ccb800" , altColor2: "#004F8A" },        
-        "gc":               { manufacturer: "nintendo",             release: "2001", color: "#524c82", altColor: "#3d3960" , altColor2: "#7b79aa" },
-        "nds":              { manufacturer: "nintendo",             release: "2004", color: "#BCBCBC", altColor: "#a6a6a6" , altColor2: "#212121" },
-        "wii":              { manufacturer: "nintendo",             release: "2006", color: "#005C9A", altColor: "#003d66" , altColor2: "#D1D1D1" },
-        "wiiware":          { manufacturer: "nintendo",             release: "2008", color: "#24A9E2", altColor: "#1a96cb" , altColor2: "#D1D1D1" },
-        "3ds":              { manufacturer: "nintendo",             release: "2011", color: "#C02424", altColor: "#961d1d" , altColor2: "#929497" },
-        "wiiu":             { manufacturer: "nintendo",             release: "2012", color: "#3783BC", altColor: "#2e6d9e" , altColor2: "#1F9EBB" },
-        "virtualboy":       { manufacturer: "nintendo",             release: "1995", color: "#FE0016", altColor: "#cc0011" , altColor2: "#232323" },
-        "switch":           { manufacturer: "nintendo",             release: "2017", color: "#232323", altColor: "#0d0d0d" , altColor2: "#FE0016" },
-        "3do":              { manufacturer: "panasonic",            release: "1993", color: "#0000A0", altColor: "#000080" , altColor2: "#FFE41B" },
-        "atomiswave":       { manufacturer: "sammy",                release: "2003", color: "#FF6B00", altColor: "#cc5500" , altColor2: "#029205" },
-        "mastersystem":     { manufacturer: "sega",                 release: "1985", color: "#165193", altColor: "#113d6f" , altColor2: "#E60000" },
-        "genesis":          { manufacturer: "sega",                 release: "1988", color: "#212122", altColor: "#0d0d0d" , altColor2: "#181C4E" },
-        "megadrive":        { manufacturer: "sega",                 release: "1988", color: "#20211D", altColor: "#0d0e0c" , altColor2: "#DCE3E6" },
-        "gamegear":         { manufacturer: "sega",                 release: "1990", color: "#212122", altColor: "#0d0d0d" , altColor2: "#0000FE" },
-        "segacd":           { manufacturer: "sega",                 release: "1991", color: "#212122", altColor: "#0d0d0d" , altColor2: "#732A46" },
-        "sega32x":          { manufacturer: "sega",                 release: "1994", color: "#212122", altColor: "#0d0e0c" , altColor2: "#F2BA5C" },
-        "saturn":           { manufacturer: "sega",                 release: "1994", color: "#20211D", altColor: "#0d0e0c" , altColor2: "#0D7176" },
-        "dreamcast":        { manufacturer: "sega",                 release: "1998", color: "#C1C3C2", altColor: "#b1b4b3" , altColor2: "#3e649f" },
-        "sg1000":           { manufacturer: "sega",                 release: "1983", color: "#9A2025", altColor: "#7f1a1d" , altColor2: "#BBBDBD" },
-        "zxspectrum":       { manufacturer: "sinclair",             release: "1982", color: "#D6A763", altColor: "#cf974a" , altColor2: "#000000" },
-        "vectrex":          { manufacturer: "smith_engineering",    release: "1982", color: "#166FC1", altColor: "#125ca1" , altColor2: "#11192E" },
-        "neogeo":           { manufacturer: "snk",                  release: "1990", color: "#2D2D2D", altColor: "#1a1a1a" , altColor2: "#BF9328" },
-        "neogeocd":         { manufacturer: "snk",                  release: "1994", color: "#24241E", altColor: "#0e0e0c" , altColor2: "#FFD400" },
-        "ngp":              { manufacturer: "snk",                  release: "1998", color: "#E92A30", altColor: "#d0161c" , altColor2: "#25374A" },
-        "ngpc":             { manufacturer: "snk",                  release: "1999", color: "#E92A30", altColor: "#d0161c" , altColor2: "#25374A" },
-        "psx":              { manufacturer: "sony",                 release: "1994", color: "#F1C002", altColor: "#caa202" , altColor2: "#252525" },
-        "ps2":              { manufacturer: "sony",                 release: "2000", color: "#33438A", altColor: "#293670" , altColor2: "#40A9A8" },
-        "psp":              { manufacturer: "sony",                 release: "2004", color: "#0F1012", altColor: "#000000" , altColor2: "#97A9BA" },
-        "ps3":              { manufacturer: "sony",                 release: "2006", color: "#0D1114", altColor: "#000000" , altColor2: "#0095D5" },
-        "gog":              { manufacturer: "pc",                   release: "2008", color: "#000000", altColor: "#1a1a1a" , altColor2: "#252525" },
-        "ports":            { manufacturer: "pc",                   release: null,   color: "#4B77BE", altColor: "#3d66a9" , altColor2: "#36D7B7" },
-        "scummvm":          { manufacturer: "pc",                   release: null,   color: "#379742", altColor: "#297031" , altColor2: "#C26317" },
-        "steam":            { manufacturer: "valve",                release: "2003", color: "#010314", altColor: "#030730" , altColor2: "#112a40" },
-        "arcade":           { manufacturer: "arcade",               release: null,   color: "#FCE236", altColor: "#fbda04" , altColor2: "#5D9EED" },
-        "all":              { manufacturer: null,                   release: null,   color: "#851740", altColor: "#6d1234" , altColor2: "#364792" },
         "daphne":           { manufacturer: "arcade",               release: null,   color: "#856125", altColor: "#63481c" , altColor2: "#DEBA27" },
+        "dreamcast":        { manufacturer: "sega",                 release: "1998", color: "#C1C3C2", altColor: "#b1b4b3" , altColor2: "#3e649f" },
         "fba":              { manufacturer: "arcade",               release: null,   color: "#231F20", altColor: "#0e0c0c" , altColor2: "#FE7B07" },
         "fbneo":            { manufacturer: "arcade",               release: null,   color: "#FF8200", altColor: "#cc6900" , altColor2: "#FFDBA1" },
+        "fds":              { manufacturer: "nintendo",             release: "1986", color: "#A71636", altColor: "#87122b" , altColor2: "#C7AF89" },
+        "gamegear":         { manufacturer: "sega",                 release: "1990", color: "#212122", altColor: "#0d0d0d" , altColor2: "#0000FE" },
+        "gba":              { manufacturer: "nintendo",             release: "2001", color: "#280FBE", altColor: "#1f0b8e" , altColor2: "#5C67A9" },
+        "gbc":              { manufacturer: "nintendo",             release: "1998", color: "#2D308E", altColor: "#252774" , altColor2: "#7642B6" },
+        "gb":               { manufacturer: "nintendo",             release: "1989", color: "#2D308E", altColor: "#252774" , altColor2: "#9B2063" },
+        "gc":               { manufacturer: "nintendo",             release: "2001", color: "#524c82", altColor: "#3d3960" , altColor2: "#7b79aa" },
+        "genesis":          { manufacturer: "sega",                 release: "1988", color: "#212122", altColor: "#0d0d0d" , altColor2: "#181C4E" },
+        "gog":              { manufacturer: "pc",                   release: "2008", color: "#000000", altColor: "#1a1a1a" , altColor2: "#252525" },
+        "intellivision":    { manufacturer: "mattel",               release: "1979", color: "#2b201d", altColor: "#0f0b0a" , altColor2: "#d4c1a0" },
         "mame":             { manufacturer: "arcade",               release: null,   color: "#231F20", altColor: "#0e0c0c" , altColor2: "#00ADEF" },
-        "android":          { manufacturer: "OpenHandsetAlliance",  release: null,   color: "#77c159", altColor: "#5ca83e" , altColor2: "#478230" }
+        "mastersystem":     { manufacturer: "sega",                 release: "1985", color: "#165193", altColor: "#113d6f" , altColor2: "#E60000" },
+        "megadrive":        { manufacturer: "sega",                 release: "1988", color: "#20211D", altColor: "#0d0e0c" , altColor2: "#DCE3E6" },
+        "msx2":             { manufacturer: "microsoft",            release: "1985", color: "#b7b7b7", altColor: "#a6a6a6" , altColor2: "#7c3036" },
+        "msx":              { manufacturer: "microsoft",            release: "1983", color: "#9d9b91", altColor: "#878578" , altColor2: "#89283b" },
+        "n64":              { manufacturer: "nintendo",             release: "1996", color: "#238B41", altColor: "#19662f" , altColor2: "#233387" },
+        "nds":              { manufacturer: "nintendo",             release: "2004", color: "#BCBCBC", altColor: "#a6a6a6" , altColor2: "#212121" },
+        "neogeocd":         { manufacturer: "snk",                  release: "1994", color: "#24241E", altColor: "#0e0e0c" , altColor2: "#FFD400" },
+        "neogeo":           { manufacturer: "snk",                  release: "1990", color: "#2D2D2D", altColor: "#1a1a1a" , altColor2: "#BF9328" },
+        "nes":              { manufacturer: "nintendo",             release: "1983", color: "#EA2C27", altColor: "#d11b15" , altColor2: "#1A1919" },
+        "ngpc":             { manufacturer: "snk",                  release: "1999", color: "#E92A30", altColor: "#d0161c" , altColor2: "#25374A" },
+        "ngp":              { manufacturer: "snk",                  release: "1998", color: "#E92A30", altColor: "#d0161c" , altColor2: "#25374A" },
+        "pcengine":         { manufacturer: "nec",                  release: "1987", color: "#FE0000", altColor: "#cc0000" , altColor2: "#D9D9D9" },
+        "pcfx":             { manufacturer: "nec",                  release: "1994", color: "#5C3073", altColor: "#48265a" , altColor2: "#FEC101" },
+        "pokemini":         { manufacturer: "nintendo",             release: "2001", color: "#FCE200", altColor: "#ccb800" , altColor2: "#004F8A" },        
+        "ports":            { manufacturer: "pc",                   release: null,   color: "#4B77BE", altColor: "#3d66a9" , altColor2: "#36D7B7" },
+        "ps2":              { manufacturer: "sony",                 release: "2000", color: "#33438A", altColor: "#293670" , altColor2: "#40A9A8" },
+        "ps3":              { manufacturer: "sony",                 release: "2006", color: "#0D1114", altColor: "#000000" , altColor2: "#0095D5" },
+        "psp":              { manufacturer: "sony",                 release: "2004", color: "#0F1012", altColor: "#000000" , altColor2: "#97A9BA" },
+        "psx":              { manufacturer: "sony",                 release: "1994", color: "#F1C002", altColor: "#caa202" , altColor2: "#252525" },
+        "saturn":           { manufacturer: "sega",                 release: "1994", color: "#20211D", altColor: "#0d0e0c" , altColor2: "#0D7176" },
+        "scummvm":          { manufacturer: "pc",                   release: null,   color: "#379742", altColor: "#297031" , altColor2: "#C26317" },
+        "sega32x":          { manufacturer: "sega",                 release: "1994", color: "#212122", altColor: "#0d0e0c" , altColor2: "#F2BA5C" },
+        "segacd":           { manufacturer: "sega",                 release: "1991", color: "#212122", altColor: "#0d0d0d" , altColor2: "#732A46" },
+        "sg1000":           { manufacturer: "sega",                 release: "1983", color: "#9A2025", altColor: "#7f1a1d" , altColor2: "#BBBDBD" },
+        "snes":             { manufacturer: "nintendo",             release: "1990", color: "#007544", altColor: "#004d2d" , altColor2: "#0A2A8D" },
+        "steam":            { manufacturer: "valve",                release: "2003", color: "#010314", altColor: "#030730" , altColor2: "#112a40" },
+        "supergrafx":       { manufacturer: "nec",                  release: "1989", color: "#000000", altColor: "#1a1a1a" , altColor2: "#b2b2b2" },
+        "switch":           { manufacturer: "nintendo",             release: "2017", color: "#232323", altColor: "#0d0d0d" , altColor2: "#FE0016" },
+        "turbografx16":     { manufacturer: "nec",                  release: "1987", color: "#333333", altColor: "#1a1a1a" , altColor2: "#F79226" },
+        "vectrex":          { manufacturer: "smith_engineering",    release: "1982", color: "#166FC1", altColor: "#125ca1" , altColor2: "#11192E" },
+        "virtualboy":       { manufacturer: "nintendo",             release: "1995", color: "#FE0016", altColor: "#cc0011" , altColor2: "#232323" },
+        "wii":              { manufacturer: "nintendo",             release: "2006", color: "#005C9A", altColor: "#003d66" , altColor2: "#D1D1D1" },
+        "wiiu":             { manufacturer: "nintendo",             release: "2012", color: "#3783BC", altColor: "#2e6d9e" , altColor2: "#1F9EBB" },
+        "wiiware":          { manufacturer: "nintendo",             release: "2008", color: "#24A9E2", altColor: "#1a96cb" , altColor2: "#D1D1D1" },
+        "zxspectrum":       { manufacturer: "sinclair",             release: "1982", color: "#D6A763", altColor: "#cf974a" , altColor2: "#000000" }
     }
 
     SortFilterProxyModel {

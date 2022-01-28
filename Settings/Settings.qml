@@ -55,10 +55,11 @@ FocusScope {
         id: settingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "eng,ger" ],
+            [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "en,de" ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
+            [ dataText[lang].settings_general_region,  "region",  "-WIP-",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,XBOX,PS" ]
             ].forEach(function(element) {
@@ -132,7 +133,9 @@ FocusScope {
         id: gameSettingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_games_layout,  "gamesLayout",  "-WIP-",  "BoxArt-Grid" ],
+            [ dataText[lang].settings_games_layout,  "gamesLayout",  "",  "BoxArt-Grid,Screenshot-Grid" ],
+            [ dataText[lang].settings_games_gridItemsPerRow,  "gamesGridIPR",  "",  "4,5,6" ],
+            [ dataText[lang].settings_games_gridItemsViewableRows,  "gamesGridVR",  "",  "1,2" ],
             [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  "Yes,No" ],
             [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  "No,Yes" ]
             ].forEach(function(element) {

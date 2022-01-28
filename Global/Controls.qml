@@ -54,16 +54,23 @@ Item {
             rightPadding: vpx(7)
             color: text_color
         }
-
-        Image {
-            id: icon_btn
+        Item{
             height: vpx(20)
-            source: "../assets/buttons/"+controlScheme+"/input_"+input_button+".svg"
-            fillMode: Image.PreserveAspectFit
+            width: vpx(20)
+            Image {
+                id: icon_btn
+                anchors.fill: parent
+                //height: vpx(20)
+                source: "../assets/buttons/"+controlScheme+"/input_"+input_button+".svg"
+                fillMode: Image.PreserveAspectFit
+                antialiasing: true
+                visible: false
+            }                
             ColorOverlay {
                 anchors.fill: icon_btn
                 source: icon_btn
                 color: colorScheme[theme].icons
+                antialiasing: true
             }
         }
     }
