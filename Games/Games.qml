@@ -390,8 +390,8 @@ FocusScope {
                 id: gv_games
                 width: parent.width
                 height: vpx(260)
-                cellWidth: width /4
-                cellHeight: height
+                cellWidth: width /gamesGridIPR
+                cellHeight: height /gamesGridVR
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true

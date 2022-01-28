@@ -107,6 +107,8 @@ FocusScope {
             settings_collection_accentColor: "Accent color brightness",
             settings_collection_accentColorNr: "Accent colors",
             settings_games_layout: "Games layout",
+            settings_games_gridItemsPerRow: "Game grid - items per row",
+            settings_games_gridItemsViewableRows: "Game grid - viewable rows",
             menu_settings: "settings",
             menu_home: "home",
             menu_collections: "collections",
@@ -147,6 +149,8 @@ FocusScope {
             settings_collection_accentColor: "Akzentfarbhelligkeit",
             settings_collection_accentColorNr: "Akzentfarben",
             settings_games_layout: "Spiele-Layout",
+            settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
+            settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
             menu_settings: "Optionen",
             menu_home: "Start",
             menu_collections: "Sammlungen",
@@ -180,6 +184,8 @@ FocusScope {
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
     property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
+    property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
+    property var gamesGridVR : api.memory.get('gamesGridVR') || 1
     property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
     property var gamesVideoMute : {
         if (api.memory.get('gamesVideoMute') == "Yes") {
