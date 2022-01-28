@@ -146,7 +146,7 @@ Item {
         verticalAlignment : Text.AlignVCenter
         wrapMode: Text.Wrap
 
-        visible: model.assets.boxFront === ""
+        visible: boxArt(gameData) === ""
         
     }
 }
