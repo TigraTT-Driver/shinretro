@@ -118,52 +118,8 @@ Item {
             Behavior on opacity { NumberAnimation { duration: 200 } }
             scale: selected ? 1.1 : 1
         }
-        GameVideo {
-            game: gameData
-            anchors.fill: parent
-            playing: isCurrentItem && gamesVideo != "No"
-            sound: gamesVideoMute
-            //visible: isCurrentItem
-        }
-        Rectangle {
-            id: favicon
-            anchors { 
-                right: parent.right; rightMargin: (parent.width - screenshot.width)/2 + vpx(3);
-                top: parent.top; topMargin: (parent.height - screenshot.height)/2 + vpx(3) 
-            }
-            width: vpx(40)
-            height: width
-            //radius: width/2
-            color: colorScheme[theme].favorite.replace(/#/g, "#77");
-            visible: gameData.favorite
-            Image {
-                id: favicon_icon
-                source: "../assets/star-fill.svg"
-                asynchronous: true
-                anchors.fill: parent
-                anchors.margins: vpx(8)
-                visible: false
-                antialiasing: true 
-            }
-            ColorOverlay {
-                anchors.fill: favicon_icon
-                source: favicon_icon
-                color: colorScheme[theme].favorite
-                antialiasing: true
-            }      
-            transform: Matrix4x4 {
-                property real a: 12 * Math.PI / 180
-                matrix: Qt.matrix4x4(
-                    1,      -Math.tan(a),       0,      0,
-                    0,      1,                  0,      0,
-                    0,      0,                  1,      0,
-                    0,      0,                  0,      1
-                )
-            }
-        }
         Image {
-        id: favelogo
-
+            id: favelogo
             anchors.fill: parent
             anchors.centerIn: parent
             anchors.margins: root.width/10
@@ -178,47 +134,92 @@ Item {
             Behavior on scale { NumberAnimation { duration: 100 } }
             z: 10
         }
-
-        Rectangle {
-        id: regborder
-
+                
+        Text {
+            id: titletext
             anchors.fill: parent
-            color: "transparent"
-            anchors.rightMargin: 1
-            anchors.leftMargin: 1
-            anchors.bottomMargin: 1
-            anchors.topMargin: 1
-            border.width: vpx(3)
-            border.color: colorScheme[theme].secondary
-            opacity: 0.5
+            text: model.title
+            font {
+                family: global.fonts.sans
+                weight: Font.Medium
+                pixelSize: vpx(16)
+            }
+            color: colorScheme[theme].text
+
+            horizontalAlignment : Text.AlignHCenter
+            verticalAlignment : Text.AlignVCenter
+            wrapMode: Text.Wrap
+
+            visible: model.assets.logo === ""
+            
         }
-        
     }
 
-    Text {
+    GameVideo {
+        game: gameData
         anchors.fill: parent
-        text: model.title
-        font {
-            family: global.fonts.sans
-            weight: Font.Medium
-            pixelSize: vpx(16)
+        playing: isCurrentItem && gamesVideo != "No"
+        sound: gamesVideoMute
+        //visible: isCurrentItem
+    }
+
+    Rectangle {
+        id: favicon
+        anchors { 
+            right: parent.right; rightMargin: (parent.width - screenshot.width)/2 + vpx(3);
+            top: parent.top; topMargin: (parent.height - screenshot.height)/2 + vpx(3) 
         }
-        color: colorScheme[theme].text
+        width: vpx(40)
+        height: width
+        //radius: width/2
+        color: colorScheme[theme].favorite.replace(/#/g, "#77");
+        visible: gameData.favorite
+        Image {
+            id: favicon_icon
+            source: "../assets/star-fill.svg"
+            asynchronous: true
+            anchors.fill: parent
+            anchors.margins: vpx(8)
+            visible: false
+            antialiasing: true 
+        }
+        ColorOverlay {
+            anchors.fill: favicon_icon
+            source: favicon_icon
+            color: colorScheme[theme].favorite
+            antialiasing: true
+        }      
+        transform: Matrix4x4 {
+            property real a: 12 * Math.PI / 180
+            matrix: Qt.matrix4x4(
+                1,      -Math.tan(a),       0,      0,
+                0,      1,                  0,      0,
+                0,      0,                  1,      0,
+                0,      0,                  0,      1
+            )
+        }
+    }
 
-        horizontalAlignment : Text.AlignHCenter
-        verticalAlignment : Text.AlignVCenter
-        wrapMode: Text.Wrap
+    Rectangle {
+    id: regborder
 
-        visible: model.assets.logo === ""
-        
+        anchors.fill: parent
+        color: "transparent"
+        anchors.rightMargin: 1
+        anchors.leftMargin: 1
+        anchors.bottomMargin: 1
+        anchors.topMargin: 1
+        border.width: vpx(3)
+        border.color: colorScheme[theme].secondary
+        opacity: 0.5
     }
     Rectangle {
         anchors.fill: parent
-        width: screenshot.width + vpx(14)
-        height: screenshot.height + vpx(14)
+        width: screenshot.width + vpx(8)
+        height: screenshot.height + vpx(8)
         color: "transparent"
         border {
-            width: vpx(8)
+            width: vpx(5)
             color: collectionAltColor
         }
         opacity: isCurrentItem

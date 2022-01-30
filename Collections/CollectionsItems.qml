@@ -60,7 +60,7 @@ Item {
                 anchors.fill: parent
                 color: "transparent"
                 border {
-                    width: vpx(6)
+                    width: vpx(5)
                     color: collectionAltColor
                 }
                 opacity: isCurrentItem
