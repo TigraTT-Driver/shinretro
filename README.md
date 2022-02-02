@@ -8,6 +8,20 @@ A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.or
 
 ***
 
+<details>
+  <summary><b>Screenshots</b></summary>
+  <img src="assets/screenshot/home_dark.png"  title="home"/>
+  <img src="assets/screenshot/home_light.png" title="home"/>
+  <img src="assets/screenshot/collection_dark.png" title="collections" />
+  <img src="assets/screenshot/collection_light.png" title="collections" />
+  <img src="assets/screenshot/games_dark.png" title="games" />
+  <img src="assets/screenshot/games_light.png" title="games" />
+  <img src="assets/screenshot/settings_dark.png" title="settings" />
+  <img src="assets/screenshot/settings_light.png" title="settings" />
+</details>
+
+***
+
 **Contributions are welcome**
 
 You can code and found a bug in the theme you can fix or want to add a feature to the theme?
@@ -26,22 +40,6 @@ You can find some guidances [here](HACKING.md).
 - toggleable video playback options
 
 and more...
-
-***
-
-<details>
-  <summary><b>Screenshots</b></summary>
-  <img src="assets/screenshot/home_dark.png"  title="home"/>
-  <img src="assets/screenshot/home_light.png" title="home"/>
-  <img src="assets/screenshot/collection_dark.png" title="collections" />
-  <img src="assets/screenshot/collection_light.png" title="collections" />
-  <img src="assets/screenshot/games_dark.png" title="games" />
-  <img src="assets/screenshot/games_light.png" title="games" />
-  <img src="assets/screenshot/settings_dark.png" title="settings" />
-  <img src="assets/screenshot/settings_light.png" title="settings" />
-</details>
-
-***
   
 ## Metadata in use
 - boxFront
