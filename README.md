@@ -2,8 +2,7 @@
 
 # neoretro-dark
 
-Current Version: [0.132](CHANGELOG.md)
-[![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+Current Version: [0.132](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 
@@ -28,6 +27,22 @@ You can find some guidances [here](HACKING.md).
 
 and more...
 
+***
+
+<details>
+  <summary><b>Screenshots</b></summary>
+  <img src="assets/screenshot/home_dark.png"  title="home"/>
+  <img src="assets/screenshot/home_light.png" title="home"/>
+  <img src="assets/screenshot/collection_dark.png" title="collections" />
+  <img src="assets/screenshot/collection_light.png" title="collections" />
+  <img src="assets/screenshot/games_dark.png" title="games" />
+  <img src="assets/screenshot/games_light.png" title="games" />
+  <img src="assets/screenshot/settings_dark.png" title="settings" />
+  <img src="assets/screenshot/settings_light.png" title="settings" />
+</details>
+
+***
+  
 ## Metadata in use
 - boxFront
 - screenshot
@@ -35,15 +50,6 @@ and more...
 - wheel
 - background
 - video
-
-## Screenshots
-
-|  |  |
-| --- | --- |
-|<img src="assets/screenshot/home_dark.png"  title="home" />| <img src="assets/screenshot/home_light.png" title="home" /> |
-| <img src="assets/screenshot/collection_dark.png" title="collections" /> | <img src="assets/screenshot/collection_light.png" title="collections" /> |
-| <img src="assets/screenshot/games_dark.png" title="games" /> | <img src="assets/screenshot/games_light.png" title="games" /> |
-| <img src="assets/screenshot/games_dark.png" title="settings" /> | <img src="assets/screenshot/games_light.png" title="settings" /> |
 
 ## Work in progress
 - [ ] clean the code...
