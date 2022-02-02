@@ -23,14 +23,41 @@ Item {
 
     visible: game
 
-    readonly property double currentMaxOpacity: game && game.assets.background && 1.0 || 0.35
+    function steamAppID (gameData) {
+        var str = gameData.assets.boxFront.split("header");
+        return str[0];
+    }
+    function steamHero(gameData) {
+        return steamAppID(gameData) + "/library_hero.jpg"
+    }
+    function steamPage_bg_raw(gameData) {
+        return steamAppID(gameData) + "/page_bg_raw.jpg"
+    }
+
+    function fanArt(data) {
+    if (data != null) {
+        if (data.assets.boxFront.includes("/header.jpg")) 
+            return steamHero(data);
+        else {
+        if (data.assets.background != "")
+            return data.assets.background;
+        else if (data.assets.screenshots[0])
+            return data.assets.screenshots[0];
+        else if (data.assets.titlescreen[0])
+            return data.assets.screenshots[0];
+        else
+            return ""
+        }
+    }
+    return "";
+    }
+
+
+    readonly property double currentMaxOpacity: game && fanArt(game) && 1.0 || 0.35
     readonly property string currentSource: {
         if (!game)
             return "";
-        return game.assets.background
-            || game.assets.screenshots[0]
-            || game.assets.titlescreen[0]
-            || "";
+        return fanArt(game);
     }
     onCurrentSourceChanged: delay.restart()
 
