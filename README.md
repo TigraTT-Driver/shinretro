@@ -1,18 +1,50 @@
-# neoretro-dark v0.131.6
+<img src="assets/logo_neoretro.png" width="55%" title="neoretro logo" />
 
+# neoretro-dark
 
-<img src="assets/logo_neoretro.png" width="55%" title="neoretrō logo" />
-neoretro-dark is a theme for Pegasus-frontend.
+Current Version: [0.132](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
-## Work in progress
-- clean the code...
-- revise games details in `Games`
-- revise collections PathView to keep consistent spacing
-- revise GridView/ListView for showing games / dynamic grid collums based on artwork size
-- revise and add new backgrounds/logos for collections and manufacturers (svg logos, better use .png for backgrounds)
-- add more language options
-- add more color schemes
+A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 
+***
+
+<details>
+  <summary><b>Screenshots</b></summary>
+  <img src="assets/screenshot/home_dark.png"  title="home"/>
+  <img src="assets/screenshot/home_light.png" title="home"/>
+  <img src="assets/screenshot/home_ozonedark.png"  title="home"/>
+  <img src="assets/screenshot/collection_dark.png" title="collections" />
+  <img src="assets/screenshot/collection_light.png" title="collections" />
+  <img src="assets/screenshot/collection_ozonedark.png" title="collections" />
+  <img src="assets/screenshot/games_dark.png" title="games" />
+  <img src="assets/screenshot/games_light.png" title="games" />
+  <img src="assets/screenshot/games_ozonedark.png" title="games" />
+  <img src="assets/screenshot/settings_dark.png" title="settings" />
+  <img src="assets/screenshot/settings_light.png" title="settings" />
+  <img src="assets/screenshot/settings_ozonedark.png" title="settings" />
+</details>
+
+***
+
+**Contributions are welcome**
+
+You can code and found a bug in the theme you can fix or want to add a feature to the theme?
+Or you can't code but want to add translations for your native language or you can provide some awsome artwork for the theme?
+
+Simply have the courage and make a pull request :relaxed: 
+You can find some guidances [here](HACKING.md).
+
+## Features
+- selectable color schemes
+`dark` `light` `ozone dark`
+- costumizable game view
+- different onscreen control options
+`Universal (Switch like)` `XBOX` `Playstation`
+- different languages support
+- toggleable video playback options
+
+and more...
+  
 ## Metadata in use
 - boxFront
 - screenshot
@@ -21,39 +53,9 @@ neoretro-dark is a theme for Pegasus-frontend.
 - background
 - video
 
-## Screenshots
-
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home_dark.png" title="neoretro-dark home" />
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/home_light.png" title="neoretro-light home" />
-
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection_dark.png" title="neoretro-dark collections" />
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/collection_light.png" title="neoretro-light collections" />
-
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_dark.png" title="neoretro-dark games" />
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_light.png" title="neoretro-light games" />
-
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_dark.png" title="neoretro-dark settings" />
-<img src="https://raw.githubusercontent.com/TigraTT-Driver/neoretro-dark/master/assets/screenshot/games_light.png" title="neoretro-light settings" />
-
-## Changelog
-v0.131
-- fix looping bug #5
-
-v0.13
-- add assets for new systems (ps3, switch, wiiware)
-- few hotfixes (may break things later...)
-
-v0.12
-- remove unused code blocks
-- downgrade QT modules
-- fix Launchbox shortname function
-- fix collection logo not showing in the menu
-
-v0.11
-- new collections backgrounds and logos
-- preparation for future "all games" and/or "favorites" collections
-- launchbox shortName now compatible (for a certain amount of systems)
-
-v0.1
-- Initial commit.
-- Theme fully working.
+## Work in progress
+- [ ] clean the code...
+- [ ] implement switch to change collection assets region (`pal` / `ntsc` / `ntscj` logos)
+- [ ] add more language options
+- [ ] add more color schemes
+- [ ] revise and add new or missing backgrounds/logos for collections and manufacturers 
