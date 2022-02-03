@@ -26,6 +26,17 @@ A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.or
 
 ***
 
+<details>
+  <summary><b>Videos</b></summary>
+  
+  Theme review by [Retro Gaming Replay](https://www.youtube.com/channel/UC_9gbkxeMk3usXvSzYzimMw)
+  
+  [![new Pegasus front end theme neo retro dark - it's a great game display for Android devices](https://img.youtube.com/vi/YbPcsC95Qc0/0.jpg)](http://www.youtube.com/watch?v=YbPcsC95Qc0)
+  
+</details>
+  
+***
+
 **Contributions are welcome**
 
 You can code and found a bug in the theme you can fix or want to add a feature to the theme?
