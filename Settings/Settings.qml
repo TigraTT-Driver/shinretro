@@ -59,7 +59,7 @@ FocusScope {
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
-            [ dataText[lang].settings_general_region,  "region",  "-WIP-",  "pal,ntsc,ntscj" ],
+            [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,XBOX,PS" ]
             ].forEach(function(element) {
