@@ -12,12 +12,16 @@ A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.or
   <summary><b>Screenshots</b></summary>
   <img src="assets/screenshot/home_dark.png"  title="home"/>
   <img src="assets/screenshot/home_light.png" title="home"/>
+  <img src="assets/screenshot/home_ozonedark.png"  title="home"/>
   <img src="assets/screenshot/collection_dark.png" title="collections" />
   <img src="assets/screenshot/collection_light.png" title="collections" />
+  <img src="assets/screenshot/collection_ozonedark.png" title="collections" />
   <img src="assets/screenshot/games_dark.png" title="games" />
   <img src="assets/screenshot/games_light.png" title="games" />
+  <img src="assets/screenshot/games_ozonedark.png" title="games" />
   <img src="assets/screenshot/settings_dark.png" title="settings" />
   <img src="assets/screenshot/settings_light.png" title="settings" />
+  <img src="assets/screenshot/settings_ozonedark.png" title="settings" />
 </details>
 
 ***
