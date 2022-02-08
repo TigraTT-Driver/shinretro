@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
+import "../Global"  
 
 Item {
     id: item_collection
@@ -45,7 +46,12 @@ Item {
                     NumberAnimation { duration: 200; }
                 }
             }
-
+            GameVideo {
+                game: currentCollection
+                anchors.fill: img_collection_bg
+                playing: isCurrentItem && collectionVideo != "No"
+                sound: collectionVideoMute
+            }
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent

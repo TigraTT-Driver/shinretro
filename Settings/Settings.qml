@@ -110,7 +110,9 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
-            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ]
+            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoMute,  "collectionVideoMute",  "",  "No,Yes" ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],

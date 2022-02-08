@@ -43,6 +43,7 @@ id: root
             muted: sound
             loops: MediaPlayer.Infinite
             autoPlay: true
+            visible: game.assets.videoList.length
         }
     }
 

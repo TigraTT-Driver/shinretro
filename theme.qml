@@ -225,6 +225,14 @@ FocusScope {
     property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
+    property var collectionVideo : api.memory.get('collectionVideo') || "Yes"
+    property var collectionVideoMute : {
+        if (api.memory.get('collectionVideoMute') == "Yes") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
     property var gamesGridVR : api.memory.get('gamesGridVR') || 1
