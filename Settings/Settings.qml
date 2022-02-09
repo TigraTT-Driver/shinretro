@@ -59,7 +59,7 @@ FocusScope {
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
-            [ dataText[lang].settings_general_region,  "region",  "-WIP-",  "pal,ntsc,ntscj" ],
+            [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,XBOX,PS" ]
             ].forEach(function(element) {
@@ -110,7 +110,9 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
-            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ]
+            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  "Yes,No" ],
+            [ dataText[lang].settings_global_videoMute,  "collectionVideoMute",  "",  "No,Yes" ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
