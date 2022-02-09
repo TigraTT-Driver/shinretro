@@ -28,18 +28,28 @@ Item {
                 }
 
                 Image {
+                    id: img_logo_region
+                    anchors.fill: parent
+                    sourceSize.width: width
+                    source: "../assets/collections/"+shortname+"/logo_"+region+"_"+logoVariant+".svg"
+                    verticalAlignment: Image.AlignBottom
+                    fillMode: Image.PreserveAspectFit
+                    visible: logoVariant == "color"
+                    antialiasing: true
+                }
+                Image {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
                     source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    visible: logoVariant == "color"
+                    visible: logoVariant == "color" && img_logo_region.status == Image.Error
                     antialiasing: true
                 }
                 ColorOverlay {
-                    anchors.fill: img_logo
-                    source: img_logo
+                    anchors.fill: (img_logo_region.status == Image.Error) ? img_logo : img_logo_region
+                    source: (img_logo_region.status == Image.Error) ? img_logo : img_logo_region
                     color: colorScheme[theme].icons
                     visible: logoVariant !== "color"
                     antialiasing: true

@@ -155,6 +155,48 @@ FocusScope {
             menu_home: "Start",
             menu_collections: "Sammlungen",
             menu_games:"Spiele"
+        },
+        "fr": {
+            global_back: "<b>RETOUR</b>",
+            global_select: "OK",
+            global_games: "JEUX",
+            global_noFavorites: "Aucun jeu en favoris",
+            collection_all: "Tous",
+            collectionDetails_gamesAvailable: "Jeux disponibles",
+            games_na: "NC",
+            games_developedBy: "Developpé par",
+            games_players: "JOUEURS",
+            games_player: "1 JOUEUR",
+            games_favorited: "FAVORIS",
+            games_withoutDescription: "sans description",
+            games_removeFavorite: "RETIRER DES <b>FAVORIS</b>",
+            games_addFavorite: "AJOUTER AUX <b>FAVORIS</b>",
+            games_filterFavorites: "TOUS · <b>FAVORIS</b> · MULTIJOUEUR",
+            games_filterMultiplayer: "TOUS · FAVORIS · <b>MULTIJOUEUR</b>",
+            games_filterAll: "<b>TOUS</b> · FAVORIS · MULTIJOUEUR",
+            home_continue: "Joué récemment",
+            home_favorites: "Favoris",
+            home_play: "Jouer",
+            settings_general: "Général",
+            settings_general_language: "Langue",
+            settings_general_colorScheme: "Style de couleur",
+            settings_general_muteSounds: "Désactiver le son",
+            settings_general_logoVariant: "Style des logos",
+            settings_general_region: "Région",
+            settings_general_hideOSC: "Masquer les contrôles",
+            settings_general_OSCScheme: "Style des contrôles",
+            settings_global_videoPlayback: "Activer les vidéos",
+            settings_global_videoMute: "Désactiver le son des vidéos",
+            settings_collection_showAll: 'Afficher la collection "Tous"',
+            settings_collection_accentColor:  "Accentuer la luminosité des couleurs",
+            settings_collection_accentColorNr: "Accentuer les couleurs",
+            settings_games_layout: "Mise en page des jeux",
+            settings_games_gridItemsPerRow: "Grille - nombre de jeux par ligne",
+            settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
+            menu_settings: "réglages",
+            menu_home: "accueil",
+            menu_collections: "collections",
+            menu_games:"jeux"
         }                
     }
 
@@ -183,6 +225,14 @@ FocusScope {
     property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
+    property var collectionVideo : api.memory.get('collectionVideo') || "Yes"
+    property var collectionVideoMute : {
+        if (api.memory.get('collectionVideoMute') == "Yes") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
     property var gamesGridVR : api.memory.get('gamesGridVR') || 1

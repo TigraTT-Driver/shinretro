@@ -163,6 +163,35 @@ FocusScope {
                     Item{
                         visible: ["home","games"].includes(root.state)
                         Image {
+                            id: img_helper_collection_region
+                            anchors.fill: parent
+                            sourceSize.width: width
+                            asynchronous: true
+                            source: {
+                                if (root.state === "collections")
+                                    return "";
+                                if (root.state === "home")
+                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                                if (root.state === "games")
+                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                            }
+                            fillMode: Image.PreserveAspectFit
+                            horizontalAlignment: Image.AlignHCenter
+                            verticalAlignment: Image.AlignVCenter
+                            Behavior on source {
+                                PropertyAnimation {
+                                    target: img_helper_collection_region
+                                    property: "opacity"
+                                    from: 0
+                                    to: 1
+                                    duration: 600
+                                    easing.type: Easing.OutExpo
+                                }
+                            }
+                            visible: logoVariant == "color"
+                            antialiasing: true
+                        }
+                        Image {
                             id: img_helper_collection
                             anchors.fill: parent
                             sourceSize.width: width
@@ -188,12 +217,13 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == "color"
+                            visible: logoVariant == "color" && img_helper_collection_region.status == Image.Error
                             antialiasing: true
                         }
+
                         ColorOverlay{
-                            anchors.fill: img_helper_collection
-                            source: img_helper_collection
+                            anchors.fill: (img_helper_collection_region.status == Image.Error) ? img_helper_collection : img_helper_collection_region
+                            source: (img_helper_collection_region.status == Image.Error) ? img_helper_collection : img_helper_collection_region
                             color: colorScheme[theme].icons
                             visible: logoVariant !== "color"
                             antialiasing: true
