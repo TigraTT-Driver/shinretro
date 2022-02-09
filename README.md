@@ -2,7 +2,7 @@
 
 # neoretro-dark
 
-Current Version: [0.132](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+Current Version: [0.133](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 
@@ -66,7 +66,13 @@ and more...
 
 ## Work in progress
 - [ ] clean the code...
-- [ ] implement switch to change collection assets region (`pal` / `ntsc` / `ntscj` logos)
 - [ ] add more language options
 - [ ] add more color schemes
 - [ ] revise and add new or missing backgrounds/logos for collections and manufacturers 
+
+## Considerations / ideas for the future
+- [ ] provide some default collection videos
+     - probalby need some original assets
+- [ ] per collection fallback default background images
+- [ ] filter by game genres / rework filtering system
+     - The current filter system can only map simple scenarios. An extended filtering system could make it easier to navigate through the collections. A separate filter menu in the game screen instead of the quick button switch would be needed..
