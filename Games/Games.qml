@@ -364,7 +364,7 @@ FocusScope {
         Item {
             anchors.centerIn: parent
             visible: currentGame === null && (games.state === "favorites")
-            Column {
+            Rectangle {
                 Text {
                     anchors.centerIn: parent
                     text: dataText[lang].global_noFavorites
@@ -376,6 +376,23 @@ FocusScope {
                 }
             }
         }
+        // No multiplayer games found
+        Item {
+            anchors.centerIn: parent
+            visible: currentGame === null && (games.state === "multiplayer")
+            Rectangle {
+                Text {
+                    anchors.centerIn: parent
+                    text: dataText[lang].global_noMultiplayer
+                    color: colorScheme[theme].accentalt
+                    font {
+                        family: robotoSlabRegular.name
+                        pixelSize: vpx(42)
+                    }
+                }
+            }
+        }
+
 
         // Games
         Item {
