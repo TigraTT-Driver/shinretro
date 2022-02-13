@@ -60,7 +60,6 @@ Item {
             Image {
                 id: icon_btn
                 anchors.fill: parent
-                //height: vpx(20)
                 source: "../assets/buttons/"+controlScheme+"/input_"+input_button+".svg"
                 fillMode: Image.PreserveAspectFit
                 antialiasing: true

@@ -76,7 +76,6 @@ FocusScope {
 
             focus: collections.focus
 
-            // model: api.collections
             model: allCollections
             currentIndex: currentCollectionIndex
 
@@ -195,7 +194,6 @@ FocusScope {
 
         clip: true
         currentIndex: currentCollectionIndex
-        // model: api.collections
         model: allCollections
         delegate: CollectionsDetails {}
 
@@ -235,7 +233,7 @@ FocusScope {
         }
     }
 
-    // Bottons
+    // Buttons
     Row {
         visible: osc === "No"
         anchors {

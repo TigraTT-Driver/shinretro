@@ -78,7 +78,6 @@ Item {
                 }
                 width: vpx(40)
                 height: width
-                //radius: width/2
                 color: colorScheme[theme].favorite.replace(/#/g, "#77");
                 visible: gameData.favorite
                 Image {

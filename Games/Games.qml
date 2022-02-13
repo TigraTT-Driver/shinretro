@@ -295,7 +295,6 @@ FocusScope {
                             Item {
                                 width: parent.width
                                 height: vpx(100)
-                                // anchors.bottom: parent.bottom
 
                                 PegasusUtils.AutoScroll {
                                     anchors.fill: parent
@@ -412,7 +411,6 @@ FocusScope {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true
-                // interactive: false
 
                 preferredHighlightBegin: height
                 preferredHighlightEnd: height * 0.5
