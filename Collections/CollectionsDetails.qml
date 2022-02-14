@@ -30,7 +30,6 @@ Item {
                 Image {
                     id: img_logo_region
                     anchors.fill: parent
-                    sourceSize.width: width
                     source: "../assets/collections/"+shortname+"/logo_"+region+"_"+logoVariant+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
@@ -40,7 +39,6 @@ Item {
                 Image {
                     id: img_logo
                     anchors.fill: parent
-                    sourceSize.width: width
                     source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
@@ -109,8 +107,6 @@ Item {
                         Image {
                             id: img_manufacturer
                             anchors.fill: parent
-                            sourceSize.width: width
-                            sourceSize.height: height
                             source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
                             fillMode: Image.PreserveAspectFit
                             visible: false
@@ -154,7 +150,5 @@ Item {
         asynchronous: true
         active: ( root.state === "collections" )
     }
-
-
 
 }

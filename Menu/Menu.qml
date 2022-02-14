@@ -144,7 +144,6 @@ FocusScope {
                         anchors.verticalCenter: parent.verticalCenter
                         source: "../assets/buttons/"+controlScheme+"/input_BTN-LT.svg"
                         width: parent.width * 0.55
-                        //sourceSize.width: width
                         fillMode: Image.PreserveAspectFit
                         antialiasing: true
                         visible: false
@@ -165,7 +164,6 @@ FocusScope {
                         Image {
                             id: img_helper_collection_region
                             anchors.fill: parent
-                            sourceSize.width: width
                             asynchronous: true
                             source: {
                                 if (root.state === "collections")
@@ -194,7 +192,6 @@ FocusScope {
                         Image {
                             id: img_helper_collection
                             anchors.fill: parent
-                            sourceSize.width: width
                             asynchronous: true
                             source: {
                                 if (root.state === "collections")
@@ -259,7 +256,6 @@ FocusScope {
                         anchors.verticalCenter: parent.verticalCenter
                         source: "../assets/buttons/"+controlScheme+"/input_BTN-RT.svg"
                         width: parent.width * 0.55
-                        //sourceSize.width: width
                         fillMode: Image.PreserveAspectFit
                         antialiasing: true
                         visible: false

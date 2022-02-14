@@ -81,7 +81,7 @@ Item {
             playing: selected && homeVideo != "No"
             scale: selected ? 1.1 : 1
             sound: homeVideoMute
-            //visible: selected
+
         }
 
         Image {

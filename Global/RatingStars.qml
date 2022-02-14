@@ -44,11 +44,9 @@ Item {
             height: vpx(12)
             Image {
                 id: star_frame
-                source: "../assets/star-frame"
+                source: "../assets/star-frame.svg"
                 anchors.fill: parent
                 asynchronous: true
-                sourceSize.width: width
-                sourceSize.height: height
                 fillMode: Image.PreserveAspectFit
                 visible: false
                 antialiasing: true 
@@ -72,8 +70,6 @@ Item {
                 source: "../assets/star-half.svg"
                 anchors.fill: parent
                 asynchronous: true
-                sourceSize.width: width
-                sourceSize.height: height
                 fillMode: Image.PreserveAspectFit
                 visible: false
                 antialiasing: true 
@@ -97,8 +93,6 @@ Item {
                 source: "../assets/star-fill.svg"
                 anchors.fill: parent
                 asynchronous: true
-                sourceSize.width: width
-                sourceSize.height: height
                 fillMode: Image.PreserveAspectFit
                 visible: false
                 antialiasing: true 
@@ -120,9 +114,8 @@ Item {
             top: rating_stars.top; topMargin: -vpx(2)
             left: rating_stars.left; leftMargin: -vpx(3)
         }
-        color: colorScheme[theme].background//getBackgroundColor(rating)
-        // antialiasing: true
-
+        color: colorScheme[theme].background
+        //getBackgroundColor(rating)
         // transform: Matrix4x4 {
         //     property real a: 12 * Math.PI / 180
         //     matrix: Qt.matrix4x4(

@@ -342,7 +342,7 @@ FocusScope {
             preferredHighlightEnd: width * 0.6
 
             focus: false
-            Keys.onReleased: {
+            Keys.onPressed: {
 
                 if (event.isAutoRepeat) {
                     return
@@ -357,10 +357,11 @@ FocusScope {
                 }
 
                 if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Left].includes(event.key)) {
-                    event.accepted = true;
                     sfxNav.play();
-
-                    if (event.key == Qt.Key_Up) previousLastplayed.focus = true
+                    if (event.key == Qt.Key_Up) {
+                        event.accepted = true; 
+                        previousLastplayed.focus = true
+                    }
                 }
             }
         }

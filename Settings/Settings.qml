@@ -171,8 +171,8 @@ FocusScope {
         anchors {
             top: parent.top
             topMargin: vpx(40);
-            bottom: parent.bottom; //bottomMargin: helpMargin
-            left: parent.left; //leftMargin: globalMargin
+            bottom: parent.bottom;
+            left: parent.left;
         }
         width: vpx(300)
         model: settingsArr
@@ -240,8 +240,8 @@ FocusScope {
             top: parent.top;
             topMargin: vpx(40);
             bottom: parent.bottom; 
-            left: pagelist.right; //leftMargin: globalMargin
-            right: parent.right; //rightMargin: globalMargin
+            left: pagelist.right;
+            right: parent.right;
         }
         width: vpx(500)
 
