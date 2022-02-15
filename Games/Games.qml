@@ -18,6 +18,12 @@ FocusScope {
         return currentCollection.games.get(currentGameIndex)
     }
 
+    property int gridVR: {
+        if (gamesGridVR ===  "dynamic")
+            return Math.min(Math.max(parseInt((gv_games.count +10) /20), 1), 5);
+        else return  gamesGridVR
+    }
+
     focus: games.focus
     state: "all"
 
@@ -321,28 +327,28 @@ FocusScope {
                 Loader {
                     id: loader_gameList_details
                     width: {
-                        if (gamesGridVR >= 3)
+                        if (gridVR >= 3)
                             parent.width * 0.31
                         else parent.width * 0.67
                     }
                     height: {
-                        if (gamesGridVR >= 3)
+                        if (gridVR >= 3)
                             parent.height * 0.95
                         else parent.height
                     }
                         
                     anchors {
                         top: {
-                            if (gamesGridVR >= 3)
+                            if (gridVR >= 3)
                                 parent.bottom
                             else parent.top
                         }
                         right: {
-                            if (gamesGridVR >= 3)
+                            if (gridVR >= 3)
                                 parent.right
                         }
                         left: {
-                        if (gamesGridVR < 3)
+                        if (gridVR < 3)
                                 parent.left                         
                         }
                     }
@@ -421,12 +427,12 @@ FocusScope {
         Item {
             id: games_bottom
             width: {
-                if (gamesGridVR >= 3)
+                if (gridVR >= 3)
                         parent.width * 0.67
                 else parent.width
             }
             height: {
-                if (gamesGridVR >= 3)
+                if (gridVR >= 3)
                     parent.height * 0.9
                 else parent.height * 0.5
             }
@@ -439,7 +445,7 @@ FocusScope {
                 width: parent.width
                 height: parent.height * 0.85
                 cellWidth: width /gamesGridIPR
-                cellHeight: height /gamesGridVR
+                cellHeight: height /gridVR
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true
