@@ -1,4 +1,9 @@
 # Changelog
+## v0.134
+- smaler fixes
+- dynamic layout for game screen based on displayed grid rows
+- dynamic game screen grid rows option based on the number of items in the current collection
+
 ## v0.133
 - added option to switch logo variants between region specific versions (snes, megadrive, pcengine...)
 - added french translations, thx to [HunkDeath](https://github.com/HunkDeath)  & [fansubmaniac](https://github.com/fansubmaniac)
