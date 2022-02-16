@@ -18,6 +18,12 @@ FocusScope {
         return currentCollection.games.get(currentGameIndex)
     }
 
+    property int gridVR: {
+        if (gamesGridVR ===  "dynamic")
+            return Math.min(Math.max(parseInt((gv_games.count +10) /20), 1), 5);
+        else return  gamesGridVR
+    }
+
     focus: games.focus
     state: "all"
 
@@ -105,9 +111,9 @@ FocusScope {
         Item {
             id: item_game_details
             width: parent.width
+            height: parent.height * 0.5
             anchors {
                 top: parent.top
-                bottom: games_bottom.top
                 horizontalCenter: parent.horizontalCenter
             }
 
@@ -126,7 +132,7 @@ FocusScope {
                         Text {
                             id: txt_releaseYear
                             anchors {
-                                top: parent.top; topMargin: -vpx(30)
+                                top: parent.top; topMargin: -vpx(20)
                             }
 
                             text: currentGame.releaseYear || dataText[lang].games_na
@@ -320,8 +326,32 @@ FocusScope {
 
                 Loader {
                     id: loader_gameList_details
-                    width: parent.width * 0.67
-                    height: parent.height
+                    width: {
+                        if (gridVR >= 3)
+                            parent.width * 0.31
+                        else parent.width * 0.67
+                    }
+                    height: {
+                        if (gridVR >= 3)
+                            parent.height * 0.95
+                        else parent.height
+                    }
+                        
+                    anchors {
+                        top: {
+                            if (gridVR >= 3)
+                                parent.bottom
+                            else parent.top
+                        }
+                        right: {
+                            if (gridVR >= 3)
+                                parent.right
+                        }
+                        left: {
+                        if (gridVR < 3)
+                                parent.left                         
+                        }
+                    }
                     asynchronous: true
                     sourceComponent: cpnt_gameList_details
                     active: games.focus && currentGame !== null
@@ -396,8 +426,16 @@ FocusScope {
         // Games
         Item {
             id: games_bottom
-            width: parent.width
-            height: parent.height * 0.5
+            width: {
+                if (gridVR >= 3)
+                        parent.width * 0.67
+                else parent.width
+            }
+            height: {
+                if (gridVR >= 3)
+                    parent.height * 0.9
+                else parent.height * 0.5
+            }
             anchors {
                 bottom: parent.bottom
             }
@@ -405,9 +443,9 @@ FocusScope {
             GridView {
                 id: gv_games
                 width: parent.width
-                height: vpx(260)
+                height: parent.height * 0.85
                 cellWidth: width /gamesGridIPR
-                cellHeight: height /gamesGridVR
+                cellHeight: height /gridVR
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true
