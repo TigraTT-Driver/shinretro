@@ -2,7 +2,7 @@
 
 # neoretro-dark
 
-Current Version: [0.133](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+Current Version: [0.134](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 
@@ -55,6 +55,7 @@ You can find some guidances [here](HACKING.md).
 - toggleable video playback options
 
 and more...
+You can find explanations for the theme settings [here](SETTINGS.md).
   
 ## Metadata in use
 - boxFront
@@ -63,6 +64,13 @@ and more...
 - wheel
 - background
 - video
+
+## Regarding videos on collection screen
+> NOTE: Videos for the collection screen are not included in the theme. You can provide them by setting a default video for your collection in the Pegasus metadata of the collection. EXAMPLE:
+> 
+    collection: Sony Playstation 2
+    shortname: ps2
+    assets.video: media/videos/default.mp4
 
 ## Work in progress
 - [ ] clean the code...
