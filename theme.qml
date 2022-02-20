@@ -238,7 +238,7 @@ FocusScope {
     }
     property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
-    property var gamesGridVR : api.memory.get('gamesGridVR') || "dynamic"
+    property var gamesGridVR : api.memory.get('gamesGridVR') || 1
     property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
     property var gamesVideoMute : {
         if (api.memory.get('gamesVideoMute') == "Yes") {
