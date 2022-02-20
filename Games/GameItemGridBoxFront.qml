@@ -82,7 +82,7 @@ Item {
                 visible: gameData.favorite
                 Image {
                     id: favicon_icon
-                    source: "../assets/star-fill.svg"
+                    source: "../assets/favorite.svg"
                     asynchronous: true
                     anchors.fill: parent
                     anchors.margins: vpx(8)       
