@@ -1,10 +1,11 @@
-<img src="assets/logo_neoretro.png" width="55%" title="neoretro logo" />
+<img src="assets/logo_shinretro.png" width="55%" title="shinretro logo" />
 
-# neoretro-dark
+# shinretro
 
 Current Version: [0.134](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
+Forked from [Valentin MEZIN](https://github.com/valsou)'s theme [neoretrō](https://github.com/valsou/neoretro) v0.131 and [Luciano Oliveira](https://github.com/luciano-work)'s dark variant.
 
 ***
 
@@ -84,3 +85,8 @@ You can find explanations for the theme settings [here](SETTINGS.md).
 - [ ] per collection fallback default background images
 - [ ] filter by game genres / rework filtering system
      - The current filter system can only map simple scenarios. An extended filtering system could make it easier to navigate through the collections. A separate filter menu in the game screen instead of the quick button switch would be needed..
+
+## Thanks to:
+- [Valentin MEZIN](https://github.com/valsou) : Creator of the original neoretrō which this theme is based on
+- [Luciano Oliveira](https://github.com/luciano-work) : Creator of the dark color scheme for neoretrō
+- [HunkDeath](https://github.com/HunkDeath)  & [fansubmaniac](https://github.com/fansubmaniac) : french translations
