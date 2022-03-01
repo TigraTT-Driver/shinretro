@@ -56,7 +56,7 @@ FocusScope {
         Component.onCompleted: {
             [
             [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "en,de,fr" ],
-            [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark" ],
+            [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark,SteamOS" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],

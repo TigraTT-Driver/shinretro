@@ -67,6 +67,21 @@ FocusScope {
             cancel: "#E6140D",
             details: "#00991E",
             filters: "#5365df"
+        },
+        "SteamOS": {
+            main: "black",
+            secondary: "#0e141b",
+            background: "#2b2f38",
+            text: "white",
+            textalt: "#EBEBEB",
+            accent: "#1a9fff",
+            accentalt:"white",
+            icons: "white",
+            favorite: "#cc8f00",
+            accepted: "#EBEBEB",
+            cancel: "#EBEBEB",
+            details: "#EBEBEB",
+            filters: "#EBEBEB"
         }   
     }
 
