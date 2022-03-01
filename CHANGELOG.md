@@ -1,4 +1,7 @@
 # Changelog
+## v0.135
+- SteamOS3 (steam deck) inspired color scheme
+
 ## v0.134
 - smaler fixes
 - dynamic layout for game screen based on displayed grid rows
