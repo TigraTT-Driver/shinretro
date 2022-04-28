@@ -2,7 +2,7 @@
 
 # shinretro
 
-Current Version: [0.135](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+Current Version: [0.136](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 Forked from [Valentin MEZIN](https://github.com/valsou)'s theme [neoretrō](https://github.com/valsou/neoretro) v0.131 and [Luciano Oliveira](https://github.com/luciano-work)'s dark variant.
@@ -90,3 +90,4 @@ You can find explanations for the theme settings [here](SETTINGS.md).
 - [Valentin MEZIN](https://github.com/valsou) : Creator of the original neoretrō which this theme is based on
 - [Luciano Oliveira](https://github.com/luciano-work) : Creator of the dark color scheme for neoretrō
 - [HunkDeath](https://github.com/HunkDeath)  & [fansubmaniac](https://github.com/fansubmaniac) : french translations
+- [RickEves](https://github.com/RickEves)  : portuguese translations

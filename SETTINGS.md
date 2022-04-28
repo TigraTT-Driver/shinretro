@@ -10,6 +10,7 @@ Change the language of the theme interface
 | **en** | English |
 | de | German |
 | fr | French |
+| pt | Portuguese |
 
 ### Color scheme
 Change the color of the theme interface

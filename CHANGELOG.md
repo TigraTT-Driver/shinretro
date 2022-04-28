@@ -1,4 +1,7 @@
 # Changelog
+## v0.136
+- portuguese translation, thx to [RickEves](https://github.com/RickEves)
+
 ## v0.135
 - SteamOS3 (steam deck) inspired color scheme
 
