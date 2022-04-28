@@ -215,8 +215,51 @@ FocusScope {
             menu_home: "accueil",
             menu_collections: "collections",
             menu_games:"jeux"
-        }                
-    }
+        },             
+        "pt": {
+            global_back: "<b>VOLTAR</b>",
+            global_select: "OK",
+            global_games: "JOGOS",
+            global_noFavorites: "Nenhum jogo favorito",
+            global_noMultiplayer: "Sem jogos multijogador",
+            collection_all: "Todos",
+            collectionDetails_gamesAvailable: "Jogos disponíveis",
+            games_na: "N/A",
+            games_developedBy: "Desenvolvido por",
+            games_players: "JOGADORES",
+            games_player: "1 JOGADOR",
+            games_favorited: "FAVORITO",
+            games_withoutDescription: "sem descrição",
+            games_removeFavorite: "REMOVER <b>FAVORITO</b>",
+            games_addFavorite: "ADICIONAR <b>FAVORITO</b>",
+            games_filterFavorites: "MOSTRAR TODOS · <b>FAVORITOS</b> · MULTIJOGADOR",
+            games_filterMultiplayer: "MOSTRAR TODOS · FAVORITOS · <b>MULTIJOGADOR</b>",
+            games_filterAll: "MOSTRAR <b>TODOS</b> · FAVORITOS · MULTIJOGADOR",
+            home_continue: "Continuar jogando",
+            home_favorites: "Favoritos",
+            home_play: "Jogar",
+            settings_general: "Geral",
+            settings_general_language: "Idioma",
+            settings_general_colorScheme: "Estilo de cores",
+            settings_general_muteSounds: "Silenciar sons",
+            settings_general_logoVariant: "Estilo de logos",
+            settings_general_region: "Região",
+            settings_general_hideOSC: "Ocultar controles",
+            settings_general_OSCScheme: "Estilo de controle",
+            settings_global_videoPlayback: "Reprodução de vídeo",
+            settings_global_videoMute: "Silenciar vídeo",
+            settings_collection_showAll: 'Mostrar a coleção "Todos jogos"',
+            settings_collection_accentColor: "Brilho da cor de destaque",
+            settings_collection_accentColorNr: "Cores de destaque",
+            settings_games_layout: "Layout do jogos",
+            settings_games_gridItemsPerRow: "Grade - Jogos por fileira",
+            settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
+            menu_settings: "ajustes",
+            menu_home: "início",
+            menu_collections: "coleções",
+            menu_games:"jogos"
+        }               
+    }                
 
     // Load settings
     property var lang: api.memory.get('lang') || "en"
