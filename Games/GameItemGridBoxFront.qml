@@ -64,6 +64,12 @@ Item {
             anchors.fill: parent
             anchors.margins: vpx(3)
             source: boxArt(gameData)
+            // For Steam games that lack portrait mode art
+            onStatusChanged: {
+                if (status == Image.Error) {
+                    boxFront.source = gameData.assets.boxFront;
+                }
+            }
             fillMode: Image.PreserveAspectFit
             sourceSize: Qt.size(boxFront.width, boxFront.height)
             smooth: true
