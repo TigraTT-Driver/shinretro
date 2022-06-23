@@ -20,7 +20,75 @@ FocusScope {
     FontLoader { id: robotoSlabLight; source: "./assets/fonts/RobotoSlab-Light.ttf" }
     FontLoader { id: robotoSlabThin; source: "./assets/fonts/RobotoSlab-Thin.ttf" }
     FontLoader { id: robotoSlabRegular; source: "./assets/fonts/RobotoSlab-Regular.ttf" }
-
+    FontLoader {
+        id: glyphs;
+        property string favorite: '\ue800';
+        property string fullStar: '\ue801';
+        property string emptyStar: '\ue802';
+        property string halfStar: '\ue803';
+        property string uInputBtnD: '\ue804';
+        property string uInputBtnL: '\ue805';
+        property string uInputBtnLb: '\ue806';
+        property string uInputBtnLt: '\ue807';
+        property string uInputBtnR: '\ue808';
+        property string uInputBtnRb: '\ue809'; 
+        property string uInputBtnRt: '\ue80a';
+        property string uInputBtnU: '\ue80b';
+        property string xInputBtnD: '\ue80c';
+        property string xInputBtnL: '\ue80d';
+        property string xInputBtnLb: '\ue80e';
+        property string xInputBtnLt: '\ue80f';
+        property string xInputBtnR: '\ue810';
+        property string xInputBtnRb: '\ue811'; 
+        property string xInputBtnRt: '\ue812';
+        property string xInputBtnU: '\ue813';    
+        property string pInputBtnD: '\ue814';
+        property string pInputBtnL: '\ue815';
+        property string pInputBtnLb: '\ue816';
+        property string pInputBtnLt: '\ue817';
+        property string pInputBtnR: '\ue818';
+        property string pInputBtnRb: '\ue819'; 
+        property string pInputBtnRt: '\ue81a';
+        property string pInputBtnU: '\ue81b';     
+        property string search: '\ue81c';
+        property string spinner: '\ue839';        
+        property string disabled: '\uf204';
+        property string enabled: '\uf205';
+        source: "assets/fonts/glyphs.ttf";
+    }
+    // Control schemes
+    property variant osdScheme: {
+        "Universal": {
+            BTND: glyphs.uInputBtnD,
+            BTNL: glyphs.uInputBtnL,
+            BTNLB: glyphs.uInputBtnLb,
+            BTNLT: glyphs.uInputBtnLt,
+            BTNR: glyphs.uInputBtnR,
+            BTNRB: glyphs.uInputBtnRb,
+            BTNRT:glyphs.uInputBtnRt,
+            BTNU: glyphs.uInputBtnU
+        },
+        "XBOX": {
+            BTND: glyphs.xInputBtnD,
+            BTNL: glyphs.xInputBtnL,
+            BTNLB: glyphs.xInputBtnLb,
+            BTNLT: glyphs.xInputBtnLt,
+            BTNR: glyphs.xInputBtnR,
+            BTNRB: glyphs.xInputBtnRb,
+            BTNRT:glyphs.xInputBtnRt,
+            BTNU: glyphs.xInputBtnU
+        },
+        "PS": {
+            BTND: glyphs.pInputBtnD,
+            BTNL: glyphs.pInputBtnL,
+            BTNLB: glyphs.pInputBtnLb,
+            BTNLT: glyphs.pInputBtnLt,
+            BTNR: glyphs.pInputBtnR,
+            BTNRB: glyphs.pInputBtnRb,
+            BTNRT:glyphs.pInputBtnRt,
+            BTNU: glyphs.pInputBtnU
+        }
+    }
     // Color schemes
     property variant colorScheme: {
         "Dark": {

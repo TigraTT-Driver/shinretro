@@ -41,19 +41,6 @@ Assets for collections are stored on assets/collections/`collection shortname`
 | logo_color.svg  | colorfull collection logo | logo used when collection `logo variation` is set to `color`. The default is the pal variation of the logo if exists and logos differ between regions |
 | logo_`ntsc\ntscj`_color.svg  | optional) regional colorfull collection logo | colorfull logos for the ntsc regions when logos differ between regions|
 
-### onscreen controls
-Assets for onscreen controls are stored on assets/buttons/`variaton`
-All graphics need to be mono colored svg with transparency since the get 'colorized' to different monochrome variants
-| file  | usage  |
-|--|--|
-| input_BTN-D.svg | select button, on an xbox-styled layout of buttons this is the down button (A) |
-|input_BTN-L.svg | on an xbox-styled layout of buttons this is the left button (X)|
-|input_BTN-LB.svg | left bumper button, on an xbox-styled layout of buttons this LB |
-|input_BTN-LB.svg | left trigger button, on an xbox-styled layout of buttons this LT|
-|input_BTN-R.svg | cancel/back button, on an xbox-styled layout of buttons this is the right button (B)|
-|input_BTN-RB.svg | right bumper button, on an xbox-styled layout of buttons this RB|
-|input_BTN-RT.svg | right trigger button, on an xbox-styled layout of buttons this RT|
-|input_BTN-U.svg | on an xbox-styled layout of buttons this is the up button (Y)|
 
 ### manufactures logos
 Assets for manufacturer are stored on assets/manufactures/logo/`manufacturer_shortname`.svg

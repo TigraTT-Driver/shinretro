@@ -389,7 +389,7 @@ FocusScope {
             text_color: colorScheme[theme].text
             front_color: "transparent"
             back_color: "transparent"
-            input_button: "BTN-D"
+            input_button: osdScheme[controlScheme].BTND
         }
     }
 }

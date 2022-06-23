@@ -59,48 +59,37 @@ FocusScope {
                     model: dataMenu
 
                     header: Item {
-                        width: vpx(40)
+                        width: vpx(42)
                         height: vpx(22)
                         visible: osc === "No"
-                        Image {
-                            id: menu_input_LB
-                            anchors.left: parent.left
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/"+controlScheme+"/input_BTN-LB.svg"
-                            width: parent.width * 0.55
-                            fillMode: Image.PreserveAspectFit
-                            antialiasing: true
-                            visible: false
-                        }
-                        ColorOverlay {
-                            anchors.fill: menu_input_LB
-                            source: menu_input_LB
+                        Text {
+                            text: osdScheme[controlScheme].BTNLB
+                            font {
+                                family: glyphs.name;
+                                pixelSize: parent.height
+                            }
                             color: colorScheme[theme].accentalt
-                            antialiasing: true 
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: parent.left
+                            
                         }
                     }
 
                     delegate: MenuItems {}
 
                     footer: Item {
-                        width: vpx(40)
+                        width: vpx(42)
                         height: vpx(22)
                         visible: osc === "No"
-                        Image {
-                            id: menu_input_RB
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-                            source: "../assets/buttons/"+controlScheme+"/input_BTN-RB.svg"
-                            width: parent.width * 0.55
-                            fillMode: Image.PreserveAspectFit
-                            antialiasing: true
-                            visible: false
-                        }
-                        ColorOverlay {
-                            anchors.fill: menu_input_RB
-                            source: menu_input_RB
+                        Text {
+                            text: osdScheme[controlScheme].BTNRB
+                            font {
+                                family: glyphs.name;
+                                pixelSize: parent.height
+                            }
                             color: colorScheme[theme].accentalt
-                            antialiasing: true                    
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.right: parent.right
                         }
                     }
 
@@ -130,7 +119,7 @@ FocusScope {
                 }
 
                 Item {
-                    width: vpx(40)
+                    width: vpx(42)
                     height: vpx(22)
                     visible: osc === "No"
                     anchors {
@@ -138,22 +127,17 @@ FocusScope {
                         rightMargin: vpx(290)
                         verticalCenter: parent.verticalCenter
                     }
-                    Image {
-                        id: menu_input_LT
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "../assets/buttons/"+controlScheme+"/input_BTN-LT.svg"
-                        width: parent.width * 0.55
-                        fillMode: Image.PreserveAspectFit
-                        antialiasing: true
-                        visible: false
-                    }
-                    ColorOverlay {
-                        anchors.fill: menu_input_LT
-                        source: menu_input_LT
+                    Text {
+                        text: osdScheme[controlScheme].BTNLT
+                        font {
+                            family: glyphs.name;
+                            pixelSize: parent.height
+                        }
                         color: colorScheme[theme].accentalt
-                        antialiasing: true
                         visible: root.state === "games"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+
                     }
                 }
 
@@ -243,29 +227,23 @@ FocusScope {
                 }
 
                 Item {
-                    width: vpx(40)
+                    width: vpx(42)
                     height: vpx(22)
                     visible: osc === "No"
                     anchors {
                         right: parent.right; leftMargin: -width *2
                         verticalCenter: parent.verticalCenter
                     }
-                    Image {
-                        id: menu_input_RT
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                        source: "../assets/buttons/"+controlScheme+"/input_BTN-RT.svg"
-                        width: parent.width * 0.55
-                        fillMode: Image.PreserveAspectFit
-                        antialiasing: true
-                        visible: false
-                    }
-                    ColorOverlay {
-                        anchors.fill: menu_input_RT
-                        source: menu_input_RT
+                    Text {
+                        text: osdScheme[controlScheme].BTNRT
+                        font {
+                            family: glyphs.name;
+                            pixelSize: parent.height
+                        }
                         color: colorScheme[theme].accentalt
                         visible: root.state === "games"
-                        antialiasing: true
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
                     }
                 }
                 visible: ["home","games"].includes(root.state)

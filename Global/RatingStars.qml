@@ -42,20 +42,14 @@ Item {
         Item{
             width: vpx(12)
             height: vpx(12)
-            Image {
-                id: star_frame
-                source: "../assets/star-frame.svg"
+            Text {
+                text: glyphs.emptyStar
                 anchors.fill: parent
-                asynchronous: true
-                fillMode: Image.PreserveAspectFit
-                visible: false
-                antialiasing: true 
-            }
-            ColorOverlay {
-                anchors.fill: star_frame
-                source: star_frame
+                font {
+                    family: glyphs.name;
+                    pixelSize: parent.height
+                }
                 color: colorScheme[theme].accentalt
-                antialiasing: true 
             }
         }
     }
@@ -65,20 +59,14 @@ Item {
         Item{
             width: vpx(12)
             height: vpx(12)
-            Image {
-                id: star_half
-                source: "../assets/star-half.svg"
-                anchors.fill: parent
-                asynchronous: true
-                fillMode: Image.PreserveAspectFit
-                visible: false
-                antialiasing: true 
-            }
-            ColorOverlay {
-                anchors.fill: star_half
-                source: star_half
+            Text {
+                text: glyphs.halfStar
+                    anchors.fill: parent
+                font {
+                    family: glyphs.name;
+                    pixelSize: parent.height
+                }
                 color: colorScheme[theme].favorite
-                antialiasing: true 
             }
         }
     }
@@ -88,20 +76,14 @@ Item {
         Item{
             width: vpx(12)
             height: vpx(12)
-            Image {
-                id: star_fill
-                source: "../assets/star-fill.svg"
-                anchors.fill: parent
-                asynchronous: true
-                fillMode: Image.PreserveAspectFit
-                visible: false
-                antialiasing: true 
-            }                
-            ColorOverlay {
-                anchors.fill: star_fill
-                source: star_fill
+            Text {
+                text: glyphs.fullStar
+                    anchors.fill: parent
+                font {
+                    family: glyphs.name;
+                    pixelSize: parent.height
+                }
                 color: colorScheme[theme].favorite
-                antialiasing: true
             }
         }
     }
@@ -111,7 +93,7 @@ Item {
         width: rating_stars.width + vpx(10)
         height: rating_stars.height + vpx(5)
         anchors {
-            top: rating_stars.top; topMargin: -vpx(2)
+            top: rating_stars.top; topMargin: -vpx(1)
             left: rating_stars.left; leftMargin: -vpx(3)
         }
         color: colorScheme[theme].background

@@ -86,21 +86,16 @@ Item {
                 height: width
                 color: colorScheme[theme].favorite.replace(/#/g, "#77");
                 visible: gameData.favorite
-                Image {
-                    id: favicon_icon
-                    source: "../assets/favorite.svg"
-                    asynchronous: true
+                Text {
+                    text: glyphs.favorite
                     anchors.fill: parent
-                    anchors.margins: vpx(8)       
-                    visible: false
-                    antialiasing: true  
-                }
-                ColorOverlay {
-                    anchors.fill: favicon_icon
-                    source: favicon_icon
+                    anchors.margins: vpx(8)  
+                    font {
+                        family: glyphs.name;
+                        pixelSize: vpx(22)
+                    }
                     color: colorScheme[theme].favorite
-                    antialiasing: true  
-                }   
+                }
                 transform: Matrix4x4 {
                     property real a: 12 * Math.PI / 180
                     matrix: Qt.matrix4x4(

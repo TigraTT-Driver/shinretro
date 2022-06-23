@@ -250,7 +250,7 @@ FocusScope {
             text_color: colorScheme[theme].accepted
             front_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             back_color: colorScheme[theme].accepted.replace(/#/g, "#33");
-            input_button: "BTN-D"
+            input_button: osdScheme[controlScheme].BTND
         }
 
         Controls {
@@ -261,7 +261,7 @@ FocusScope {
             text_color: colorScheme[theme].cancel
             front_color: colorScheme[theme].cancel.replace(/#/g, "#26");
             back_color: colorScheme[theme].cancel.replace(/#/g, "#26");
-            input_button: "BTN-R"
+            input_button: osdScheme[controlScheme].BTNR
         }
     }
 }

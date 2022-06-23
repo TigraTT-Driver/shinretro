@@ -666,7 +666,7 @@ FocusScope {
                     text_color: colorScheme[theme].cancel
                     front_color: colorScheme[theme].cancel.replace(/#/g, "#26");
                     back_color: colorScheme[theme].cancel.replace(/#/g, "#26");
-                    input_button: "BTN-R"
+                    input_button: osdScheme[controlScheme].BTNR
                 }
 
                 Controls {
@@ -677,7 +677,7 @@ FocusScope {
                     text_color: colorScheme[theme].details
                     front_color: colorScheme[theme].details.replace(/#/g, "#26");
                     back_color: colorScheme[theme].details.replace(/#/g, "#26");
-                    input_button: "BTN-L"
+                    input_button: osdScheme[controlScheme].BTNL
 
                     visible: currentGame !== null
                 }
@@ -695,7 +695,7 @@ FocusScope {
                     text_color: colorScheme[theme].filters
                     front_color: colorScheme[theme].filters.replace(/#/g, "#26");
                     back_color: colorScheme[theme].filters.replace(/#/g, "#26");
-                    input_button: "BTN-U"
+                    input_button: osdScheme[controlScheme].BTNU
                 }
             }
 
