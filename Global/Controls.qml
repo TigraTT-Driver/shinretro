@@ -55,8 +55,8 @@ Item {
             color: text_color
         }
         Item{
-            height: vpx(20)
-            width: vpx(20)
+            height: vpx(16)
+            width: vpx(16)
             Image {
                 id: icon_btn
                 anchors.fill: parent

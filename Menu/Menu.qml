@@ -59,7 +59,7 @@ FocusScope {
                     model: dataMenu
 
                     header: Item {
-                        width: vpx(60)
+                        width: vpx(40)
                         height: vpx(22)
                         visible: osc === "No"
                         Image {
@@ -83,7 +83,7 @@ FocusScope {
                     delegate: MenuItems {}
 
                     footer: Item {
-                        width: vpx(60)
+                        width: vpx(40)
                         height: vpx(22)
                         visible: osc === "No"
                         Image {
@@ -130,7 +130,7 @@ FocusScope {
                 }
 
                 Item {
-                    width: vpx(60)
+                    width: vpx(40)
                     height: vpx(22)
                     visible: osc === "No"
                     anchors {
@@ -243,7 +243,7 @@ FocusScope {
                 }
 
                 Item {
-                    width: vpx(60)
+                    width: vpx(40)
                     height: vpx(22)
                     visible: osc === "No"
                     anchors {
