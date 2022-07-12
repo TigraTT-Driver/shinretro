@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import QtQuick.Window 2.15
 import QtGraphicalEffects 1.12
 import QtMultimedia 5.15
 import QtQml.Models 2.15
@@ -55,7 +56,7 @@ FocusScope {
         property string disabled: '\uf204';
         property string enabled: '\uf205';
         source: "assets/fonts/glyphs.ttf";
-    }
+    }    
     // Control schemes
     property variant osdScheme: {
         "Universal": {
@@ -184,6 +185,7 @@ FocusScope {
             settings_general_logoVariant: "Logo variation",
             settings_general_region: "Region",
             settings_general_hideOSC: "Hide controls",
+            settings_general_dynamicFontScaling: "Dynamic font scaling",
             settings_general_OSCScheme: "Controls scheme",
             settings_global_videoPlayback: "Video playback",
             settings_global_videoMute: "Mute video",
@@ -227,6 +229,7 @@ FocusScope {
             settings_general_logoVariant: "Logo-Variation",
             settings_general_region: "Region",
             settings_general_hideOSC: "Steuerung ausblenden",
+            settings_general_dynamicFontScaling: "Dynamische Schriftskalierung",
             settings_general_OSCScheme: "Steuerungschema",
             settings_global_videoPlayback: "Videowiedergabe",
             settings_global_videoMute: "Video stummschalten",
@@ -270,6 +273,7 @@ FocusScope {
             settings_general_logoVariant: "Style des logos",
             settings_general_region: "Région",
             settings_general_hideOSC: "Masquer les contrôles",
+            settings_general_dynamicFontScaling: "Dynamic font scaling",
             settings_general_OSCScheme: "Style des contrôles",
             settings_global_videoPlayback: "Activer les vidéos",
             settings_global_videoMute: "Désactiver le son des vidéos",
@@ -313,6 +317,7 @@ FocusScope {
             settings_general_logoVariant: "Estilo de logos",
             settings_general_region: "Região",
             settings_general_hideOSC: "Ocultar controles",
+            settings_general_dynamicFontScaling: "Dynamic font scaling",
             settings_general_OSCScheme: "Estilo de controle",
             settings_global_videoPlayback: "Reprodução de vídeo",
             settings_global_videoMute: "Silenciar vídeo",
@@ -336,6 +341,18 @@ FocusScope {
     property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('osc') || "No"
+    property double fontScalingFactor : {
+        if (api.memory.get('dynamicFontScaling') == "Yes") {
+            if  ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.5)
+                return "1.5";
+            else if ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.0)
+                return (Math.round(Screen.pixelDensity * 10) / 100);
+            else
+                return "1.0";  
+        } else {
+            return "1.0";
+        }    
+    }
     property var mutesfx : {
         if (api.memory.get('mutesfx') == "Yes") {
             return "0.0";

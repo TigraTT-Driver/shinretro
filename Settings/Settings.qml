@@ -61,6 +61,7 @@ FocusScope {
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
+            [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,XBOX,PS" ]
             ].forEach(function(element) {
                 append({
@@ -197,7 +198,7 @@ FocusScope {
                         italic: true
                         weight: Font.Bold
                         capitalization: Font.AllUppercase
-                        pixelSize: vpx(22)
+                        pixelSize: vpx(22  * fontScalingFactor)
                     }
                     color: colorScheme[theme].text
                     verticalAlignment: Text.AlignVCenter
@@ -294,7 +295,7 @@ FocusScope {
                     color: colorScheme[theme].text
                     font {
                         family: global.fonts.condensed
-                        pixelSize: vpx(20)
+                        pixelSize: vpx(20  * fontScalingFactor)
                     }
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2
@@ -313,7 +314,7 @@ FocusScope {
                     color: colorScheme[theme].accent
                     font {
                         family: global.fonts.condensed
-                        pixelSize: vpx(20)
+                        pixelSize: vpx(20  * fontScalingFactor)
                     }
                     verticalAlignment: Text.AlignVCenter
                     opacity: selected ? 1 : 0.2

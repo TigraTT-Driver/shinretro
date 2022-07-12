@@ -5,7 +5,6 @@ Item {
 
     width: txt_menu_metrics.width
     height: txt_menu_metrics.height
-
     TextMetrics {
         id: txt_menu_metrics
         text: modelData.name
@@ -13,7 +12,7 @@ Item {
             family: global.fonts.condensed
             weight: Font.Bold
             capitalization: Font.AllUppercase
-            pixelSize: vpx(16)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
     }
 
@@ -34,7 +33,7 @@ Item {
             family: global.fonts.condensed
             weight: isCurrentItem ? Font.Bold : Font.Medium
             capitalization: Font.AllUppercase
-            pixelSize: vpx(16)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
 
     }

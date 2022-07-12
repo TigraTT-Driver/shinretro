@@ -40,8 +40,8 @@ Item {
     Component {
         id: no_star
         Item{
-            width: vpx(12)
-            height: vpx(12)
+            width: vpx(12  * fontScalingFactor)
+            height: vpx(12  * fontScalingFactor)
             Text {
                 text: glyphs.emptyStar
                 anchors.fill: parent
@@ -57,8 +57,8 @@ Item {
     Component {
         id: half_star
         Item{
-            width: vpx(12)
-            height: vpx(12)
+            width: vpx(12  * fontScalingFactor)
+            height: vpx(12  * fontScalingFactor)
             Text {
                 text: glyphs.halfStar
                     anchors.fill: parent
@@ -74,8 +74,8 @@ Item {
     Component {
         id: star
         Item{
-            width: vpx(12)
-            height: vpx(12)
+            width: vpx(12  * fontScalingFactor)
+            height: vpx(12  * fontScalingFactor)
             Text {
                 text: glyphs.fullStar
                     anchors.fill: parent
@@ -119,7 +119,7 @@ Item {
         text: rating
         font {
             family: global.fonts.sans
-            pixelSize: vpx(14)
+            pixelSize: vpx(14  * fontScalingFactor)
         }
         color: colorScheme[theme].accent
     }
