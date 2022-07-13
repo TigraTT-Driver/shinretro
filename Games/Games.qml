@@ -670,19 +670,6 @@ FocusScope {
                 }
 
                 Controls {
-                    id: button_L
-
-                    message: currentGame !== null && currentGame.favorite ? dataText[lang].games_removeFavorite : dataText[lang].games_addFavorite
-
-                    text_color: colorScheme[theme].details
-                    front_color: colorScheme[theme].details.replace(/#/g, "#26");
-                    back_color: colorScheme[theme].details.replace(/#/g, "#26");
-                    input_button: osdScheme[controlScheme].BTNL
-
-                    visible: currentGame !== null
-                }
-
-                Controls {
                     id: button_U
 
                     message: {
@@ -696,6 +683,19 @@ FocusScope {
                     front_color: colorScheme[theme].filters.replace(/#/g, "#26");
                     back_color: colorScheme[theme].filters.replace(/#/g, "#26");
                     input_button: osdScheme[controlScheme].BTNU
+                }
+
+                Controls {
+                    id: button_L
+
+                    message: currentGame !== null && currentGame.favorite ? dataText[lang].games_removeFavorite : dataText[lang].games_addFavorite
+
+                    text_color: colorScheme[theme].details
+                    front_color: colorScheme[theme].details.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].details.replace(/#/g, "#26");
+                    input_button: osdScheme[controlScheme].BTNL
+
+                    visible: currentGame !== null
                 }
             }
 
