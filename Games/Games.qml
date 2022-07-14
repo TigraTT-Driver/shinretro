@@ -181,7 +181,7 @@ FocusScope {
                                 elide: Text.ElideRight
                                 font {
                                     family: robotoSlabRegular.name
-                                    pixelSize: vpx(32  * fontScalingFactor)
+                                    pixelSize: vpx(32)
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
@@ -359,7 +359,11 @@ FocusScope {
                 }
                 Item {
                     width: parent.width * 0.31
-                    height: parent.height * 0.9
+                    height: {
+                        if ((gridVR >= 3) && (fontScalingFactor > 1.1))
+                            parent.height * 0.75
+                        else parent.height * 0.9
+                    }
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
