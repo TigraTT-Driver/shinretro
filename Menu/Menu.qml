@@ -69,7 +69,7 @@ FocusScope {
                             font {
                                 family: glyphs.name;
                                 pixelSize:{
-                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.1))
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -93,7 +93,7 @@ FocusScope {
                             font {
                                 family: glyphs.name;
                                 pixelSize:{
-                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.1))
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -143,7 +143,7 @@ FocusScope {
                         font {
                             family: glyphs.name;
                                 pixelSize:{
-                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.3))
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
                                         parent.height * 0.7
                                     else parent.height * 0.9
                                 }
@@ -254,7 +254,7 @@ FocusScope {
                         font {
                             family: glyphs.name;
                                 pixelSize:{
-                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.3))
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
                                         parent.height * 0.75
                                     else parent.height * 0.9
                                 }
