@@ -64,7 +64,7 @@ Item {
                 text: modelData.name
                 font {
                     family: global.fonts.condensed
-                    pixelSize: vpx(42)
+                    pixelSize: vpx(42  * fontScalingFactor)
                 }
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
@@ -81,7 +81,7 @@ Item {
                 text: modelData.games.count+" "+dataText[lang].collectionDetails_gamesAvailable
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(20)
+                    pixelSize: vpx(20  * fontScalingFactor)
                 }
                 color: colorScheme[theme].accent
             }
@@ -101,7 +101,7 @@ Item {
                     color: "transparent"
                     Item {
                         width: vpx(55)
-                        height: vpx(15)
+                        height: vpx(15  * fontScalingFactor)
                         anchors.centerIn: parent
 
                         Image {
@@ -133,7 +133,7 @@ Item {
                     font {
                         family: montserratBold.name
                         weight: Font.Medium
-                        pixelSize: vpx(14)
+                        pixelSize: vpx(14  * fontScalingFactor)
                     }
                     bottomPadding: vpx(2)
                     color: colorScheme[theme].text

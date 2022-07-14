@@ -37,15 +37,16 @@ FocusScope {
             Item {
                 id: menu_inner
                 width: parent.width * 0.5
-                height: parent.height
+                height: parent.height * fontScalingFactor
                 anchors {
                     verticalCenter: parent.verticalCenter
+                    left: parent.left
                 }
 
                 ListView {
                     id: lv_menu
                     width: contentItem.childrenRect.width
-                    height: vpx(22)
+                    height: vpx(22 * fontScalingFactor)
                     anchors {
                         verticalCenter: parent.verticalCenter
                     }
@@ -60,13 +61,18 @@ FocusScope {
 
                     header: Item {
                         width: vpx(40)
-                        height: vpx(22)
+                        height: vpx(22  * fontScalingFactor)
                         visible: osc === "No"
+                        anchors.verticalCenter: parent.verticalCenter
                         Text {
                             text: osdScheme[controlScheme].BTNLB
                             font {
                                 family: glyphs.name;
-                                pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                        parent.height * 0.66
+                                    else parent.height * 0.9
+                                }
                             }
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
@@ -79,13 +85,18 @@ FocusScope {
 
                     footer: Item {
                         width: vpx(40)
-                        height: vpx(22)
+                        height: vpx(22  * fontScalingFactor)
                         visible: osc === "No"
+                        anchors.verticalCenter: parent.verticalCenter
                         Text {
                             text: osdScheme[controlScheme].BTNRB
                             font {
                                 family: glyphs.name;
-                                pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                        parent.height * 0.66
+                                    else parent.height * 0.9
+                                }
                             }
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
@@ -106,7 +117,7 @@ FocusScope {
 
                     Component.onCompleted: positionViewAtIndex(currentMenuIndex, ListView.Beginning)
 
-                    spacing: vpx(20)
+                    spacing: vpx(20 * fontScalingFactor)
                 }
             }
 
@@ -120,7 +131,7 @@ FocusScope {
 
                 Item {
                     width: vpx(40)
-                    height: vpx(22)
+                    height: vpx(22  * fontScalingFactor)
                     visible: osc === "No"
                     anchors {
                         right: parent.right;
@@ -131,7 +142,11 @@ FocusScope {
                         text: osdScheme[controlScheme].BTNLT
                         font {
                             family: glyphs.name;
-                            pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
+                                        parent.height * 0.7
+                                    else parent.height * 0.9
+                                }
                         }
                         color: colorScheme[theme].accentalt
                         visible: root.state === "games"
@@ -228,7 +243,7 @@ FocusScope {
 
                 Item {
                     width: vpx(40)
-                    height: vpx(22)
+                    height: vpx(22  * fontScalingFactor)
                     visible: osc === "No"
                     anchors {
                         right: parent.right; leftMargin: -width *2
@@ -238,7 +253,11 @@ FocusScope {
                         text: osdScheme[controlScheme].BTNRT
                         font {
                             family: glyphs.name;
-                            pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
+                                        parent.height * 0.75
+                                    else parent.height * 0.9
+                                }
                         }
                         color: colorScheme[theme].accentalt
                         visible: root.state === "games"

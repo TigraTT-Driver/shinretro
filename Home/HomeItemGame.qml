@@ -168,7 +168,7 @@ Item {
         font {
             family: global.fonts.sans
             weight: Font.Medium
-            pixelSize: vpx(16)
+            pixelSize: vpx(16  * fontScalingFactor)
         }
         color: colorScheme[theme].text
 

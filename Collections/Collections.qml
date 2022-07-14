@@ -229,7 +229,7 @@ FocusScope {
         text: (currentCollectionIndex+1)+"/"+pv_collections.count
         font {
             family: robotoSlabThin.name
-            pixelSize: vpx(16)
+            pixelSize: vpx(16  * fontScalingFactor)
         }
     }
 

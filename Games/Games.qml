@@ -197,7 +197,7 @@ FocusScope {
                                         family: global.fonts.sans
                                         weight: Font.Light
                                         italic: true
-                                        pixelSize: vpx(14)
+                                        pixelSize: vpx(14  * fontScalingFactor)
                                     }
                                     color: colorScheme[theme].accent
                                 }
@@ -207,7 +207,7 @@ FocusScope {
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Medium
-                                        pixelSize: vpx(14)
+                                        pixelSize: vpx(14  * fontScalingFactor)
                                     }
                                     color: colorScheme[theme].text
                                 }
@@ -245,7 +245,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12)
+                                            pixelSize: vpx(12  * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].text
                                     }
@@ -263,7 +263,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12)
+                                            pixelSize: vpx(12  * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].favorite
                                     }
@@ -288,7 +288,7 @@ FocusScope {
                                             font {
                                                 family: global.fonts.sans
                                                 weight: Font.Medium
-                                                pixelSize: vpx(12)
+                                                pixelSize: vpx(12  * fontScalingFactor)
                                             }
                                             color: colorScheme[theme].text
                                         }
@@ -311,7 +311,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.condensed
                                             weight: Font.Light
-                                            pixelSize: vpx(14)
+                                            pixelSize: vpx(14  * fontScalingFactor)
                                         }
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
@@ -359,7 +359,11 @@ FocusScope {
                 }
                 Item {
                     width: parent.width * 0.31
-                    height: parent.height * 0.9
+                    height: {
+                        if ((gridVR >= 3) && (fontScalingFactor > 1.1))
+                            parent.height * 0.75
+                        else parent.height * 0.9
+                    }
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
@@ -400,7 +404,7 @@ FocusScope {
                     color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
-                        pixelSize: vpx(42)
+                        pixelSize: vpx(42  * fontScalingFactor)
                     }
                 }
             }
@@ -416,7 +420,7 @@ FocusScope {
                     color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
-                        pixelSize: vpx(42)
+                        pixelSize: vpx(42  * fontScalingFactor)
                     }
                 }
             }
@@ -709,7 +713,7 @@ FocusScope {
                 color: colorScheme[theme].text
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(14)
+                    pixelSize: vpx(14  * fontScalingFactor)
                 }
             }
         }

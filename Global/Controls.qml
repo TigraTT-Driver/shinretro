@@ -47,7 +47,7 @@ Item {
                 family: global.fonts.sans
                 weight: Font.Light
                 italic: true
-                pixelSize: vpx(12)
+                pixelSize: vpx(12 * fontScalingFactor)
                 capitalization: Font.AllUppercase
             }
             topPadding: vpx(1)
@@ -56,8 +56,8 @@ Item {
         }
 
         Item{
-            height: vpx(16)
-            width: vpx(14)
+            height: vpx(16  * fontScalingFactor)
+            width: vpx(14  * fontScalingFactor)
             Text {
                 text: input_button
                 topPadding: vpx(1)

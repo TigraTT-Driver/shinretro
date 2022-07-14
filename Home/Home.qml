@@ -121,7 +121,7 @@ FocusScope {
             text: ( lastplayed_left.focus || lastplayed_right.focus ) ? "<b>"+dataText[lang].home_continue+"</b>" : dataText[lang].home_continue
             font {
                 family: robotoSlabLight.name
-                pixelSize: vpx(22)
+                pixelSize: vpx(22  * fontScalingFactor)
             }
             color: colorScheme[theme].text
         }
@@ -257,7 +257,7 @@ FocusScope {
             text: ( favorites.focus ) ? "<b>"+dataText[lang].home_favorites+"</b>" : dataText[lang].home_favorites
             font {
                 family: robotoSlabLight.name
-                pixelSize: vpx(22)
+                pixelSize: vpx(22  * fontScalingFactor)
             }
             color: colorScheme[theme].text
         }
@@ -289,7 +289,7 @@ FocusScope {
                 verticalAlignment : Text.AlignVCenter
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(22)
+                    pixelSize: vpx(22  * fontScalingFactor)
                 }
                 color: colorScheme[theme].textalt
             }
@@ -370,7 +370,7 @@ FocusScope {
     Row {
         id: play_message
         width: parent.width * 0.9
-        height: vpx(18)
+        height: vpx(18  * fontScalingFactor)
         visible: osc === "No" && currentGame
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
