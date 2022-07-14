@@ -68,7 +68,7 @@ FocusScope {
             BTNRT:glyphs.uInputBtnRt,
             BTNU: glyphs.uInputBtnU
         },
-        "Japanese": {
+        "Universal-JP": {
             BTND: glyphs.uInputBtnR,
             BTNL: glyphs.uInputBtnU,
             BTNLB: glyphs.uInputBtnLb,
