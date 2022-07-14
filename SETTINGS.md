@@ -44,6 +44,12 @@ hides all onescreen control information (top bar beside tabs, collection informa
 |--|--|
 | **no** | don't hide |
 | yes | hide |
+### Dynamic font scaling
+tries to scale fonts if a display with a high pixel density is detected (small screens wiht high resolution)
+| setting |  |
+|--|--|
+| **no** | don't scale fonts based on pixel densitiy |
+| yes | scale fonts based on pixel densitiy |
 ### Controls scheme
 changes the used button layout for onscreen controls
 | setting |  |
