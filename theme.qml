@@ -56,7 +56,7 @@ FocusScope {
         property string disabled: '\uf204';
         property string enabled: '\uf205';
         source: "assets/fonts/glyphs.ttf";
-    }    
+    }
     // Control schemes
     property variant osdScheme: {
         "Universal": {
@@ -68,6 +68,16 @@ FocusScope {
             BTNRB: glyphs.uInputBtnRb,
             BTNRT:glyphs.uInputBtnRt,
             BTNU: glyphs.uInputBtnU
+        },
+        "Universal-JP": {
+            BTND: glyphs.uInputBtnR,
+            BTNL: glyphs.uInputBtnU,
+            BTNLB: glyphs.uInputBtnLb,
+            BTNLT: glyphs.uInputBtnLt,
+            BTNR: glyphs.uInputBtnD,
+            BTNRB: glyphs.uInputBtnRb,
+            BTNRT:glyphs.uInputBtnRt,
+            BTNU: glyphs.uInputBtnL
         },
         "XBOX": {
             BTND: glyphs.xInputBtnD,
