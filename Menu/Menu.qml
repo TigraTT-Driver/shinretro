@@ -68,7 +68,11 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNLB
                             font {
                                 family: glyphs.name;
-                                pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.1))
+                                        parent.height * 0.66
+                                    else parent.height * 0.9
+                                }
                             }
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
@@ -88,7 +92,11 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNRB
                             font {
                                 family: glyphs.name;
-                                pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.1))
+                                        parent.height * 0.66
+                                    else parent.height * 0.9
+                                }
                             }
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
@@ -134,7 +142,11 @@ FocusScope {
                         text: osdScheme[controlScheme].BTNLT
                         font {
                             family: glyphs.name;
-                            pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.3))
+                                        parent.height * 0.7
+                                    else parent.height * 0.9
+                                }
                         }
                         color: colorScheme[theme].accentalt
                         visible: root.state === "games"
@@ -241,7 +253,11 @@ FocusScope {
                         text: osdScheme[controlScheme].BTNRT
                         font {
                             family: glyphs.name;
-                            pixelSize: parent.height * 0.9
+                                pixelSize:{
+                                    if ((controlScheme != "Universal") && (fontScalingFactor > 1.3))
+                                        parent.height * 0.75
+                                    else parent.height * 0.9
+                                }
                         }
                         color: colorScheme[theme].accentalt
                         visible: root.state === "games"
