@@ -98,6 +98,16 @@ FocusScope {
             BTNRB: glyphs.pInputBtnRb,
             BTNRT:glyphs.pInputBtnRt,
             BTNU: glyphs.pInputBtnU
+        },
+        "PS-JP": {
+            BTND: glyphs.pInputBtnR,
+            BTNL: glyphs.pInputBtnU,
+            BTNLB: glyphs.pInputBtnLb,
+            BTNLT: glyphs.pInputBtnLt,
+            BTNR: glyphs.pInputBtnD,
+            BTNRB: glyphs.pInputBtnRb,
+            BTNRT:glyphs.pInputBtnRt,
+            BTNU: glyphs.pInputBtnL
         }
     }
     // Color schemes

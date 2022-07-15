@@ -62,7 +62,7 @@ FocusScope {
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
             [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  "No,Yes" ],
-            [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS" ]
+            [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS,PS-JP" ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
