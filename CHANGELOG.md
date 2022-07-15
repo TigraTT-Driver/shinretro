@@ -1,4 +1,10 @@
 # Changelog
+## v0.137
+- changed icons for osc and others from svg to custom font for better rendering on Android
+- fallback artwork for steam games without portrait
+- option for dynamic font scaling
+- layout jumping fix, thx to [sargant](https://github.com/sargant)
+- japanese like osc (swapped Accept / Back), thx to [sargant](https://github.com/sargant)
 ## v0.136
 - portuguese translation, thx to [RickEves](https://github.com/RickEves)
 

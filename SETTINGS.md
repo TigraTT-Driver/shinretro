@@ -55,8 +55,10 @@ changes the used button layout for onscreen controls
 | setting |  |
 |--|--|
 | **Universal** | Universal, Switch like onscreen buttons |
+| Universal-JP | Universal, Switch like onscreen buttons, Japanese Layout (Swapped Accept and Back) |
 | XBOX | XBOX like onscreen buttons |
 | PS | Playstation like onscreen buttons |
+| PS-JP | Playstation like onscreen buttons, Japanese Layout (Swapped Accept and Back) |
 ## Home
 ### Video playback
 controls video playback on the home screen
