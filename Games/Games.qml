@@ -508,8 +508,9 @@ FocusScope {
                     }
                 }
 
-                highlightRangeMode: GridView.ApplyRange
-                snapMode: GridView.NoSnap
+                highlightRangeMode: GridView.StrictlyEnforceRange
+                snapMode: GridView.SnapToRow
+                highlightFollowsCurrentItem: true
 
                 focus: games.focus
 
