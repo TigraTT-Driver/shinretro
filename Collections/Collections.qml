@@ -235,7 +235,7 @@ FocusScope {
 
     // Buttons
     Row {
-        visible: osc === "No"
+        visible: osc === 0
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             right: parent.right

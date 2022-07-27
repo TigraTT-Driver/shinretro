@@ -371,7 +371,7 @@ FocusScope {
         id: play_message
         width: parent.width * 0.9
         height: vpx(18  * fontScalingFactor)
-        visible: osc === "No" && currentGame
+        visible: osc === 0 && currentGame
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             horizontalCenter: parent.horizontalCenter

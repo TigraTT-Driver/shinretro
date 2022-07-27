@@ -656,7 +656,7 @@ FocusScope {
             anchors.bottom: parent.bottom
 
             Row {
-                visible: osc === "No"
+                visible: osc === 0
                 anchors {
                     verticalCenter: parent.verticalCenter
                     left: parent.left

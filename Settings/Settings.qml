@@ -57,11 +57,11 @@ FocusScope {
             [
             [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "en,de,fr,pt" ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark,SteamOS" ],
-            [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  "No,Yes" ],
+            [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
-            [ dataText[lang].settings_general_hideOSC,  "osc",  "",  "No,Yes" ],
-            [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  "No,Yes" ],
+            [ dataText[lang].settings_general_hideOSC,  "osc",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS,PS-JP" ]
             ].forEach(function(element) {
                 append({
@@ -85,8 +85,8 @@ FocusScope {
         id: homeSettingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_global_videoPlayback,  "homeVideo",  "",  "Yes,No" ],
-            [ dataText[lang].settings_global_videoMute,  "homeVideoMute",  "",  "No,Yes" ]
+            [ dataText[lang].settings_global_videoPlayback,  "homeVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_global_videoMute,  "homeVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
@@ -111,9 +111,9 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
-            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  "Yes,No" ],
-            [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  "Yes,No" ],
-            [ dataText[lang].settings_global_videoMute,  "collectionVideoMute",  "",  "No,Yes" ]
+            [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_global_videoMute,  "collectionVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
@@ -139,8 +139,8 @@ FocusScope {
             [ dataText[lang].settings_games_layout,  "gamesLayout",  "",  "BoxArt-Grid,Screenshot-Grid" ],
             [ dataText[lang].settings_games_gridItemsPerRow,  "gamesGridIPR",  "",  "4,5,6,2,3" ],
             [ dataText[lang].settings_games_gridItemsViewableRows,  "gamesGridVR",  "",  "1,2,3,4,5,dynamic" ],
-            [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  "Yes,No" ],
-            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  "No,Yes" ]
+            [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
@@ -373,7 +373,7 @@ FocusScope {
     }
     // Buttons
     Row {
-        visible: osc === "No"
+        visible: osc === 0
         anchors {
             bottom: parent.bottom; bottomMargin: vpx(40)
             right: parent.right

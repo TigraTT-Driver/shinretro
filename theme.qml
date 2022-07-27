@@ -177,6 +177,8 @@ FocusScope {
     // Text strings
     property variant dataText: {
         "en": {
+            global_yes: "Yes",
+            global_no: "No",
             global_back: "GO <b>BACK</b>",
             global_select: "OK",
             global_games: "GAMES",
@@ -221,6 +223,8 @@ FocusScope {
             menu_games:"games"
         },
         "de": {
+            global_yes: "Ja",
+            global_no: "Nein",
             global_back: "<b>ZURÜCK</b>",
             global_select: "OK",
             global_games: "SPIELE",
@@ -265,6 +269,8 @@ FocusScope {
             menu_games:"Spiele"
         },
         "fr": {
+            global_yes: "Oui",
+            global_no: "Non",
             global_back: "<b>RETOUR</b>",
             global_select: "OK",
             global_games: "JEUX",
@@ -309,6 +315,8 @@ FocusScope {
             menu_games:"jeux"
         },             
         "pt": {
+            global_yes: "Sim",
+            global_no: "Não",
             global_back: "<b>VOLTAR</b>",
             global_select: "OK",
             global_games: "JOGOS",
@@ -360,9 +368,9 @@ FocusScope {
     property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
-    property var osc : api.memory.get('osc') || "No"
+    property var osc : api.memory.get('oscIndex') || 0
     property double fontScalingFactor : {
-        if (api.memory.get('dynamicFontScaling') == "Yes") {
+        if (api.memory.get('dynamicFontScalingIndex') == "1") {
             if  ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.5)
                 return "1.5";
             else if ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.0)
@@ -374,15 +382,15 @@ FocusScope {
         }    
     }
     property var mutesfx : {
-        if (api.memory.get('mutesfx') == "Yes") {
+        if (api.memory.get('mutesfxIndex') == "1") {
             return "0.0";
         } else {
             return "1.0";
         }
     }
-    property var homeVideo : api.memory.get('homeVideo') || "Yes"
+    property var homeVideo : api.memory.get('homeVideoIndex') || 0
     property var homeVideoMute : {
-        if (api.memory.get('homeVideoMute') == "Yes") {
+        if (api.memory.get('homeVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
@@ -390,10 +398,10 @@ FocusScope {
     }
     property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
-    property var allGamesCollection : api.memory.get('allGamesCollection') || "Yes"
-    property var collectionVideo : api.memory.get('collectionVideo') || "Yes"
+    property var allGamesCollection : api.memory.get('allGamesCollectionIndex') || 0
+    property var collectionVideo : api.memory.get('collectionVideoIndex') || 0
     property var collectionVideoMute : {
-        if (api.memory.get('collectionVideoMute') == "Yes") {
+        if (api.memory.get('collectionVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
@@ -402,9 +410,9 @@ FocusScope {
     property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
     property var gamesGridVR : api.memory.get('gamesGridVR') || 1
-    property var gamesVideo : api.memory.get('gamesVideo') || "Yes"
+    property var gamesVideo : api.memory.get('gamesVideoIndex') || 0
     property var gamesVideoMute : {
-        if (api.memory.get('gamesVideoMute') == "Yes") {
+        if (api.memory.get('gamesVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
@@ -421,7 +429,7 @@ FocusScope {
     // List of game collections
     property var allCollections: {
         const collections = api.collections.toVarArray()
-        if (allGamesCollection != "No") {
+        if (allGamesCollection != "1") {
             collections.unshift({"name":  dataText[lang].collection_all, "shortName": "all", "games": api.allGames})
         }
         return collections

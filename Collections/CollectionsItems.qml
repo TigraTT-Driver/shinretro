@@ -49,7 +49,7 @@ Item {
             GameVideo {
                 game: currentCollection
                 anchors.fill: img_collection_bg
-                playing: isCurrentItem && collectionVideo != "No"
+                playing: isCurrentItem && collectionVideo != "1"
                 sound: collectionVideoMute
             }
             Rectangle {

@@ -158,7 +158,7 @@ Item {
     GameVideo {
         game: gameData
         anchors.fill: parent
-        playing: isCurrentItem && gamesVideo != "No"
+        playing: isCurrentItem && gamesVideo != "1"
         sound: gamesVideoMute
     }
 

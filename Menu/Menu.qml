@@ -62,7 +62,7 @@ FocusScope {
                     header: Item {
                         width: vpx(40)
                         height: vpx(22  * fontScalingFactor)
-                        visible: osc === "No"
+                        visible: osc === 0
                         anchors.verticalCenter: parent.verticalCenter
                         Text {
                             text: osdScheme[controlScheme].BTNLB
@@ -86,7 +86,7 @@ FocusScope {
                     footer: Item {
                         width: vpx(40)
                         height: vpx(22  * fontScalingFactor)
-                        visible: osc === "No"
+                        visible: osc === 0
                         anchors.verticalCenter: parent.verticalCenter
                         Text {
                             text: osdScheme[controlScheme].BTNRB
@@ -132,7 +132,7 @@ FocusScope {
                 Item {
                     width: vpx(40)
                     height: vpx(22  * fontScalingFactor)
-                    visible: osc === "No"
+                    visible: osc === 0
                     anchors {
                         right: parent.right;
                         rightMargin: vpx(290)
@@ -244,7 +244,7 @@ FocusScope {
                 Item {
                     width: vpx(40)
                     height: vpx(22  * fontScalingFactor)
-                    visible: osc === "No"
+                    visible: osc === 0
                     anchors {
                         right: parent.right; leftMargin: -width *2
                         verticalCenter: parent.verticalCenter
