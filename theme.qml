@@ -293,7 +293,7 @@ FocusScope {
             settings_general_logoVariant: "Style des logos",
             settings_general_region: "Région",
             settings_general_hideOSC: "Masquer les contrôles",
-            settings_general_dynamicFontScaling: "Dynamic font scaling",
+            settings_general_dynamicFontScaling: "Mise à l'échelle dynamique des polices",
             settings_general_OSCScheme: "Style des contrôles",
             settings_global_videoPlayback: "Activer les vidéos",
             settings_global_videoMute: "Désactiver le son des vidéos",
