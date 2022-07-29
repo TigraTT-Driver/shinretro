@@ -58,7 +58,7 @@ FocusScope {
             [ dataText[lang].settings_general_language,  "lang",  "-WIP-",  "en,de,fr,pt" ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  "Dark,Light,OzoneDark,SteamOS" ],
             [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  "mono,color" ],
+            [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  dataText[lang].global_mono + "," + dataText[lang].global_color ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],

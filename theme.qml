@@ -177,6 +177,8 @@ FocusScope {
     // Text strings
     property variant dataText: {
         "en": {
+            global_mono: "mono",
+            global_color: "color",
             global_yes: "Yes",
             global_no: "No",
             global_back: "GO <b>BACK</b>",
@@ -223,6 +225,8 @@ FocusScope {
             menu_games:"games"
         },
         "de": {
+            global_mono: "mono",
+            global_color: "color",
             global_yes: "Ja",
             global_no: "Nein",
             global_back: "<b>ZURÜCK</b>",
@@ -269,6 +273,8 @@ FocusScope {
             menu_games:"Spiele"
         },
         "fr": {
+            global_mono: "monochrome",
+            global_color: "couleur",
             global_yes: "Oui",
             global_no: "Non",
             global_back: "<b>RETOUR</b>",
@@ -315,6 +321,8 @@ FocusScope {
             menu_games:"jeux"
         },             
         "pt": {
+            global_mono: "mono",
+            global_color: "color",
             global_yes: "Sim",
             global_no: "Não",
             global_back: "<b>VOLTAR</b>",
@@ -365,7 +373,14 @@ FocusScope {
     // Load settings
     property var lang: api.memory.get('lang') || "en"
     property var theme: api.memory.get('theme') || "Dark"
-    property var logoVariant : api.memory.get('logoVariant') || "mono"
+    property var logoVariant : {
+        if (api.memory.get('logoVariantIndex') == "0") {
+            return "mono";
+        } else {
+            return "color";
+        }
+    }
+    //property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('oscIndex') || 0
