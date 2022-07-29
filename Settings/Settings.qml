@@ -109,7 +109,7 @@ FocusScope {
         id: collectionSettingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  "dimm,bright" ],
+            [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  dataText[lang].global_dimm + "," + dataText[lang].global_bright ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
