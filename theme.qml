@@ -177,6 +177,10 @@ FocusScope {
     // Text strings
     property variant dataText: {
         "en": {
+            global_Dark: "Dark",
+            global_Light: "Light",
+            global_OzoneDark: "OzoneDark",
+            global_SteamOS: "SteamOS",
             global_mono: "mono",
             global_color: "color",
             global_yes: "Yes",
@@ -225,6 +229,10 @@ FocusScope {
             menu_games:"games"
         },
         "de": {
+            global_Dark: "Dark",
+            global_Light: "Light",
+            global_OzoneDark: "OzoneDark",
+            global_SteamOS: "SteamOS",
             global_mono: "mono",
             global_color: "color",
             global_yes: "Ja",
@@ -273,6 +281,10 @@ FocusScope {
             menu_games:"Spiele"
         },
         "fr": {
+            global_Dark: "Sombre",
+            global_Light: "Clair",
+            global_OzoneDark: "OzoneDark",
+            global_SteamOS: "SteamOS",
             global_mono: "monochrome",
             global_color: "couleur",
             global_yes: "Oui",
@@ -321,6 +333,10 @@ FocusScope {
             menu_games:"jeux"
         },             
         "pt": {
+            global_Dark: "Dark",
+            global_Light: "Light",
+            global_OzoneDark: "OzoneDark",
+            global_SteamOS: "SteamOS",
             global_mono: "mono",
             global_color: "color",
             global_yes: "Sim",
@@ -372,7 +388,19 @@ FocusScope {
 
     // Load settings
     property var lang: api.memory.get('lang') || "en"
-    property var theme: api.memory.get('theme') || "Dark"
+    //property var theme: api.memory.get('theme') || "Dark"
+    property var theme : {
+        if (api.memory.get('themeIndex') == "0") {
+            return "Dark";
+        } else if (api.memory.get('themeIndex') == "1") {
+            return "Light";
+        } else if (api.memory.get('themeIndex') == "2") {
+            return "OzoneDark";
+        } else if (api.memory.get('themeIndex') == "3") {
+            return "SteamOS";
+        }
+    }
+    //property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var logoVariant : {
         if (api.memory.get('logoVariantIndex') == "0") {
             return "mono";
@@ -380,7 +408,6 @@ FocusScope {
             return "color";
         }
     }
-    //property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var region : api.memory.get('region') || "pal"
     property var controlScheme : api.memory.get('controlScheme') || "Universal"
     property var osc : api.memory.get('oscIndex') || 0
