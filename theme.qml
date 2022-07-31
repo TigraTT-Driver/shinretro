@@ -396,7 +396,6 @@ FocusScope {
 
     // Load settings
     property var lang: api.memory.get('lang') || "en"
-    //property var theme: api.memory.get('theme') || "Dark"
     property var theme : {
         if (api.memory.get('themeIndex') == "1") {
             return "Light";
@@ -408,7 +407,6 @@ FocusScope {
             return "Dark";
         }
     }
-    //property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var logoVariant : {
         if (api.memory.get('logoVariantIndex') == "1") {
             return "color";
