@@ -33,6 +33,10 @@ Forked from [Valentin MEZIN](https://github.com/valsou)'s theme [neoretrō](http
   Theme review by [Retro Gaming Replay](https://www.youtube.com/channel/UC_9gbkxeMk3usXvSzYzimMw)
   
   [![new Pegasus front end theme neo retro dark - it's a great game display for Android devices](https://img.youtube.com/vi/YbPcsC95Qc0/0.jpg)](http://www.youtube.com/watch?v=YbPcsC95Qc0)
+
+  Custom Version of [RoeTaKa](https://www.youtube.com/channel/UCAbHcM41hzH9lku_3XqFYZg) with changed collection images
+  
+  [![AYN Odin Pro - Pegasus: Custom Shinretro](https://img.youtube.com/vi/sm5J7JoTYs8/0.jpg)](https://www.youtube.com/watch?v=sm5J7JoTYs8)
   
 </details>
   
@@ -91,3 +95,4 @@ You can find explanations for the theme settings [here](SETTINGS.md).
 - [Luciano Oliveira](https://github.com/luciano-work) : Creator of the dark color scheme for neoretrō
 - [HunkDeath](https://github.com/HunkDeath)  & [fansubmaniac](https://github.com/fansubmaniac) : french translations
 - [RickEves](https://github.com/RickEves)  : portuguese translations
+- [RoeTaKa](https://www.youtube.com/channel/UCAbHcM41hzH9lku_3XqFYZg)  : custom sfx & bgm music
