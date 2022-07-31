@@ -10,6 +10,7 @@ import "Collections"
 import "Menu"
 import "Games"
 import "Settings"
+import "BGM"
 
 FocusScope {
     id: root
@@ -209,8 +210,10 @@ FocusScope {
             home_favorites: "Favorites",
             home_play: "Play",
             settings_general: "General",
+            settings_general_restart: "(Requires restart)",
             settings_general_language: "Language",
             settings_general_colorScheme: "Color scheme",
+            settings_general_music: "Music",
             settings_general_muteSounds: "Mute sounds",
             settings_general_logoVariant: "Logo variation",
             settings_general_region: "Region",
@@ -263,8 +266,10 @@ FocusScope {
             home_favorites: "Favoriten",
             home_play: "Spiele",
             settings_general: "Allgemein",
+            settings_general_restart: "(Benötigt Neustart)",
             settings_general_language: "Sprache",
             settings_general_colorScheme: "Farbschema",
+            settings_general_music: "Musik",
             settings_general_muteSounds: "Töne stummschalten",
             settings_general_logoVariant: "Logo-Variation",
             settings_general_region: "Region",
@@ -317,8 +322,10 @@ FocusScope {
             home_favorites: "Favoris",
             home_play: "Jouer",
             settings_general: "Général",
+            settings_general_restart: "(Redémarrage nécessaire)",
             settings_general_language: "Langue",
             settings_general_colorScheme: "Style de couleur",
+            settings_general_music: "Musique",
             settings_general_muteSounds: "Désactiver le son",
             settings_general_logoVariant: "Style des logos",
             settings_general_region: "Région",
@@ -371,8 +378,10 @@ FocusScope {
             home_favorites: "Favoritos",
             home_play: "Jogar",
             settings_general: "Geral",
+            settings_general_restart: "(Requer reinício)",
             settings_general_language: "Idioma",
             settings_general_colorScheme: "Estilo de cores",
+            settings_general_music: "Música",
             settings_general_muteSounds: "Silenciar sons",
             settings_general_logoVariant: "Estilo de logos",
             settings_general_region: "Região",
@@ -394,7 +403,16 @@ FocusScope {
         }               
     }                
 
+    Music { id: music}
     // Load settings
+
+    property var playBGM : {
+        if (api.memory.get('musicIndex') == 1) {
+            playBGM: true;
+        } else {
+            playBGM: false;
+        }
+    }
     property var lang: api.memory.get('lang') || "en"
     property var theme : {
         if (api.memory.get('themeIndex') == "1") {
@@ -883,7 +901,7 @@ FocusScope {
         if (api.keys.isPrevPage(event)) {
 
             //PrevPage sound
-            sfxBack.play();
+            sfxPage2.play();
 
             event.accepted = true;
             if (currentMenuIndex > 0)
@@ -893,7 +911,7 @@ FocusScope {
         if (api.keys.isNextPage(event)) {
 
             //PrevPage sound
-            sfxBack.play();
+            sfxPage.play();
 
             event.accepted = true;
             if (currentMenuIndex < (dataMenu.length - 1))
@@ -925,6 +943,26 @@ FocusScope {
     SoundEffect {
         id: sfxPlay
         source: "assets/sounds/play.wav"
+        volume: mutesfx
+    }
+    SoundEffect {
+        id: sfxPage
+        source: "assets/sounds/page.wav"
+        volume: mutesfx
+    }
+    SoundEffect {
+        id: sfxPage2
+        source: "assets/sounds/page2.wav"
+        volume: mutesfx
+    }
+    SoundEffect {
+        id: sfxCollection
+        source: "assets/sounds/collection.wav"
+        volume: mutesfx
+    }
+    SoundEffect {
+        id: sfxCollection2
+        source: "assets/sounds/collection2.wav"
         volume: mutesfx
     }
 }

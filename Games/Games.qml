@@ -593,8 +593,8 @@ FocusScope {
                         }
                         else{
                             event.accepted = true;
-                            sfxNav.play();
-                            if (api.keys.isPageUp(event)) {
+                             if (api.keys.isPageDown(event)) {
+				                sfxCollection.play();
                                 if (currentCollectionIndex >= api.collections.count - 1) {
                                     currentCollectionIndex = 0;
                                 }
@@ -603,6 +603,7 @@ FocusScope {
                                 }
                             }   
                             else {
+                                sfxCollection2.play();
                                 if (currentCollectionIndex <= 0)
                                     currentCollectionIndex = api.collections.count - 1
                                 else
