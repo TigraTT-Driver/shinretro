@@ -177,14 +177,14 @@ FocusScope {
     // Text strings
     property variant dataText: {
         "en": {
-            global_dimm: "dimm",
-            global_bright: "bright",
-            global_Dark: "Dark",
-            global_Light: "Light",
-            global_OzoneDark: "OzoneDark",
-            global_SteamOS: "SteamOS",
-            global_mono: "mono",
-            global_color: "color",
+            settings_collection_accentColor_dimm: "dimm",
+            settings_collection_accentColor_bright: "bright",
+            settings_general_colorScheme_Dark: "Dark",
+            settings_general_colorScheme_Light: "Light",
+            settings_general_colorScheme_OzoneDark: "OzoneDark",
+            settings_general_colorScheme_SteamOS: "SteamOS",
+            settings_general_logoVariant_mono: "mono",
+            settings_general_logoVariant_color: "color",
             global_yes: "Yes",
             global_no: "No",
             global_back: "GO <b>BACK</b>",
@@ -231,14 +231,14 @@ FocusScope {
             menu_games:"games"
         },
         "de": {
-            global_dimm: "dimm",
-            global_bright: "bright",
-            global_Dark: "Dark",
-            global_Light: "Light",
-            global_OzoneDark: "OzoneDark",
-            global_SteamOS: "SteamOS",
-            global_mono: "mono",
-            global_color: "color",
+            settings_collection_accentColor_dimm: "Leuchtend",
+            settings_collection_accentColor_bright: "Gedämpft",
+            settings_general_colorScheme_Dark: "Hell",
+            settings_general_colorScheme_Light: "Dunkel",
+            settings_general_colorScheme_OzoneDark: "OzoneDark",
+            settings_general_colorScheme_SteamOS: "SteamOS",
+            settings_general_logoVariant_mono: "Einfarbig",
+            settings_general_logoVariant_color: "Bunt",
             global_yes: "Ja",
             global_no: "Nein",
             global_back: "<b>ZURÜCK</b>",
@@ -285,14 +285,14 @@ FocusScope {
             menu_games:"Spiele"
         },
         "fr": {
-            global_dimm: "Assombrir",
-            global_bright: "Illuminer",
-            global_Dark: "Sombre",
-            global_Light: "Clair",
-            global_OzoneDark: "OzoneDark",
-            global_SteamOS: "SteamOS",
-            global_mono: "Monochrome",
-            global_color: "Couleur",
+            settings_collection_accentColor_dimm: "Assombrir",
+            settings_collection_accentColor_bright: "Illuminer",
+            settings_general_colorScheme_Dark: "Sombre",
+            settings_general_colorScheme_Light: "Clair",
+            settings_general_colorScheme_OzoneDark: "OzoneDark",
+            settings_general_colorScheme_SteamOS: "SteamOS",
+            settings_general_logoVariant_mono: "Monochrome",
+            settings_general_logoVariant_color: "Couleur",
             global_yes: "Oui",
             global_no: "Non",
             global_back: "<b>RETOUR</b>",
@@ -339,14 +339,14 @@ FocusScope {
             menu_games:"Jeux"
         },             
         "pt": {
-            global_dimm: "dimm",
-            global_bright: "bright",
-            global_Dark: "Dark",
-            global_Light: "Light",
-            global_OzoneDark: "OzoneDark",
-            global_SteamOS: "SteamOS",
-            global_mono: "mono",
-            global_color: "color",
+            settings_collection_accentColor_dimm: "dimm",
+            settings_collection_accentColor_bright: "bright",
+            settings_general_colorScheme_Dark: "Dark",
+            settings_general_colorScheme_Light: "Light",
+            settings_general_colorScheme_OzoneDark: "OzoneDark",
+            settings_general_colorScheme_SteamOS: "SteamOS",
+            settings_general_logoVariant_mono: "mono",
+            settings_general_logoVariant_color: "color",
             global_yes: "Sim",
             global_no: "Não",
             global_back: "<b>VOLTAR</b>",
@@ -398,22 +398,22 @@ FocusScope {
     property var lang: api.memory.get('lang') || "en"
     //property var theme: api.memory.get('theme') || "Dark"
     property var theme : {
-        if (api.memory.get('themeIndex') == "0") {
-            return "Dark";
-        } else if (api.memory.get('themeIndex') == "1") {
+        if (api.memory.get('themeIndex') == "1") {
             return "Light";
         } else if (api.memory.get('themeIndex') == "2") {
             return "OzoneDark";
         } else if (api.memory.get('themeIndex') == "3") {
             return "SteamOS";
+        } else {
+            return "Dark";
         }
     }
     //property var logoVariant : api.memory.get('logoVariant') || "mono"
     property var logoVariant : {
-        if (api.memory.get('logoVariantIndex') == "0") {
-            return "mono";
-        } else {
+        if (api.memory.get('logoVariantIndex') == "1") {
             return "color";
+        } else {
+            return "mono";
         }
     }
     property var region : api.memory.get('region') || "pal"
@@ -446,12 +446,11 @@ FocusScope {
             return false;
         }
     }
-    //property var accentColor : api.memory.get('accentColor') || "dimm"
     property var accentColor : {
-        if (api.memory.get('accentColorIndex') == "0") {
-            return "dimm";
-        } else {
+        if (api.memory.get('accentColorIndex') == "1") {
             return "bright";
+        } else {
+            return "dimm";
         }
     }
     property var accentColorNr : api.memory.get('accentColorNrIndex') || 0

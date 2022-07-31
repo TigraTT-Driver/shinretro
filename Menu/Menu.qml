@@ -185,7 +185,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == 1
+                            visible: logoVariant == "color"
                             antialiasing: true
                         }
                         Image {
