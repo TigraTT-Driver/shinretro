@@ -234,8 +234,8 @@ FocusScope {
             menu_games:"games"
         },
         "de": {
-            settings_collection_accentColor_dimm: "Leuchtend",
-            settings_collection_accentColor_bright: "Gedämpft",
+            settings_collection_accentColor_dimm: "Gedämpft",
+            settings_collection_accentColor_bright: "Leuchtend",
             settings_general_colorScheme_Dark: "Dunkel",
             settings_general_colorScheme_Light: "Hell",
             settings_general_colorScheme_OzoneDark: "OzoneDark",
