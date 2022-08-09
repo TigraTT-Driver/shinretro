@@ -515,8 +515,8 @@ FocusScope {
                 focus: games.focus
 
                 Component.onCompleted: {
-                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition)
                     gv_games.currentIndex = api.memory.get('gameIndex') || 0;
+                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition)
                 }
 
                 Keys.onPressed: {
