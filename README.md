@@ -80,15 +80,14 @@ You can find explanations for the theme settings [here](SETTINGS.md).
 ## Work in progress
 - [ ] clean the code...
 - [ ] add more language options
-- [ ] add more color schemes
-- [ ] revise and add new or missing backgrounds/logos for collections and manufacturers 
+- [ ] missing backgrounds/logos for collections and manufacturers 
 
 ## Considerations / ideas for the future
 - [ ] provide some default collection videos
      - probalby need some original assets
 - [ ] per collection fallback default background images
-- [ ] filter by game genres / rework filtering system
-     - The current filter system can only map simple scenarios. An extended filtering system could make it easier to navigate through the collections. A separate filter menu in the game screen instead of the quick button switch would be needed..
+- [ ] filter by game genres
+- [ ] add an attract mode
 
 ## Thanks to:
 - [Valentin MEZIN](https://github.com/valsou) : Creator of the original neoretrō which this theme is based on
