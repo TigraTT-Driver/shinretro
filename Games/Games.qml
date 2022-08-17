@@ -4,6 +4,7 @@ import SortFilterProxyModel 0.2
 import QtMultimedia 5.15
 import "qrc:/qmlutils" as PegasusUtils
 import "../Global"
+import "../Filter"
 
 FocusScope {
 
@@ -11,10 +12,8 @@ FocusScope {
     property var currentGame: {
         if (gv_games.count === 0)
             return null;
-        if (games.state === "favorites")
-            return currentCollection.games.get(filteredGamesFav.mapToSource(currentGameIndex))
-        if (games.state === "multiplayer")
-            return currentCollection.games.get(filteredGamesMulti.mapToSource(currentGameIndex))    
+        if (games.state === "filtered")
+            return currentCollection.games.get(filteredGames.mapToSource(currentGameIndex))
         return currentCollection.games.get(currentGameIndex)
     }
 
@@ -25,17 +24,33 @@ FocusScope {
     }
 
     focus: games.focus
-    state: "all"
+        state: {
+        if(!filter.withMultiplayer && !filter.withFavorite && !filter.withTitle)
+            return "unfiltered"
+        else return "filtered"
+    }
 
     SortFilterProxyModel {
-        id: filteredGamesFav
+        id: filteredGames
         sourceModel: currentCollection.games
-        filters: ValueFilter { roleName: "favorite"; value: true; }
-    }
-    SortFilterProxyModel {
-        id: filteredGamesMulti
-        sourceModel: currentCollection.games
-        filters: RangeFilter { roleName: "players"; minimumValue: 2; }
+        filters: [
+            RegExpFilter {
+                roleName: "title"
+                pattern: filter.withTitle
+                caseSensitivity: Qt.CaseInsensitive
+                enabled: filter.withTitle
+            },
+            RangeFilter {
+                roleName: "players"
+                minimumValue: 2
+                enabled: filter.withMultiplayer
+            },
+            ValueFilter {
+                roleName: "favorite"
+                value: true
+                enabled: filter.withFavorite
+            }
+        ]
     }
 
     Behavior on focus {
@@ -393,14 +408,14 @@ FocusScope {
             visible: currentGame !== null
         }
 
-        // No favorite found
+        // No games found
         Item {
             anchors.centerIn: parent
-            visible: currentGame === null && (games.state === "favorites")
+            visible: currentGame === null && (games.state === "filtered")
             Rectangle {
                 Text {
                     anchors.centerIn: parent
-                    text: dataText[lang].global_noFavorites
+                    text: dataText[lang].global_noFilteredGames
                     color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
@@ -409,23 +424,6 @@ FocusScope {
                 }
             }
         }
-        // No multiplayer games found
-        Item {
-            anchors.centerIn: parent
-            visible: currentGame === null && (games.state === "multiplayer")
-            Rectangle {
-                Text {
-                    anchors.centerIn: parent
-                    text: dataText[lang].global_noMultiplayer
-                    color: colorScheme[theme].accentalt
-                    font {
-                        family: robotoSlabRegular.name
-                        pixelSize: vpx(42  * fontScalingFactor)
-                    }
-                }
-            }
-        }
-
 
         // Games
         Item {
@@ -461,10 +459,8 @@ FocusScope {
                 onCurrentIndexChanged: currentGameIndex = currentIndex
 
                 model: {
-                    if (games.state === "favorites")
-                        return filteredGamesFav
-                    if (games.state === "multiplayer")
-                        return filteredGamesMulti    
+                    if (games.state === "filtered")
+                        return filteredGames
                     return currentCollection.games
                 }
                 delegate: Item {
@@ -542,15 +538,8 @@ FocusScope {
                         //Accept game sound
                         sfxBack.play();
                         event.accepted = true;
-                        if (games.state === "all") {
-                            games.state = "favorites"
-                        }
-                        else if (games.state === "favorites") {
-                            games.state = "multiplayer"
-                        }
-                        else {
-                            games.state = "all"
-                        }
+                        filter.focus = true;
+                        return;
                     }
 
                     if (api.keys.isCancel(event)) {
@@ -596,7 +585,7 @@ FocusScope {
                             event.accepted = true;
                              if (api.keys.isPageDown(event)) {
 				                sfxCollection.play();
-                                if (currentCollectionIndex >= api.collections.count - 1) {
+                                if (currentCollectionIndex >= allCollections.length  - 1) {
                                     currentCollectionIndex = 0;
                                 }
                                 else {
@@ -606,12 +595,13 @@ FocusScope {
                             else {
                                 sfxCollection2.play();
                                 if (currentCollectionIndex <= 0)
-                                    currentCollectionIndex = api.collections.count - 1
+                                    currentCollectionIndex = allCollections.length  - 1
                                 else
                                     currentCollectionIndex--;
                             }
                             api.memory.set("currentCollectionIndex", currentCollectionIndex)
                             currentGameIndex = 0
+                            currentIndex = 0
                         }
                     }
                 }
@@ -680,11 +670,9 @@ FocusScope {
                     id: button_U
 
                     message: {
-                        if (games.state === "favorites")
-                            return dataText[lang].games_filterFavorites
-                        if (games.state === "multiplayer")
-                            return dataText[lang].games_filterMultiplayer    
-                        return dataText[lang].games_filterAll
+                        if (games.state === "filtered")
+                            return dataText[lang].games_filtered 
+                        return dataText[lang].games_filter
                     }
                     text_color: colorScheme[theme].filters
                     front_color: colorScheme[theme].filters.replace(/#/g, "#26");
@@ -719,6 +707,13 @@ FocusScope {
                     pixelSize: vpx(14  * fontScalingFactor)
                 }
             }
+
+            FilterLayer {
+                id: filter
+                anchors.fill: parent
+                onCloseRequested: gv_games.focus = true
+            }
+            
         }
     }
 }

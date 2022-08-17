@@ -1,4 +1,11 @@
 # Changelog
+## v0.138
+- Fix: missing last collection when switching between collections from the games screen with 'Äll games' collection on
+- new filtering menu for games screen
+- Fix: grid incorrect list focus on return from game
+- updated logos
+- RoeTaKa's custom sfx & bgm music
+- more translations
 ## v0.137
 - changed icons for osc and others from svg to custom font for better rendering on Android
 - fallback artwork for steam games without portrait
