@@ -2,7 +2,7 @@
 
 # shinretro
 
-Current Version: [0.137](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
+Current Version: [0.138](CHANGELOG.md) [![GPLv3 license](https://img.shields.io/badge/license-GPLv3-blue.svg)](LICENSE)
 
 A flexible and tweakable theme for [Pegasus Frontend](http://pegasus-frontend.org).
 Forked from [Valentin MEZIN](https://github.com/valsou)'s theme [neoretrō](https://github.com/valsou/neoretro) v0.131 and [Luciano Oliveira](https://github.com/luciano-work)'s dark variant.
