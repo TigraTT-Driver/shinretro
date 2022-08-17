@@ -585,7 +585,7 @@ FocusScope {
                             event.accepted = true;
                              if (api.keys.isPageDown(event)) {
 				                sfxCollection.play();
-                                if (currentCollectionIndex >= api.collections.count - 1) {
+                                if (currentCollectionIndex >= allCollections.length  - 1) {
                                     currentCollectionIndex = 0;
                                 }
                                 else {
@@ -595,7 +595,7 @@ FocusScope {
                             else {
                                 sfxCollection2.play();
                                 if (currentCollectionIndex <= 0)
-                                    currentCollectionIndex = api.collections.count - 1
+                                    currentCollectionIndex = allCollections.length  - 1
                                 else
                                     currentCollectionIndex--;
                             }
