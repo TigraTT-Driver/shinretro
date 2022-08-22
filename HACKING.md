@@ -122,3 +122,4 @@ header: Item {
    - The source property of the ColorOverlay must not point to the item that is the parant item at the same time, even if you use the items id instead of the paraent property. simply place both the Image and the ColorOverlay under a new Item property
    - set the image to invinsible
    - (not sure) use antialiasing for both, the image and the ColorOverlay 
+5. svg vecotrs should be single path object with a color fill to prevent bugs. No css styling
