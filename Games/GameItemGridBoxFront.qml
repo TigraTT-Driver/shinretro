@@ -69,6 +69,7 @@ Item {
                 }
             }
             fillMode: Image.PreserveAspectFit
+            horizontalAlignment: Image.AlignHCenter
             sourceSize: Qt.size(boxFront.width, boxFront.height)
             smooth: true
             asynchronous: true
@@ -106,11 +107,13 @@ Item {
             }
             Rectangle {
                 anchors.centerIn: boxFront
-                width: boxFront.paintedWidth + vpx(8)
-                height: boxFront.paintedHeight + vpx(8)
+                anchors.horizontalCenterOffset: vpx(-(1 - (1/gamesGridIPR)))
+                anchors.verticalCenterOffset: vpx(-0.75)
+                width: boxFront.paintedWidth + vpx(12)
+                height: boxFront.paintedHeight + vpx(12)
                 color: "transparent"
                 border {
-                    width: vpx(5)
+                    width: vpx(4)
                     color: collectionAltColor
                 }
                 opacity: isCurrentItem
