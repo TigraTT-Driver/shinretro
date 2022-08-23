@@ -199,11 +199,10 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        width: screenshot.width + vpx(8)
-        height: screenshot.height + vpx(8)
+        anchors.margins: vpx(-2)
         color: "transparent"
         border {
-            width: vpx(5)
+            width: vpx(4)
             color: collectionAltColor
         }
         opacity: isCurrentItem
