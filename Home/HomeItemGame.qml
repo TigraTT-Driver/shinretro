@@ -13,6 +13,7 @@ Item {
             dataConsoles[clearShortname(currentGameCollection.shortName)].altColor2
         }
     }
+    readonly property var selectedScale: 1.05
 
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
@@ -76,7 +77,7 @@ Item {
             game: gameData
             anchors.fill: parent
             playing: selected && homeVideo != 1
-            scale: selected ? 1.1 : 1
+            scale: selected ? selectedScale : 1
             sound: homeVideoMute
         }
 
@@ -88,7 +89,7 @@ Item {
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
-            scale: selected ? 1.1 : 1
+            scale: selected ? selectedScale : 1
             visible: gameData.assets.marquee && !doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } } 
         }
@@ -116,7 +117,7 @@ Item {
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
-            scale: selected ? 1.1 : 1
+            scale: selected ? selectedScale : 1
             visible: !gameData.assets.marquee || doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } } 
         }
@@ -132,7 +133,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             asynchronous: true
             smooth: true
-            scale: selected ? 1.1 : 1
+            scale: selected ? selectedScale : 1
             visible: !gameData.assets.marquee || doubleFocus
             Behavior on scale { NumberAnimation { duration: 100 } }
             z: 10
@@ -149,7 +150,7 @@ Item {
             border.width: vpx(3)
             border.color: colorScheme[theme].secondary
             opacity: 0.5
-            scale: selected ? 1.1 : 1
+            scale: selected ? selectedScale : 1
         }
     }
 
@@ -177,7 +178,11 @@ Item {
             width: vpx(4)
             color: currentGameCollectionAltColor
         }
-        scale: selected ? 1.1 : 1
-        visible: selected
-    }  
+        opacity: selected
+        Behavior on opacity {
+            NumberAnimation { duration: 200; }
+        }
+        scale: selected ? selectedScale : 1
+    }
+
 }
