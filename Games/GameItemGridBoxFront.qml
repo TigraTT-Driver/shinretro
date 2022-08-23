@@ -81,21 +81,27 @@ Item {
                 id: faveicon
                 parentImageWidth: boxFront.paintedWidth
             }
-            Rectangle {
-                anchors.centerIn: boxFront
-                anchors.horizontalCenterOffset: vpx(-(1 - (1/gamesGridIPR)))
-                anchors.verticalCenterOffset: vpx(-0.75)
-                width: boxFront.paintedWidth + vpx(12)
-                height: boxFront.paintedHeight + vpx(12)
-                color: "transparent"
-                border {
-                    width: vpx(4)
-                    color: collectionAltColor
-                }
-                opacity: isCurrentItem
-                Behavior on opacity {
-                    NumberAnimation { duration: 200; }
-                }
+
+            CompletedIcon {
+                id: completedicon
+                parentImageWidth: boxFront.paintedWidth
+            }
+        }
+
+        Rectangle {
+            anchors.centerIn: boxFront
+            anchors.horizontalCenterOffset: vpx(-(1 - (1/gamesGridIPR)))
+            anchors.verticalCenterOffset: vpx(-0.75)
+            width: boxFront.paintedWidth + vpx(12)
+            height: boxFront.paintedHeight + vpx(12)
+            color: "transparent"
+            border {
+                width: vpx(4)
+                color: collectionAltColor
+            }
+            opacity: isCurrentItem
+            Behavior on opacity {
+                NumberAnimation { duration: 200; }
             }
         }
     }

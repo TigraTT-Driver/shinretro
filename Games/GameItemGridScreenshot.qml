@@ -114,6 +114,11 @@ Item {
                 id: faveicon
                 parentImageWidth: screenshot.width
             }
+
+            CompletedIcon {
+                id: completedicon
+                parentImageWidth: screenshot.width
+            }
         }
 
         Image {
