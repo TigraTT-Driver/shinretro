@@ -61,7 +61,7 @@ Item {
             width: vpx(14 * fontScalingFactor)
             Text {
                 text: input_button
-                topPadding: vpx(1)
+                anchors.centerIn: parent
                 font {
                     family: glyphs.name;
                     pixelSize: parent.height
