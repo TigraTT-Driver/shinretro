@@ -3,8 +3,7 @@ import QtGraphicalEffects 1.12
 import QtMultimedia 5.15
 
 Item {
-id: root
-
+    id: root
     property var game
     property bool playing
     property bool sound
@@ -58,4 +57,5 @@ id: root
             anchors { fill: parent }
         }
     }
+
 }

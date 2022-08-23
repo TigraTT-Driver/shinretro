@@ -5,7 +5,7 @@ import "../Global"
 FocusScope {
     focus: collections.focus
 
-    readonly property int baseItemWidth: root.width /8
+    readonly property int baseItemWidth: root.width / 8
     readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
     readonly property var touch_color: {
@@ -37,12 +37,12 @@ FocusScope {
 
     Rectangle {
         id: skew_color
-
         width: parent.width * 0.28
         height: parent.height
         antialiasing: true
         anchors {
-            left: parent.left; leftMargin: parent.width * 0.23
+            left: parent.left
+            leftMargin: parent.width * 0.23
         }
         color: touch_color
         Behavior on color {
@@ -71,16 +71,11 @@ FocusScope {
             id: pv_collections
 
             readonly property int pathLength: ( pathItemCount + 1 ) * baseItemWidth
-
             anchors.fill: parent
-
             focus: collections.focus
-
             model: allCollections
             currentIndex: currentCollectionIndex
-
             delegate: CollectionsItems {}
-
             snapMode: PathView.SnapOneItem
             highlightMoveDuration: 100
             highlightRangeMode: PathView.ApplyRange
@@ -88,7 +83,7 @@ FocusScope {
             pathItemCount: 10
             path: Path {
                 startX: - baseItemWidth
-                startY: pv_collections.height /2
+                startY: pv_collections.height / 2
                 PathAttribute { name: "currentWidth"; value: baseItemWidth; }
                 PathAttribute { name: "currentHeight"; value: pv_collections.height; }
                 PathLine {
@@ -103,7 +98,7 @@ FocusScope {
                     y: pv_collections.path.startY
                 }
                 PathAttribute { name: "currentWidth"; value: baseItemWidth * 2; }
-                PathAttribute { name: "currentHeight"; value: pv_collections.height *1.17; }
+                PathAttribute { name: "currentHeight"; value: pv_collections.height * 1.17; }
                 PathLine {
                     x: pv_collections.path.startX + pv_collections.pathLength / 3.2 + baseItemWidth * 1.5
                     y: pv_collections.path.startY
@@ -191,7 +186,6 @@ FocusScope {
             verticalCenter: parent.verticalCenter
             right: parent.right
         }
-
         clip: true
         currentIndex: currentCollectionIndex
         model: allCollections
@@ -199,23 +193,20 @@ FocusScope {
 
         pathItemCount: 3
         path: Path {
-
             // Horizontal Left to Right
             startX: -pv_collections_logo.width
-            startY: pv_collections_logo.height /2
+            startY: pv_collections_logo.height / 2
 
             PathLine {
-                x: pv_collections_logo.path.startX + pv_collections_logo.width *3
+                x: pv_collections_logo.path.startX + pv_collections_logo.width * 3
                 y: pv_collections_logo.path.startY
             }
-
         }
 
         interactive: false
         highlightMoveDuration: 150
         highlightRangeMode: PathView.ApplyRange
         snapMode: PathView.SnapOneItem
-
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
     }
@@ -223,13 +214,15 @@ FocusScope {
     Text {
         color: colorScheme[theme].text
         anchors {
-            right: parent.right; rightMargin: vpx(35)
-            top: parent.top; topMargin: vpx(160)
+            right: parent.right
+            rightMargin: vpx(35)
+            top: parent.top
+            topMargin: vpx(160)
         }
-        text: (currentCollectionIndex+1)+"/"+pv_collections.count
+        text: (currentCollectionIndex + 1) + "/" + pv_collections.count
         font {
             family: robotoSlabThin.name
-            pixelSize: vpx(16  * fontScalingFactor)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
     }
 
@@ -237,7 +230,8 @@ FocusScope {
     Row {
         visible: osc === 0
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom
+            bottomMargin: vpx(40)
             right: parent.right
             rightMargin: parent.width * 0.05
         }
@@ -246,7 +240,8 @@ FocusScope {
         Controls {
             id: button_D
 
-            message: "<b>"+currentCollection.name+"</b> "+dataText[lang].global_games
+            message: "<b>" + currentCollection.name + "</b> " + dataText[lang].global_games
+
             text_color: colorScheme[theme].accepted
             front_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             back_color: colorScheme[theme].accepted.replace(/#/g, "#33");

@@ -11,7 +11,7 @@ Item {
         } else {
             dataConsoles[clearShortname(currentCollection.shortName)].altColor2
         }
-    }    
+    }
 
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
@@ -22,13 +22,11 @@ Item {
         return steamAppID(gameData) + "/logo.png"
     }
 
-
     function logo(data) {
-    if (data != null) {
-        if (data.assets.boxFront.includes("header.jpg")) 
-            return steamLogo(data);
-        else {
-            if (data.assets.logo != "")
+        if (data != null) {
+            if (data.assets.boxFront.includes("header.jpg")) {
+                return steamLogo(data);
+            } else if (data.assets.logo != "") {
                 return data.assets.logo;
             }
         }
@@ -42,7 +40,6 @@ Item {
     property bool selected
     property var gameData: modelData
 
-
     // In order to use the retropie icons here we need to do a little collection specific hack
     readonly property bool playVideo: gameData ? gameData.assets.videoList.length : ""
     scale: isCurrentItem ? 1 : 0.95
@@ -50,9 +47,9 @@ Item {
     z: isCurrentItem ? 10 : 1
 
     onSelectedChanged: {
-        if (isCurrentItem && playVideo)
+        if (isCurrentItem && playVideo) {
             fadescreenshot.restart();
-        else {
+        } else {
             fadescreenshot.stop();
             screenshot.opacity = 1;
             container.opacity = 1;
@@ -61,8 +58,7 @@ Item {
 
     // NOTE: Fade out the bg so there is a smooth transition into the video
     Timer {
-    id: fadescreenshot
-
+        id: fadescreenshot
         interval: 1200
         onTriggered: {
             screenshot.opacity = 0;
@@ -74,11 +70,8 @@ Item {
         anchors.fill: parent
         Behavior on opacity { NumberAnimation { duration: 200 } }
 
-
-
         Image {
             id: marquee
-
             anchors.fill: parent
             source: gameData ? gameData.assets.marquee : ""
             fillMode: Image.PreserveAspectFit
@@ -87,7 +80,7 @@ Item {
             asynchronous: true
             scale: isCurrentItem ? 1.1 : 1
             visible: gameData.assets.marquee && !doubleFocus
-            Behavior on opacity { NumberAnimation { duration: 200 } } 
+            Behavior on opacity { NumberAnimation { duration: 200 } }
         }
 
         DropShadow {
@@ -106,7 +99,6 @@ Item {
 
         Image {
             id: screenshot
-
             anchors.fill: parent
             anchors.margins: vpx(3)
             source: gameData ? gameData.assets.screenshots[0] || gameData.assets.titlescreen || gameData.assets.background || "" : ""
@@ -118,6 +110,7 @@ Item {
             Behavior on opacity { NumberAnimation { duration: 200 } }
             scale: selected ? 1.1 : 1
         }
+
         Image {
             id: favelogo
             anchors.fill: parent
@@ -134,7 +127,7 @@ Item {
             Behavior on scale { NumberAnimation { duration: 100 } }
             z: 10
         }
-                
+
         Text {
             id: titletext
             anchors.fill: parent
@@ -145,13 +138,10 @@ Item {
                 pixelSize: vpx(16  * fontScalingFactor)
             }
             color: colorScheme[theme].text
-
             horizontalAlignment : Text.AlignHCenter
             verticalAlignment : Text.AlignVCenter
             wrapMode: Text.Wrap
-
             visible: model.assets.logo === ""
-            
         }
     }
 
@@ -206,6 +196,7 @@ Item {
         border.color: colorScheme[theme].secondary
         opacity: 0.5
     }
+
     Rectangle {
         anchors.fill: parent
         width: screenshot.width + vpx(8)
@@ -219,5 +210,6 @@ Item {
         Behavior on opacity {
             NumberAnimation { duration: 200; }
         }
-    } 
+    }
+
 }

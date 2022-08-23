@@ -2,13 +2,12 @@ import QtQuick 2.15
 import QtGraphicalEffects 1.12
 
 Item {
-
     property var message: parent.message
     property var text_color: parent.text_color
     property var front_color: parent.front_color
     property var back_color: parent.back_color
     property var input_button: parent.input_button
-    
+
     width: childrenRect.width
     height: childrenRect.height
 
@@ -16,8 +15,10 @@ Item {
         width: row_button.width + vpx(20)
         height: row_button.height + vpx(10)
         anchors {
-            top: row_button.top; topMargin: -vpx(5)
-            right: row_button.right; rightMargin: -vpx(12)
+            top: row_button.top
+            topMargin: -vpx(5)
+            right: row_button.right
+            rightMargin: -vpx(12)
         }
         color: back_color
         antialiasing: true
@@ -55,9 +56,9 @@ Item {
             color: text_color
         }
 
-        Item{
-            height: vpx(16  * fontScalingFactor)
-            width: vpx(14  * fontScalingFactor)
+        Item {
+            height: vpx(16 * fontScalingFactor)
+            width: vpx(14 * fontScalingFactor)
             Text {
                 text: input_button
                 topPadding: vpx(1)
@@ -69,4 +70,5 @@ Item {
             }
         }
     }
+
 }

@@ -11,9 +11,8 @@ Item {
         } else {
             dataConsoles[clearShortname(currentCollection.shortName)].altColor2
         }
-    }    
+    }
 
-    // NOTE: This is technically duplicated from utils.js but importing that file into every delegate causes crashes
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
         return str[0];
@@ -23,10 +22,9 @@ Item {
         return steamAppID(gameData) + "/library_600x900_2x.jpg"
     }
 
-
     function boxArt(data) {
         if (data != null) {
-            if (data.assets.boxFront.includes("header.jpg")) 
+            if (data.assets.boxFront.includes("header.jpg"))
                 return steamBoxFront(data);
         else {
             if (data.assets.boxFront != "")
@@ -55,9 +53,9 @@ Item {
 
     Item  {
         id: container
-
         anchors.fill: parent
         Behavior on opacity { NumberAnimation { duration: 200 } }
+
         Image {
             id: boxFront
 
@@ -128,7 +126,7 @@ Item {
         // Accept
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
             event.accepted = true;
-            activated();        
+            activated();
         }
     }
 
@@ -138,7 +136,7 @@ Item {
         font {
             family: global.fonts.sans
             weight: Font.Medium
-            pixelSize: vpx(16  * fontScalingFactor)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
         color: colorScheme[theme].text
 
@@ -147,6 +145,6 @@ Item {
         wrapMode: Text.Wrap
 
         visible: boxArt(gameData) === ""
-        
     }
+
 }

@@ -64,7 +64,7 @@ Item {
                 text: modelData.name
                 font {
                     family: global.fonts.condensed
-                    pixelSize: vpx(42  * fontScalingFactor)
+                    pixelSize: vpx(42 * fontScalingFactor)
                 }
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
@@ -78,10 +78,10 @@ Item {
                     topMargin: vpx(10)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
-                text: modelData.games.count+" "+dataText[lang].collectionDetails_gamesAvailable
+                text: modelData.games.count + " " + dataText[lang].collectionDetails_gamesAvailable
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(20  * fontScalingFactor)
+                    pixelSize: vpx(20 * fontScalingFactor)
                 }
                 color: colorScheme[theme].accent
             }
@@ -101,13 +101,13 @@ Item {
                     color: "transparent"
                     Item {
                         width: vpx(55)
-                        height: vpx(15  * fontScalingFactor)
+                        height: vpx(15 * fontScalingFactor)
                         anchors.centerIn: parent
 
                         Image {
                             id: img_manufacturer
                             anchors.fill: parent
-                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
+                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/" + manufacturer : ""
                             fillMode: Image.PreserveAspectFit
                             visible: false
                             antialiasing: true
@@ -119,10 +119,8 @@ Item {
                             antialiasing: true
                         }
                     }
-
                     visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
                 }
-
 
                 Text {
                     id: txt_collection_release
@@ -133,22 +131,20 @@ Item {
                     font {
                         family: montserratBold.name
                         weight: Font.Medium
-                        pixelSize: vpx(14  * fontScalingFactor)
+                        pixelSize: vpx(14 * fontScalingFactor)
                     }
                     bottomPadding: vpx(2)
                     color: colorScheme[theme].text
                 }
             }
-
         }
-
     }
 
     Loader {
         anchors.fill: parent
         sourceComponent: cpnt_collection_details
         asynchronous: true
-        active: ( root.state === "collections" )
+        active: root.state === "collections"
     }
 
 }

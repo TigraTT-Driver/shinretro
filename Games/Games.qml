@@ -19,7 +19,7 @@ FocusScope {
 
     property int gridVR: {
         if (gamesGridVR ===  "dynamic")
-            return Math.min(Math.max(parseInt((gv_games.count +10) /20), 1), 5);
+            return Math.min(Math.max(parseInt((gv_games.count + 10) / 20), 1), 5);
         else return  gamesGridVR
     }
 
@@ -76,7 +76,6 @@ FocusScope {
         opacity: 0.255
     }
 
-    
     // Skewed background
     Rectangle {
         id: skew_color
@@ -178,9 +177,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-
                         }
-
 
                         // TITLE + DEVELOPER + PLAYERS + GENRES + DESCRIPTION
                         Column {
@@ -212,7 +209,7 @@ FocusScope {
                                         family: global.fonts.sans
                                         weight: Font.Light
                                         italic: true
-                                        pixelSize: vpx(14  * fontScalingFactor)
+                                        pixelSize: vpx(14 * fontScalingFactor)
                                     }
                                     color: colorScheme[theme].accent
                                 }
@@ -222,7 +219,7 @@ FocusScope {
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Medium
-                                        pixelSize: vpx(14  * fontScalingFactor)
+                                        pixelSize: vpx(14 * fontScalingFactor)
                                     }
                                     color: colorScheme[theme].text
                                 }
@@ -233,10 +230,6 @@ FocusScope {
                                 // RATING
                                 RatingStars {
                                     readonly property var rating: (currentGame.rating *5).toFixed(1)
-                                    // anchors {
-                                    //     top: parent.top; topMargin: parent.height * 0.1
-                                    //     right: parent.right
-                                    // }
                                 }
                             }
 
@@ -312,7 +305,7 @@ FocusScope {
                                 }
                             }
 
-                            //Description
+                            // Description
                             Item {
                                 width: parent.width
                                 height: vpx(100)
@@ -326,7 +319,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.condensed
                                             weight: Font.Light
-                                            pixelSize: vpx(14  * fontScalingFactor)
+                                            pixelSize: vpx(14 * fontScalingFactor)
                                         }
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
@@ -351,7 +344,7 @@ FocusScope {
                             parent.height * 0.95
                         else parent.height
                     }
-                        
+
                     anchors {
                         top: {
                             if (gridVR >= 3)
@@ -363,8 +356,8 @@ FocusScope {
                                 parent.right
                         }
                         left: {
-                        if (gridVR < 3)
-                                parent.left                         
+                            if (gridVR < 3)
+                                parent.left
                         }
                     }
                     asynchronous: true
@@ -446,8 +439,8 @@ FocusScope {
                 id: gv_games
                 width: parent.width
                 height: parent.height * 0.85
-                cellWidth: width /gamesGridIPR
-                cellHeight: height /gridVR
+                cellWidth: width / gamesGridIPR
+                cellHeight: height / gridVR
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true
@@ -517,7 +510,6 @@ FocusScope {
                 }
 
                 Keys.onPressed: {
-
                     if (event.isAutoRepeat) {
                         return
                     }
@@ -614,9 +606,10 @@ FocusScope {
                     Rectangle {
                         property int heightBar: parent.height - vpx(50)
                         anchors {
-                            left: parent.left; 
+                            left: parent.left
                             leftMargin: parent.width + 30
-                            top: parent.top; topMargin: vpx(6)
+                            top: parent.top
+                            topMargin: vpx(6)
                         }
                         width: vpx(2)
                         height: heightBar * ( (currentGameIndex + 1) / gv_games.count )
@@ -700,7 +693,7 @@ FocusScope {
                     verticalCenter: parent.verticalCenter
                     right: parent.right;
                 }
-                text: (currentGameIndex + 1)+"/"+gv_games.count
+                text: (currentGameIndex + 1) + "/" + gv_games.count
                 color: colorScheme[theme].text
                 font {
                     family: robotoSlabLight.name
@@ -716,4 +709,5 @@ FocusScope {
             
         }
     }
+
 }

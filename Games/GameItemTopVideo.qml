@@ -77,4 +77,5 @@ Item {
         active: games.focus && currentGame !== null
         visible: status === Loader.Ready
     }
+
 }

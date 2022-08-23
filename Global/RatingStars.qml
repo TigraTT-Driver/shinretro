@@ -17,7 +17,7 @@ Item {
         if (rate <= index) {
             return no_star
         }
-        else if (rate <= index+0.5) {
+        else if (rate <= index + 0.5) {
             return half_star
         }
         else {
@@ -39,14 +39,14 @@ Item {
 
     Component {
         id: no_star
-        Item{
-            width: vpx(12  * fontScalingFactor)
-            height: vpx(12  * fontScalingFactor)
+        Item {
+            width: vpx(12 * fontScalingFactor)
+            height: vpx(12 * fontScalingFactor)
             Text {
                 text: glyphs.emptyStar
                 anchors.fill: parent
                 font {
-                    family: glyphs.name;
+                    family: glyphs.name
                     pixelSize: parent.height
                 }
                 color: colorScheme[theme].accentalt
@@ -56,14 +56,14 @@ Item {
 
     Component {
         id: half_star
-        Item{
-            width: vpx(12  * fontScalingFactor)
-            height: vpx(12  * fontScalingFactor)
+        Item {
+            width: vpx(12 * fontScalingFactor)
+            height: vpx(12 * fontScalingFactor)
             Text {
                 text: glyphs.halfStar
-                    anchors.fill: parent
+                anchors.fill: parent
                 font {
-                    family: glyphs.name;
+                    family: glyphs.name
                     pixelSize: parent.height
                 }
                 color: colorScheme[theme].favorite
@@ -73,14 +73,14 @@ Item {
 
     Component {
         id: star
-        Item{
-            width: vpx(12  * fontScalingFactor)
-            height: vpx(12  * fontScalingFactor)
+        Item {
+            width: vpx(12 * fontScalingFactor)
+            height: vpx(12 * fontScalingFactor)
             Text {
                 text: glyphs.fullStar
-                    anchors.fill: parent
+                anchors.fill: parent
                 font {
-                    family: glyphs.name;
+                    family: glyphs.name
                     pixelSize: parent.height
                 }
                 color: colorScheme[theme].favorite
@@ -93,8 +93,10 @@ Item {
         width: rating_stars.width + vpx(10)
         height: rating_stars.height + vpx(5)
         anchors {
-            top: rating_stars.top; topMargin: -vpx(1)
-            left: rating_stars.left; leftMargin: -vpx(3)
+            top: rating_stars.top
+            topMargin: -vpx(1)
+            left: rating_stars.left
+            leftMargin: -vpx(3)
         }
         color: colorScheme[theme].background
         //getBackgroundColor(rating)

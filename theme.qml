@@ -33,7 +33,7 @@ FocusScope {
         property string uInputBtnLb: '\ue806';
         property string uInputBtnLt: '\ue807';
         property string uInputBtnR: '\ue808';
-        property string uInputBtnRb: '\ue809'; 
+        property string uInputBtnRb: '\ue809';
         property string uInputBtnRt: '\ue80a';
         property string uInputBtnU: '\ue80b';
         property string xInputBtnD: '\ue80c';
@@ -41,19 +41,19 @@ FocusScope {
         property string xInputBtnLb: '\ue80e';
         property string xInputBtnLt: '\ue80f';
         property string xInputBtnR: '\ue810';
-        property string xInputBtnRb: '\ue811'; 
+        property string xInputBtnRb: '\ue811';
         property string xInputBtnRt: '\ue812';
-        property string xInputBtnU: '\ue813';    
+        property string xInputBtnU: '\ue813';
         property string pInputBtnD: '\ue814';
         property string pInputBtnL: '\ue815';
         property string pInputBtnLb: '\ue816';
         property string pInputBtnLt: '\ue817';
         property string pInputBtnR: '\ue818';
-        property string pInputBtnRb: '\ue819'; 
+        property string pInputBtnRb: '\ue819';
         property string pInputBtnRt: '\ue81a';
-        property string pInputBtnU: '\ue81b';     
+        property string pInputBtnU: '\ue81b';
         property string search: '\ue81c';
-        property string spinner: '\ue839';        
+        property string spinner: '\ue839';
         property string disabled: '\uf204';
         property string enabled: '\uf205';
         source: "assets/fonts/glyphs.ttf";
@@ -172,7 +172,7 @@ FocusScope {
             cancel: "#EBEBEB",
             details: "#EBEBEB",
             filters: "#EBEBEB"
-        }   
+        }
     }
 
     // Text strings
@@ -344,7 +344,7 @@ FocusScope {
             menu_home: "Accueil",
             menu_collections: "Collections",
             menu_games:"Jeux"
-        },             
+        },
         "pt": {
             settings_collection_accentColor_dimm: "dimm",
             settings_collection_accentColor_bright: "bright",
@@ -399,13 +399,13 @@ FocusScope {
             menu_home: "início",
             menu_collections: "coleções",
             menu_games:"jogos"
-        }               
-    }                
+        }
+    }
 
     Music { id: music}
     // Load settings
 
-    property var playBGM : {
+    property var playBGM: {
         if (api.memory.get('musicIndex') == 1) {
             playBGM: true;
         } else {
@@ -413,7 +413,7 @@ FocusScope {
         }
     }
     property var lang: api.memory.get('lang') || "en"
-    property var theme : {
+    property var theme: {
         if (api.memory.get('themeIndex') == "1") {
             return "Light";
         } else if (api.memory.get('themeIndex') == "2") {
@@ -424,65 +424,65 @@ FocusScope {
             return "Dark";
         }
     }
-    property var logoVariant : {
+    property var logoVariant: {
         if (api.memory.get('logoVariantIndex') == "1") {
             return "color";
         } else {
             return "mono";
         }
     }
-    property var region : api.memory.get('region') || "pal"
-    property var controlScheme : api.memory.get('controlScheme') || "Universal"
-    property var osc : api.memory.get('oscIndex') || 0
-    property double fontScalingFactor : {
+    property var region: api.memory.get('region') || "pal"
+    property var controlScheme: api.memory.get('controlScheme') || "Universal"
+    property var osc: api.memory.get('oscIndex') || 0
+    property double fontScalingFactor: {
         if (api.memory.get('dynamicFontScalingIndex') == "1") {
             if  ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.5)
                 return "1.5";
             else if ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.0)
                 return (Math.round(Screen.pixelDensity * 10) / 100);
             else
-                return "1.0";  
+                return "1.0";
         } else {
             return "1.0";
-        }    
+        }
     }
-    property var mutesfx : {
+    property var mutesfx: {
         if (api.memory.get('mutesfxIndex') == "1") {
             return "0.0";
         } else {
             return "1.0";
         }
     }
-    property var homeVideo : api.memory.get('homeVideoIndex') || 0
-    property var homeVideoMute : {
+    property var homeVideo: api.memory.get('homeVideoIndex') || 0
+    property var homeVideoMute: {
         if (api.memory.get('homeVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
         }
     }
-    property var accentColor : {
+    property var accentColor: {
         if (api.memory.get('accentColorIndex') == "1") {
             return "bright";
         } else {
             return "dimm";
         }
     }
-    property var accentColorNr : api.memory.get('accentColorNrIndex') || 0
-    property var allGamesCollection : api.memory.get('allGamesCollectionIndex') || 0
-    property var collectionVideo : api.memory.get('collectionVideoIndex') || 0
-    property var collectionVideoMute : {
+    property var accentColorNr: api.memory.get('accentColorNrIndex') || 0
+    property var allGamesCollection: api.memory.get('allGamesCollectionIndex') || 0
+    property var collectionVideo: api.memory.get('collectionVideoIndex') || 0
+    property var collectionVideoMute: {
         if (api.memory.get('collectionVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
         }
     }
-    property var gamesLayout : api.memory.get('gamesLayout') || "BoxArt-Grid"
-    property var gamesGridIPR : api.memory.get('gamesGridIPR') || 4
-    property var gamesGridVR : api.memory.get('gamesGridVR') || 1
-    property var gamesVideo : api.memory.get('gamesVideoIndex') || 0
-    property var gamesVideoMute : {
+    property var gamesLayout: api.memory.get('gamesLayout') || "BoxArt-Grid"
+    property var gamesGridIPR: api.memory.get('gamesGridIPR') || 4
+    property var gamesGridVR: api.memory.get('gamesGridVR') || 1
+    property var gamesVideo: api.memory.get('gamesVideoIndex') || 0
+    property var gamesVideoMute: {
         if (api.memory.get('gamesVideoMuteIndex') == "1") {
             return true;
         } else {
@@ -839,7 +839,6 @@ FocusScope {
         }
     ]
 
-
     Rectangle {
         id: rect_main
         width: parent.width
@@ -944,21 +943,25 @@ FocusScope {
         source: "assets/sounds/play.wav"
         volume: mutesfx
     }
+
     SoundEffect {
         id: sfxPage
         source: "assets/sounds/page.wav"
         volume: mutesfx
     }
+
     SoundEffect {
         id: sfxPage2
         source: "assets/sounds/page2.wav"
         volume: mutesfx
     }
+
     SoundEffect {
         id: sfxCollection
         source: "assets/sounds/collection.wav"
         volume: mutesfx
     }
+
     SoundEffect {
         id: sfxCollection2
         source: "assets/sounds/collection2.wav"

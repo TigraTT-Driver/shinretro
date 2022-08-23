@@ -154,7 +154,6 @@ FocusScope {
                 onFocusChanged: { if(focus) previousLastplayed = lastplayed_left }
 
                 Keys.onPressed: {
-
                     if (event.isAutoRepeat) {
                         return
                     }
@@ -176,7 +175,7 @@ FocusScope {
                     }
                 }
             }
-            
+
             GridView {
                 id: lastplayed_right
                 width: parent.width * 0.59
@@ -216,8 +215,8 @@ FocusScope {
                 focus: false
                 interactive: false
                 onFocusChanged: { if(focus) previousLastplayed = lastplayed_right }
-                Keys.onPressed: {
 
+                Keys.onPressed: {
                     if (event.isAutoRepeat) {
                         return
                     }
@@ -283,7 +282,6 @@ FocusScope {
 
             Text {
                 anchors.fill: parent
-
                 text: dataText[lang].global_noFavorites
                 horizontalAlignment : Text.AlignHCenter
                 verticalAlignment : Text.AlignVCenter
@@ -340,10 +338,9 @@ FocusScope {
             highlightMoveDuration: vpx(100)
             preferredHighlightBegin: width * 0.4
             preferredHighlightEnd: width * 0.6
-
             focus: false
-            Keys.onPressed: {
 
+            Keys.onPressed: {
                 if (event.isAutoRepeat) {
                     return
                 }
@@ -373,7 +370,8 @@ FocusScope {
         height: vpx(18  * fontScalingFactor)
         visible: osc === 0 && currentGame
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom
+            bottomMargin: vpx(40)
             horizontalCenter: parent.horizontalCenter
         }
         spacing: vpx(8)
@@ -383,6 +381,7 @@ FocusScope {
             height: parent.height
             color: colorScheme[theme].accepted
         }
+
         Controls {
             id: button_D
             message: dataText[lang].home_play+" <b>"+currentGame.title+"</b>"

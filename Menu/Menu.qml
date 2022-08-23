@@ -77,7 +77,6 @@ FocusScope {
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
-                            
                         }
                     }
 
@@ -112,9 +111,7 @@ FocusScope {
                     highlightMoveVelocity: -1
 
                     interactive: false
-
                     focus: menu.focus
-
                     Component.onCompleted: positionViewAtIndex(currentMenuIndex, ListView.Beginning)
 
                     spacing: vpx(20 * fontScalingFactor)
@@ -158,7 +155,7 @@ FocusScope {
 
                 Component {
                     id: cmpt_helper_collection
-                    Item{
+                    Item {
                         visible: ["home","games"].includes(root.state)
                         Image {
                             id: img_helper_collection_region
@@ -168,9 +165,9 @@ FocusScope {
                                 if (root.state === "collections")
                                     return "";
                                 if (root.state === "home")
-                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(home.currentGame.collections.get(0).shortName) + "/logo_" + region + "_" + logoVariant
                                 if (root.state === "games")
-                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + region + "_" + logoVariant
                             }
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
@@ -196,9 +193,9 @@ FocusScope {
                                 if (root.state === "collections")
                                     return "";
                                 if (root.state === "home")
-                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(home.currentGame.collections.get(0).shortName) + "/logo_" + logoVariant
                                 if (root.state === "games")
-                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + logoVariant
                             }
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
@@ -224,7 +221,7 @@ FocusScope {
                             visible: logoVariant !== "color"
                             antialiasing: true
                         }
-                    }    
+                    }
                 }
 
                 Loader {

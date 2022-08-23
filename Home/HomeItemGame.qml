@@ -20,17 +20,16 @@ Item {
     }
 
     function steamLogo(gameData) {
-        return steamAppID(gameData) + "/logo.png"
+        return steamAppID(gameData) + "/logo.png";
     }
 
-
     function logo(data) {
-    if (data != null) {
-        if (data.assets.boxFront.includes("header.jpg")) 
-            return steamLogo(data);
-        else {
-            if (data.assets.logo != "")
-                return data.assets.logo;
+        if (data != null) {
+            if (data.assets.boxFront.includes("header.jpg")) 
+                return steamLogo(data);
+            else {
+                if (data.assets.logo != "")
+                    return data.assets.logo;
             }
         }
         return "";
@@ -43,7 +42,6 @@ Item {
     property bool selected
     property var gameData: modelData
 
-
     // In order to use the retropie icons here we need to do a little collection specific hack
     readonly property bool playVideo: gameData ? gameData.assets.videoList.length : ""
     scale: selected ? 1 : 0.95
@@ -51,9 +49,9 @@ Item {
     z: selected ? 10 : 1
 
     onSelectedChanged: {
-        if (selected && playVideo)
+        if (selected && playVideo) {
             fadescreenshot.restart();
-        else {
+        } else {
             fadescreenshot.stop();
             screenshot.opacity = 1;
             container.opacity = 1;
@@ -62,8 +60,7 @@ Item {
 
     // NOTE: Fade out the bg so there is a smooth transition into the video
     Timer {
-    id: fadescreenshot
-
+        id: fadescreenshot
         interval: 1200
         onTriggered: {
             screenshot.opacity = 0;
@@ -81,12 +78,10 @@ Item {
             playing: selected && homeVideo != 1
             scale: selected ? 1.1 : 1
             sound: homeVideoMute
-
         }
 
         Image {
             id: marquee
-
             anchors.fill: parent
             source: gameData ? gameData.assets.marquee : ""
             fillMode: Image.PreserveAspectFit
@@ -114,7 +109,6 @@ Item {
 
         Image {
             id: screenshot
-
             anchors.fill: parent
             anchors.margins: vpx(3)
             source: gameData ? gameData.assets.screenshots[0] || gameData.assets.background || "" : ""
@@ -128,8 +122,7 @@ Item {
         }
 
         Image {
-        id: favelogo
-
+            id: favelogo
             anchors.fill: parent
             anchors.centerIn: parent
             anchors.margins: root.width/10
@@ -146,8 +139,7 @@ Item {
         }
 
         Rectangle {
-        id: regborder
-
+            id: regborder
             anchors.fill: parent
             color: "transparent"
             anchors.rightMargin: 1
@@ -159,7 +151,6 @@ Item {
             opacity: 0.5
             scale: selected ? 1.1 : 1
         }
-        
     }
 
     Text {
@@ -168,18 +159,17 @@ Item {
         font {
             family: global.fonts.sans
             weight: Font.Medium
-            pixelSize: vpx(16  * fontScalingFactor)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
         color: colorScheme[theme].text
 
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter
         wrapMode: Text.Wrap
-
         visible: model.assets.logo === ""
-        
     }
-        Rectangle {
+
+    Rectangle {
         anchors.fill: parent
         color: "transparent"
         border {

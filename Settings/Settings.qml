@@ -33,7 +33,8 @@ FocusScope {
         height: parent.height
         antialiasing: true
         anchors {
-            left: parent.left; leftMargin: parent.width * 0.23
+            left: parent.left
+            leftMargin: parent.width * 0.23
         }
         color: colorScheme[theme].secondary
         Behavior on color {
@@ -172,9 +173,9 @@ FocusScope {
         focus: true
         anchors {
             top: parent.top
-            topMargin: vpx(40);
-            bottom: parent.bottom;
-            left: parent.left;
+            topMargin: vpx(40)
+            bottom: parent.bottom
+            left: parent.left
         }
         width: vpx(300)
         model: settingsArr
@@ -239,11 +240,11 @@ FocusScope {
         delegate: settingsDelegate
         
         anchors {
-            top: parent.top;
-            topMargin: vpx(40);
-            bottom: parent.bottom; 
-            left: pagelist.right;
-            right: parent.right;
+            top: parent.top
+            topMargin: vpx(40)
+            bottom: parent.bottom
+            left: pagelist.right
+            right: parent.right
         }
         width: vpx(500)
 
@@ -328,8 +329,10 @@ FocusScope {
 
                 Rectangle {
                     anchors { 
-                        left: parent.left; leftMargin: vpx(25)
-                        right: parent.right; rightMargin: vpx(25)
+                        left: parent.left
+                        leftMargin: vpx(25)
+                        right: parent.right
+                        rightMargin: vpx(25)
                         bottom: parent.bottom
                     }
                     color: colorScheme[theme].text
@@ -376,7 +379,8 @@ FocusScope {
     Row {
         visible: osc === 0
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom 
+            bottomMargin: vpx(40)
             right: parent.right
             rightMargin: parent.width * 0.05
         }
