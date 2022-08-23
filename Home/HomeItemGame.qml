@@ -119,7 +119,12 @@ Item {
             asynchronous: true
             scale: selected ? selectedScale : 1
             visible: !gameData.assets.marquee || doubleFocus
-            Behavior on opacity { NumberAnimation { duration: 200 } } 
+            Behavior on opacity { NumberAnimation { duration: 200 } }
+
+            CompletedIcon {
+                id: completedicon
+                parentImageWidth: screenshot.width
+            }
         }
 
         Image {
