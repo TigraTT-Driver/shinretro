@@ -60,6 +60,37 @@ FocusScope {
         }
     }
 
+    Text {
+        id: txt_collectionType
+        anchors {
+            top: parent.top
+            topMargin: vpx(85)
+            right: parent.right
+            rightMargin: vpx(25)
+        }
+
+        text: collectionType + " Collections"
+        font {
+            family: global.fonts.sans
+            weight: Font.Black
+            italic: true
+            pixelSize: vpx(40)
+            capitalization: Font.AllUppercase
+        }
+        color: "#F0F0F0"
+
+        Behavior on text {
+            PropertyAnimation {
+                target: txt_collectionType
+                property: "opacity"
+                from: 0
+                to: 1
+                duration: 600
+                easing.type: Easing.OutExpo
+            }
+        }
+    }
+
     Item {
         width: parent.width
         height: parent.height * 0.58
@@ -161,7 +192,17 @@ FocusScope {
                         currentCollectionIndex++;
                     }
                     return;
+                }
+            }
 
+            Keys.onReleased: {
+                if ((event.key == Qt.Key_Right) || (event.key == Qt.Key_Left)) {
+                    if (!event.isAutoRepeat) {
+                        event.accepted = true;
+                        games.currentGameIndex = 0;
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        return;
+                    }
                 }
             }
         }
