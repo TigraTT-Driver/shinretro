@@ -511,13 +511,12 @@ FocusScope {
 
                 Keys.onPressed: {
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
-                        //Accept game sound
-                        sfxPlay.play();
                         event.accepted = true;
+                        playPlaySound();
                         if (currentGame !== null) {
                             api.memory.set("currentCollectionIndex", currentCollectionIndex)
                             api.memory.set("currentMenuIndex", currentMenuIndex)
@@ -535,10 +534,10 @@ FocusScope {
                     }
 
                     if (api.keys.isCancel(event)) {
-                        //Accept game sound
-                        sfxBack.play();
                         event.accepted = true;
-                        currentMenuIndex = 2
+                        playBackSound();
+                        currentMenuIndex = 2;
+                        return;
                     }
 
                     if (api.keys.isDetails(event)) {
@@ -548,22 +547,20 @@ FocusScope {
                         }
                     }
 
-                    if (event.key == Qt.Key_Left ) {
-                        //navigation sound
-                        sfxNav.play();
+                    if (event.key == Qt.Key_Left) {
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Right) {
-                        //navigation sound
-                        sfxNav.play();
+                        playNavSound();
                     }
+
                     if (event.key == Qt.Key_Down) {
-                        //navigation sound
-                        sfxNav.play();
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Up) {
-                        sfxNav.play();
+                        playNavSound();
                     }
                 }
 

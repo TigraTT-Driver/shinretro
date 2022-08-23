@@ -119,59 +119,49 @@ FocusScope {
             preferredHighlightEnd: preferredHighlightBegin
 
             Keys.onPressed: {
-
-                if (event.isAutoRepeat) {
-                    return
+                if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                    event.accepted = true;
+                    playAcceptSound();
+                    currentMenuIndex = 3;
+                    return;
                 }
 
-                if (api.keys.isAccept(event)) {
-
-                    //Accept game sound
-                    sfxAccept.play();
-
+                if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                     event.accepted = true;
-                    currentMenuIndex = 3
-                }
-
-                if (api.keys.isCancel(event)) {
-                    event.accepted = true;
-                    currentMenuIndex = 1
-
-                    //PrevPage sound
-                    sfxBack.play();
+                    playBackSound();
+                    currentMenuIndex = 1;
+                    return;
                 }
 
                 if (event.key == Qt.Key_Left) {
-
-                    //navigation sound
-                    sfxNav.play();
-
                     event.accepted = true;
-                    if (currentCollectionIndex <= 0)
-                        if (event.isAutoRepeat)
-                            currentCollectionIndex = 0
-                        else
-                            currentCollectionIndex = allCollections.length - 1
-                    else
+                    playNavSound();
+                    if (currentCollectionIndex <= 0) {
+                        if (event.isAutoRepeat) {
+                            currentCollectionIndex = 0;
+                        } else {
+                            currentCollectionIndex = allCollections.length - 1;
+                        }
+                    } else {
                         currentCollectionIndex--;
-                        api.memory.set("currentCollectionIndex", currentCollectionIndex)
+                    }
+                    return;
                 }
 
                 if (event.key == Qt.Key_Right) {
-
-                    //navigation sound
-                    sfxNav.play();
-
                     event.accepted = true;
-
-                    if (currentCollectionIndex >= allCollections.length - 1)
-                        if (event.isAutoRepeat)
+                    playNavSound();
+                    if (currentCollectionIndex >= allCollections.length - 1) {
+                        if (event.isAutoRepeat) {
                             currentCollectionIndex = allCollections.length - 1;
-                        else
+                        } else {
                             currentCollectionIndex = 0;
-                    else
+                        }
+                    } else {
                         currentCollectionIndex++;
-                        api.memory.set("currentCollectionIndex", currentCollectionIndex)
+                    }
+                    return;
+
                 }
             }
         }

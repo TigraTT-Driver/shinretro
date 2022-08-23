@@ -896,24 +896,25 @@ FocusScope {
     }
 
     Keys.onPressed: {
+        if (event.isAutoRepeat) {
+            return
+        }
+
         if (api.keys.isPrevPage(event)) {
-
-            //PrevPage sound
-            sfxPage2.play();
-
             event.accepted = true;
+            playPage2Sound();
             if (currentMenuIndex > 0)
-                currentMenuIndex--
+                currentMenuIndex--;
+            return;
         }
 
         if (api.keys.isNextPage(event)) {
-
-            //PrevPage sound
-            sfxPage.play();
-
             event.accepted = true;
+            playPageSound();
             if (currentMenuIndex < (dataMenu.length - 1))
-                currentMenuIndex++
+                currentMenuIndex++;
+            return;
+
         }
     }
 
