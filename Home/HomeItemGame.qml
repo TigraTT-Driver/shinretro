@@ -171,9 +171,10 @@ Item {
 
     Rectangle {
         anchors.fill: parent
+        anchors.margins: vpx(-2)
         color: "transparent"
         border {
-            width: vpx(5)
+            width: vpx(4)
             color: currentGameCollectionAltColor
         }
         scale: selected ? 1.1 : 1
