@@ -585,7 +585,7 @@ FocusScope {
                     if (api.keys.isDetails(event)) {
                         event.accepted = true;
                         if (currentGame !== null) {
-                            currentGame.favorite = !currentGame.favorite
+                            currentGame.favorite = !currentGame.favorite;
                         }
                     }
 
