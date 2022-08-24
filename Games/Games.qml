@@ -62,7 +62,7 @@ FocusScope {
                 target: skew_color
                 property: "anchors.leftMargin"
                 from: parent.width * 0.97
-                to: parent.width * 0.77
+                to: parent.width * 0.725
                 duration: 250
             }
         }
@@ -87,7 +87,7 @@ FocusScope {
         antialiasing: true
         anchors {
             left: parent.left
-            leftMargin: parent.width * 0.77
+            leftMargin: parent.width * 0.725
         }
         color: touch_color
         Behavior on color {
@@ -118,11 +118,12 @@ FocusScope {
         // Game details
         Item {
             id: item_game_details
-            width: parent.width
+            width: parent.width * 0.95
             height: parent.height * 0.5
             anchors {
                 top: parent.top
-                horizontalCenter: parent.horizontalCenter
+                //horizontalCenter: parent.horizontalCenter
+                right: parent.right
             }
 
             Item {
@@ -441,7 +442,7 @@ FocusScope {
             id: games_bottom
             width: {
                 if (gridVR >= 3)
-                        parent.width * 0.67
+                    parent.width * 0.65
                 else parent.width
             }
             height: {
