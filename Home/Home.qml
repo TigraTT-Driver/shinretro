@@ -35,7 +35,7 @@ FocusScope {
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
 
-    // 10 games to show maximum
+    // 20 games to show maximum
     SortFilterProxyModel {
         id: sort_favorites_limited
         sourceModel: sort_favorites_base
