@@ -458,7 +458,7 @@ FocusScope {
                     color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
-                        pixelSize: vpx(42  * fontScalingFactor)
+                        pixelSize: vpx(42 * fontScalingFactor)
                     }
                 }
             }
