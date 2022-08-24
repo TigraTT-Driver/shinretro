@@ -156,23 +156,22 @@ FocusScope {
 
                 Keys.onPressed: {
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
-                        sfxPlay.play();
-
                         event.accepted = true;
-                        api.memory.set("currentMenuIndex", currentMenuIndex)
-                        currentGame.launch()
+                        playPlaySound();
+                        api.memory.set("currentMenuIndex", currentMenuIndex);
+                        currentGame.launch();
+                        return;
                     }
 
                     if ([Qt.Key_Right, Qt.Key_Down].includes(event.key)) {
-                        sfxNav.play();
                         event.accepted = true;
-
-                        if (event.key == Qt.Key_Right && sort_lastplayed_right.count > 0) lastplayed_right.focus = true
-                        if (event.key == Qt.Key_Down && sort_favorites_limited.count > 0) favorites.focus = true
+                        playNavSound();
+                        if (event.key == Qt.Key_Right && sort_lastplayed_right.count > 0) lastplayed_right.focus = true;
+                        if (event.key == Qt.Key_Down && sort_favorites_limited.count > 0) favorites.focus = true;
                     }
                 }
             }
@@ -219,20 +218,19 @@ FocusScope {
 
                 Keys.onPressed: {
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
                         event.accepted = true;
                         sfxPlay.play();
-
-                        api.memory.set("currentMenuIndex", currentMenuIndex)
-                        currentGame.launch()
+                        api.memory.set("currentMenuIndex", currentMenuIndex);
+                        currentGame.launch();
                     }
                     
                     if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Down, Qt.Key_Left].includes(event.key)) {
                         event.accepted = true;
-                        sfxNav.play();
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Left) {
@@ -343,19 +341,18 @@ FocusScope {
 
             Keys.onPressed: {
                 if (event.isAutoRepeat) {
-                    return
+                    return;
                 }
 
                 if (api.keys.isAccept(event)) {
                     event.accepted = true;
-                    sfxPlay.play();
-
-                    api.memory.set("currentMenuIndex", currentMenuIndex)
-                    currentGame.launch()
+                    playPlaySound();
+                    api.memory.set("currentMenuIndex", currentMenuIndex);
+                    currentGame.launch();
                 }
 
                 if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Left].includes(event.key)) {
-                    sfxNav.play();
+                    playNavSound();
                     if (event.key == Qt.Key_Up) {
                         event.accepted = true; 
                         previousLastplayed.focus = true
