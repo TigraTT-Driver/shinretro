@@ -280,6 +280,17 @@ FocusScope {
         }
 
         Controls {
+            id: button_U
+
+            message: dataText[lang].global_switch + " <b>" + dataText[lang].global_collCategory + "</b>"
+
+            text_color: colorScheme[theme].filters
+            front_color: colorScheme[theme].filters.replace(/#/g, "#26");
+            back_color: colorScheme[theme].filters.replace(/#/g, "#26");
+            input_button: osdScheme[controlScheme].BTNU
+        }
+
+        Controls {
             id: button_R
 
             message: dataText[lang].global_back
