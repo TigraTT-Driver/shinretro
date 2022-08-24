@@ -330,8 +330,7 @@ FocusScope {
                 }
             }
 
-            clip: true
-
+            clip: currentFavoritesIndex == 0 || currentFavoritesIndex == maximumFavoritesShown ? false : true
             highlightRangeMode: ListView.ApplyRange
             snapMode: ListView.SnapOneItem
             highlightMoveDuration: vpx(100)
