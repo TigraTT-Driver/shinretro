@@ -765,7 +765,7 @@ FocusScope {
                 color: colorScheme[theme].text
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(14  * fontScalingFactor)
+                    pixelSize: vpx(14 * fontScalingFactor)
                 }
             }
 
@@ -774,7 +774,7 @@ FocusScope {
                 anchors.fill: parent
                 onCloseRequested: gv_games.focus = true
             }
-            
+
         }
     }
 
