@@ -150,13 +150,13 @@ FocusScope {
                                 italic: true
                                 pixelSize: vpx(140)
                             }
-                            color: colorScheme[theme].main
+                            color: (dataConsoles[shortname] !== undefined) ? dataConsoles[shortname].altColor : dataConsoles["default"].altColor
                             layer.enabled: true
                             layer.effect: DropShadow {
                                 spread: 1.0
                                 verticalOffset: 5
                                 horizontalOffset: 5
-                                color: colorScheme[theme].secondary
+                                color: (dataConsoles[shortname] !== undefined) ? lightenDarkenColor(dataConsoles[shortname].altColor, -5) : lightenDarkenColor(dataConsoles["default"].altColor, -5)
                                 radius: 5
                                 samples: 11
                             }
@@ -191,7 +191,7 @@ FocusScope {
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
-                                color: colorScheme[theme].text
+                                color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
                             }
 
                             Row {
@@ -205,7 +205,7 @@ FocusScope {
                                         italic: true
                                         pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: colorScheme[theme].accent
+                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
                                 }
 
                                 Text {
@@ -215,7 +215,7 @@ FocusScope {
                                         weight: Font.Medium
                                         pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: colorScheme[theme].text
+                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
                                 }
                             }
 
@@ -318,7 +318,7 @@ FocusScope {
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
                                         horizontalAlignment: Text.AlignJustify
-                                        color: colorScheme[theme].text
+                                        color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
                                     }
                                 }
                             }
