@@ -144,7 +144,8 @@ FocusScope {
             [ dataText[lang].settings_games_gridItemsPerRow,  "gamesGridIPR",  "",  "4,5,6,2,3" ],
             [ dataText[lang].settings_games_gridItemsViewableRows,  "gamesGridVR",  "",  "1,2,3,4,5,dynamic" ],
             [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
-            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
+            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_games_page_updown_function,  "gamesPageUpDownFunction",  "",  "Collections,Games" ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],

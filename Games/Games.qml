@@ -636,38 +636,62 @@ FocusScope {
                 }
 
                 Keys.onReleased: {
-                    if (api.keys.isPageUp(event) || api.keys.isPageDown(event)) {
-                        if (event.isAutoRepeat) {
-                            event.accepted = false;
-                            return;
+                    if (event.isAutoRepeat) {
+                        return;
+                    }
+
+                    if (api.keys.isPageDown(event) && gamesPgUpDownFunction === 'Games') {
+                        event.accepted = true;
+                        var jumpCount = gridVR * gamesGridIPR;
+                        if ((currentGameIndex + jumpCount) > currentCollection.games.count - 1) {
+                            currentGameIndex = currentCollection.games.count - 1;
+                        } else {
+                            currentGameIndex += jumpCount;
                         }
-                        else{
-                            event.accepted = true;
-                             if (api.keys.isPageDown(event)) {
-				                sfxCollection.play();
-                                if (currentCollectionIndex >= allCollections.length  - 1) {
-                                    currentCollectionIndex = 0;
-                                }
-                                else {
-                                    currentCollectionIndex++;
-                                }
-                            }   
-                            else {
-                                sfxCollection2.play();
-                                if (currentCollectionIndex <= 0)
-                                    currentCollectionIndex = allCollections.length  - 1
-                                else
-                                    currentCollectionIndex--;
-                            }
-                            api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                            currentGameIndex = 0
-                            currentIndex = 0
+                        return;
+                    }
+
+                    if (api.keys.isPageUp(event) && gamesPgUpDownFunction === 'Games') {
+                        event.accepted = true;
+                        var jumpCount = gridVR * gamesGridIPR;
+                        if ((currentGameIndex - jumpCount) < 0) {
+                            currentGameIndex = 0;
+                        } else {
+                            currentGameIndex -= jumpCount;
                         }
+                        return;
+                    }
+
+                    if (api.keys.isPageDown(event) && gamesPgUpDownFunction === 'Collections') {
+                        event.accepted = true;
+                        playCollectionSound();
+                        if (currentCollectionIndex >= allCollections.length - 1) {
+                            currentCollectionIndex = 0;
+                        } else {
+                            currentCollectionIndex++;
+                        }
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        currentGameIndex = 0;
+                        return;
+                    }
+
+                    if (api.keys.isPageUp(event) && gamesPgUpDownFunction === 'Collections') {
+                        event.accepted = true;
+                        playCollection2Sound();
+                        if (currentCollectionIndex <= 0) {
+                            currentCollectionIndex = allCollections.length - 1;
+                        } else {
+                            currentCollectionIndex--;
+                        }
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        currentGameIndex = 0;
+                        return;
                     }
                 }
+
             }
-            
-            //Navigation bar
+
+            // Navigation bar
             Component {
                 id: cpnt_helper_nav
                 Item {

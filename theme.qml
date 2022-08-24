@@ -257,6 +257,7 @@ FocusScope {
             settings_games_layout: "Games layout",
             settings_games_gridItemsPerRow: "Game grid - items per row",
             settings_games_gridItemsViewableRows: "Game grid - viewable rows",
+            settings_games_page_updown_function: "Game grid - LT/RT button function",
             menu_settings: "settings",
             menu_home: "home",
             menu_collections: "collections",
@@ -322,6 +323,7 @@ FocusScope {
             settings_games_layout: "Spiele-Layout",
             settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
             settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
+            settings_games_page_updown_function: "Spiel Raster - LT/RT-Tastenfunktion",
             menu_settings: "Optionen",
             menu_home: "Start",
             menu_collections: "Sammlungen",
@@ -387,6 +389,7 @@ FocusScope {
             settings_games_layout: "Mise en page des jeux",
             settings_games_gridItemsPerRow: "Grille - nombre de jeux par ligne",
             settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
+            settings_games_page_updown_function: "Grille - Fonction bouton LT/RT",
             menu_settings: "Réglages",
             menu_home: "Accueil",
             menu_collections: "Collections",
@@ -451,6 +454,7 @@ FocusScope {
             settings_games_layout: "Layout do jogos",
             settings_games_gridItemsPerRow: "Grade - Jogos por fileira",
             settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
+            settings_games_page_updown_function: "Grade - função do botão LT/RT",
             menu_settings: "ajustes",
             menu_home: "início",
             menu_collections: "coleções",
@@ -539,6 +543,7 @@ FocusScope {
     property var gamesLayout: api.memory.get('gamesLayout') || "BoxArt-Grid"
     property var gamesGridIPR: api.memory.get('gamesGridIPR') || 4
     property var gamesGridVR: api.memory.get('gamesGridVR') || 1
+    property var gamesPgUpDownFunction: api.memory.get('gamesPageUpDownFunction') || 'Collections'
     property var gamesVideo: api.memory.get('gamesVideoIndex') || 0
     property var gamesVideoMute: {
         if (api.memory.get('gamesVideoMuteIndex') == "1") {
