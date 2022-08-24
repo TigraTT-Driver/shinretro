@@ -223,13 +223,13 @@ FocusScope {
             // Accept
             if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                 event.accepted = true;
-                sfxNav.play();
+                playNavSound();
                 settingsList.focus = true;
             }
             // Back
             if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                 event.accepted = true;
-                currentMenuIndex = 1
+                currentMenuIndex = 1;
             }
         }
 
@@ -345,13 +345,13 @@ FocusScope {
                 // Input handling
                 // Next setting
                 Keys.onRightPressed: {
-                    sfxAccept.play()
+                    playAcceptSound();
                     nextSetting();
                     saveSetting();
                 }
                 // Previous setting
                 Keys.onLeftPressed: {
-                    sfxAccept.play();
+                    playAcceptSound();
                     prevSetting();
                     saveSetting();
                 }
@@ -360,22 +360,29 @@ FocusScope {
                     // Accept
                     if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                         event.accepted = true;
-                        sfxAccept.play()
+                        playAcceptSound();
                         nextSetting();
                         saveSetting();
                     }
                     // Back
                     if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                         event.accepted = true;
-                        sfxNav.play()
+                        playNavSound();
                         pagelist.focus = true;
                     }
                 }
             }
-        } 
+        }
 
-        Keys.onUpPressed: { sfxNav.play(); decrementCurrentIndex() }
-        Keys.onDownPressed: { sfxNav.play(); incrementCurrentIndex() }
+        Keys.onUpPressed: {
+            playNavSound(); 
+            decrementCurrentIndex() 
+        }
+
+        Keys.onDownPressed: {
+            playNavSound();
+            incrementCurrentIndex()
+        }
     }
     // Buttons
     Row {
