@@ -584,17 +584,14 @@ FocusScope {
                         event.accepted = true;
                         playPlaySound();
                         if (currentGame !== null) {
-                            api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                            api.memory.set("currentMenuIndex", currentMenuIndex)
-                            api.memory.set('gameIndex', gv_games.currentIndex);
-                            currentGame.launch()
+                            saveCurrentState(currentGameIndex, sortIndex);
+                            currentGame.launch();
                         }
                     }
 
                     if (api.keys.isFilters(event)) {
-                        //Accept game sound
-                        sfxBack.play();
                         event.accepted = true;
+                        playBackSound();
                         filter.focus = true;
                         return;
                     }
