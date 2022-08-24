@@ -297,6 +297,30 @@ FocusScope {
                                         visible: (modelData !== "")
                                     }
                                 }
+
+                                // Arcade Port
+                                Rectangle {
+                                    width: txt_arcadeport.contentWidth + vpx(20)
+                                    height: txt_arcadeport.contentHeight + vpx(10)
+                                    color: alt_color2
+                                    border {
+                                        width: vpx(1)
+                                        color: alt_color2
+                                    }
+
+                                    Text {
+                                        id: txt_arcadeport
+                                        anchors.centerIn: parent
+                                        text: dataText[lang].games_arcadeport
+                                        font {
+                                            family: global.fonts.sans
+                                            weight: Font.Medium
+                                            pixelSize: vpx(12)
+                                        }
+                                        color: lightOrDark(alt_color2) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    }
+                                    visible: (currentGame.extra.arcadeport !== undefined) && (currentGame.extra.arcadeport.toString() === 'True')
+                                }
                             }
 
                             // Description
