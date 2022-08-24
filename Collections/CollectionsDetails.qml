@@ -31,7 +31,7 @@ Item {
                 Image {
                     id: img_logo_region
                     anchors.fill: parent
-                    source: "../assets/collections/"+shortname+"/logo_"+region+"_"+logoVariant+".svg"
+                    source: "../assets/collections/" + shortname + "/logo_" + region + "_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     visible: logoVariant == "color"
@@ -40,7 +40,7 @@ Item {
                 Image {
                     id: img_logo
                     anchors.fill: parent
-                    source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
+                    source: "../assets/collections/" + shortname + "/logo_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     visible: logoVariant == "color" && img_logo_region.status == Image.Error
