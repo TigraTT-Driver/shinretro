@@ -130,7 +130,8 @@ FocusScope {
             accepted: "#8E63EC",
             cancel: "#E06C9A",
             details: "#F3C03B",
-            filters: "#66D2EC"
+            filters: "#66D2EC",
+            sorters: "#8E63EC"
         },
          "Light": {
             main: "white",
@@ -149,7 +150,8 @@ FocusScope {
             accepted: "#00991E",
             cancel: "#E6140D",
             details: "#1C2C98",
-            filters: "#996b00"
+            filters: "#996B00",
+            sorters: "#00991E"
         },
         "OzoneDark": {
             main: "#2D2D2D",
@@ -168,7 +170,8 @@ FocusScope {
             accepted: "#996B00",
             cancel: "#E6140D",
             details: "#00991E",
-            filters: "#5365DF"
+            filters: "#5365DF",
+            sorters: "#F3C03B"
         },
         "SteamOS": {
             main: "black",
@@ -187,7 +190,8 @@ FocusScope {
             accepted: "#EBEBEB",
             cancel: "#EBEBEB",
             details: "#EBEBEB",
-            filters: "#EBEBEB"
+            filters: "#EBEBEB",
+            sorters: "#EBEBEB"
         }
     }
 
@@ -228,6 +232,7 @@ FocusScope {
             games_filtered: "<b>FILTERS</b>",
             games_filterMultiplayer: "Multiplayer",
             games_filter: "FILTERS",
+            games_sortedBy: "SORTED BY",
             home_continue: "Continue playing",
             home_favorites: "Favorites",
             home_play: "Play",
@@ -292,6 +297,7 @@ FocusScope {
             games_filtered: "<b>FILTER</b>",
             games_filterMultiplayer: "Mehrspieler",
             games_filter: "FILTER",
+            games_sortedBy: "SORTIERT NACH",
             home_continue: "Weiterspielen",
             home_favorites: "Favoriten",
             home_play: "Spiele",
@@ -356,6 +362,7 @@ FocusScope {
             games_filtered: "<b>FILTRES</b>",
             games_filterMultiplayer: "Multijoueur",
             games_filter: "FILTRES",
+            games_sortedBy: "TRIÉ PAR",
             home_continue: "Joué récemment",
             home_favorites: "Favoris",
             home_play: "Jouer",
@@ -419,6 +426,7 @@ FocusScope {
             games_addFavorite: "ADICIONAR <b>FAVORITO</b>",
             games_filtered: "<b>FILTROS</b>",
             games_filterMultiplayer: "Multijogador",
+            games_sortedBy: "ORDENADO POR",
             home_continue: "Continuar jogando",
             home_favorites: "Favoritos",
             home_play: "Jogar",

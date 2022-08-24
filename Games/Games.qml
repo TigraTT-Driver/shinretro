@@ -753,6 +753,18 @@ FocusScope {
 
                     visible: currentGame !== null
                 }
+
+                Controls {
+                    id: button_Back
+
+                    message: dataText[lang].games_sortedBy + " <b>" + getSortLabel() + "</b>";
+
+                    text_color: colorScheme[theme].sorters
+                    front_color: colorScheme[theme].sorters.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].sorters.replace(/#/g, "#26");
+                    //input_button: osdScheme[controlScheme].BTNU
+                }
+
             }
 
             Text {
