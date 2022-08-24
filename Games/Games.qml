@@ -7,6 +7,10 @@ import "../Global"
 import "../Filter"
 
 FocusScope {
+    readonly property string collectionType: currentCollection.extra.collectiontype != undefined ? currentCollection.extra.collectiontype.toString() : 'System'
+    readonly property var customSystemLogoCategories: ['Custom', 'Series']
+    readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
+
     readonly property var alt_color2: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor2 : dataConsoles["default"].altColor2
     readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
@@ -217,6 +221,29 @@ FocusScope {
                                         pixelSize: vpx(14 * fontScalingFactor)
                                     }
                                     color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                }
+
+                                Text {
+                                    text: dataText[lang].games_for
+                                    font {
+                                        family: global.fonts.sans
+                                        weight: Font.Light
+                                        italic: true
+                                        pixelSize: vpx(14)
+                                    }
+                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    visible: customCollection
+                                }
+
+                                Text {
+                                    text: dataConsoles[currentGame.extra.system].fullName
+                                    font {
+                                        family: global.fonts.sans
+                                        weight: Font.Medium
+                                        pixelSize: vpx(14)
+                                    }
+                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    visible: customCollection
                                 }
                             }
 
