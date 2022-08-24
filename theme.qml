@@ -581,6 +581,49 @@ FocusScope {
         "final burn neo" :                          "fbneo"
     }
 
+    property variant dataManufacturers: {
+        "acorn":               { color: "#FFFFFF" },
+        "amstrad":             { color: "#FFFFFF" },
+        "apf":                 { color: "#FFFFFF" },
+        "apple":               { color: "#FFFFFF" },
+        "atari":               { color: "#FFFFFF" },
+        "bally":               { color: "#FFFFFF" },
+        "bandai":              { color: "#FFFFFF" },
+        "belogic":             { color: "#FFFFFF" },
+        "bitcorp":             { color: "#FFFFFF" },
+        "capcom":              { color: "#FFFFFF" },
+        "casio":               { color: "#FFFFFF" },
+        "cdproject":           { color: "#FFFFFF" },
+        "coleco":              { color: "#FFFFFF" },
+        "commodore":           { color: "#FFFFFF" },
+        "dragonData":          { color: "#FFFFFF" },
+        "entex":               { color: "#FFFFFF" },
+        "fairchild":           { color: "#FFFFFF" },
+        "fujitsu":             { color: "#FFFFFF" },
+        "ibm":                 { color: "#FFFFFF" },
+        "infocom":             { color: "#FFFFFF" },
+        "lexaloffle":          { color: "#FFFFFF" },
+        "mattel":              { color: "#FFFFFF" },
+        "microsoft":           { color: "#FFFFFF" },
+        "nec":                 { color: "#2E1D81" },
+        "nintendo":            { color: "#E11919" },
+        "panasonic":           { color: "#FFFFFF" },
+        "pc":                  { color: "#FFFFFF" },
+        "philips":             { color: "#FFFFFF" },
+        "sammy":               { color: "#FFFFFF" },
+        "sega":                { color: "#17569b" },
+        "sharp":               { color: "#FFFFFF" },
+        "sinclair":            { color: "#FFFFFF" },
+        "smitheng":            { color: "#FFFFFF" },
+        "snk":                 { color: "#359CD2" },
+        "sony":                { color: "#1D1D1D" },
+        "tandy":               { color: "#FFFFFF" },
+        "ti":                  { color: "#FFFFFF" },
+        "thomson":             { color: "#FFFFFF" },
+        "valve":               { color: "#010314" },
+        "vadimGrigoruk":       { color: "#FFFFFF" }
+    }
+
     // Additional data to display manufacturers and release dates
     property variant dataConsoles: {
         "3do":              { manufacturer: "panasonic",            release: "1993", color: "#0000A0", altColor: "#000080" , altColor2: "#FFE41B" },

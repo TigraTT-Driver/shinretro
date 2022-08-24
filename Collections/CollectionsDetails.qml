@@ -6,6 +6,7 @@ Item {
     property var shortname: clearShortname(modelData.shortName)
     property var manufacturer: dataConsoles[shortname].manufacturer || null
     property var release: dataConsoles[shortname].release || null
+    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -19,8 +20,8 @@ Item {
 
             Item {
                 id: img_collection_logo
-                width: vpx(250)
-                height: vpx(100)
+                width: vpx(325)
+                height: vpx(115)
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: parent.top
@@ -96,7 +97,7 @@ Item {
                 spacing: vpx(10)
 
                 Rectangle {
-                    width: vpx(60)
+                    width: vpx(75)
                     height: vpx(30)
                     color: "transparent"
                     Item {
@@ -115,7 +116,7 @@ Item {
                         ColorOverlay {
                             anchors.fill: img_manufacturer
                             source: img_manufacturer
-                            color: colorScheme[theme].icons
+                            color: manufacturerColor
                             antialiasing: true
                         }
                     }
@@ -134,7 +135,7 @@ Item {
                         pixelSize: vpx(14 * fontScalingFactor)
                     }
                     bottomPadding: vpx(2)
-                    color: colorScheme[theme].text
+                    color: (manufacturerColor !== '#ffffff') ? manufacturerColor : "black"
                 }
             }
         }
