@@ -12,9 +12,7 @@ FocusScope {
     property var currentGame: {
         if (gv_games.count === 0)
             return null;
-        if (games.state === "filtered")
-            return currentCollection.games.get(filteredGames.mapToSource(currentGameIndex))
-        return currentCollection.games.get(currentGameIndex)
+        return findCurrentGameFromProxy(currentGameIndex, currentCollection);
     }
 
     property int gridVR: {
@@ -451,11 +449,7 @@ FocusScope {
                 currentIndex: currentGameIndex
                 onCurrentIndexChanged: currentGameIndex = currentIndex
 
-                model: {
-                    if (games.state === "filtered")
-                        return filteredGames
-                    return currentCollection.games
-                }
+                model: filteredGames
                 delegate: Item {
                     property bool isCurrentItem: GridView.isCurrentItem
                     property bool isFocused: games.focus
@@ -504,9 +498,9 @@ FocusScope {
                 focus: games.focus
 
                 Component.onCompleted: {
-                    gv_games.currentIndex = api.memory.get('gameIndex') || 0;
-                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition)
-                    api.memory.unset('gameIndex')
+                    currentGameIndex = api.memory.get(collectionType + "-" + currentCollectionIndex + "-currentGameIndex") || 0
+                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition);
+                    api.memory.unset(collectionType + "-" + currentCollectionIndex + "-currentGameIndex");
                 }
 
                 Keys.onPressed: {
@@ -704,6 +698,17 @@ FocusScope {
                 onCloseRequested: gv_games.focus = true
             }
             
+        }
+    }
+
+    function findCurrentGameFromProxy(idx, collection) {
+        // Last Played collection uses 2 filters chained together
+        if (collection.shortName == "lastplayed") {
+            return api.allGames.get(lastPlayedBase.mapToSource(idx));
+        } else if (collection.shortName == "favorites") {
+            return api.allGames.get(allFavorites.mapToSource(idx));
+        } else {
+            return currentCollection.games.get(filteredGames.mapToSource(idx))
         }
     }
 

@@ -196,6 +196,8 @@ FocusScope {
             global_switch: "SWITCH",
             global_collCategory: "COLLECTION CATEGORY",
             collection_all: "All",
+            collection_favorites: "Favorites",
+            collection_lastplayed: "Last Played",
             collectionDetails_gamesAvailable: "games available",
             games_na: "N/A",
             games_developedBy: "Developed by",
@@ -225,6 +227,8 @@ FocusScope {
             settings_global_videoPlayback: "Video playback",
             settings_global_videoMute: "Mute video",
             settings_collection_showAll: 'Show "All games" collection',
+            settings_collection_showFavorites: 'Show "Favorites" collection',
+            settings_collection_showLastPlayed: 'Show "Last Played" collection',
             settings_collection_accentColor: "Accent color brightness",
             settings_collection_accentColorNr: "Accent colors",
             settings_games_layout: "Games layout",
@@ -254,6 +258,8 @@ FocusScope {
             global_switch: "SCHALTER",
             global_collCategory: "SAMMLUNGSKATEGORIE",
             collection_all: "Alle",
+            collection_favorites: "Favoriten",
+            collection_lastplayed: "Zuletzt gespielt",
             collectionDetails_gamesAvailable: "Spiele verfügbar",
             games_na: "K.A.",
             games_developedBy: "Entwickelt von",
@@ -283,6 +289,8 @@ FocusScope {
             settings_global_videoPlayback: "Videowiedergabe",
             settings_global_videoMute: "Video stummschalten",
             settings_collection_showAll: 'Sammlung "Alle Spiele" anzeigen',
+            settings_collection_showFavorites: 'Sammlung "Favoriten" anzeigen',
+            settings_collection_showLastPlayed: 'Sammlung "Zuletzt gespielt" anzeigen',
             settings_collection_accentColor: "Akzentfarbhelligkeit",
             settings_collection_accentColorNr: "Akzentfarben",
             settings_games_layout: "Spiele-Layout",
@@ -312,6 +320,8 @@ FocusScope {
             global_switch: "CHANGER",
             global_collCategory: "CATÉGORIE DE COLLECTE",
             collection_all: "Tous",
+            collection_favorites: "Favoris",
+            collection_lastplayed: "Dernier joué",
             collectionDetails_gamesAvailable: "Jeux disponibles",
             games_na: "NC",
             games_developedBy: "Developpé par",
@@ -341,6 +351,8 @@ FocusScope {
             settings_global_videoPlayback: "Activer les vidéos",
             settings_global_videoMute: "Désactiver le son des vidéos",
             settings_collection_showAll: 'Afficher la collection "Tous"',
+            settings_collection_showFavorites: 'Afficher la collection "Favoris"',
+            settings_collection_showLastPlayed: 'Afficher la collection "Dernière lecture"',
             settings_collection_accentColor:  "Accentuer la luminosité des couleurs",
             settings_collection_accentColorNr: "Accentuer les couleurs",
             settings_games_layout: "Mise en page des jeux",
@@ -370,6 +382,8 @@ FocusScope {
             global_switch: "TROCAR",
             global_collCategory: "CATEGORIA DE COLEÇÃO",
             collection_all: "Todos",
+            collection_favorites: "Favoritos",
+            collection_lastplayed: "Jogou pela última vez",
             collectionDetails_gamesAvailable: "Jogos disponíveis",
             games_na: "N/A",
             games_developedBy: "Desenvolvido por",
@@ -398,6 +412,8 @@ FocusScope {
             settings_global_videoPlayback: "Reprodução de vídeo",
             settings_global_videoMute: "Silenciar vídeo",
             settings_collection_showAll: 'Mostrar a coleção "Todos jogos"',
+            settings_collection_showFavorites: 'Mostrar coleção "Favoritos"',
+            settings_collection_showLastPlayed: 'Mostrar coleção "Últimas jogadas"',
             settings_collection_accentColor: "Brilho da cor de destaque",
             settings_collection_accentColorNr: "Cores de destaque",
             settings_games_layout: "Layout do jogos",
@@ -478,6 +494,8 @@ FocusScope {
     }
     property var accentColorNr: api.memory.get('accentColorNrIndex') || 0
     property var allGamesCollection: api.memory.get('allGamesCollectionIndex') || 0
+    property var favoritesCollection: api.memory.get('favoritesCollectionIndex') || 0
+    property var lastPlayedCollection: api.memory.get('lastPlayedCollectionIndex') || 0
     property var collectionVideo: api.memory.get('collectionVideoIndex') || 0
     property var collectionVideoMute: {
         if (api.memory.get('collectionVideoMuteIndex') == "1") {
@@ -508,6 +526,12 @@ FocusScope {
     // List of game collections
     property var allCollections: {
         var collections = api.collections.toVarArray()
+        if (favoritesCollection != "1") {
+            collections.unshift({"name": dataText[lang].collection_favorites, "shortName": "favorites", "games": allFavorites, "extra": {"collectiontype": "System"}});
+        }
+        if (lastPlayedCollection != "1") {
+            collections.unshift({"name": dataText[lang].collection_lastplayed, "shortName": "lastplayed", "games": lastPlayed, "extra": {"collectiontype": "System"}});
+        }
         if (allGamesCollection != "1") {
             collections.unshift({"name": dataText[lang].collection_all, "shortName": "all", "games": api.allGames, "extra": {"collectiontype": "System"}});
         }
@@ -786,13 +810,25 @@ FocusScope {
         "zxspectrum":         { manufacturer: "sinclair",      release: "1982", color: "#D6A763", altColor: "#CF974A", altColor2: "#000000", fullName: "ZX Spectrum"  }
     }
 
+    // Define Last Played and Favorites collections
     SortFilterProxyModel {
         id: allFavorites
         sourceModel: api.allGames
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
 
-    // state: api.memory.get("currentPageState") || "home_lastPlayed"
+    SortFilterProxyModel {
+        id: lastPlayedBase
+        sourceModel: api.allGames
+        sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder; }
+    }
+
+    SortFilterProxyModel {
+        id: lastPlayed
+        sourceModel: lastPlayedBase
+        filters: IndexFilter { maximumIndex: 49; }
+    }
+
     state: dataMenu[currentMenuIndex].name
 
     transitions: [
