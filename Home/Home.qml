@@ -7,6 +7,7 @@ FocusScope {
     property int currentLastPlayedIndex: 0
     property int currentFavoritesIndex: 0
     property var previousLastplayed: lastplayed_left
+    readonly property var maximumFavoritesShown: 19
 
     readonly property var currentGame: {
         if (lastplayed_left.focus)
@@ -38,7 +39,7 @@ FocusScope {
     SortFilterProxyModel {
         id: sort_favorites_limited
         sourceModel: sort_favorites_base
-        filters: IndexFilter { maximumIndex: 19; }
+        filters: IndexFilter { maximumIndex: maximumFavoritesShown; }
     }
 
     // 1 game to show maximum
