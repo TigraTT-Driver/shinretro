@@ -7,7 +7,12 @@ import "../Global"
 import "../Filter"
 
 FocusScope {
+    property int sortIndex: api.memory.get('sortIndex') || 0
+    readonly property var sortFields: ['sortTitle', 'release', 'rating', 'genre', 'lastPlayed', 'favorite']
+    readonly property var sortLabels: {'sortTitle':'Title', 'release':'Release Date', 'rating':'Rating', 'genre':'Genre', 'lastPlayed':'Last Played', 'favorite':'Favorite'}
+    readonly property string sortField: sortFields[sortIndex]
     readonly property string collectionType: currentCollection.extra.collectiontype != undefined ? currentCollection.extra.collectiontype.toString() : 'System'
+    readonly property var customSortCategories: ['Custom', 'Series']
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
 
@@ -56,6 +61,25 @@ FocusScope {
                 roleName: "favorite"
                 value: true
                 enabled: filter.withFavorite
+            }
+        ]
+        sorters: [
+            RoleSorter {
+                roleName: sortField
+                sortOrder: sortField == 'rating' || sortField == 'lastPlayed' || sortField == 'favorite' ? Qt.DescendingOrder : Qt.AscendingOrder
+                enabled: !customSortCategories.includes(collectionType) && currentCollection.shortName !== 'lastplayed' && root.state === "games"
+            },
+            ExpressionSorter {
+                expression: {
+                    if (!customSortCategories.includes(collectionType)) {
+                        return true;
+                    }
+
+                    var sortLeft = getCollectionSortValue(modelLeft, currentCollection.shortName);
+                    var sortRight = getCollectionSortValue(modelRight, currentCollection.shortName);
+                    return (sortLeft < sortRight);
+                }
+                enabled: customSortCategories.includes(collectionType) && root.state === "games"
             }
         ]
     }
@@ -589,6 +613,14 @@ FocusScope {
                         }
                     }
 
+                    // Select button triggers sort by category - not sure what enum matches so just using the INT value for the key
+                    if (event.key == 1048586) {
+                        event.accepted = true;
+                        playBackSound();
+                        sortIndex = (sortIndex + 1) % sortFields.length;
+                        return;
+                    }
+
                     if (event.key == Qt.Key_Left) {
                         playNavSound();
                     }
@@ -757,6 +789,20 @@ FocusScope {
             return api.allGames.get(allFavorites.mapToSource(idx));
         } else {
             return currentCollection.games.get(filteredGames.mapToSource(idx))
+        }
+    }
+
+    function getCollectionSortValue(gameData, collName) {
+        return gameData.extra['customsort-' + collName] !== undefined ? gameData.extra['customsort-' + collName] : "";
+    }
+
+    function getSortLabel() {
+        if (currentCollection.shortName == 'lastplayed') {
+            return 'Last Played';
+        } else if (customSortCategories.includes(collectionType)) {
+            return 'Custom';
+        } else {
+            return sortLabels[sortField];
         }
     }
 
