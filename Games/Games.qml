@@ -7,6 +7,11 @@ import "../Global"
 import "../Filter"
 
 FocusScope {
+    readonly property var alt_color2: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor2 : dataConsoles["default"].altColor2
+    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
+    readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
+    readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
+    property var shortname: clearShortname(currentCollection.shortName)
 
     property int currentGameIndex: 0
     property var currentGame: {
@@ -77,15 +82,6 @@ FocusScope {
     // Skewed background
     Rectangle {
         id: skew_color
-        readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
-        readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
-        readonly property var touch_color: {
-            if (accentColor == "bright") {
-                return touch_colorBright;
-            } else {
-                return touch_colorDimm;
-            }
-        }
         width: parent.width * 0.42
         height: parent.height
         antialiasing: true
