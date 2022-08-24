@@ -31,8 +31,8 @@ FocusScope {
     }
 
     focus: games.focus
-        state: {
-        if(!filter.withMultiplayer && !filter.withFavorite && !filter.withTitle)
+    state: {
+        if (!filter.withMultiplayer && !filter.withFavorite && !filter.withTitle)
             return "unfiltered"
         else return "filtered"
     }
