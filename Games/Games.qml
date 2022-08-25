@@ -27,6 +27,14 @@ FocusScope {
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
     readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
 
+    readonly property var text_color: {
+        if (accentColor == "bright") {
+            return lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+        } else {
+            return colorScheme[theme].text
+        }
+    }
+
     property int currentGameIndex: 0
     property var currentGame: {
         if (gv_games.count === 0)
@@ -226,7 +234,7 @@ FocusScope {
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
-                                color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                color: text_color
                             }
 
                             Row {
@@ -240,7 +248,7 @@ FocusScope {
                                         italic: true
                                         pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    color: text_color
                                 }
 
                                 Text {
@@ -250,7 +258,7 @@ FocusScope {
                                         weight: Font.Medium
                                         pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    color: text_color
                                 }
 
                                 Text {
@@ -261,7 +269,7 @@ FocusScope {
                                         italic: true
                                         pixelSize: vpx(14)
                                     }
-                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    color: text_color
                                     visible: customCollection
                                 }
 
@@ -272,7 +280,7 @@ FocusScope {
                                         weight: Font.Medium
                                         pixelSize: vpx(14)
                                     }
-                                    color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    color: text_color
                                     visible: customCollection
                                 }
                             }
@@ -400,7 +408,7 @@ FocusScope {
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
                                         horizontalAlignment: Text.AlignJustify
-                                        color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                        color: text_color
                                     }
                                 }
                             }
@@ -804,7 +812,7 @@ FocusScope {
                     right: parent.right;
                 }
                 text: (currentGameIndex + 1) + "/" + gv_games.count
-                color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                color: text_color
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(14 * fontScalingFactor)
