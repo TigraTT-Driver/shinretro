@@ -173,7 +173,9 @@ FocusScope {
                         Text {
                             id: txt_releaseYear
                             anchors {
-                                top: parent.top; topMargin: -vpx(20)
+                                top: parent.top
+                                topMargin: -vpx(20)
+                                right: parent.right
                             }
 
                             text: currentGame.releaseYear || dataText[lang].games_na
@@ -183,13 +185,13 @@ FocusScope {
                                 italic: true
                                 pixelSize: vpx(140)
                             }
-                            color: (dataConsoles[shortname] !== undefined) ? dataConsoles[shortname].altColor : dataConsoles["default"].altColor
+                            color: alt_color
                             layer.enabled: true
                             layer.effect: DropShadow {
                                 spread: 1.0
                                 verticalOffset: 5
                                 horizontalOffset: 5
-                                color: (dataConsoles[shortname] !== undefined) ? lightenDarkenColor(dataConsoles[shortname].altColor, -5) : lightenDarkenColor(dataConsoles["default"].altColor, -5)
+                                color: alt_colorShadow
                                 radius: 5
                                 samples: 11
                             }
