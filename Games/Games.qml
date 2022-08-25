@@ -348,7 +348,7 @@ FocusScope {
                                             font {
                                                 family: global.fonts.sans
                                                 weight: Font.Medium
-                                                pixelSize: vpx(12  * fontScalingFactor)
+                                                pixelSize: vpx(12 * fontScalingFactor)
                                             }
                                             color: colorScheme[theme].text
                                         }
