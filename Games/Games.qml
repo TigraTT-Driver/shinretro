@@ -804,7 +804,7 @@ FocusScope {
                     right: parent.right;
                 }
                 text: (currentGameIndex + 1) + "/" + gv_games.count
-                color: colorScheme[theme].text
+                color: lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
                 font {
                     family: robotoSlabLight.name
                     pixelSize: vpx(14 * fontScalingFactor)
