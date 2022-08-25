@@ -31,7 +31,7 @@ Item {
         font {
             family: montserratMedium.name
             weight: Font.Bold
-            pixelSize: (parentImageWidth * 0.75) > 125 ? vpx(10) : vpx((parentImageWidth * 0.75)/12)
+            pixelSize: (parentImageWidth * 0.75) > 125 ? vpx(10) : vpx((parentImageWidth * 0.75) / 12)
         }
         color: "white"
         z: 15
