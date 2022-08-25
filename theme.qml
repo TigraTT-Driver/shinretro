@@ -1220,7 +1220,8 @@ FocusScope {
         if (g > 255) g = 255;
         else if (g < 0) g = 0;
 
-        return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+        var string = "000000" + (g | (b << 8) | (r << 16)).toString(16);
+        return (usePound ? "#" : "") + string.substr(string.length - 6);
     }
 
     function lightOrDark(color) {
