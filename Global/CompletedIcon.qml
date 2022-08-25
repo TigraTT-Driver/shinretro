@@ -33,7 +33,7 @@ Item {
             weight: Font.Bold
             pixelSize: (parentImageWidth * 0.75) > 125 ? vpx(10) : vpx((parentImageWidth * 0.75) / 12)
         }
-        color: "white"
+        color: colorScheme[theme].textlight
         z: 15
     }
 
@@ -41,7 +41,7 @@ Item {
         anchors.fill: completedbg
         source: completedbg
         cached: true
-        color: "#ff6400"
+        color: colorScheme[theme].completed
         z: 10
     }
 
