@@ -19,7 +19,7 @@ Item {
             top: parent.top
             topMargin: vpx(0)
             right: parent.right
-            rightMargin: (parent.width - parentImageWidth)/2
+            rightMargin: (parent.width - parentImageWidth) / 2
         }
         source: "../assets/favebg.svg"
         width: vpx(32)
@@ -44,7 +44,7 @@ Item {
             top: parent.top
             topMargin: vpx(2.5)
             right: parent.right
-            rightMargin: (parent.width - parentImageWidth)/2 + vpx(3)
+            rightMargin: (parent.width - parentImageWidth) / 2 + vpx(3)
         }
         source: "../assets/star.svg"
         width: vpx(13)
