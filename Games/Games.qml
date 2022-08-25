@@ -17,10 +17,15 @@ FocusScope {
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
 
     readonly property var alt_color2: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor2 : dataConsoles["default"].altColor2
+
+    readonly property var alt_colorBright: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor : dataConsoles["default"].altColor
+    readonly property var alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
+    readonly property var alt_color: (accentColor == "bright") ? alt_colorBright : alt_colorDimm
+    readonly property var alt_colorShadow: (accentColor == "bright") ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
+
     readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
     readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
-    property var shortname: clearShortname(currentCollection.shortName)
 
     property int currentGameIndex: 0
     property var currentGame: {
@@ -150,7 +155,6 @@ FocusScope {
             height: parent.height * 0.5
             anchors {
                 top: parent.top
-                //horizontalCenter: parent.horizontalCenter
                 right: parent.right
             }
 
@@ -451,7 +455,7 @@ FocusScope {
                         anchors.fill: parent
 
                         asynchronous: true
-                        sourceComponent: GameItemTopVideo  {}
+                        sourceComponent: GameItemTopVideo {}
                         active: games.focus && gamesLayout === "BoxArt-Grid"
                         visible: status === Loader.Ready
                     }
@@ -786,7 +790,7 @@ FocusScope {
                     text_color: colorScheme[theme].sorters
                     front_color: colorScheme[theme].sorters.replace(/#/g, "#26");
                     back_color: colorScheme[theme].sorters.replace(/#/g, "#26");
-                    //input_button: osdScheme[controlScheme].BTNU
+                    input_button: ""
                 }
 
             }
