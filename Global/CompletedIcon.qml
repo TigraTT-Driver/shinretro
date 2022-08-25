@@ -27,7 +27,7 @@ Item {
             centerIn: completedbg
             verticalCenterOffset: vpx(-3)
         }
-        text: "COMPLETED"
+        text: dataText[lang].games_completed
         font {
             family: montserratMedium.name
             weight: Font.Bold
