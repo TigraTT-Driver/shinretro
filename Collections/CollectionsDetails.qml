@@ -78,7 +78,7 @@ Item {
                 id: txt_collection_games
                 anchors {
                     top: img_collection_logo.bottom
-                    topMargin: vpx(10)
+                    topMargin: vpx(25)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
                 text: modelData.games.count + " " + dataText[lang].collectionDetails_gamesAvailable
@@ -100,8 +100,8 @@ Item {
 
                 Rectangle {
                     width: vpx(75)
-                    height: vpx(30)
-                    color: "transparent"
+                    height: vpx(25)
+                    color: manufacturerColor
                     Item {
                         width: vpx(55)
                         height: vpx(15 * fontScalingFactor)
@@ -110,16 +110,10 @@ Item {
                         Image {
                             id: img_manufacturer
                             anchors.fill: parent
+                            sourceSize.width: width
+                            sourceSize.height: height
                             source: (manufacturer !== null) ? "../assets/manufacturers/logo/" + manufacturer : ""
                             fillMode: Image.PreserveAspectFit
-                            visible: false
-                            antialiasing: true
-                        }
-                        ColorOverlay {
-                            anchors.fill: img_manufacturer
-                            source: img_manufacturer
-                            color: manufacturerColor
-                            antialiasing: true
                         }
                     }
                     visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
@@ -134,10 +128,10 @@ Item {
                     font {
                         family: montserratBold.name
                         weight: Font.Medium
-                        pixelSize: vpx(14 * fontScalingFactor)
+                        pixelSize: vpx(18 * fontScalingFactor)
                     }
                     bottomPadding: vpx(2)
-                    color: (manufacturerColor !== '#ffffff') ? manufacturerColor : "black"
+                    color: (manufacturerColor !== '#FFFFFF') ? manufacturerColor : "black"
                 }
             }
         }
