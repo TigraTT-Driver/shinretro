@@ -31,6 +31,7 @@ Item {
                 Image {
                     id: img_logo_region
                     anchors.fill: parent
+                    sourceSize.width: width
                     source: "../assets/collections/" + shortname + "/logo_" + region + "_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
@@ -40,6 +41,7 @@ Item {
                 Image {
                     id: img_logo
                     anchors.fill: parent
+                    sourceSize.width: width
                     source: "../assets/collections/" + shortname + "/logo_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit

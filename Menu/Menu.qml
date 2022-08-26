@@ -167,6 +167,7 @@ FocusScope {
                                 if (root.state === "games")
                                     return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + region + "_" + logoVariant
                             }
+                            sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
                             verticalAlignment: Image.AlignVCenter
@@ -195,6 +196,7 @@ FocusScope {
                                 if (root.state === "games")
                                     return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + logoVariant
                             }
+                            sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
                             verticalAlignment: Image.AlignVCenter
