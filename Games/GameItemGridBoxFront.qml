@@ -90,19 +90,39 @@ Item {
 
         Rectangle {
             anchors.centerIn: boxFront
-            anchors.horizontalCenterOffset: vpx(-(1 - (1/gamesGridIPR)))
-            anchors.verticalCenterOffset: vpx(-0.75)
-            width: boxFront.paintedWidth + vpx(12)
-            height: boxFront.paintedHeight + vpx(12)
-            color: "transparent"
-            border {
-                width: vpx(4)
-                color: collectionAltColor
-            }
+            anchors.horizontalCenterOffset: vpx(- (1 - (1 / gamesGridIPR)))
+            width: boxFront.paintedWidth + vpx(8)
+            height: boxFront.paintedHeight + vpx(8)
+            color: colorScheme[theme].selected
             opacity: isCurrentItem
             Behavior on opacity {
                 NumberAnimation { duration: 200; }
             }
+
+            // Animation layer
+            Rectangle {
+                id: rectAnim
+                width: parent.width
+                height: parent.height
+                visible: isCurrentItem
+                color: "white"
+
+                SequentialAnimation on opacity {
+                    id: colorAnim
+                    running: true
+                    loops: Animation.Infinite
+                    NumberAnimation {
+                        to: 1
+                        duration: 200
+                    }
+                    NumberAnimation {
+                        to: 0
+                        duration: 500
+                    }
+                    PauseAnimation { duration: 200 }
+                }
+            }
+            z:-10
         }
     }
 

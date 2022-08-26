@@ -177,16 +177,37 @@ Item {
 
     Rectangle {
         anchors.fill: parent
-        anchors.margins: vpx(-2)
-        color: "transparent"
-        border {
-            width: vpx(4)
-            color: collectionAltColor
-        }
+        anchors.margins: vpx(-3)
+        color: colorScheme[theme].selected
         opacity: isCurrentItem
         Behavior on opacity {
             NumberAnimation { duration: 200; }
         }
+
+        // Animation layer
+        Rectangle {
+            id: rectAnim
+            width: parent.width
+            height: parent.height
+            visible: isCurrentItem
+            color: "white"
+
+            SequentialAnimation on opacity {
+                id: colorAnim
+                running: true
+                loops: Animation.Infinite
+                NumberAnimation {
+                    to: 1
+                    duration: 200
+                }
+                NumberAnimation {
+                    to: 0
+                    duration: 500
+                }
+                PauseAnimation { duration: 200 }
+            }
+        }
+        z:-10
     }
 
 }
