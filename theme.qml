@@ -655,7 +655,11 @@ FocusScope {
         "sony playstation 2" :                      "ps2",
         "sony psp" :                                "psp",
         "final burn alpha" :                        "fba",
-        "final burn neo" :                          "fbneo"
+        "final burn neo" :                          "fbneo",
+        "wswan":                                    "wonderswan",
+        "wswanc":                                   "wonderswancolor",
+        "gamecube":                                 "gc",
+        "sgfx":                                     "supergrafx"
     }
 
     property variant dataManufacturers: {
@@ -770,7 +774,7 @@ FocusScope {
         "gba":                { manufacturer: "nintendo",      release: "2001", color: "#280FBE", altColor: "#1F0B8E", altColor2: "#5C67A9", fullName: "Game Boy Advance"  },
         "gbc":                { manufacturer: "nintendo",      release: "1998", color: "#2D308E", altColor: "#252774", altColor2: "#7642B6", fullName: "Game Boy Color"  },
         "gb":                 { manufacturer: "nintendo",      release: "1989", color: "#2D308E", altColor: "#252774", altColor2: "#9B2063", fullName: "Game Boy"  },
-        "gamecube":           { manufacturer: "nintendo",      release: "2001", color: "#524C82", altColor: "#3D3960", altColor2: "#7B79AA", fullName: "Nintendo GameCube"  },
+        "gc":                 { manufacturer: "nintendo",      release: "2001", color: "#524C82", altColor: "#3D3960", altColor2: "#7B79AA", fullName: "Nintendo GameCube"  },
         "genesis":            { manufacturer: "sega",          release: "1988", color: "#212122", altColor: "#0D0D0D", altColor2: "#181C4E", fullName: "Sega Genesis"  },
         "gog":                { manufacturer: "cdproject",     release: "2008", color: "#1D1D1D", altColor: "#0D0D0D", altColor2: "#6D1D72", fullName: "GOG"  },
         "gx4000":             { manufacturer: "amstrad",       release: "1990", color: "#9E4968", altColor: "#7A3850", altColor2: "#DBD9D4", fullName: "Amstrad GX4000"  },
@@ -827,7 +831,7 @@ FocusScope {
         "solarus":            { manufacturer: null,            release: null,   color: "#E5B131", altColor: "#CC9A19", altColor2: "#574287", fullName: "Solarus"  },
         "steam":              { manufacturer: null,            release: null,   color: "#010314", altColor: "#030730", altColor2: "#112A40", fullName: "Steam"  },
         "sufami":             { manufacturer: "bandai",        release: "1996", color: "#FF0000", altColor: "#CC0000", altColor2: "#1E2881", fullName: "SuFami Turbo"  },
-        "sgfx":               { manufacturer: "nec",           release: "1989", color: "#0091AD", altColor: "#006A80", altColor2: "#000000", fullName: "SuperGrafx"  },
+        "supergrafx":         { manufacturer: "nec",           release: "1989", color: "#0091AD", altColor: "#006A80", altColor2: "#000000", fullName: "SuperGrafx"  },
         "switch":             { manufacturer: "nintendo",      release: "2017", color: "#232323", altColor: "#0D0D0D", altColor2: "#FE0016", fullName: "Nintendo Switch"  },
         "ti99":               { manufacturer: "ti",            release: "1979", color: "#484141", altColor: "#363030", altColor2: "#000000", fullName: "TI-99"  },
         "tic80":              { manufacturer: "vadimGrigoruk", release: "2017", color: "#4E76B4", altColor: "#456AA1", altColor2: "#65A33D", fullName: "TIC-80"  },
