@@ -6,12 +6,12 @@ Item {
     id: item_collection
 
     property var isCurrentItem: PathView.isCurrentItem
-    property var shortname: clearShortname(modelData.shortName)
+    property var clearedShortname: clearShortname(modelData.shortName)
     property var collectionAltColor: {
         if (accentColorNr != 0) {
-            dataConsoles[shortname].altColor
+            dataConsoles[clearedShortname].altColor
         } else {
-            dataConsoles[shortname].altColor2
+            dataConsoles[clearedShortname].altColor2
         }
     }
 
@@ -34,7 +34,7 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/collections/"+shortname+"/art.jpg"
+                source: "../assets/collections/" + clearedShortname + "/art.jpg"
                 fillMode: Image.PreserveAspectCrop
             }
 

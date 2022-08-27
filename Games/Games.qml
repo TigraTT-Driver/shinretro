@@ -16,14 +16,15 @@ FocusScope {
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
 
-    readonly property var alt_color2: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor2 : dataConsoles["default"].altColor2
+    property var clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property var alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
 
-    readonly property var alt_colorBright: (dataConsoles[clearShortname(currentCollection.shortName)] !== undefined) ? dataConsoles[clearShortname(currentCollection.shortName)].altColor : dataConsoles["default"].altColor
+    readonly property var alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor
     readonly property var alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
     readonly property var alt_color: (accentColor == "bright") ? alt_colorBright : alt_colorDimm
     readonly property var alt_colorShadow: (accentColor == "bright") ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
 
-    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
+    readonly property var touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
     readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
 

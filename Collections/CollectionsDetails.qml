@@ -3,10 +3,10 @@ import QtGraphicalEffects 1.12
 
 Item {
     property var isCurrentItem: PathView.isCurrentItem
-    property var shortname: clearShortname(modelData.shortName)
-    property var manufacturer: dataConsoles[shortname].manufacturer || null
-    property var release: dataConsoles[shortname].release || null
-    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
+    property var clearedShortname: clearShortname(modelData.shortName)
+    property var manufacturer: dataConsoles[clearedShortname].manufacturer || null
+    property var release: dataConsoles[clearedShortname].release || null
+    property var manufacturerColor: (manufacturer !== undefined) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -32,7 +32,7 @@ Item {
                     id: img_logo_region
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/collections/" + shortname + "/logo_" + region + "_" + logoVariant
+                    source: "../assets/collections/" + clearedShortname + "/logo_" + region + "_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     visible: logoVariant == "color"
@@ -42,7 +42,7 @@ Item {
                     id: img_logo
                     anchors.fill: parent
                     sourceSize.width: width
-                    source: "../assets/collections/" + shortname + "/logo_" + logoVariant
+                    source: "../assets/collections/" + clearedShortname + "/logo_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
                     visible: logoVariant == "color" && img_logo_region.status == Image.Error

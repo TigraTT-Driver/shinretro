@@ -5,12 +5,14 @@ import "../Global"
 
 Item {
     id: root
+
+    property var clearedShortname: clearShortname(currentGameCollection.shortName)
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
     readonly property var currentGameCollectionAltColor:{
         if (accentColorNr != 0) {
-            dataConsoles[clearShortname(currentGameCollection.shortName)].altColor
+            dataConsoles[clearedShortname].altColor
         } else {
-            dataConsoles[clearShortname(currentGameCollection.shortName)].altColor2
+            dataConsoles[clearedShortname].altColor2
         }
     }
     readonly property var selectedScale: 1.05

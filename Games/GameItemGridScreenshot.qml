@@ -5,13 +5,12 @@ import "../Global"
 
 Item {
     id: root
+
+    property var clearedShortname: clearShortname(currentCollection.shortName)
     readonly property var collectionAltColor:{
         if (accentColorNr != 0) {
-            dataConsoles[clearShortname(currentCollection.shortName)].altColor
+            dataConsoles[clearedShortname].altColor
         } else {
-            dataConsoles[clearShortname(currentCollection.shortName)].altColor2
-        }
-    }
             dataConsoles[clearedShortname].altColor2
         }
     }

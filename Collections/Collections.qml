@@ -6,7 +6,8 @@ FocusScope {
     focus: collections.focus
 
     readonly property int baseItemWidth: root.width / 8
-    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
+    property var clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property var touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
     readonly property var touch_color: {
         if (accentColor == "bright") {
