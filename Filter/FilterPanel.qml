@@ -7,7 +7,6 @@ FocusScope {
     property alias withTitle: itemTitle.text
     property alias withMultiplayer: itemMultiplayer.checked
     property alias withFavorite: itemFavorite.checked
-
     property alias panelColor: panel.color
     property color textColor: colorScheme[theme].filters
 

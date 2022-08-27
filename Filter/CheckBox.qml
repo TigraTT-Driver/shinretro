@@ -6,9 +6,7 @@ Row {
     property alias fontSize: label.font.pixelSize
     property alias text: label.text
     property alias textColor: label.color
-
     property bool checked: false
-
     spacing: vpx(8)
 
     Item {
@@ -49,4 +47,5 @@ Row {
             checked = !checked;
         }
     }
+
 }

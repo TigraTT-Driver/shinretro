@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
 import SortFilterProxyModel 0.2
-import QtMultimedia 5.15             
-import "../Global"                
-// Screenshot / Video
+import QtMultimedia 5.15
+import "../Global"
+
 Item {
     id: item_game_screenshot
     width: parent.width
