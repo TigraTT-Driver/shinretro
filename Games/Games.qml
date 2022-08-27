@@ -653,10 +653,6 @@ FocusScope {
                 }
 
                 Keys.onReleased: {
-                    if (event.isAutoRepeat) {
-                        return;
-                    }
-
                     if (api.keys.isPageDown(event) && gamesPgUpDownFunction === 'Games') {
                         event.accepted = true;
                         var jumpCount = gridVR * gamesGridIPR;
@@ -676,6 +672,10 @@ FocusScope {
                         } else {
                             currentGameIndex -= jumpCount;
                         }
+                        return;
+                    }
+
+                    if (event.isAutoRepeat) {
                         return;
                     }
 
