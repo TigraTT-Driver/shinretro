@@ -3,39 +3,8 @@ import QtGraphicalEffects 1.12
 import SortFilterProxyModel 0.2
 import QtMultimedia 5.15
 import "../Global"
-// boxFront
+
 Item {
-
-    function steamAppID (currentGame) {
-        var str = currentGame.assets.boxFront.split("header");
-        return str[0];
-    }
-
-    function steamBoxFront(currentGame) {
-        return steamAppID(currentGame) + "/library_600x900_2x.jpg"
-    }
-
-    function boxArt(data) {
-        if (data != null) {
-            if (data.assets.boxFront.includes("header.jpg")) 
-                return steamBoxFront(data);
-            else {
-                if (data.assets.boxFront != "")
-                    return data.assets.boxFront;
-                else if (data.assets.poster != "")
-                    return data.assets.poster;
-                else if (data.assets.banner != "")
-                    return data.assets.banner;
-                else if (data.assets.tile != "")
-                    return data.assets.tile;
-                else if (data.assets.cartridge != "")
-                    return data.assets.cartridge;
-                else if (data.assets.logo != "")
-                    return data.assets.logo;
-            }
-        }
-        return "";
-    }
     id: item_game_boxArt
     width: parent.width
     height: parent.height * 0.9
@@ -98,6 +67,37 @@ Item {
         sourceComponent: cpnt_game_boxArt
         active: games.focus && currentGame !== null
         visible: status === Loader.Ready
+    }
+
+    function steamAppID (currentGame) {
+        var str = currentGame.assets.boxFront.split("header");
+        return str[0];
+    }
+
+    function steamBoxFront(currentGame) {
+        return steamAppID(currentGame) + "/library_600x900_2x.jpg"
+    }
+
+    function boxArt(data) {
+        if (data != null) {
+            if (data.assets.boxFront.includes("header.jpg")) 
+                return steamBoxFront(data);
+            else {
+                if (data.assets.boxFront != "")
+                    return data.assets.boxFront;
+                else if (data.assets.poster != "")
+                    return data.assets.poster;
+                else if (data.assets.banner != "")
+                    return data.assets.banner;
+                else if (data.assets.tile != "")
+                    return data.assets.tile;
+                else if (data.assets.cartridge != "")
+                    return data.assets.cartridge;
+                else if (data.assets.logo != "")
+                    return data.assets.logo;
+            }
+        }
+        return "";
     }
 
 }
