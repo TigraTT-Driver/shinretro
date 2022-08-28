@@ -21,15 +21,26 @@ FocusScope {
 
     readonly property var alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor
     readonly property var alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
-    readonly property var alt_color: (accentColor == "bright") ? alt_colorBright : alt_colorDimm
-    readonly property var alt_colorShadow: (accentColor == "bright") ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
-
+    readonly property var alt_color: {
+        if (gridVR >= 3) {
+            return accentColor == "bright" ? alt_colorBright : alt_colorDimm
+        } else {
+            return colorScheme[theme].main
+        }
+    }
+    readonly property var alt_colorShadow: {
+        if (gridVR >= 3) {
+            return accentColor == "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
+        } else {
+            return colorScheme[theme].secondary
+        }
+    }
     readonly property var touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
     readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
     readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
 
     readonly property var text_color: {
-        if (accentColor == "bright") {
+        if ((accentColor == "bright") && (gridVR >= 3)) {
             return lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
         } else {
             return colorScheme[theme].text
