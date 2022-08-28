@@ -25,14 +25,14 @@ FocusScope {
         if (gridVR >= 3) {
             return accentColor == "bright" ? alt_colorBright : alt_colorDimm
         } else {
-            return colorScheme[theme].main
+            return colorScheme[theme].secondary
         }
     }
     readonly property var alt_colorShadow: {
         if (gridVR >= 3) {
             return accentColor == "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
         } else {
-            return colorScheme[theme].secondary
+            return lightenDarkenColor(colorScheme[theme].secondary, -5)
         }
     }
     readonly property var touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
