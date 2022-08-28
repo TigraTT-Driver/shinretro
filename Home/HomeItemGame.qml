@@ -193,7 +193,7 @@ Item {
             width: parent.width
             height: parent.height
             visible: selected
-            color: "white"
+            color: colorScheme[theme].selectedtransition
 
             SequentialAnimation on opacity {
                 id: colorAnim
