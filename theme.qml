@@ -116,7 +116,7 @@ FocusScope {
         "Dark": {
             main: "#202335",
             secondary: "#1C1E2E",
-            background: "#25283b",
+            background: "#25283B",
             text: "white",
             textalt: "#414767",
             textlight: "white",
