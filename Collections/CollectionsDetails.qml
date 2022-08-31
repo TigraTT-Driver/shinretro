@@ -4,9 +4,9 @@ import QtGraphicalEffects 1.12
 Item {
     property var isCurrentItem: PathView.isCurrentItem
     property var clearedShortname: clearShortname(modelData.shortName)
-    property var manufacturer: dataConsoles[clearedShortname].manufacturer || null
-    property var release: dataConsoles[clearedShortname].release || null
-    property var manufacturerColor: (manufacturer !== undefined) ? dataManufacturers[manufacturer].color : "black"
+    property var manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : null
+    property var release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : null
+    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
