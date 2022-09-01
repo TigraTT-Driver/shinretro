@@ -427,6 +427,7 @@ FocusScope {
             global_back: "<b>VOLTAR</b>",
             global_select: "OK",
             global_games: "JOGOS",
+            global_noFavorites: "Nenhum favorito definido",
             global_noFilteredGames: "Sem resultados para a busca actual",
             global_noMultiplayer: "Sem jogos multijogador",
             global_switch: "TROCAR",
