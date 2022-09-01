@@ -7,11 +7,11 @@ Item {
     id: root
 
     property var clearedShortname: clearShortname(currentCollection.shortName)
-    readonly property var collectionAltColor:{
-        if (accentColorNr != 0) {
-            dataConsoles[clearedShortname].altColor
+    readonly property var collectionAltColor: {
+        if (dataConsoles[clearedShortname] !== undefined) {
+            return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
-            dataConsoles[clearedShortname].altColor2
+            return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
 
