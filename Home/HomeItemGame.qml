@@ -8,11 +8,11 @@ Item {
 
     property var clearedShortname: clearShortname(currentGameCollection.shortName)
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
-    readonly property var currentGameCollectionAltColor:{
-        if (accentColorNr != 0) {
-            dataConsoles[clearedShortname].altColor
+    readonly property var currentGameCollectionAltColor: {
+        if (dataConsoles[clearedShortname] !== undefined) {
+            return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
-            dataConsoles[clearedShortname].altColor2
+            return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
     readonly property var selectedScale: 1.05
