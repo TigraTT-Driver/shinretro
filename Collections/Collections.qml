@@ -90,6 +90,7 @@ FocusScope {
                 easing.type: Easing.OutExpo
             }
         }
+        visible: collectionTypes.length > 1
     }
 
     Item {
