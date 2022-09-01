@@ -289,6 +289,7 @@ FocusScope {
             front_color: colorScheme[theme].filters.replace(/#/g, "#26");
             back_color: colorScheme[theme].filters.replace(/#/g, "#26");
             input_button: osdScheme[controlScheme].BTNU
+            visible: collectionTypes.length > 1
         }
 
         Controls {

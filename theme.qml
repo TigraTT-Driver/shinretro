@@ -1076,11 +1076,16 @@ FocusScope {
             return;
         }
 
+        // Toggle collection categories
         if (api.keys.isFilters(event)) {
-            var index = collectionTypes.indexOf(collectionType) + 1;
-            collectionType = (index < collectionTypes.length) ? collectionTypes[index] : collectionTypes[0];
-            currentCollectionIndex = api.memory.get("currentCollectionIndex-" + collectionType) || 0;
-            games.currentGameIndex = 0;
+            event.accepted = true;
+            // If there is only one collection category there is nothing to switch
+            if (collectionTypes.length > 1) {
+                var index = collectionTypes.indexOf(collectionType) + 1;
+                collectionType = (index < collectionTypes.length) ? collectionTypes[index] : collectionTypes[0];
+                currentCollectionIndex = api.memory.get("currentCollectionIndex-" + collectionType) || 0;
+                games.currentGameIndex = 0;
+            }
             return;
         }
     }
