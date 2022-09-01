@@ -70,7 +70,7 @@ FocusScope {
             rightMargin: vpx(25)
         }
 
-        text: collectionType + " Collections"
+        text: collectionType + " " + dataText[lang].global_collections
         font {
             family: global.fonts.sans
             weight: Font.Black
