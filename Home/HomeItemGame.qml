@@ -163,7 +163,7 @@ Item {
 
     Text {
         anchors.fill: parent
-        text: model.title
+        text: gameData.title
         font {
             family: global.fonts.sans
             weight: Font.Medium
@@ -174,7 +174,7 @@ Item {
         horizontalAlignment : Text.AlignHCenter
         verticalAlignment : Text.AlignVCenter
         wrapMode: Text.Wrap
-        visible: model.assets.logo === ""
+        visible: gameData.assets.logo === ""
     }
 
     Rectangle {
