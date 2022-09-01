@@ -15,6 +15,7 @@ FocusScope {
     readonly property var customSortCategories: ['Custom', 'Series']
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
+    readonly property var systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : null
 
     property var clearedShortname: clearShortname(currentCollection.shortName)
     readonly property var alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
@@ -284,18 +285,18 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection
+                                    visible: customCollection && systemName !== null
                                 }
 
                                 Text {
-                                    text: dataConsoles[currentGame.extra.system].fullName
+                                    text: systemName
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Medium
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection
+                                    visible: customCollection && systemName !== null
                                 }
                             }
 
