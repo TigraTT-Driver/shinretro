@@ -36,22 +36,35 @@ Item {
                 asynchronous: true
                 source: "../assets/collections/" + clearedShortname + "/art.jpg"
                 fillMode: Image.PreserveAspectCrop
+                visible: false
+            }
+
+            Image {
+                id: img_collection_bg_fallback
+                width: parent.width
+                height: parent.height
+                asynchronous: true
+                source: "../assets/collections/default/art.jpg"
+                fillMode: Image.PreserveAspectCrop
+                visible: false
             }
 
             Desaturate {
-                anchors.fill: img_collection_bg
-                source: img_collection_bg
+                anchors.fill: img_collection_bg.status == Image.Error ? img_collection_bg_fallback : img_collection_bg
+                source: img_collection_bg.status == Image.Error ? img_collection_bg_fallback : img_collection_bg
                 desaturation: isCurrentItem ? 0 : 1
                 Behavior on desaturation {
                     NumberAnimation { duration: 200; }
                 }
             }
+
             GameVideo {
                 game: currentCollection
                 anchors.fill: img_collection_bg
                 playing: isCurrentItem && collectionVideo != "1"
                 sound: collectionVideoMute
             }
+
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent
@@ -74,7 +87,6 @@ Item {
                     NumberAnimation { duration: 250; }
                 }
             }
-
         }
 
     }
