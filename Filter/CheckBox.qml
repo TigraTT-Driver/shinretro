@@ -19,7 +19,8 @@ Row {
             text: root.checked ? glyphs.enabled : glyphs.disabled
             color: colorScheme[theme].filters
             font {
-                family: glyphs.name;
+                family: glyphs.name
+                pixelSize: vpx(16 * fontScalingFactor)
             }
 
             anchors.fill: parent
