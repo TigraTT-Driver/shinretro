@@ -328,7 +328,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12  * fontScalingFactor)
+                                            pixelSize: vpx(12 * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].text
                                     }
@@ -346,7 +346,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12  * fontScalingFactor)
+                                            pixelSize: vpx(12 * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].favorite
                                     }
