@@ -720,7 +720,7 @@ FocusScope {
 
     // Additional data to display manufacturers and release dates
     property variant dataConsoles: {
-        "default":            { manufacturer: null,            release: null,   color: "#000000", altColor: "#252525", altColor2: "#FFFFFF", fullName: "Default"   },
+        "default":            { manufacturer: null,            release: null,   color: "#000000", altColor: "#303030", altColor2: "#B8B8B8", fullName: "Default"   },
         "all":                { manufacturer: null,            release: null,   color: "#851740", altColor: "#6D1234", altColor2: "#364792", fullName: "All Games"   },
         "lastplayed":         { manufacturer: null,            release: null,   color: "#FFFFFF", altColor: "#E6E6E6", altColor2: "#CDCDCD", fullName: "Last Played"   },
         "favorites":          { manufacturer: null,            release: null,   color: "#D4C028", altColor: "#AA9A20", altColor2: "#100F57", fullName: "Favorites"   },
