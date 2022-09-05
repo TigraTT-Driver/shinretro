@@ -133,6 +133,7 @@ FocusScope {
             bottom: parent.bottom
         }
         opacity: 0.255
+        visible: gamesBGImg != "1"
     }
 
     // Skewed background
