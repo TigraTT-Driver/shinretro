@@ -7,11 +7,32 @@ Item {
     id: root
 
     property var clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property var collectionColor: {
+        if (dataConsoles[clearedShortname] !== undefined) {
+            return dataConsoles[clearedShortname].color
+        } else {
+            return dataConsoles["default"].color
+        }
+    }
     readonly property var collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
             return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
+        }
+    }
+    readonly property var selectionFrameColorSelected:{
+        if (selectionFrame == "1") {
+            return colorScheme[theme].selected
+         } else {
+            return collectionAltColor
+        }
+    }
+    readonly property var selectionFrameColorTransition:{
+        if (selectionFrame == "1") {
+            return colorScheme[theme].selectedtransition
+         } else {
+            return collectionColor
         }
     }
 
@@ -160,7 +181,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         anchors.margins: vpx(-3)
-        color: colorScheme[theme].selected
+        color: selectionFrameColorSelected
         opacity: isCurrentItem
         Behavior on opacity {
             NumberAnimation { duration: 200; }
@@ -172,7 +193,7 @@ Item {
             width: parent.width
             height: parent.height
             visible: isCurrentItem
-            color: colorScheme[theme].selectedtransition
+            color: selectionFrameColorTransition
 
             SequentialAnimation on opacity {
                 id: colorAnim
