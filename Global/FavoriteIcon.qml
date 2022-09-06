@@ -34,7 +34,7 @@ Item {
         text: glyphs.favorite
         anchors {
             top: parent.top
-            topMargin: vpx(2.5)
+            topMargin: (parent.height - parentImageHeight) / 2 + vpx(2.5)
             right: parent.right
             rightMargin: (parent.width - parentImageWidth) / 2 + vpx(3)
         }
