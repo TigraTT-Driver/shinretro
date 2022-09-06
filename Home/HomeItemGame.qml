@@ -6,6 +6,7 @@ import "../Global"
 Item {
     id: root
 
+    property string clearedShortname: clearShortname(currentGameCollection.shortName)
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
     readonly property string currentGameCollectionColor: {
         if (dataConsoles[clearedShortname] !== undefined) {

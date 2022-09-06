@@ -17,6 +17,7 @@ FocusScope {
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
     readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : ""
 
+    property string clearedShortname: clearShortname(currentCollection.shortName)
     readonly property string alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
 
     readonly property string alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor

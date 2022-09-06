@@ -629,7 +629,6 @@ FocusScope {
 
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex-" + collectionType) || 0
     property var currentCollection: allCollections[currentCollectionIndex]
-    property string clearedShortname: clearShortname(currentCollection.shortName)
 
     property var dataMenu: [
         { name: "settings", title: dataText[lang].menu_settings},

@@ -6,6 +6,7 @@ import "../Global"
 Item {
     id: root
 
+    property string clearedShortname: clearShortname(currentCollection.shortName)
     readonly property string collectionColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return dataConsoles[clearedShortname].color
