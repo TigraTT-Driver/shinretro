@@ -6,15 +6,15 @@ import "../Global"
 Item {
     id: root
 
-    property var clearedShortname: clearShortname(currentCollection.shortName)
-    readonly property var collectionColor: {
+    property string clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property string collectionColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return dataConsoles[clearedShortname].color
         } else {
             return dataConsoles["default"].color
         }
     }
-    readonly property var collectionAltColor: {
+    readonly property string collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {

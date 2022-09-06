@@ -1,13 +1,13 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
-import "../Global"  
+import "../Global"
 
 Item {
     id: item_collection
 
-    property var isCurrentItem: PathView.isCurrentItem
-    property var clearedShortname: clearShortname(modelData.shortName)
-    property var collectionAltColor: {
+    property bool isCurrentItem: PathView.isCurrentItem
+    property string clearedShortname: clearShortname(modelData.shortName)
+    property string collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {

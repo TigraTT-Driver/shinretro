@@ -15,32 +15,32 @@ FocusScope {
     readonly property var customSortCategories: ['Custom', 'Series']
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
-    readonly property var systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : null
+    readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : ""
 
-    property var clearedShortname: clearShortname(currentCollection.shortName)
-    readonly property var alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
+    property string clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property string alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
 
-    readonly property var alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor
-    readonly property var alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
-    readonly property var alt_color: {
+    readonly property string alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor
+    readonly property string alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
+    readonly property string alt_color: {
         if (gridVR >= 3) {
             return accentColor == "bright" ? alt_colorBright : alt_colorDimm
         } else {
             return colorScheme[theme].secondary
         }
     }
-    readonly property var alt_colorShadow: {
+    readonly property string alt_colorShadow: {
         if (gridVR >= 3) {
             return accentColor == "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
         } else {
             return lightenDarkenColor(colorScheme[theme].secondary, -5)
         }
     }
-    readonly property var touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
-    readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
-    readonly property var touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
+    readonly property string touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
+    readonly property string touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
+    readonly property string touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
 
-    readonly property var text_color: {
+    readonly property string text_color: {
         if ((accentColor == "bright") && (gridVR >= 3)) {
             return lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
         } else {
@@ -286,7 +286,7 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== null
+                                    visible: customCollection && systemName !== ""
                                 }
 
                                 Text {
@@ -297,7 +297,7 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== null
+                                    visible: customCollection && systemName !== ""
                                 }
                             }
 
@@ -305,7 +305,7 @@ FocusScope {
                                 spacing: vpx(5)
                                 // RATING
                                 RatingStars {
-                                    readonly property var rating: (currentGame.rating * 5).toFixed(1)
+                                    readonly property double rating: (currentGame.rating * 5).toFixed(1)
                                 }
                             }
 
@@ -323,7 +323,7 @@ FocusScope {
 
                                     Text {
                                         id: txt_players
-                                        property var convertPlayer: currentGame.players > 1 ? "1-" + currentGame.players + " " + dataText[lang].games_players : dataText[lang].games_player
+                                        property string convertPlayer: currentGame.players > 1 ? "1-" + currentGame.players + " " + dataText[lang].games_players : dataText[lang].games_player
                                         anchors.centerIn: parent
                                         text: convertPlayer
                                         font {
