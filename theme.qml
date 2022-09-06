@@ -511,15 +511,15 @@ FocusScope {
     Music { id: music}
     // Load settings
 
-    property var playBGM: {
+    property bool playBGM: {
         if (api.memory.get('musicIndex') == 1) {
             playBGM: true;
         } else {
             playBGM: false;
         }
     }
-    property var lang: api.memory.get('lang') || "en"
-    property var theme: {
+    property string lang: api.memory.get('lang') || "en"
+    property string theme: {
         if (api.memory.get('themeIndex') == "1") {
             return "Light";
         } else if (api.memory.get('themeIndex') == "2") {
@@ -530,20 +530,20 @@ FocusScope {
             return "Dark";
         }
     }
-    property var logoVariant: {
+    property string logoVariant: {
         if (api.memory.get('logoVariantIndex') == "1") {
             return "color";
         } else {
             return "mono";
         }
     }
-    property var region: api.memory.get('region') || "pal"
-    property var controlScheme: api.memory.get('controlScheme') || "Universal"
-    property var osc: api.memory.get('oscIndex') || 0
-    property var selectionFrame: api.memory.get('selectionFrameIndex') || 0
+    property string region: api.memory.get('region') || "pal"
+    property string controlScheme: api.memory.get('controlScheme') || "Universal"
+    property int osc: api.memory.get('oscIndex') || 0
+    property int selectionFrame: api.memory.get('selectionFrameIndex') || 0
     property double fontScalingFactor: {
         if (api.memory.get('dynamicFontScalingIndex') == "1") {
-            if  ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.5)
+            if ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.5)
                 return "1.5";
             else if ((Math.round(Screen.pixelDensity * 10) / 100) >= 1.0)
                 return (Math.round(Screen.pixelDensity * 10) / 100);
@@ -553,47 +553,47 @@ FocusScope {
             return "1.0";
         }
     }
-    property var mutesfx: {
+    property double mutesfx: {
         if (api.memory.get('mutesfxIndex') == "1") {
             return "0.0";
         } else {
             return "1.0";
         }
     }
-    property var homeVideo: api.memory.get('homeVideoIndex') || 0
-    property var homeVideoMute: {
+    property int homeVideo: api.memory.get('homeVideoIndex') || 0
+    property bool homeVideoMute: {
         if (api.memory.get('homeVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
         }
     }
-    property var accentColor: {
+    property string accentColor: {
         if (api.memory.get('accentColorIndex') == "1") {
             return "bright";
         } else {
             return "dimm";
         }
     }
-    property var accentColorNr: api.memory.get('accentColorNrIndex') || 0
-    property var allGamesCollection: api.memory.get('allGamesCollectionIndex') || 0
-    property var favoritesCollection: api.memory.get('favoritesCollectionIndex') || 0
-    property var lastPlayedCollection: api.memory.get('lastPlayedCollectionIndex') || 0
-    property var collectionVideo: api.memory.get('collectionVideoIndex') || 0
-    property var collectionVideoMute: {
+    property int accentColorNr: api.memory.get('accentColorNrIndex') || 0
+    property int allGamesCollection: api.memory.get('allGamesCollectionIndex') || 0
+    property int favoritesCollection: api.memory.get('favoritesCollectionIndex') || 0
+    property int lastPlayedCollection: api.memory.get('lastPlayedCollectionIndex') || 0
+    property int collectionVideo: api.memory.get('collectionVideoIndex') || 0
+    property bool collectionVideoMute: {
         if (api.memory.get('collectionVideoMuteIndex') == "1") {
             return true;
         } else {
             return false;
         }
     }
-    property var gamesLayout: api.memory.get('gamesLayout') || "BoxArt-Grid"
-    property var gamesGridIPR: api.memory.get('gamesGridIPR') || 4
-    property var gamesGridVR: api.memory.get('gamesGridVR') || 1
-    property var gamesPgUpDownFunction: api.memory.get('gamesPageUpDownFunction') || 'Collections'
-    property var gamesBGImg: api.memory.get('gamesBGImgIndex') || 0
-    property var gamesVideo: api.memory.get('gamesVideoIndex') || 0
-    property var gamesVideoMute: {
+    property string gamesLayout: api.memory.get('gamesLayout') || "BoxArt-Grid"
+    property int gamesGridIPR: api.memory.get('gamesGridIPR') || 4
+    property int gamesGridVR: api.memory.get('gamesGridVR') || 1
+    property string gamesPgUpDownFunction: api.memory.get('gamesPageUpDownFunction') || 'Collections'
+    property int gamesBGImg: api.memory.get('gamesBGImgIndex') || 0
+    property int gamesVideo: api.memory.get('gamesVideoIndex') || 0
+    property bool gamesVideoMute: {
         if (api.memory.get('gamesVideoMuteIndex') == "1") {
             return true;
         } else {
@@ -624,7 +624,7 @@ FocusScope {
         return collections
     }
 
-    property var collectionType: api.memory.get("currentCollectionType") || "System"
+    property string collectionType: api.memory.get("currentCollectionType") || "System"
     property var collectionTypes: getAllCollectionTypes()
 
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex-" + collectionType) || 0
