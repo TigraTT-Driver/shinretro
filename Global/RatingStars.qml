@@ -5,7 +5,7 @@ Item {
     width: vpx(100)
     height: vpx(20)
 
-    property variant starsMatrix: [
+    property var starsMatrix: [
         { source: getStars(0, rating) },
         { source: getStars(1, rating) },
         { source: getStars(2, rating) },

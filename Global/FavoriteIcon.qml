@@ -3,8 +3,8 @@ import QtGraphicalEffects 1.12
 
 Item {
     id: favetag
-    property var parentImageHeight
-    property var parentImageWidth
+    property double parentImageHeight
+    property double parentImageWidth
 
     anchors {
         fill: parent

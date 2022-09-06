@@ -2,11 +2,11 @@ import QtQuick 2.15
 import QtGraphicalEffects 1.12
 
 Item {
-    property var message: parent.message
-    property var text_color: parent.text_color
-    property var front_color: parent.front_color
-    property var back_color: parent.back_color
-    property var input_button: parent.input_button
+    property string message: parent.message
+    property string text_color: parent.text_color
+    property string front_color: parent.front_color
+    property string back_color: parent.back_color
+    property string input_button: parent.input_button
 
     width: childrenRect.width
     height: childrenRect.height

@@ -7,7 +7,7 @@ FocusScope {
     property int currentLastPlayedIndex: 0
     property int currentFavoritesIndex: 0
     property var previousLastplayed: lastplayed_left
-    readonly property var maximumFavoritesShown: 19
+    readonly property int maximumFavoritesShown: 19
 
     readonly property var currentGame: {
         if (lastplayed_left.focus)
@@ -189,7 +189,7 @@ FocusScope {
 
                 model: sort_lastplayed_right
                 delegate: Item {
-                    readonly property var isSelected: GridView.isCurrentItem
+                    readonly property bool isSelected: GridView.isCurrentItem
 
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
@@ -307,7 +307,7 @@ FocusScope {
 
             model: sort_favorites_limited
             delegate: Item {
-                readonly property var isSelected: ListView.isCurrentItem
+                readonly property bool isSelected: ListView.isCurrentItem
 
                 width: ListView.view.width /5
                 height: ListView.view.height * 0.9

@@ -129,7 +129,7 @@ Item {
             anchors.fill: parent
             anchors.centerIn: parent
             anchors.margins: root.width/10
-            property var logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
+            property string logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
             source: gameData ? logoImage || "" : ""
             sourceSize: Qt.size(favelogo.width, favelogo.height)
             fillMode: Image.PreserveAspectFit

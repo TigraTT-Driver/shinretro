@@ -3,7 +3,7 @@ import QtGraphicalEffects 1.12
 
 Item {
     id: completedtag
-    property var parentImageWidth
+    property double parentImageWidth
 
     visible: (gameData.extra.completed !== undefined) && (gameData.extra.completed.toString() === 'True') ? true : false
     anchors {
