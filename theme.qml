@@ -56,6 +56,13 @@ FocusScope {
         property string spinner: '\ue839';
         property string disabled: '\uf204';
         property string enabled: '\uf205';
+        property string favoriteBG: '\ue821';
+        property string uInputBtnStart: '\ue81d';
+        property string uInputBtnSelect: '\ue81e';
+        property string xInputBtnStart: '\ue81f';
+        property string xInputBtnSelect: '\ue820';
+        property string pInputBtnStart: '\ue822';
+        property string pInputBtnSelect: '\ue823';
         source: "assets/fonts/glyphs.ttf";
     }
     // Control schemes
@@ -68,7 +75,9 @@ FocusScope {
             BTNR: glyphs.uInputBtnR,
             BTNRB: glyphs.uInputBtnRb,
             BTNRT:glyphs.uInputBtnRt,
-            BTNU: glyphs.uInputBtnU
+            BTNU: glyphs.uInputBtnU,
+            BTNStart: glyphs.uInputBtnStart,
+            BTNSelect: glyphs.uInputBtnSelect
         },
         "Universal-JP": {
             BTND: glyphs.uInputBtnR,
@@ -78,7 +87,9 @@ FocusScope {
             BTNR: glyphs.uInputBtnD,
             BTNRB: glyphs.uInputBtnRb,
             BTNRT:glyphs.uInputBtnRt,
-            BTNU: glyphs.uInputBtnL
+            BTNU: glyphs.uInputBtnL,
+            BTNStart: glyphs.uInputBtnStart,
+            BTNSelect: glyphs.uInputBtnSelect
         },
         "XBOX": {
             BTND: glyphs.xInputBtnD,
@@ -88,7 +99,9 @@ FocusScope {
             BTNR: glyphs.xInputBtnR,
             BTNRB: glyphs.xInputBtnRb,
             BTNRT:glyphs.xInputBtnRt,
-            BTNU: glyphs.xInputBtnU
+            BTNU: glyphs.xInputBtnU,
+            BTNStart: glyphs.xInputBtnStart,
+            BTNSelect: glyphs.xInputBtnSelect
         },
         "PS": {
             BTND: glyphs.pInputBtnD,
@@ -98,7 +111,9 @@ FocusScope {
             BTNR: glyphs.pInputBtnR,
             BTNRB: glyphs.pInputBtnRb,
             BTNRT:glyphs.pInputBtnRt,
-            BTNU: glyphs.pInputBtnU
+            BTNU: glyphs.pInputBtnU,
+            BTNStart: glyphs.pInputBtnStart,
+            BTNSelect: glyphs.pInputBtnSelect
         },
         "PS-JP": {
             BTND: glyphs.pInputBtnR,
@@ -108,7 +123,9 @@ FocusScope {
             BTNR: glyphs.pInputBtnD,
             BTNRB: glyphs.pInputBtnRb,
             BTNRT:glyphs.pInputBtnRt,
-            BTNU: glyphs.pInputBtnL
+            BTNU: glyphs.pInputBtnL,
+            BTNStart: glyphs.pInputBtnStart,
+            BTNSelect: glyphs.pInputBtnSelect
         }
     }
     // Color schemes
@@ -850,7 +867,7 @@ FocusScope {
         "segacd":             { manufacturer: "sega",          release: "1991", color: "#2D2D2F", altColor: "#0D0D0D", altColor2: "#732A46", fullName: "Sega CD"  },
         "sfc":                { manufacturer: "nintendo",      release: "1990", color: "#007544", altColor: "#004D2D", altColor2: "#0A2A8D", fullName: "Super Famicom"  },
         "sg1000":             { manufacturer: "sega",          release: "1983", color: "#9A2025", altColor: "#7F1A1D", altColor2: "#BBBDBD", fullName: "Sega SG-1000"  },
-        "snes":               { manufacturer: "nintendo",      release: "1990", color: "#4F43AE", altColor: "#3A317F", altColor2: "#C0C0C0", fullName: "Super Nintendo"  },
+        "snes":               { manufacturer: "nintendo",      release: "1990", color: "#007544", altColor: "#004d2d", altColor2: "#0A2A8D", fullName: "Super Nintendo"  },
         "solarus":            { manufacturer: null,            release: null,   color: "#E5B131", altColor: "#CC9A19", altColor2: "#574287", fullName: "Solarus"  },
         "steam":              { manufacturer: null,            release: null,   color: "#171A21", altColor: "#1B2838", altColor2: "#66C0F4", fullName: "Steam"  },
         "sufami":             { manufacturer: "bandai",        release: "1996", color: "#FF0000", altColor: "#CC0000", altColor2: "#1E2881", fullName: "SuFami Turbo"  },
