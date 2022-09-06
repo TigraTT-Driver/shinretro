@@ -6,7 +6,6 @@ Item {
     id: item_collection
 
     property bool isCurrentItem: PathView.isCurrentItem
-    property string clearedShortname: clearShortname(modelData.shortName)
     property string collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2

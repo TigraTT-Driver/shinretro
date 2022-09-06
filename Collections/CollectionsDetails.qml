@@ -3,7 +3,6 @@ import QtGraphicalEffects 1.12
 
 Item {
     property bool isCurrentItem: PathView.isCurrentItem
-    property string clearedShortname: clearShortname(modelData.shortName)
     property string manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : ""
     property string release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : ""
     property string manufacturerColor: (manufacturer !== "") ? dataManufacturers[manufacturer].color : "black"
