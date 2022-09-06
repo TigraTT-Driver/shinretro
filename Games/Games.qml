@@ -816,7 +816,7 @@ FocusScope {
                     text_color: colorScheme[theme].sorters
                     front_color: colorScheme[theme].sorters.replace(/#/g, "#26");
                     back_color: colorScheme[theme].sorters.replace(/#/g, "#26");
-                    input_button: ""
+                    input_button: osdScheme[controlScheme].BTNSelect
                 }
 
             }
