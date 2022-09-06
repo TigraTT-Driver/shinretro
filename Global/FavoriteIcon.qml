@@ -3,6 +3,7 @@ import QtGraphicalEffects 1.12
 
 Item {
     id: favetag
+    property var parentImageHeight
     property var parentImageWidth
 
     anchors {
@@ -17,7 +18,7 @@ Item {
         id: favebg
         anchors {
             top: parent.top
-            topMargin: vpx(0)
+            topMargin: (parent.height - parentImageHeight) / 2
             right: parent.right
             rightMargin: (parent.width - parentImageWidth) / 2
         }

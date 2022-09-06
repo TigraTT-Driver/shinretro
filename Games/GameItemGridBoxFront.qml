@@ -70,6 +70,7 @@ Item {
             FavoriteIcon {
                 id: faveicon
                 parentImageWidth: boxFront.paintedWidth
+                parentImageHeight: boxFront.paintedHeight
             }
 
             CompletedIcon {
