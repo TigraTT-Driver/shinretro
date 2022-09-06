@@ -14,7 +14,8 @@ Item {
         NumberAnimation { duration: 100 }
     }
 
-    Image {
+    Text {
+        text: glyphs.favoriteBG
         id: favebg
         anchors {
             top: parent.top
@@ -22,39 +23,26 @@ Item {
             right: parent.right
             rightMargin: (parent.width - parentImageWidth) / 2
         }
-        source: "../assets/favebg.svg"
-        width: vpx(32)
-        height: vpx(32)
-        sourceSize {
-            width: vpx(32)
-            height: vpx(32)
+        font {
+            family: glyphs.name;
+            pixelSize: vpx(32)
         }
-        visible: false
-    }
-
-    ColorOverlay {
-        anchors.fill: favebg
-        source: favebg
         color: colorScheme[theme].favorite
         z: 15
     }
-
-    Image {
-        id: star
+    Text {
+        text: glyphs.favorite
         anchors {
             top: parent.top
             topMargin: vpx(2.5)
             right: parent.right
             rightMargin: (parent.width - parentImageWidth) / 2 + vpx(3)
         }
-        source: "../assets/star.svg"
-        width: vpx(13)
-        height: vpx(13)
-        sourceSize {
-            width: vpx(32)
-            height: vpx(32)
+        font {
+            family: glyphs.name;
+            pixelSize: vpx(13)
         }
-        smooth: true
+        color: text_color
         z: 20
     }
 
