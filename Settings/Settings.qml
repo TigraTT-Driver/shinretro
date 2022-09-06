@@ -265,7 +265,7 @@ FocusScope {
             Item {
                 id: settingRow
                 property bool selected: ListView.isCurrentItem && settingsList.focus
-                property variant settingList: setting.split(',')
+                property var settingList: setting.split(',')
                 property int savedIndex: api.memory.get(settingKey + 'Index') || 0
 
                 function saveSetting() {

@@ -6,37 +6,37 @@ import "../Global"
 Item {
     id: root
 
-    property var clearedShortname: clearShortname(currentGameCollection.shortName)
+    property string clearedShortname: clearShortname(currentGameCollection.shortName)
     readonly property var currentGameCollection: gameData ? gameData.collections.get(0) : ""
-    readonly property var currentGameCollectionColor: {
+    readonly property string currentGameCollectionColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return dataConsoles[clearedShortname].color
         } else {
             return dataConsoles["default"].color
         }
     }
-    readonly property var currentGameCollectionAltColor: {
+    readonly property string currentGameCollectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
             return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
             return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
-    readonly property var selectionFrameColorSelected:{
+    readonly property string selectionFrameColorSelected:{
         if (selectionFrame == "1") {
             return colorScheme[theme].selected
          } else {
             return currentGameCollectionAltColor
         }
     }
-    readonly property var selectionFrameColorTransition:{
+    readonly property string selectionFrameColorTransition:{
         if (selectionFrame == "1") {
             return colorScheme[theme].selectedtransition
          } else {
             return currentGameCollectionColor
         }
     }
-    readonly property var selectedScale: 1.05
+    readonly property double selectedScale: 1.05
 
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
@@ -155,7 +155,7 @@ Item {
             anchors.fill: parent
             anchors.centerIn: parent
             anchors.margins: root.width/10
-            property var logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
+            property string logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
             source: gameData ? logoImage || "" : ""
             sourceSize: Qt.size(favelogo.width, favelogo.height)
             fillMode: Image.PreserveAspectFit
