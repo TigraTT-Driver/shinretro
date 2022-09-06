@@ -2,11 +2,11 @@ import QtQuick 2.15
 import QtGraphicalEffects 1.12
 
 Item {
-    property var isCurrentItem: PathView.isCurrentItem
-    property var clearedShortname: clearShortname(modelData.shortName)
-    property var manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : null
-    property var release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : null
-    property var manufacturerColor: (manufacturer !== null) ? dataManufacturers[manufacturer].color : "black"
+    property bool isCurrentItem: PathView.isCurrentItem
+    property string clearedShortname: clearShortname(modelData.shortName)
+    property string manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : ""
+    property string release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : ""
+    property string manufacturerColor: (manufacturer !== "") ? dataManufacturers[manufacturer].color : "black"
 
     width: PathView.view.width
     height: PathView.view.height
@@ -112,11 +112,11 @@ Item {
                             anchors.fill: parent
                             sourceSize.width: width
                             sourceSize.height: height
-                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/" + manufacturer : ""
+                            source: (manufacturer !== "") ? "../assets/manufacturers/logo/" + manufacturer : ""
                             fillMode: Image.PreserveAspectFit
                         }
                     }
-                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
+                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== "")
                 }
 
                 Text {
