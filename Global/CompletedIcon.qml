@@ -13,8 +13,6 @@ Item {
     }
     width: parent.width
     height: parent.height / 5
-    scale: isCurrentItem ? 1.1 : 1
-    Behavior on scale { NumberAnimation { duration: 100 } }
 
     Image {
         id: completedbg

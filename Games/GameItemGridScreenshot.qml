@@ -81,7 +81,6 @@ Item {
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
-            scale: isCurrentItem ? 1.1 : 1
             visible: gameData.assets.marquee && !doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } }
         }
@@ -111,7 +110,6 @@ Item {
             asynchronous: true
             visible: !gameData.assets.marquee || doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } }
-            scale: selected ? 1.1 : 1
 
             Image {
                 id: favelogo
