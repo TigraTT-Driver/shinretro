@@ -36,7 +36,6 @@ Item {
             return currentGameCollectionColor
         }
     }
-    readonly property double selectedScale: 1.05
 
     signal activated
     signal highlighted
