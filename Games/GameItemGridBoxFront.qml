@@ -21,14 +21,14 @@ Item {
             return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
-    readonly property var selectionFrameColorSelected:{
+    readonly property string selectionFrameColorSelected:{
         if (selectionFrame == "1") {
             return colorScheme[theme].selected
          } else {
             return collectionAltColor
         }
     }
-    readonly property var selectionFrameColorTransition:{
+    readonly property string selectionFrameColorTransition:{
         if (selectionFrame == "1") {
             return colorScheme[theme].selectedtransition
          } else {
