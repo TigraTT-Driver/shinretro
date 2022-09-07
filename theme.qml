@@ -589,7 +589,7 @@ FocusScope {
     }
     property string gamesLayout: api.memory.get('gamesLayout') || "BoxArt-Grid"
     property int gamesGridIPR: api.memory.get('gamesGridIPR') || 4
-    property int gamesGridVR: api.memory.get('gamesGridVR') || 1
+    property var gamesGridVR: api.memory.get('gamesGridVR') || 1
     property string gamesPgUpDownFunction: api.memory.get('gamesPageUpDownFunction') || 'Collections'
     property int gamesBGImg: api.memory.get('gamesBGImgIndex') || 0
     property int gamesVideo: api.memory.get('gamesVideoIndex') || 0
