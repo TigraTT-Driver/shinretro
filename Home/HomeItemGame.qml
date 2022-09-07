@@ -38,27 +38,6 @@ Item {
     }
     readonly property double selectedScale: 1.05
 
-    function steamAppID (gameData) {
-        var str = gameData.assets.boxFront.split("header");
-        return str[0];
-    }
-
-    function steamLogo(gameData) {
-        return steamAppID(gameData) + "/logo.png";
-    }
-
-    function logo(data) {
-        if (data != null) {
-            if (data.assets.boxFront.includes("header.jpg")) 
-                return steamLogo(data);
-            else {
-                if (data.assets.logo != "")
-                    return data.assets.logo;
-            }
-        }
-        return "";
-    }
-
     signal activated
     signal highlighted
     signal unhighlighted
@@ -232,6 +211,27 @@ Item {
             }
         }
         z: -10
+    }
+
+    function steamAppID (gameData) {
+        var str = gameData.assets.boxFront.split("header");
+        return str[0];
+    }
+
+    function steamLogo(gameData) {
+        return steamAppID(gameData) + "/logo.png";
+    }
+
+    function logo(data) {
+        if (data != null) {
+            if (data.assets.boxFront.includes("header.jpg")) 
+                return steamLogo(data);
+            else {
+                if (data.assets.logo != "")
+                    return data.assets.logo;
+            }
+        }
+        return "";
     }
 
 }
