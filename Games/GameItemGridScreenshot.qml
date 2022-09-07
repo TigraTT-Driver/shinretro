@@ -113,6 +113,37 @@ Item {
             Behavior on opacity { NumberAnimation { duration: 200 } }
             scale: selected ? 1.1 : 1
 
+            Image {
+                id: favelogo
+                anchors.fill: parent
+                anchors.centerIn: parent
+                anchors.margins: root.width / 10
+                property string logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
+                source: gameData ? logoImage || "" : ""
+                sourceSize: Qt.size(favelogo.width, favelogo.height)
+                fillMode: Image.PreserveAspectFit
+                asynchronous: true
+                smooth: true
+                visible: !gameData.assets.marquee || doubleFocus
+                z: 10
+            }
+
+            Text {
+                id: titletext
+                anchors.fill: parent
+                text: model.title
+                font {
+                    family: global.fonts.sans
+                    weight: Font.Medium
+                    pixelSize: vpx(16 * fontScalingFactor)
+                }
+                color: colorScheme[theme].text
+                horizontalAlignment : Text.AlignHCenter
+                verticalAlignment : Text.AlignVCenter
+                wrapMode: Text.Wrap
+                visible: model.assets.logo === ""
+            }
+
             FavoriteIcon {
                 id: faveicon
                 parentImageWidth: screenshot.width
@@ -122,39 +153,6 @@ Item {
                 id: completedicon
                 parentImageWidth: screenshot.width
             }
-        }
-
-        Image {
-            id: favelogo
-            anchors.fill: parent
-            anchors.centerIn: parent
-            anchors.margins: root.width/10
-            property string logoImage: (gameData && gameData.collections.get(0).shortName === "retropie") ? gameData.assets.boxFront : (gameData.collections.get(0).shortName === "steam") ? logo(gameData) : gameData.assets.logo
-            source: gameData ? logoImage || "" : ""
-            sourceSize: Qt.size(favelogo.width, favelogo.height)
-            fillMode: Image.PreserveAspectFit
-            asynchronous: true
-            smooth: true
-            scale: isCurrentItem ? 1.1 : 1
-            visible: !gameData.assets.marquee || doubleFocus
-            Behavior on scale { NumberAnimation { duration: 100 } }
-            z: 10
-        }
-
-        Text {
-            id: titletext
-            anchors.fill: parent
-            text: model.title
-            font {
-                family: global.fonts.sans
-                weight: Font.Medium
-                pixelSize: vpx(16  * fontScalingFactor)
-            }
-            color: colorScheme[theme].text
-            horizontalAlignment : Text.AlignHCenter
-            verticalAlignment : Text.AlignVCenter
-            wrapMode: Text.Wrap
-            visible: model.assets.logo === ""
         }
     }
 
