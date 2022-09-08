@@ -637,10 +637,6 @@ FocusScope {
         { name: "games", title: dataText[lang].menu_games}
     ]
 
-    function clearShortname(shortname) {
-        return dataLaunchbox[shortname] ? dataLaunchbox[shortname] : shortname
-    }
-
     property var dataLaunchbox: {
         "amstrad cpc" :                             "amstradcpc",
         "apple ii" :                                "apple2",
@@ -1225,6 +1221,10 @@ FocusScope {
         if (mutesfx === 1.0) {
             sfxCollection2.play();
         }
+    }
+
+    function clearShortname(shortname) {
+        return dataLaunchbox[shortname] ? dataLaunchbox[shortname] : shortname
     }
 
     function saveCurrentCollectionState(collectionType, currentCollectionIndex) {
