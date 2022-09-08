@@ -114,6 +114,7 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  dataText[lang].settings_collection_accentColor_dimm + "," + dataText[lang].settings_collection_accentColor_bright ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
+            [ dataText[lang].settings_collection_manuColor,  "manuColor",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_collection_showFavorites,  "favoritesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_collection_showLastPlayed,  "lastPlayedCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
