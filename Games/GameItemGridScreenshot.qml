@@ -22,14 +22,14 @@ Item {
         }
     }
     readonly property string selectionFrameColorSelected:{
-        if (selectionFrame == "1") {
+        if (selectionFrame === 1) {
             return colorScheme[theme].selected
          } else {
             return collectionAltColor
         }
     }
     readonly property string selectionFrameColorTransition:{
-        if (selectionFrame == "1") {
+        if (selectionFrame === 1) {
             return colorScheme[theme].selectedtransition
          } else {
             return collectionColor
