@@ -1180,49 +1180,49 @@ FocusScope {
     }
 
     function playNavSound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxNav.play();
         }
     }
 
     function playBackSound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxBack.play();
         }
     }
 
     function playAcceptSound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxAccept.play();
         }
     }
 
     function playPlaySound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxPlay.play();
         }
     }
 
     function playPageSound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxPage.play();
         }
     }
 
     function playPage2Sound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxPage2.play();
         }
     }
 
     function playCollectionSound() {
-        if (mutesfx === "1.0") {
+        if (mutesfx === 1.0) {
             sfxCollection.play();
         }
     }
 
     function playCollection2Sound() {
-        if (mutesfx == "1.0") {
+        if (mutesfx === 1.0) {
             sfxCollection2.play();
         }
     }
