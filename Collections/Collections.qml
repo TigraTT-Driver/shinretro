@@ -9,7 +9,7 @@ FocusScope {
     property string clearedShortname: clearShortname(currentCollection.shortName)
     readonly property string touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
     readonly property string touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
-    readonly property string touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
+    readonly property string touch_color: (accentColor === "bright") ? touch_colorBright : touch_colorDimm
 
     Behavior on focus {
         ParallelAnimation {

@@ -611,13 +611,13 @@ FocusScope {
     // List of game collections
     property var allCollections: {
         var collections = api.collections.toVarArray()
-        if (favoritesCollection != "1") {
+        if (favoritesCollection !== 1) {
             collections.unshift({"name": dataText[lang].collection_favorites, "shortName": "favorites", "games": allFavorites, "extra": {"collectiontype": "System"}});
         }
-        if (lastPlayedCollection != "1") {
+        if (lastPlayedCollection !== 1) {
             collections.unshift({"name": dataText[lang].collection_lastplayed, "shortName": "lastplayed", "games": lastPlayed, "extra": {"collectiontype": "System"}});
         }
-        if (allGamesCollection != "1") {
+        if (allGamesCollection !== 1) {
             collections.unshift({"name": dataText[lang].collection_all, "shortName": "all", "games": api.allGames, "extra": {"collectiontype": "System"}});
         }
         collections = collections.filter(systemCollection);
@@ -1245,8 +1245,8 @@ FocusScope {
     }
 
     function systemCollection(coll) {
-        if (coll.extra.collectiontype != undefined) {
-            return coll.extra.collectiontype.toString() == collectionType;
+        if (coll.extra.collectiontype !== undefined) {
+            return coll.extra.collectiontype.toString() === collectionType;
         } else {
             return true;
         }
@@ -1255,7 +1255,7 @@ FocusScope {
     function getAllCollectionTypes() {
         var types = ['System'];
         var collections = api.collections.toVarArray().forEach(function(value, index, array) {
-                if (value.extra.collectiontype != undefined) {
+                if (value.extra.collectiontype !== undefined) {
                     types.push(value.extra.collectiontype.toString());
                 }
             }

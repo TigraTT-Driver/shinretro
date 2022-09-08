@@ -16,9 +16,9 @@ Item {
     }
     readonly property string collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
-            return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
+            return accentColorNr !== 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
-            return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
+            return accentColorNr !== 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
     readonly property string selectionFrameColorSelected:{

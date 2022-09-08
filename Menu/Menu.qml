@@ -68,8 +68,8 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNLB
                             font {
                                 family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                pixelSize: {
+                                    if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -91,8 +91,8 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNRB
                             font {
                                 family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                pixelSize: {
+                                    if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -140,7 +140,7 @@ FocusScope {
                         font {
                             family: glyphs.name
                             pixelSize:{
-                                if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
+                                if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.3))
                                     parent.height * 0.7
                                 else parent.height * 0.9
                             }
@@ -181,7 +181,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == "color"
+                            visible: logoVariant === "color"
                             antialiasing: true
                         }
                         Image {
@@ -210,7 +210,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == "color" && img_helper_collection_region.status == Image.Error
+                            visible: logoVariant === "color" && img_helper_collection_region.status == Image.Error
                             antialiasing: true
                         }
 
@@ -251,8 +251,8 @@ FocusScope {
                         text: osdScheme[controlScheme].BTNRT
                         font {
                             family: glyphs.name
-                            pixelSize:{
-                                if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
+                            pixelSize: {
+                                if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.3))
                                     parent.height * 0.75
                                 else parent.height * 0.9
                             }

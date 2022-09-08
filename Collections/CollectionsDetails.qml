@@ -35,7 +35,7 @@ Item {
                     source: "../assets/collections/" + clearedShortname + "/logo_" + region + "_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    visible: logoVariant == "color"
+                    visible: logoVariant === "color"
                     antialiasing: true
                 }
                 Image {
@@ -45,7 +45,7 @@ Item {
                     source: "../assets/collections/" + clearedShortname + "/logo_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    visible: logoVariant == "color" && img_logo_region.status == Image.Error
+                    visible: logoVariant === "color" && img_logo_region.status == Image.Error
                     antialiasing: true
                 }
                 ColorOverlay {

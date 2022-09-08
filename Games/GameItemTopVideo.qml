@@ -63,7 +63,7 @@ Item {
                 width: img_game_screenshot.paintedWidth
                 height: img_game_screenshot.paintedHeight
                 anchors.centerIn: img_game_screenshot
-                playing: gamesVideo != "1"
+                playing: gamesVideo !== 1
                 sound: gamesVideoMute
             }
         }

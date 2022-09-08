@@ -24,24 +24,24 @@ FocusScope {
     readonly property string alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
     readonly property string alt_color: {
         if (gridVR >= 3) {
-            return accentColor == "bright" ? alt_colorBright : alt_colorDimm
+            return accentColor === "bright" ? alt_colorBright : alt_colorDimm
         } else {
             return colorScheme[theme].secondary
         }
     }
     readonly property string alt_colorShadow: {
         if (gridVR >= 3) {
-            return accentColor == "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
+            return accentColor === "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
         } else {
             return lightenDarkenColor(colorScheme[theme].secondary, -5)
         }
     }
     readonly property string touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
     readonly property string touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
-    readonly property string touch_color: (accentColor == "bright") ? touch_colorBright : touch_colorDimm
+    readonly property string touch_color: (accentColor === "bright") ? touch_colorBright : touch_colorDimm
 
     readonly property string text_color: {
-        if ((accentColor == "bright") && (gridVR >= 3)) {
+        if ((accentColor === "bright") && (gridVR >= 3)) {
             return lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
         } else {
             return colorScheme[theme].text
@@ -56,9 +56,9 @@ FocusScope {
     }
 
     property int gridVR: {
-        if (gamesGridVR ===  "dynamic")
+        if (gamesGridVR === "dynamic")
             return Math.min(Math.max(parseInt((gv_games.count + 10) / 20), 1), 5);
-        else return  gamesGridVR
+        else return gamesGridVR
     }
 
     focus: games.focus
@@ -133,7 +133,7 @@ FocusScope {
             bottom: parent.bottom
         }
         opacity: 0.255
-        visible: gamesBGImg != "1"
+        visible: gamesBGImg !== 1
     }
 
     // Skewed background

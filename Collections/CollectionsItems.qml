@@ -9,9 +9,9 @@ Item {
     property string clearedShortname: clearShortname(modelData.shortName)
     property string collectionAltColor: {
         if (dataConsoles[clearedShortname] !== undefined) {
-            return accentColorNr != 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
+            return accentColorNr !== 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
-            return accentColorNr != 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
+            return accentColorNr !== 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
 
@@ -61,7 +61,7 @@ Item {
             GameVideo {
                 game: currentCollection
                 anchors.fill: img_collection_bg
-                playing: isCurrentItem && collectionVideo != "1"
+                playing: isCurrentItem && collectionVideo !== 1
                 sound: collectionVideoMute
             }
 
