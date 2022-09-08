@@ -56,7 +56,7 @@ FocusScope {
         id: settingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_general_language,  "lang",  dataText[lang].settings_general_restart,  "en,de,fr,pt" ],
+            [ dataText[lang].settings_general_language,  "lang",  dataText[lang].settings_general_restart,  "en,ch,de,fr,pt" ],
             [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  dataText[lang].settings_general_colorScheme_Dark + "," + dataText[lang].settings_general_colorScheme_Light + "," + dataText[lang].settings_general_colorScheme_OzoneDark + "," + dataText[lang].settings_general_colorScheme_SteamOS ],
             [ dataText[lang].settings_general_selectionFrame,  "selectionFrame",  "", dataText[lang].menu_collections + "," + dataText[lang].settings_general_colorScheme ],
