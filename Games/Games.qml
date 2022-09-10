@@ -7,12 +7,11 @@ import "../Global"
 import "../Filter"
 
 FocusScope {
-    property int sortIndex: api.memory.get('sortIndex') || 0
-    readonly property var sortFields: ['sortTitle', 'release', 'rating', 'genre', 'lastPlayed', 'favorite']
-    readonly property var sortLabels: {'sortTitle':'Title', 'release':'Release Date', 'rating':'Rating', 'genre':'Genre', 'lastPlayed':'Last Played', 'favorite':'Favorite'}
+    property int sortIndex: getSortIndex()
+    readonly property var sortFields: getAvailableSortFields()
+    readonly property var sortLabels: {'sortTitle':'Title', 'release':'Release Date', 'rating':'Rating', 'genre':'Genre', 'lastPlayed':'Last Played', 'favorite':'Favorite', 'custom':'Custom'}
     readonly property string sortField: sortFields[sortIndex]
     readonly property string collectionType: currentCollection.extra.collectiontype !== undefined ? currentCollection.extra.collectiontype.toString() : 'System'
-    readonly property var customSortCategories: ['Custom', 'Series']
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
     readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : ""
@@ -93,19 +92,15 @@ FocusScope {
             RoleSorter {
                 roleName: sortField
                 sortOrder: sortField == 'rating' || sortField == 'lastPlayed' || sortField == 'favorite' ? Qt.DescendingOrder : Qt.AscendingOrder
-                enabled: !customSortCategories.includes(collectionType) && currentCollection.shortName !== 'lastplayed' && root.state === "games"
+                enabled: currentCollection.shortName !== 'lastplayed' && root.state === "games" && sortField !== 'custom'
             },
             ExpressionSorter {
                 expression: {
-                    if (!customSortCategories.includes(collectionType)) {
-                        return true;
-                    }
-
                     var sortLeft = getCollectionSortValue(modelLeft, currentCollection.shortName);
                     var sortRight = getCollectionSortValue(modelRight, currentCollection.shortName);
                     return (sortLeft < sortRight);
                 }
-                enabled: customSortCategories.includes(collectionType) && root.state === "games"
+                enabled: currentCollection.shortName !== 'lastplayed' && root.state === "games" && sortField === 'custom'
             }
         ]
     }
@@ -614,7 +609,7 @@ FocusScope {
                         event.accepted = true;
                         playPlaySound();
                         if (currentGame !== null) {
-                            saveCurrentState(currentGameIndex, sortIndex);
+                            saveCurrentState(currentGameIndex);
                             currentGame.launch();
                         }
                     }
@@ -645,6 +640,7 @@ FocusScope {
                         event.accepted = true;
                         playBackSound();
                         sortIndex = (sortIndex + 1) % sortFields.length;
+                        saveSortIndex(sortIndex);
                         return;
                     }
 
@@ -702,6 +698,7 @@ FocusScope {
                         }
                         saveCurrentCollectionState(collectionType, currentCollectionIndex);
                         currentGameIndex = 0;
+                        sortIndex = getSortIndex();
                         return;
                     }
 
@@ -715,6 +712,7 @@ FocusScope {
                         }
                         saveCurrentCollectionState(collectionType, currentCollectionIndex);
                         currentGameIndex = 0;
+                        sortIndex = getSortIndex();
                         return;
                     }
                 }
@@ -859,11 +857,27 @@ FocusScope {
         return gameData.extra['customsort-' + collName] !== undefined ? gameData.extra['customsort-' + collName] : "";
     }
 
+    function getAvailableSortFields() {
+        // All collections will use these fields
+        var fields = ['sortTitle', 'release', 'rating', 'genre', 'lastPlayed', 'favorite'];
+
+        // We need to check if there is a custom sort value for the games in this collection
+        // If at least 1 is found add Custom sort as an additional option
+        if (root.state === "games") {
+            var games = currentCollection.games.toVarArray();
+            for (let i = 0; i < games.length; i++) {
+                if (getCollectionSortValue(games[i], currentCollection.shortName) !== "") {
+                    fields.unshift('custom');
+                    break;
+                }
+            }
+        }
+        return fields;
+    }
+
     function getSortLabel() {
         if (currentCollection.shortName == 'lastplayed') {
             return 'Last Played';
-        } else if (customSortCategories.includes(collectionType)) {
-            return 'Custom';
         } else {
             return sortLabels[sortField];
         }

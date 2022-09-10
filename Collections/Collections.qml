@@ -197,6 +197,7 @@ FocusScope {
                         event.accepted = true;
                         games.currentGameIndex = 0;
                         saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        games.sortIndex = getSortIndex();
                         return;
                     }
                 }
@@ -298,4 +299,5 @@ FocusScope {
             input_button: osdScheme[controlScheme].BTNR
         }
     }
+
 }

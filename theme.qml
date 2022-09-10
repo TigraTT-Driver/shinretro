@@ -705,6 +705,7 @@ FocusScope {
 
     property int currentCollectionIndex: api.memory.get("currentCollectionIndex-" + collectionType) || 0
     property var currentCollection: allCollections[currentCollectionIndex]
+    property string clearedShortname: clearShortname(currentCollection.shortName)
 
     property var dataMenu: [
         { name: "settings", title: dataText[lang].menu_settings},
@@ -1308,13 +1309,20 @@ FocusScope {
         api.memory.set("currentCollectionIndex-" + collectionType, currentCollectionIndex);
     }
 
-    function saveCurrentState(currentGameIndex, sortIndex) {
+    function getSortIndex() {
+        return api.memory.get(clearedShortname + '-sortIndex') || 0;
+    }
+
+    function saveSortIndex(sortIndex) {
+        if (sortIndex !== undefined) {
+            api.memory.set(clearedShortname + '-sortIndex', sortIndex);
+        }
+    }
+
+    function saveCurrentState(currentGameIndex) {
         api.memory.set("currentMenuIndex", currentMenuIndex);
         api.memory.set("currentCollectionType", collectionType);
         api.memory.set("currentCollectionIndex-" + collectionType, currentCollectionIndex);
-        if (sortIndex !== undefined) {
-            api.memory.set('sortIndex', sortIndex);
-        }
         if (currentGameIndex !== undefined) {
             api.memory.set(collectionType + "-" + currentCollectionIndex + "-currentGameIndex", currentGameIndex);
         }
