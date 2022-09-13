@@ -99,6 +99,49 @@ To use this feature, add a new field 'x-completed' to your game metadata with a 
 
 <img src="assets/screenshot/completed.png" title="completed ribbon" />
 
+## Custom Sorting
+This theme supports custom sorting for collections. Say for example you want to construct a playlist of games to play in a specific order, or you want to showcase a collection based on series and want to order the games properly even if the game titles or release years aren't in a particular order. 
+
+The default sort-by metadata field would allow you to set a sort title but then this would apply to every collection a particular game shows up in, so if you had a "Mario" series collection and adjusted your sort-by field to set the order, games might show up in the wrong place in your "NES" system collection.
+
+To use this feature, for every game you want to use custom sorting, add a new field to your game metadata in the following format: 
+'x-customsort-*collectionshortname*': *sortnumber*
+
+So for this example lets say we want to display a custom sort that lists all Mario games, and we want to show the games in chronological order but group any rereleases with the original (so Super Mario Bros for NES should come first, then the Game Boy Color and Game Boy Advance rereleases, followed by Super Mario Bros 2 for NES and then Super Mario Advance etc).
+
+In the above case, here is what the relevant game metadata would look like (note the sort number values for each game):
+
+> 
+    game: Super Mario Bros.
+    file: ..\..\..\roms\nes\Super Mario Bros. (World).7z
+    sort-title: Super Mario Bros.
+    x-customsort-mario: 010
+
+    game: Super Mario Bros. 2
+    file: ..\..\..\roms\nes\Super Mario Bros. 2 (USA) (Rev A).7z
+    sort-title: Super Mario Bros. 2
+    x-customsort-mario: 015
+
+    game: Super Mario Bros. Deluxe
+    file: ..\..\..\roms\gbc\Super Mario Bros. Deluxe (USA, Europe) (Rev B).7z
+    sort-title: Super Mario Bros. Deluxe
+    x-customsort-mario: 011
+
+    game: Classic NES Series: Super Mario Bros.
+    file: ..\..\..\roms\gba\Classic NES Series - Super Mario Bros. (USA, Europe).7z
+    sort-title: Classic NES Series: Super Mario Bros.
+    x-customsort-mario: 012
+
+    game: Super Mario Advance
+    file: ..\..\..\roms\gba\Super Mario Advance (USA, Europe).7z
+    sort-title: Super Mario Advance
+    x-customsort-mario: 016
+
+And the final result would look like this:
+<img src="assets/screenshot/customsort.png" title="custom sorting" />
+
+When you view a game collection, the theme will automatically detect the presence of this custom sort tag - if at least one game is found in the collection with custom sorting defined, then 'Custom' will be an option to Sort By and will be the default one selected. Otherwise, Custom won't appear in the list of available sort by fields and you can sort by the standard fields (Title, Release, Genre, Favorite, Last Played).
+
 ## Example Metadata Files with Custom Metadata added
 An example of a collection and a game entry with the custom metadata this theme can use if they are included. None of the custom metadata is required to use the theme, they are only enhancements if added.
 
@@ -124,6 +167,7 @@ Game example with custom fields added for Completed, Arcade Port:
     description: You are a hero raised from the dead by the god Zeus to rescue his daughter Athena. With scenery inspired by Ancient Greece, you have to fight hordes of undead and demons, with a boss at the end of each level until you meet the god Neff, who holds the girl captive.    The Altered Beast title refers to your shapeshifting abilities. In this platformer, you can collect spirit balls by defeating two-headed wolves, allowing you to mutate into different beasts such as a werewolf, a dragon, a tiger, a bear and others depending on the version. Each form, tied to a level, comes with special abilities such as flight and powerful attacks, easily superseding the basic set of punches and kicks in your human form.    The game can be played in single player mode, or in same-screen multiplayer co-op mode.
     x-completed: False
     x-arcadeport: True
+
 
 ## Work in progress
 - [ ] clean the code...
