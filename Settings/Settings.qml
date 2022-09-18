@@ -33,7 +33,8 @@ FocusScope {
         height: parent.height
         antialiasing: true
         anchors {
-            left: parent.left; leftMargin: parent.width * 0.23
+            left: parent.left
+            leftMargin: parent.width * 0.23
         }
         color: colorScheme[theme].secondary
         Behavior on color {
@@ -55,15 +56,16 @@ FocusScope {
         id: settingsModel
         Component.onCompleted: {
             [
-            [ dataText[lang].settings_general_language,  "lang",  dataText[lang].settings_general_restart,  "en,de,fr,pt" ],
+            [ dataText[lang].settings_general_language,  "lang",  dataText[lang].settings_general_restart,  "en,ch,de,fr,pt" ],
+            [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  dataText[lang].settings_general_colorScheme_Dark + "," + dataText[lang].settings_general_colorScheme_Light + "," + dataText[lang].settings_general_colorScheme_OzoneDark + "," + dataText[lang].settings_general_colorScheme_SteamOS ],
-            [ dataText[lang].settings_general_music,  "music",  dataText[lang].settings_general_restart,  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_general_selectionFrame,  "selectionFrame",  "", dataText[lang].menu_collections + "," + dataText[lang].settings_general_colorScheme ],
             [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS,PS-JP" ]
+            [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS,PS-JP" ],
+            [ dataText[lang].settings_general_music,  "music",  dataText[lang].settings_general_restart,  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_general_muteSounds,  "mutesfx",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
@@ -112,7 +114,10 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  dataText[lang].settings_collection_accentColor_dimm + "," + dataText[lang].settings_collection_accentColor_bright ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
+            [ dataText[lang].settings_collection_manuColor,  "manuColor",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_collection_showFavorites,  "favoritesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
+            [ dataText[lang].settings_collection_showLastPlayed,  "lastPlayedCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoPlayback,  "collectionVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoMute,  "collectionVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {
@@ -140,8 +145,10 @@ FocusScope {
             [ dataText[lang].settings_games_layout,  "gamesLayout",  "",  "BoxArt-Grid,Screenshot-Grid" ],
             [ dataText[lang].settings_games_gridItemsPerRow,  "gamesGridIPR",  "",  "4,5,6,2,3" ],
             [ dataText[lang].settings_games_gridItemsViewableRows,  "gamesGridVR",  "",  "1,2,3,4,5,dynamic" ],
+            [ dataText[lang].settings_global_backgroundImg,  "gamesBGImg",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
-            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
+            [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_games_page_updown_function,  "gamesPageUpDownFunction",  "",  "Collections,Games" ]
             ].forEach(function(element) {
                 append({
                             settingName: element[0],
@@ -164,35 +171,28 @@ FocusScope {
 
     property real itemheight: vpx(50)
 
-
-
     ListView {
-    id: pagelist
-    
+        id: pagelist
         focus: true
         anchors {
             top: parent.top
-            topMargin: vpx(40);
-            bottom: parent.bottom;
-            left: parent.left;
+            topMargin: vpx(40)
+            bottom: parent.bottom
+            left: parent.left
         }
         width: vpx(300)
         model: settingsArr
         delegate: Component {
-        id: pageDelegate
-        
+            id: pageDelegate
             Item {
-            id: pageRow
-
+                id: pageRow
                 property bool selected: ListView.isCurrentItem
-
                 width: ListView.view.width
                 height: itemheight
 
                 // Page name
                 Text {
-                id: pageNameText
-                
+                    id: pageNameText
                     text: modelData.pageName
                     font {
                         family: global.fonts.condensed
@@ -212,41 +212,46 @@ FocusScope {
                     }
                 }
             }
-        } 
+        }
 
-        Keys.onUpPressed: { sfxNav.play(); decrementCurrentIndex() }
-        Keys.onDownPressed: { sfxNav.play(); incrementCurrentIndex() }
+        Keys.onUpPressed: {
+            playNavSound();
+            decrementCurrentIndex();
+        }
+
+        Keys.onDownPressed: {
+            playNavSound();
+            incrementCurrentIndex();
+        }
+
         Keys.onPressed: {
             // Accept
             if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                 event.accepted = true;
-                sfxNav.play();
+                playNavSound();
                 settingsList.focus = true;
             }
             // Back
             if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                 event.accepted = true;
-                currentMenuIndex = 1
+                currentMenuIndex = 1;
             }
         }
 
     }
 
     ListView {
-    id: settingsList
-
+        id: settingsList
         model: settingsArr[pagelist.currentIndex].listmodel
         delegate: settingsDelegate
-        
         anchors {
-            top: parent.top;
-            topMargin: vpx(40);
-            bottom: parent.bottom; 
-            left: pagelist.right;
-            right: parent.right;
+            top: parent.top
+            topMargin: vpx(40)
+            bottom: parent.bottom
+            left: pagelist.right
+            right: parent.right
         }
         width: vpx(500)
-
         spacing: vpx(0)
         orientation: ListView.Vertical
 
@@ -257,13 +262,11 @@ FocusScope {
         clip: false
 
         Component {
-        id: settingsDelegate
-        
+            id: settingsDelegate
             Item {
-            id: settingRow
-
+                id: settingRow
                 property bool selected: ListView.isCurrentItem && settingsList.focus
-                property variant settingList: setting.split(',')
+                property var settingList: setting.split(',')
                 property int savedIndex: api.memory.get(settingKey + 'Index') || 0
 
                 function saveSetting() {
@@ -290,8 +293,7 @@ FocusScope {
 
                 // Setting name
                 Text {
-                id: settingNameText
-                
+                    id: settingNameText
                     text: settingSubtitle != "" ? settingName + " " + settingSubtitle + ": " : settingName + ": "
                     color: colorScheme[theme].text
                     font {
@@ -304,13 +306,13 @@ FocusScope {
                     width: contentWidth
                     height: parent.height
                     anchors {
-                        left: parent.left; leftMargin: vpx(40)
+                        left: parent.left
+                        leftMargin: vpx(40)
                     }
                 }
                 // Setting value
                 Text { 
-                id: settingtext; 
-                
+                    id: settingtext; 
                     text: settingList[savedIndex]; 
                     color: colorScheme[theme].accent
                     font {
@@ -322,14 +324,17 @@ FocusScope {
 
                     height: parent.height
                     anchors {
-                        right: parent.right; rightMargin: vpx(40)
+                        right: parent.right
+                        rightMargin: vpx(40)
                     }
                 }
 
                 Rectangle {
-                    anchors { 
-                        left: parent.left; leftMargin: vpx(25)
-                        right: parent.right; rightMargin: vpx(25)
+                    anchors {
+                        left: parent.left
+                        leftMargin: vpx(25)
+                        right: parent.right
+                        rightMargin: vpx(25)
                         bottom: parent.bottom
                     }
                     color: colorScheme[theme].text
@@ -340,13 +345,14 @@ FocusScope {
                 // Input handling
                 // Next setting
                 Keys.onRightPressed: {
-                    sfxAccept.play()
+                    playAcceptSound();
                     nextSetting();
                     saveSetting();
                 }
+
                 // Previous setting
                 Keys.onLeftPressed: {
-                    sfxAccept.play();
+                    playAcceptSound();
                     prevSetting();
                     saveSetting();
                 }
@@ -355,28 +361,36 @@ FocusScope {
                     // Accept
                     if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                         event.accepted = true;
-                        sfxAccept.play()
+                        playAcceptSound();
                         nextSetting();
                         saveSetting();
                     }
                     // Back
                     if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                         event.accepted = true;
-                        sfxNav.play()
+                        playNavSound();
                         pagelist.focus = true;
                     }
                 }
             }
-        } 
+        }
 
-        Keys.onUpPressed: { sfxNav.play(); decrementCurrentIndex() }
-        Keys.onDownPressed: { sfxNav.play(); incrementCurrentIndex() }
+        Keys.onUpPressed: {
+            playNavSound();
+            decrementCurrentIndex();
+        }
+
+        Keys.onDownPressed: {
+            playNavSound();
+            incrementCurrentIndex();
+        }
     }
     // Buttons
     Row {
         visible: osc === 0
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom 
+            bottomMargin: vpx(40)
             right: parent.right
             rightMargin: parent.width * 0.05
         }
@@ -403,4 +417,5 @@ FocusScope {
             input_button: osdScheme[controlScheme].BTNR
         }
     }
+
 }

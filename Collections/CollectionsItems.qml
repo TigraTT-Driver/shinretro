@@ -1,17 +1,17 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
-import "../Global"  
+import "../Global"
 
 Item {
     id: item_collection
 
-    property var isCurrentItem: PathView.isCurrentItem
-    property var shortname: clearShortname(modelData.shortName)
-    property var collectionAltColor:{
-        if (accentColorNr != 0) {
-            dataConsoles[shortname].altColor
+    property bool isCurrentItem: PathView.isCurrentItem
+    property string clearedShortname: clearShortname(modelData.shortName)
+    property string collectionAltColor: {
+        if (dataConsoles[clearedShortname] !== undefined) {
+            return accentColorNr !== 0 ? dataConsoles[clearedShortname].altColor : dataConsoles[clearedShortname].altColor2
         } else {
-            dataConsoles[shortname].altColor2
+            return accentColorNr !== 0 ? dataConsoles["default"].altColor : dataConsoles["default"].altColor2
         }
     }
 
@@ -34,24 +34,37 @@ Item {
                 width: parent.width
                 height: parent.height
                 asynchronous: true
-                source: "../assets/collections/"+shortname+"/art.jpg"
+                source: "../assets/collections/" + clearedShortname + "/art.jpg"
                 fillMode: Image.PreserveAspectCrop
+                visible: false
+            }
+
+            Image {
+                id: img_collection_bg_fallback
+                width: parent.width
+                height: parent.height
+                asynchronous: true
+                source: "../assets/collections/default/art.jpg"
+                fillMode: Image.PreserveAspectCrop
+                visible: false
             }
 
             Desaturate {
-                anchors.fill: img_collection_bg
-                source: img_collection_bg
+                anchors.fill: img_collection_bg.status == Image.Error ? img_collection_bg_fallback : img_collection_bg
+                source: img_collection_bg.status == Image.Error ? img_collection_bg_fallback : img_collection_bg
                 desaturation: isCurrentItem ? 0 : 1
                 Behavior on desaturation {
                     NumberAnimation { duration: 200; }
                 }
             }
+
             GameVideo {
                 game: currentCollection
                 anchors.fill: img_collection_bg
-                playing: isCurrentItem && collectionVideo != "1"
+                playing: isCurrentItem && collectionVideo !== 1
                 sound: collectionVideoMute
             }
+
             Rectangle {
                 id: msk_collection_bg
                 anchors.fill: parent
@@ -74,7 +87,6 @@ Item {
                     NumberAnimation { duration: 250; }
                 }
             }
-
         }
 
     }

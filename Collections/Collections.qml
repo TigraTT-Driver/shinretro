@@ -5,16 +5,11 @@ import "../Global"
 FocusScope {
     focus: collections.focus
 
-    readonly property int baseItemWidth: root.width /8
-    readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
-    readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
-    readonly property var touch_color: {
-        if (accentColor == "bright") {
-            return touch_colorBright;
-        } else {
-            return touch_colorDimm;
-        }
-    }
+    readonly property int baseItemWidth: root.width / 8
+    property string clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property string touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
+    readonly property string touch_colorDimm: touch_colorBright.replace(/#/g, "#77");
+    readonly property string touch_color: (accentColor === "bright") ? touch_colorBright : touch_colorDimm
 
     Behavior on focus {
         ParallelAnimation {
@@ -37,12 +32,12 @@ FocusScope {
 
     Rectangle {
         id: skew_color
-
         width: parent.width * 0.28
         height: parent.height
         antialiasing: true
         anchors {
-            left: parent.left; leftMargin: parent.width * 0.23
+            left: parent.left
+            leftMargin: parent.width * 0.23
         }
         color: touch_color
         Behavior on color {
@@ -60,6 +55,38 @@ FocusScope {
         }
     }
 
+    Text {
+        id: txt_collectionType
+        anchors {
+            top: parent.top
+            topMargin: vpx(85)
+            right: parent.right
+            rightMargin: vpx(25)
+        }
+
+        text: collectionType + " " + dataText[lang].global_collections
+        font {
+            family: global.fonts.sans
+            weight: Font.Black
+            italic: true
+            pixelSize: vpx(40)
+            capitalization: Font.AllUppercase
+        }
+        color: "#F0F0F0"
+
+        Behavior on text {
+            PropertyAnimation {
+                target: txt_collectionType
+                property: "opacity"
+                from: 0
+                to: 1
+                duration: 600
+                easing.type: Easing.OutExpo
+            }
+        }
+        visible: collectionTypes.length > 1
+    }
+
     Item {
         width: parent.width
         height: parent.height * 0.58
@@ -71,16 +98,11 @@ FocusScope {
             id: pv_collections
 
             readonly property int pathLength: ( pathItemCount + 1 ) * baseItemWidth
-
             anchors.fill: parent
-
             focus: collections.focus
-
             model: allCollections
             currentIndex: currentCollectionIndex
-
             delegate: CollectionsItems {}
-
             snapMode: PathView.SnapOneItem
             highlightMoveDuration: 100
             highlightRangeMode: PathView.ApplyRange
@@ -88,7 +110,7 @@ FocusScope {
             pathItemCount: 10
             path: Path {
                 startX: - baseItemWidth
-                startY: pv_collections.height /2
+                startY: pv_collections.height / 2
                 PathAttribute { name: "currentWidth"; value: baseItemWidth; }
                 PathAttribute { name: "currentHeight"; value: pv_collections.height; }
                 PathLine {
@@ -103,7 +125,7 @@ FocusScope {
                     y: pv_collections.path.startY
                 }
                 PathAttribute { name: "currentWidth"; value: baseItemWidth * 2; }
-                PathAttribute { name: "currentHeight"; value: pv_collections.height *1.17; }
+                PathAttribute { name: "currentHeight"; value: pv_collections.height * 1.17; }
                 PathLine {
                     x: pv_collections.path.startX + pv_collections.pathLength / 3.2 + baseItemWidth * 1.5
                     y: pv_collections.path.startY
@@ -124,59 +146,60 @@ FocusScope {
             preferredHighlightEnd: preferredHighlightBegin
 
             Keys.onPressed: {
-
-                if (event.isAutoRepeat) {
-                    return
+                if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                    event.accepted = true;
+                    playAcceptSound();
+                    currentMenuIndex = 3;
+                    return;
                 }
 
-                if (api.keys.isAccept(event)) {
-
-                    //Accept game sound
-                    sfxAccept.play();
-
+                if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                     event.accepted = true;
-                    currentMenuIndex = 3
-                }
-
-                if (api.keys.isCancel(event)) {
-                    event.accepted = true;
-                    currentMenuIndex = 1
-
-                    //PrevPage sound
-                    sfxBack.play();
+                    playBackSound();
+                    currentMenuIndex = 1;
+                    return;
                 }
 
                 if (event.key == Qt.Key_Left) {
-
-                    //navigation sound
-                    sfxNav.play();
-
                     event.accepted = true;
-                    if (currentCollectionIndex <= 0)
-                        if (event.isAutoRepeat)
-                            currentCollectionIndex = 0
-                        else
-                            currentCollectionIndex = allCollections.length - 1
-                    else
+                    playNavSound();
+                    if (currentCollectionIndex <= 0) {
+                        if (event.isAutoRepeat) {
+                            currentCollectionIndex = 0;
+                        } else {
+                            currentCollectionIndex = allCollections.length - 1;
+                        }
+                    } else {
                         currentCollectionIndex--;
-                        api.memory.set("currentCollectionIndex", currentCollectionIndex)
+                    }
+                    return;
                 }
 
                 if (event.key == Qt.Key_Right) {
-
-                    //navigation sound
-                    sfxNav.play();
-
                     event.accepted = true;
-
-                    if (currentCollectionIndex >= allCollections.length - 1)
-                        if (event.isAutoRepeat)
+                    playNavSound();
+                    if (currentCollectionIndex >= allCollections.length - 1) {
+                        if (event.isAutoRepeat) {
                             currentCollectionIndex = allCollections.length - 1;
-                        else
+                        } else {
                             currentCollectionIndex = 0;
-                    else
+                        }
+                    } else {
                         currentCollectionIndex++;
-                        api.memory.set("currentCollectionIndex", currentCollectionIndex)
+                    }
+                    return;
+                }
+            }
+
+            Keys.onReleased: {
+                if ((event.key == Qt.Key_Right) || (event.key == Qt.Key_Left)) {
+                    if (!event.isAutoRepeat) {
+                        event.accepted = true;
+                        games.currentGameIndex = 0;
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        games.sortIndex = getSortIndex();
+                        return;
+                    }
                 }
             }
         }
@@ -191,7 +214,6 @@ FocusScope {
             verticalCenter: parent.verticalCenter
             right: parent.right
         }
-
         clip: true
         currentIndex: currentCollectionIndex
         model: allCollections
@@ -199,23 +221,20 @@ FocusScope {
 
         pathItemCount: 3
         path: Path {
-
             // Horizontal Left to Right
             startX: -pv_collections_logo.width
-            startY: pv_collections_logo.height /2
+            startY: pv_collections_logo.height / 2
 
             PathLine {
-                x: pv_collections_logo.path.startX + pv_collections_logo.width *3
+                x: pv_collections_logo.path.startX + pv_collections_logo.width * 3
                 y: pv_collections_logo.path.startY
             }
-
         }
 
         interactive: false
         highlightMoveDuration: 150
         highlightRangeMode: PathView.ApplyRange
         snapMode: PathView.SnapOneItem
-
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
     }
@@ -223,13 +242,15 @@ FocusScope {
     Text {
         color: colorScheme[theme].text
         anchors {
-            right: parent.right; rightMargin: vpx(35)
-            top: parent.top; topMargin: vpx(160)
+            right: parent.right
+            rightMargin: vpx(35)
+            top: parent.top
+            topMargin: vpx(160)
         }
-        text: (currentCollectionIndex+1)+"/"+pv_collections.count
+        text: (currentCollectionIndex + 1) + "/" + pv_collections.count
         font {
             family: robotoSlabThin.name
-            pixelSize: vpx(16  * fontScalingFactor)
+            pixelSize: vpx(16 * fontScalingFactor)
         }
     }
 
@@ -237,7 +258,8 @@ FocusScope {
     Row {
         visible: osc === 0
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom
+            bottomMargin: vpx(40)
             right: parent.right
             rightMargin: parent.width * 0.05
         }
@@ -246,11 +268,24 @@ FocusScope {
         Controls {
             id: button_D
 
-            message: "<b>"+currentCollection.name+"</b> "+dataText[lang].global_games
+            message: "<b>" + currentCollection.name + "</b> " + dataText[lang].global_games
+
             text_color: colorScheme[theme].accepted
             front_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             back_color: colorScheme[theme].accepted.replace(/#/g, "#33");
             input_button: osdScheme[controlScheme].BTND
+        }
+
+        Controls {
+            id: button_U
+
+            message: dataText[lang].global_switch + " <b>" + dataText[lang].global_collCategory + "</b>"
+
+            text_color: colorScheme[theme].filters
+            front_color: colorScheme[theme].filters.replace(/#/g, "#26");
+            back_color: colorScheme[theme].filters.replace(/#/g, "#26");
+            input_button: osdScheme[controlScheme].BTNU
+            visible: collectionTypes.length > 1
         }
 
         Controls {
@@ -264,4 +299,5 @@ FocusScope {
             input_button: osdScheme[controlScheme].BTNR
         }
     }
+
 }

@@ -7,6 +7,7 @@ FocusScope {
     property int currentLastPlayedIndex: 0
     property int currentFavoritesIndex: 0
     property var previousLastplayed: lastplayed_left
+    readonly property int maximumFavoritesShown: 19
 
     readonly property var currentGame: {
         if (lastplayed_left.focus)
@@ -34,11 +35,11 @@ FocusScope {
         filters: ValueFilter { roleName: "favorite"; value: true; }
     }
 
-    // 10 games to show maximum
+    // 20 games to show maximum
     SortFilterProxyModel {
         id: sort_favorites_limited
         sourceModel: sort_favorites_base
-        filters: IndexFilter { maximumIndex: 19; }
+        filters: IndexFilter { maximumIndex: maximumFavoritesShown; }
     }
 
     // 1 game to show maximum
@@ -154,29 +155,27 @@ FocusScope {
                 onFocusChanged: { if(focus) previousLastplayed = lastplayed_left }
 
                 Keys.onPressed: {
-
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
-                        sfxPlay.play();
-
                         event.accepted = true;
-                        api.memory.set("currentMenuIndex", currentMenuIndex)
-                        currentGame.launch()
+                        playPlaySound();
+                        api.memory.set("currentMenuIndex", currentMenuIndex);
+                        currentGame.launch();
+                        return;
                     }
 
                     if ([Qt.Key_Right, Qt.Key_Down].includes(event.key)) {
-                        sfxNav.play();
                         event.accepted = true;
-
-                        if (event.key == Qt.Key_Right && sort_lastplayed_right.count > 0) lastplayed_right.focus = true
-                        if (event.key == Qt.Key_Down && sort_favorites_limited.count > 0) favorites.focus = true
+                        playNavSound();
+                        if (event.key == Qt.Key_Right && sort_lastplayed_right.count > 0) lastplayed_right.focus = true;
+                        if (event.key == Qt.Key_Down && sort_favorites_limited.count > 0) favorites.focus = true;
                     }
                 }
             }
-            
+
             GridView {
                 id: lastplayed_right
                 width: parent.width * 0.59
@@ -190,7 +189,7 @@ FocusScope {
 
                 model: sort_lastplayed_right
                 delegate: Item {
-                    readonly property var isSelected: GridView.isCurrentItem
+                    readonly property bool isSelected: GridView.isCurrentItem
 
                     width: GridView.view.cellWidth
                     height: GridView.view.cellHeight
@@ -216,23 +215,22 @@ FocusScope {
                 focus: false
                 interactive: false
                 onFocusChanged: { if(focus) previousLastplayed = lastplayed_right }
-                Keys.onPressed: {
 
+                Keys.onPressed: {
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
                         event.accepted = true;
                         sfxPlay.play();
-
-                        api.memory.set("currentMenuIndex", currentMenuIndex)
-                        currentGame.launch()
+                        api.memory.set("currentMenuIndex", currentMenuIndex);
+                        currentGame.launch();
                     }
                     
                     if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Down, Qt.Key_Left].includes(event.key)) {
                         event.accepted = true;
-                        sfxNav.play();
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Left) {
@@ -283,7 +281,6 @@ FocusScope {
 
             Text {
                 anchors.fill: parent
-
                 text: dataText[lang].global_noFavorites
                 horizontalAlignment : Text.AlignHCenter
                 verticalAlignment : Text.AlignVCenter
@@ -310,7 +307,7 @@ FocusScope {
 
             model: sort_favorites_limited
             delegate: Item {
-                readonly property var isSelected: ListView.isCurrentItem
+                readonly property bool isSelected: ListView.isCurrentItem
 
                 width: ListView.view.width /5
                 height: ListView.view.height * 0.9
@@ -333,31 +330,28 @@ FocusScope {
                 }
             }
 
-            clip: true
-
+            clip: currentFavoritesIndex == 0 || currentFavoritesIndex == maximumFavoritesShown ? false : true
             highlightRangeMode: ListView.ApplyRange
             snapMode: ListView.SnapOneItem
             highlightMoveDuration: vpx(100)
             preferredHighlightBegin: width * 0.4
             preferredHighlightEnd: width * 0.6
-
             focus: false
-            Keys.onPressed: {
 
+            Keys.onPressed: {
                 if (event.isAutoRepeat) {
-                    return
+                    return;
                 }
 
                 if (api.keys.isAccept(event)) {
                     event.accepted = true;
-                    sfxPlay.play();
-
-                    api.memory.set("currentMenuIndex", currentMenuIndex)
-                    currentGame.launch()
+                    playPlaySound();
+                    api.memory.set("currentMenuIndex", currentMenuIndex);
+                    currentGame.launch();
                 }
 
                 if ([Qt.Key_Up, Qt.Key_Right, Qt.Key_Left].includes(event.key)) {
-                    sfxNav.play();
+                    playNavSound();
                     if (event.key == Qt.Key_Up) {
                         event.accepted = true; 
                         previousLastplayed.focus = true
@@ -373,7 +367,8 @@ FocusScope {
         height: vpx(18  * fontScalingFactor)
         visible: osc === 0 && currentGame
         anchors {
-            bottom: parent.bottom; bottomMargin: vpx(40)
+            bottom: parent.bottom
+            bottomMargin: vpx(40)
             horizontalCenter: parent.horizontalCenter
         }
         spacing: vpx(8)
@@ -383,6 +378,7 @@ FocusScope {
             height: parent.height
             color: colorScheme[theme].accepted
         }
+
         Controls {
             id: button_D
             message: dataText[lang].home_play+" <b>"+currentGame.title+"</b>"
@@ -392,4 +388,5 @@ FocusScope {
             input_button: osdScheme[controlScheme].BTND
         }
     }
+
 }

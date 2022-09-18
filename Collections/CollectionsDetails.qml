@@ -2,10 +2,24 @@ import QtQuick 2.15
 import QtGraphicalEffects 1.12
 
 Item {
-    property var isCurrentItem: PathView.isCurrentItem
-    property var shortname: clearShortname(modelData.shortName)
-    property var manufacturer: dataConsoles[shortname].manufacturer || null
-    property var release: dataConsoles[shortname].release || null
+    property bool isCurrentItem: PathView.isCurrentItem
+    property string clearedShortname: clearShortname(modelData.shortName)
+    property string manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : ""
+    property string release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : ""
+    readonly property string manufacturerColor: {
+        if (manuColor === 1) {
+            return (manufacturer !== "") ? dataManufacturers[manufacturer].color : "black"
+        } else {
+            return "transparent"
+        }
+    }
+    readonly property string yearColor: {
+        if (manuColor === 1) {
+            return (manufacturerColor !== '#FFFFFF') ? manufacturerColor : "black"
+        } else {
+            return colorScheme[theme].icons
+        }
+    }
 
     width: PathView.view.width
     height: PathView.view.height
@@ -19,8 +33,8 @@ Item {
 
             Item {
                 id: img_collection_logo
-                width: vpx(250)
-                height: vpx(100)
+                width: vpx(325)
+                height: vpx(115)
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                     top: parent.top
@@ -30,19 +44,21 @@ Item {
                 Image {
                     id: img_logo_region
                     anchors.fill: parent
-                    source: "../assets/collections/"+shortname+"/logo_"+region+"_"+logoVariant+".svg"
+                    sourceSize.width: width
+                    source: "../assets/collections/" + clearedShortname + "/logo_" + region + "_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    visible: logoVariant == "color"
+                    visible: logoVariant === "color"
                     antialiasing: true
                 }
                 Image {
                     id: img_logo
                     anchors.fill: parent
-                    source: "../assets/collections/"+shortname+"/logo_"+logoVariant+".svg"
+                    sourceSize.width: width
+                    source: "../assets/collections/" + clearedShortname + "/logo_" + logoVariant
                     verticalAlignment: Image.AlignBottom
                     fillMode: Image.PreserveAspectFit
-                    visible: logoVariant == "color" && img_logo_region.status == Image.Error
+                    visible: logoVariant === "color" && img_logo_region.status == Image.Error
                     antialiasing: true
                 }
                 ColorOverlay {
@@ -64,7 +80,7 @@ Item {
                 text: modelData.name
                 font {
                     family: global.fonts.condensed
-                    pixelSize: vpx(42  * fontScalingFactor)
+                    pixelSize: vpx(42 * fontScalingFactor)
                 }
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
@@ -75,13 +91,13 @@ Item {
                 id: txt_collection_games
                 anchors {
                     top: img_collection_logo.bottom
-                    topMargin: vpx(10)
+                    topMargin: vpx(25)
                     horizontalCenter: img_collection_logo.horizontalCenter
                 }
-                text: modelData.games.count+" "+dataText[lang].collectionDetails_gamesAvailable
+                text: modelData.games.count + " " + dataText[lang].collectionDetails_gamesAvailable
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(20  * fontScalingFactor)
+                    pixelSize: vpx(20 * fontScalingFactor)
                 }
                 color: colorScheme[theme].accent
             }
@@ -96,33 +112,33 @@ Item {
                 spacing: vpx(10)
 
                 Rectangle {
-                    width: vpx(60)
-                    height: vpx(30)
-                    color: "transparent"
+                    width: vpx(75)
+                    height: vpx(25)
+                    color: manufacturerColor
                     Item {
                         width: vpx(55)
-                        height: vpx(15  * fontScalingFactor)
+                        height: vpx(15 * fontScalingFactor)
                         anchors.centerIn: parent
 
                         Image {
                             id: img_manufacturer
                             anchors.fill: parent
-                            source: (manufacturer !== null) ? "../assets/manufacturers/logo/"+manufacturer+".svg" : ""
+                            sourceSize.width: width
+                            sourceSize.height: height
+                            source: (manufacturer !== "") ? "../assets/manufacturers/logo/" + manufacturer : ""
                             fillMode: Image.PreserveAspectFit
-                            visible: false
-                            antialiasing: true
+                            visible: manuColor === 1
                         }
                         ColorOverlay {
                             anchors.fill: img_manufacturer
                             source: img_manufacturer
                             color: colorScheme[theme].icons
+                            visible: manuColor !== 1
                             antialiasing: true
                         }
                     }
-
-                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== null)
+                    visible: (img_manufacturer.status === Image.Ready || manufacturer !== "")
                 }
-
 
                 Text {
                     id: txt_collection_release
@@ -133,22 +149,20 @@ Item {
                     font {
                         family: montserratBold.name
                         weight: Font.Medium
-                        pixelSize: vpx(14  * fontScalingFactor)
+                        pixelSize: vpx(18 * fontScalingFactor)
                     }
                     bottomPadding: vpx(2)
-                    color: colorScheme[theme].text
+                    color:  yearColor
                 }
             }
-
         }
-
     }
 
     Loader {
         anchors.fill: parent
         sourceComponent: cpnt_collection_details
         asynchronous: true
-        active: ( root.state === "collections" )
+        active: root.state === "collections"
     }
 
 }

@@ -68,8 +68,8 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNLB
                             font {
                                 family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                pixelSize: {
+                                    if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -77,7 +77,6 @@ FocusScope {
                             color: colorScheme[theme].accentalt
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
-                            
                         }
                     }
 
@@ -92,8 +91,8 @@ FocusScope {
                             text: osdScheme[controlScheme].BTNRB
                             font {
                                 family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.1))
+                                pixelSize: {
+                                    if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.1))
                                         parent.height * 0.66
                                     else parent.height * 0.9
                                 }
@@ -112,9 +111,7 @@ FocusScope {
                     highlightMoveVelocity: -1
 
                     interactive: false
-
                     focus: menu.focus
-
                     Component.onCompleted: positionViewAtIndex(currentMenuIndex, ListView.Beginning)
 
                     spacing: vpx(20 * fontScalingFactor)
@@ -125,40 +122,38 @@ FocusScope {
                 width: parent.width * 0.5
                 height: parent.height
                 anchors {
-                    right: parent.right; 
+                    right: parent.right
                     verticalCenter: parent.verticalCenter
                 }
 
                 Item {
                     width: vpx(40)
-                    height: vpx(22  * fontScalingFactor)
+                    height: vpx(22 * fontScalingFactor)
                     visible: osc === 0
                     anchors {
-                        right: parent.right;
+                        right: parent.right
                         rightMargin: vpx(290)
                         verticalCenter: parent.verticalCenter
                     }
                     Text {
                         text: osdScheme[controlScheme].BTNLT
                         font {
-                            family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
-                                        parent.height * 0.7
-                                    else parent.height * 0.9
-                                }
+                            family: glyphs.name
+                            pixelSize:{
+                                if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.3))
+                                    parent.height * 0.7
+                                else parent.height * 0.9
+                            }
                         }
                         color: colorScheme[theme].accentalt
-                        visible: root.state === "games"
+                        visible: root.state === "games" && gamesPgUpDownFunction === 'Collections'
                         anchors.verticalCenter: parent.verticalCenter
-                        
-
                     }
                 }
 
                 Component {
                     id: cmpt_helper_collection
-                    Item{
+                    Item {
                         visible: ["home","games"].includes(root.state)
                         Image {
                             id: img_helper_collection_region
@@ -168,10 +163,11 @@ FocusScope {
                                 if (root.state === "collections")
                                     return "";
                                 if (root.state === "home")
-                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(home.currentGame.collections.get(0).shortName) + "/logo_" + region + "_" + logoVariant
                                 if (root.state === "games")
-                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+region+"_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + region + "_" + logoVariant
                             }
+                            sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
                             verticalAlignment: Image.AlignVCenter
@@ -185,7 +181,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == "color"
+                            visible: logoVariant === "color"
                             antialiasing: true
                         }
                         Image {
@@ -196,10 +192,11 @@ FocusScope {
                                 if (root.state === "collections")
                                     return "";
                                 if (root.state === "home")
-                                    return "../assets/collections/"+clearShortname(home.currentGame.collections.get(0).shortName)+"/logo_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(home.currentGame.collections.get(0).shortName) + "/logo_" + logoVariant
                                 if (root.state === "games")
-                                    return "../assets/collections/"+clearShortname(allCollections[currentCollectionIndex].shortName)+"/logo_"+logoVariant+".svg"
+                                    return "../assets/collections/" + clearShortname(allCollections[currentCollectionIndex].shortName) + "/logo_" + logoVariant
                             }
+                            sourceSize.width: width
                             fillMode: Image.PreserveAspectFit
                             horizontalAlignment: Image.AlignHCenter
                             verticalAlignment: Image.AlignVCenter
@@ -213,7 +210,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-                            visible: logoVariant == "color" && img_helper_collection_region.status == Image.Error
+                            visible: logoVariant === "color" && img_helper_collection_region.status == Image.Error
                             antialiasing: true
                         }
 
@@ -224,7 +221,7 @@ FocusScope {
                             visible: logoVariant !== "color"
                             antialiasing: true
                         }
-                    }    
+                    }
                 }
 
                 Loader {
@@ -243,24 +240,25 @@ FocusScope {
 
                 Item {
                     width: vpx(40)
-                    height: vpx(22  * fontScalingFactor)
+                    height: vpx(22 * fontScalingFactor)
                     visible: osc === 0
                     anchors {
-                        right: parent.right; leftMargin: -width *2
+                        right: parent.right
+                        leftMargin: -width * 2
                         verticalCenter: parent.verticalCenter
                     }
                     Text {
                         text: osdScheme[controlScheme].BTNRT
                         font {
-                            family: glyphs.name;
-                                pixelSize:{
-                                    if (((controlScheme != "Universal") || (controlScheme != "Universal-JP")) && (fontScalingFactor > 1.3))
-                                        parent.height * 0.75
-                                    else parent.height * 0.9
-                                }
+                            family: glyphs.name
+                            pixelSize: {
+                                if (((controlScheme !== "Universal") || (controlScheme !== "Universal-JP")) && (fontScalingFactor > 1.3))
+                                    parent.height * 0.75
+                                else parent.height * 0.9
+                            }
                         }
                         color: colorScheme[theme].accentalt
-                        visible: root.state === "games"
+                        visible: root.state === "games" && gamesPgUpDownFunction === 'Collections'
                         anchors.verticalCenter: parent.verticalCenter
                         anchors.right: parent.right
                     }
@@ -269,4 +267,5 @@ FocusScope {
             }
         }
     }
+
 }

@@ -7,25 +7,62 @@ import "../Global"
 import "../Filter"
 
 FocusScope {
+    property int sortIndex: getSortIndex()
+    readonly property var sortFields: getAvailableSortFields()
+    readonly property var sortLabels: {'sortTitle':'Title', 'release':'Release Date', 'rating':'Rating', 'genre':'Genre', 'lastPlayed':'Last Played', 'favorite':'Favorite', 'custom':'Custom'}
+    readonly property string sortField: sortFields[sortIndex]
+    readonly property string collectionType: currentCollection.extra.collectiontype !== undefined ? currentCollection.extra.collectiontype.toString() : 'System'
+    readonly property var customSystemLogoCategories: ['Custom', 'Series']
+    readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
+    readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : ""
+
+    property string clearedShortname: clearShortname(currentCollection.shortName)
+    readonly property string alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
+
+    readonly property string alt_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor : dataConsoles["default"].altColor
+    readonly property string alt_colorDimm: alt_colorBright.replace(/#/g, "#56");
+    readonly property string alt_color: {
+        if (gridVR >= 3) {
+            return accentColor === "bright" ? alt_colorBright : alt_colorDimm
+        } else {
+            return colorScheme[theme].secondary
+        }
+    }
+    readonly property string alt_colorShadow: {
+        if (gridVR >= 3) {
+            return accentColor === "bright" ? lightenDarkenColor(alt_colorBright, -5) : lightenDarkenColor(alt_colorBright, -5).replace(/#/g, "#56");
+        } else {
+            return lightenDarkenColor(colorScheme[theme].secondary, -5)
+        }
+    }
+    readonly property string touch_colorBright: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].color : dataConsoles["default"].color
+    readonly property string touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
+    readonly property string touch_color: (accentColor === "bright") ? touch_colorBright : touch_colorDimm
+
+    readonly property string text_color: {
+        if ((accentColor === "bright") && (gridVR >= 3)) {
+            return lightOrDark(touch_color) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+        } else {
+            return colorScheme[theme].text
+        }
+    }
 
     property int currentGameIndex: 0
     property var currentGame: {
         if (gv_games.count === 0)
             return null;
-        if (games.state === "filtered")
-            return currentCollection.games.get(filteredGames.mapToSource(currentGameIndex))
-        return currentCollection.games.get(currentGameIndex)
+        return findCurrentGameFromProxy(currentGameIndex, currentCollection);
     }
 
     property int gridVR: {
-        if (gamesGridVR ===  "dynamic")
-            return Math.min(Math.max(parseInt((gv_games.count +10) /20), 1), 5);
-        else return  gamesGridVR
+        if (gamesGridVR === "dynamic")
+            return Math.min(Math.max(parseInt((gv_games.count + 10) / 20), 1), 5);
+        else return gamesGridVR
     }
 
     focus: games.focus
-        state: {
-        if(!filter.withMultiplayer && !filter.withFavorite && !filter.withTitle)
+    state: {
+        if (!filter.withMultiplayer && !filter.withFavorite && !filter.withTitle)
             return "unfiltered"
         else return "filtered"
     }
@@ -51,6 +88,21 @@ FocusScope {
                 enabled: filter.withFavorite
             }
         ]
+        sorters: [
+            RoleSorter {
+                roleName: sortField
+                sortOrder: sortField == 'rating' || sortField == 'lastPlayed' || sortField == 'favorite' ? Qt.DescendingOrder : Qt.AscendingOrder
+                enabled: currentCollection.shortName !== 'lastplayed' && root.state === "games" && sortField !== 'custom'
+            },
+            ExpressionSorter {
+                expression: {
+                    var sortLeft = getCollectionSortValue(modelLeft, currentCollection.shortName);
+                    var sortRight = getCollectionSortValue(modelRight, currentCollection.shortName);
+                    return (sortLeft < sortRight);
+                }
+                enabled: currentCollection.shortName !== 'lastplayed' && root.state === "games" && sortField === 'custom'
+            }
+        ]
     }
 
     Behavior on focus {
@@ -59,7 +111,7 @@ FocusScope {
                 target: skew_color
                 property: "anchors.leftMargin"
                 from: parent.width * 0.97
-                to: parent.width * 0.77
+                to: parent.width * 0.725
                 duration: 250
             }
         }
@@ -70,31 +122,24 @@ FocusScope {
         id: backgroundimage
         game: currentGame
         anchors {
-            left: parent.left; right: parent.right
-            top: parent.top; bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
         }
         opacity: 0.255
+        visible: gamesBGImg !== 1
     }
 
-    
     // Skewed background
     Rectangle {
         id: skew_color
-        readonly property var touch_colorBright: dataConsoles[clearShortname(currentCollection.shortName)].color
-        readonly property var touch_colorDimm: touch_colorBright.replace(/#/g, "#56");
-        readonly property var touch_color: {
-            if (accentColor == "bright") {
-                return touch_colorBright;
-            } else {
-                return touch_colorDimm;
-            }
-        }
         width: parent.width * 0.42
         height: parent.height
         antialiasing: true
         anchors {
             left: parent.left
-            leftMargin: parent.width * 0.77
+            leftMargin: parent.width * 0.725
         }
         color: touch_color
         Behavior on color {
@@ -125,11 +170,11 @@ FocusScope {
         // Game details
         Item {
             id: item_game_details
-            width: parent.width
+            width: parent.width * 0.95
             height: parent.height * 0.5
             anchors {
                 top: parent.top
-                horizontalCenter: parent.horizontalCenter
+                right: parent.right
             }
 
             Item {
@@ -147,7 +192,9 @@ FocusScope {
                         Text {
                             id: txt_releaseYear
                             anchors {
-                                top: parent.top; topMargin: -vpx(20)
+                                top: parent.top
+                                topMargin: -vpx(20)
+                                right: parent.right
                             }
 
                             text: currentGame.releaseYear || dataText[lang].games_na
@@ -157,13 +204,13 @@ FocusScope {
                                 italic: true
                                 pixelSize: vpx(140)
                             }
-                            color: colorScheme[theme].main
+                            color: alt_color
                             layer.enabled: true
                             layer.effect: DropShadow {
                                 spread: 1.0
                                 verticalOffset: 5
                                 horizontalOffset: 5
-                                color: colorScheme[theme].secondary
+                                color: alt_colorShadow
                                 radius: 5
                                 samples: 11
                             }
@@ -178,9 +225,7 @@ FocusScope {
                                     easing.type: Easing.OutExpo
                                 }
                             }
-
                         }
-
 
                         // TITLE + DEVELOPER + PLAYERS + GENRES + DESCRIPTION
                         Column {
@@ -200,7 +245,7 @@ FocusScope {
                                 }
                                 maximumLineCount: 2
                                 wrapMode: Text.Wrap
-                                color: colorScheme[theme].text
+                                color: text_color
                             }
 
                             Row {
@@ -212,9 +257,9 @@ FocusScope {
                                         family: global.fonts.sans
                                         weight: Font.Light
                                         italic: true
-                                        pixelSize: vpx(14  * fontScalingFactor)
+                                        pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: colorScheme[theme].accent
+                                    color: text_color
                                 }
 
                                 Text {
@@ -222,9 +267,32 @@ FocusScope {
                                     font {
                                         family: global.fonts.sans
                                         weight: Font.Medium
-                                        pixelSize: vpx(14  * fontScalingFactor)
+                                        pixelSize: vpx(14 * fontScalingFactor)
                                     }
-                                    color: colorScheme[theme].text
+                                    color: text_color
+                                }
+
+                                Text {
+                                    text: dataText[lang].games_for
+                                    font {
+                                        family: global.fonts.sans
+                                        weight: Font.Light
+                                        italic: true
+                                        pixelSize: vpx(14)
+                                    }
+                                    color: text_color
+                                    visible: customCollection && systemName !== ""
+                                }
+
+                                Text {
+                                    text: systemName
+                                    font {
+                                        family: global.fonts.sans
+                                        weight: Font.Medium
+                                        pixelSize: vpx(14)
+                                    }
+                                    color: text_color
+                                    visible: customCollection && systemName !== ""
                                 }
                             }
 
@@ -232,11 +300,7 @@ FocusScope {
                                 spacing: vpx(5)
                                 // RATING
                                 RatingStars {
-                                    readonly property var rating: (currentGame.rating *5).toFixed(1)
-                                    // anchors {
-                                    //     top: parent.top; topMargin: parent.height * 0.1
-                                    //     right: parent.right
-                                    // }
+                                    readonly property double rating: (currentGame.rating * 5).toFixed(1)
                                 }
                             }
 
@@ -254,13 +318,13 @@ FocusScope {
 
                                     Text {
                                         id: txt_players
-                                        property var convertPlayer: currentGame.players > 1 ? "1-"+currentGame.players+" "+dataText[lang].games_players : dataText[lang].games_player
+                                        property string convertPlayer: currentGame.players > 1 ? "1-" + currentGame.players + " " + dataText[lang].games_players : dataText[lang].games_player
                                         anchors.centerIn: parent
                                         text: convertPlayer
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12  * fontScalingFactor)
+                                            pixelSize: vpx(12 * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].text
                                     }
@@ -278,7 +342,7 @@ FocusScope {
                                         font {
                                             family: global.fonts.sans
                                             weight: Font.Black
-                                            pixelSize: vpx(12  * fontScalingFactor)
+                                            pixelSize: vpx(12 * fontScalingFactor)
                                         }
                                         color: colorScheme[theme].favorite
                                     }
@@ -303,16 +367,40 @@ FocusScope {
                                             font {
                                                 family: global.fonts.sans
                                                 weight: Font.Medium
-                                                pixelSize: vpx(12  * fontScalingFactor)
+                                                pixelSize: vpx(12 * fontScalingFactor)
                                             }
                                             color: colorScheme[theme].text
                                         }
                                         visible: (modelData !== "")
                                     }
                                 }
+
+                                // Arcade Port
+                                Rectangle {
+                                    width: txt_arcadeport.contentWidth + vpx(20)
+                                    height: txt_arcadeport.contentHeight + vpx(10)
+                                    color: alt_color2
+                                    border {
+                                        width: vpx(1)
+                                        color: alt_color2
+                                    }
+
+                                    Text {
+                                        id: txt_arcadeport
+                                        anchors.centerIn: parent
+                                        text: dataText[lang].games_arcadeport
+                                        font {
+                                            family: global.fonts.sans
+                                            weight: Font.Medium
+                                            pixelSize: vpx(12)
+                                        }
+                                        color: lightOrDark(alt_color2) === "light" ? colorScheme[theme].textdark : colorScheme[theme].textlight
+                                    }
+                                    visible: (currentGame.extra.arcadeport !== undefined) && (currentGame.extra.arcadeport.toString() === 'True')
+                                }
                             }
 
-                            //Description
+                            // Description
                             Item {
                                 width: parent.width
                                 height: vpx(100)
@@ -326,12 +414,12 @@ FocusScope {
                                         font {
                                             family: global.fonts.condensed
                                             weight: Font.Light
-                                            pixelSize: vpx(14  * fontScalingFactor)
+                                            pixelSize: vpx(14 * fontScalingFactor)
                                         }
                                         wrapMode: Text.WordWrap
                                         elide: Text.ElideRight
                                         horizontalAlignment: Text.AlignJustify
-                                        color: colorScheme[theme].text
+                                        color: text_color
                                     }
                                 }
                             }
@@ -351,7 +439,7 @@ FocusScope {
                             parent.height * 0.95
                         else parent.height
                     }
-                        
+
                     anchors {
                         top: {
                             if (gridVR >= 3)
@@ -363,8 +451,8 @@ FocusScope {
                                 parent.right
                         }
                         left: {
-                        if (gridVR < 3)
-                                parent.left                         
+                            if (gridVR < 3)
+                                parent.left
                         }
                     }
                     asynchronous: true
@@ -388,7 +476,7 @@ FocusScope {
                         anchors.fill: parent
 
                         asynchronous: true
-                        sourceComponent: GameItemTopVideo  {}
+                        sourceComponent: GameItemTopVideo {}
                         active: games.focus && gamesLayout === "BoxArt-Grid"
                         visible: status === Loader.Ready
                     }
@@ -419,7 +507,7 @@ FocusScope {
                     color: colorScheme[theme].accentalt
                     font {
                         family: robotoSlabRegular.name
-                        pixelSize: vpx(42  * fontScalingFactor)
+                        pixelSize: vpx(42 * fontScalingFactor)
                     }
                 }
             }
@@ -430,7 +518,7 @@ FocusScope {
             id: games_bottom
             width: {
                 if (gridVR >= 3)
-                        parent.width * 0.67
+                    parent.width * 0.65
                 else parent.width
             }
             height: {
@@ -446,8 +534,8 @@ FocusScope {
                 id: gv_games
                 width: parent.width
                 height: parent.height * 0.85
-                cellWidth: width /gamesGridIPR
-                cellHeight: height /gridVR
+                cellWidth: width / gamesGridIPR
+                cellHeight: height / gridVR
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 clip: true
@@ -458,11 +546,7 @@ FocusScope {
                 currentIndex: currentGameIndex
                 onCurrentIndexChanged: currentGameIndex = currentIndex
 
-                model: {
-                    if (games.state === "filtered")
-                        return filteredGames
-                    return currentCollection.games
-                }
+                model: filteredGames
                 delegate: Item {
                     property bool isCurrentItem: GridView.isCurrentItem
                     property bool isFocused: games.focus
@@ -511,112 +595,141 @@ FocusScope {
                 focus: games.focus
 
                 Component.onCompleted: {
-                    gv_games.currentIndex = api.memory.get('gameIndex') || 0;
-                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition)
-                    api.memory.unset('gameIndex')
+                    currentGameIndex = api.memory.get(collectionType + "-" + currentCollectionIndex + "-currentGameIndex") || 0
+                    positionViewAtIndex(currentGameIndex, GridView.SnapPosition);
+                    api.memory.unset(collectionType + "-" + currentCollectionIndex + "-currentGameIndex");
                 }
 
                 Keys.onPressed: {
-
                     if (event.isAutoRepeat) {
-                        return
+                        return;
                     }
 
                     if (api.keys.isAccept(event)) {
-                        //Accept game sound
-                        sfxPlay.play();
                         event.accepted = true;
+                        playPlaySound();
                         if (currentGame !== null) {
-                            api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                            api.memory.set("currentMenuIndex", currentMenuIndex)
-                            api.memory.set('gameIndex', gv_games.currentIndex);
-                            currentGame.launch()
+                            saveCurrentState(currentGameIndex);
+                            currentGame.launch();
                         }
                     }
 
                     if (api.keys.isFilters(event)) {
-                        //Accept game sound
-                        sfxBack.play();
                         event.accepted = true;
+                        playBackSound();
                         filter.focus = true;
                         return;
                     }
 
                     if (api.keys.isCancel(event)) {
-                        //Accept game sound
-                        sfxBack.play();
                         event.accepted = true;
-                        currentMenuIndex = 2
+                        playBackSound();
+                        currentMenuIndex = 2;
+                        return;
                     }
 
                     if (api.keys.isDetails(event)) {
                         event.accepted = true;
                         if (currentGame !== null) {
-                            currentGame.favorite = !currentGame.favorite
+                            currentGame.favorite = !currentGame.favorite;
                         }
                     }
 
-                    if (event.key == Qt.Key_Left ) {
-                        //navigation sound
-                        sfxNav.play();
+                    // Select button triggers sort by category - not sure what enum matches so just using the INT value for the key
+                    if (event.key == 1048586) {
+                        event.accepted = true;
+                        playBackSound();
+                        sortIndex = (sortIndex + 1) % sortFields.length;
+                        saveSortIndex(sortIndex);
+                        return;
+                    }
+
+                    if (event.key == Qt.Key_Left) {
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Right) {
-                        //navigation sound
-                        sfxNav.play();
+                        playNavSound();
                     }
+
                     if (event.key == Qt.Key_Down) {
-                        //navigation sound
-                        sfxNav.play();
+                        playNavSound();
                     }
 
                     if (event.key == Qt.Key_Up) {
-                        sfxNav.play();
+                        playNavSound();
                     }
                 }
 
                 Keys.onReleased: {
-                    if (api.keys.isPageUp(event) || api.keys.isPageDown(event)) {
-                        if (event.isAutoRepeat) {
-                            event.accepted = false;
-                            return;
+                    if (api.keys.isPageDown(event) && gamesPgUpDownFunction === 'Games') {
+                        event.accepted = true;
+                        var jumpCount = gridVR * gamesGridIPR;
+                        if ((currentGameIndex + jumpCount) > currentCollection.games.count - 1) {
+                            currentGameIndex = currentCollection.games.count - 1;
+                        } else {
+                            currentGameIndex += jumpCount;
                         }
-                        else{
-                            event.accepted = true;
-                             if (api.keys.isPageDown(event)) {
-				                sfxCollection.play();
-                                if (currentCollectionIndex >= allCollections.length  - 1) {
-                                    currentCollectionIndex = 0;
-                                }
-                                else {
-                                    currentCollectionIndex++;
-                                }
-                            }   
-                            else {
-                                sfxCollection2.play();
-                                if (currentCollectionIndex <= 0)
-                                    currentCollectionIndex = allCollections.length  - 1
-                                else
-                                    currentCollectionIndex--;
-                            }
-                            api.memory.set("currentCollectionIndex", currentCollectionIndex)
-                            currentGameIndex = 0
-                            currentIndex = 0
+                        return;
+                    }
+
+                    if (api.keys.isPageUp(event) && gamesPgUpDownFunction === 'Games') {
+                        event.accepted = true;
+                        var jumpCount = gridVR * gamesGridIPR;
+                        if ((currentGameIndex - jumpCount) < 0) {
+                            currentGameIndex = 0;
+                        } else {
+                            currentGameIndex -= jumpCount;
                         }
+                        return;
+                    }
+
+                    if (event.isAutoRepeat) {
+                        return;
+                    }
+
+                    if (api.keys.isPageDown(event) && gamesPgUpDownFunction === 'Collections') {
+                        event.accepted = true;
+                        playCollectionSound();
+                        if (currentCollectionIndex >= allCollections.length - 1) {
+                            currentCollectionIndex = 0;
+                        } else {
+                            currentCollectionIndex++;
+                        }
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        currentGameIndex = 0;
+                        sortIndex = getSortIndex();
+                        return;
+                    }
+
+                    if (api.keys.isPageUp(event) && gamesPgUpDownFunction === 'Collections') {
+                        event.accepted = true;
+                        playCollection2Sound();
+                        if (currentCollectionIndex <= 0) {
+                            currentCollectionIndex = allCollections.length - 1;
+                        } else {
+                            currentCollectionIndex--;
+                        }
+                        saveCurrentCollectionState(collectionType, currentCollectionIndex);
+                        currentGameIndex = 0;
+                        sortIndex = getSortIndex();
+                        return;
                     }
                 }
+
             }
-            
-            //Navigation bar
+
+            // Navigation bar
             Component {
                 id: cpnt_helper_nav
                 Item {
                     Rectangle {
                         property int heightBar: parent.height - vpx(50)
                         anchors {
-                            left: parent.left; 
+                            left: parent.left
                             leftMargin: parent.width + 30
-                            top: parent.top; topMargin: vpx(6)
+                            top: parent.top
+                            topMargin: vpx(6)
                         }
                         width: vpx(2)
                         height: heightBar * ( (currentGameIndex + 1) / gv_games.count )
@@ -692,6 +805,18 @@ FocusScope {
 
                     visible: currentGame !== null
                 }
+
+                Controls {
+                    id: button_Back
+
+                    message: dataText[lang].games_sortedBy + " <b>" + getSortLabel() + "</b>";
+
+                    text_color: colorScheme[theme].sorters
+                    front_color: colorScheme[theme].sorters.replace(/#/g, "#26");
+                    back_color: colorScheme[theme].sorters.replace(/#/g, "#26");
+                    input_button: osdScheme[controlScheme].BTNSelect
+                }
+
             }
 
             Text {
@@ -700,11 +825,11 @@ FocusScope {
                     verticalCenter: parent.verticalCenter
                     right: parent.right;
                 }
-                text: (currentGameIndex + 1)+"/"+gv_games.count
-                color: colorScheme[theme].text
+                text: (currentGameIndex + 1) + "/" + gv_games.count
+                color: text_color
                 font {
                     family: robotoSlabLight.name
-                    pixelSize: vpx(14  * fontScalingFactor)
+                    pixelSize: vpx(14 * fontScalingFactor)
                 }
             }
 
@@ -713,7 +838,49 @@ FocusScope {
                 anchors.fill: parent
                 onCloseRequested: gv_games.focus = true
             }
-            
+
         }
     }
+
+    function findCurrentGameFromProxy(idx, collection) {
+        // Last Played collection uses 2 filters chained together
+        if (collection.shortName == "lastplayed") {
+            return api.allGames.get(lastPlayedBase.mapToSource(idx));
+        } else if (collection.shortName == "favorites") {
+            return api.allGames.get(allFavorites.mapToSource(idx));
+        } else {
+            return currentCollection.games.get(filteredGames.mapToSource(idx))
+        }
+    }
+
+    function getCollectionSortValue(gameData, collName) {
+        return gameData.extra['customsort-' + collName] !== undefined ? gameData.extra['customsort-' + collName] : "";
+    }
+
+    function getAvailableSortFields() {
+        // All collections will use these fields
+        var fields = ['sortTitle', 'release', 'rating', 'genre', 'lastPlayed', 'favorite'];
+
+        // We need to check if there is a custom sort value for the games in this collection
+        // If at least 1 is found add Custom sort as an additional option
+        if (root.state === "games") {
+            var games = currentCollection.games.toVarArray();
+            for (let i = 0; i < games.length; i++) {
+                if (getCollectionSortValue(games[i], currentCollection.shortName) !== "") {
+                    fields.unshift('custom');
+                    break;
+                }
+            }
+        }
+        return fields;
+    }
+
+    function getSortLabel() {
+        if (currentCollection.shortName == 'lastplayed') {
+            return 'Last Played';
+        } else {
+            return sortLabels[sortField];
+        }
+    }
+
 }

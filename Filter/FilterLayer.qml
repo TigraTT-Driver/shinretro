@@ -12,8 +12,9 @@ FocusScope {
     signal closeRequested
 
     Keys.onPressed: {
-        if (event.isAutoRepeat)
+        if (event.isAutoRepeat) {
             return;
+        }
 
         if (api.keys.isCancel(event) || api.keys.isFilters(event)) {
             event.accepted = true;
@@ -29,7 +30,6 @@ FocusScope {
         anchors.top: parent.bottom
         visible: false
     }
-
 
     states: [
         State {
@@ -59,4 +59,5 @@ FocusScope {
             AnchorAnimation { duration: 200; easing.type: Easing.OutCubic }
         }
     ]
+
 }

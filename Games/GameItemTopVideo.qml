@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtGraphicalEffects 1.12
 import SortFilterProxyModel 0.2
-import QtMultimedia 5.15             
-import "../Global"                
-// Screenshot / Video
+import QtMultimedia 5.15
+import "../Global"
+
 Item {
     id: item_game_screenshot
     width: parent.width
@@ -63,7 +63,7 @@ Item {
                 width: img_game_screenshot.paintedWidth
                 height: img_game_screenshot.paintedHeight
                 anchors.centerIn: img_game_screenshot
-                playing: gamesVideo != "1"
+                playing: gamesVideo !== 1
                 sound: gamesVideoMute
             }
         }
@@ -77,4 +77,5 @@ Item {
         active: games.focus && currentGame !== null
         visible: status === Loader.Ready
     }
+
 }

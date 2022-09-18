@@ -1,6 +1,30 @@
 # Changelog
+## v0.200
+
+**Optical changes**
+ - Changed favorites badge design based from the gameOS theme (https://github.com/PlayingKarrde/gameOS)
+ - Changed the currently selected game border to use a color cycle animation to make it more clear. The color of the border can either be consistent across the color theme, or can change based on the particular collection (settings option)
+ - New option for colorfull manufacturer logos shown on the Collections screen
+ - New/ Updated background art/logos or color theme choices for the various collections or base themes
+ - Option to disable background image
+
+**Usability/Performance Adjustments**
+ - Page up/Page down can be configured via settings to either skip to next/previous collection when in the game grid view (default), or can instead be used to rapidly scroll up/down the games list for quicker navigation of large collections
+ - The collections carousel now supports press & hold to quickly scroll through the list
+ - Several updates to improve performance so no stutters or delays when scrolling through collections or games, or loading the theme etc
+ - Will automatically render the game title, year and detail text as either dark or light color depending on the background color to ensure readability in all configurations
+- optimized svg graphics
+
+**New Features**
+- Dedicated Last Played + Favorites collections can be enabled or disabled via Settings menu
+- Collection Category support (requires custom metadata) - able to group collections into Categories - use the Filters key to toggle each category in the collections view
+- Games Sorting - Use the Select/Back button on the controller to toggle sorting game grid by Title/Last Played/Favorite/Genre or Rating.
+- Custom Sorting (requires custom metadata) - define a custom sort order for specific collections based on game metadata values
+- Completed Game Ribbon (requires custom metadata) - Adds a "Completed" ribbon to games you've marked as complete in your game metadata
+- Arcade Port tag (requires custom metadata) - Adds an "Arcade Port" icon to the games detail view if you've marked the game as an arcade port in your game metadata
+
 ## v0.138
-- Fix: missing last collection when switching between collections from the games screen with 'Äll games' collection on
+- Fix: missing last collection when switching between collections from the games screen with 'All games' collection on
 - new filtering menu for games screen
 - Fix: grid incorrect list focus on return from game
 - updated logos

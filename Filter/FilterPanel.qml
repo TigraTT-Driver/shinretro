@@ -7,7 +7,6 @@ FocusScope {
     property alias withTitle: itemTitle.text
     property alias withMultiplayer: itemMultiplayer.checked
     property alias withFavorite: itemFavorite.checked
-
     property alias panelColor: panel.color
     property color textColor: colorScheme[theme].filters
 
@@ -27,7 +26,6 @@ FocusScope {
         property int selectedIndex: 0
         padding: vpx(20)
         spacing: vpx(8)
-
         width: vpx(350)
 
         TextLine {
@@ -62,6 +60,7 @@ FocusScope {
             fontSize: vpx(20 * fontScalingFactor)
         }
     }
+
     transform: Matrix4x4 {
         property real a: 12 * Math.PI / 180
         matrix: Qt.matrix4x4(
@@ -71,4 +70,5 @@ FocusScope {
             0,      0,                  0,      1
         )
     }
+
 }
