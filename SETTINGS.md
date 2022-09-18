@@ -8,6 +8,7 @@ Change the language of the theme interface
 | setting |  |
 |--|--|
 | **en** | English |
+| ch | Chinese |
 | de | German |
 | fr | French |
 | pt | Portuguese |
@@ -19,12 +20,25 @@ Change the color of the theme interface
 | **Dark** | [Luciano Oliveira](https://github.com/luciano-work)'s dark variant of the theme |
 | Light | [Valentin MEZIN](https://github.com/valsou)'s original light variant of the theme |
 | OzoneDark | dark color variant based on [RetroArch](https://www.retroarch.com/)'s Ozone Dark|
+| SteamOs | Color variant based on the colors of SteamOS |
+### Selection frame color
+Changes the color of the frame which indicates the current selected item
+| setting |  |
+|--|--|
+| **collections** | Based on the accent colors of the collection the current item belongs to |
+| Color Scheme | the current selected color scheme provides a color for the frame |
 ### Mute sounds
 Mute sound effects for navigation or selecting games
 | setting |  |
 |--|--|
 | **No** | Sound effects are used |
 | Yes | no sound effects for navigation |
+### Music
+toggles background music
+| setting |  |
+|--|--|
+| **No** | no background music |
+| Yes | background music |
 ### Logo variation
 change the color variant of collection logos
 | setting |  |
@@ -79,6 +93,24 @@ show a "All games" collection on your collections screen which contains all game
 |--|--|
 | **Yes** | shows the "All games" collection on your collections screen |
 | No | disables the "All games" collection on your collections screen |
+### Show "Favorite games" collection'
+show a "Favorite games" collection on your collections screen which contains all favorited games you provided to Pegasus
+| setting |  |
+|--|--|
+| Yes | shows the "Favorite games" collection on your collections screen |
+| **No** | disables the "Favorite games" collection on your collections screen |
+### Show "Last played" collection'
+show a "last played" collection on your collections screen which contains recently played games
+| setting |  |
+|--|--|
+| Yes | shows the "Last played" collection on your collections screen |
+| **No** | disables the "Last played" collection on your collections screen |
+### manufacturer logo variation
+change the color variant of the manufacturer logos
+| setting |  |
+|--|--|
+| **mono** | use monochrome logo variants of collections |
+| color | use colorfull logo variants of collections |
 ### Accent color brightness
 The theme has for each provided collection the information for two unique colors, which are a unique feature of the original hardware / logos / controllers. This setting can be used to control whether these colors are slightly transparent, darkened or vibrant bright when used.
 | setting |  |
@@ -145,3 +177,15 @@ controls audio output of video playback on the game screen
 |--|--|
 | **No** | video playback on selected item has sound|
 | Yes | disable sound of video playback on selceted item |
+### Background image
+shows fanart / screenshot of currently selected item
+| setting |  |
+|--|--|
+| **Yes** | shows background image |
+| No | disables background image|
+### Game grid - LT/RT function
+changes behaviour of the trigger buttons
+| setting |  |
+|--|--|
+| **Collections** | switch between collections |
+| Games | scroll in current games|
