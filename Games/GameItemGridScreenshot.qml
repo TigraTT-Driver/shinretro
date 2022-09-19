@@ -145,6 +145,7 @@ Item {
             FavoriteIcon {
                 id: faveicon
                 parentImageWidth: screenshot.width
+                parentImageHeight: screenshot.height
             }
 
             CompletedIcon {
