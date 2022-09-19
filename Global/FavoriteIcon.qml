@@ -42,7 +42,7 @@ Item {
             family: glyphs.name;
             pixelSize: vpx(13)
         }
-        color: text_color
+        color: colorScheme[theme].text
         z: 20
     }
 
