@@ -187,3 +187,4 @@ Game example with custom fields added for Completed, Arcade Port:
 - [HunkDeath](https://github.com/HunkDeath)  & [fansubmaniac](https://github.com/fansubmaniac) : french translations
 - [RickEves](https://github.com/RickEves)  : portuguese translations
 - [RoeTaKa](https://www.youtube.com/channel/UCAbHcM41hzH9lku_3XqFYZg)  : custom sfx & bgm music
+- [kukufeng](https://github.com/kukufeng) : chinese translations
