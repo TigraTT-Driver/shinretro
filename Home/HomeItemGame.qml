@@ -56,6 +56,7 @@ Item {
         } else {
             fadescreenshot.stop();
             screenshot.opacity = 1;
+            marquee.opacity = 1;
             container.opacity = 1;
         }
     }
@@ -66,6 +67,7 @@ Item {
         interval: 1200
         onTriggered: {
             screenshot.opacity = 0;
+            marquee.opacity = 0;
         }
     }
 
@@ -85,26 +87,13 @@ Item {
             id: marquee
             anchors.fill: parent
             source: gameData ? gameData.assets.marquee : ""
-            fillMode: Image.PreserveAspectFit
+            fillMode: Image.PreserveAspectCrop
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
             visible: gameData.assets.marquee && !doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } } 
-        }
-
-        DropShadow {
-            anchors.fill: parent
-            horizontalOffset: 0
-            verticalOffset: 5
-            radius: 20
-            samples: 20
-            color: "#000000"
-            source: marquee
-            opacity: visible ? 0.5 : 0
-            visible: gameData.assets.marquee && !doubleFocus
-            Behavior on opacity { NumberAnimation {duration: 200 } }
-            z: -5
+            z: 11
         }
 
         Image {
