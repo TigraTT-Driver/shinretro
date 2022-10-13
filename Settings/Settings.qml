@@ -88,6 +88,8 @@ FocusScope {
         id: homeSettingsModel
         Component.onCompleted: {
             [
+            [ dataText[lang].settings_global_ImgPrecompose,  "homeImgPrecompose",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
+            [ dataText[lang].settings_global_ImgPrecomposePref,  "homeImgPrecomposePref",  "",  "Steam" + "," + "Marquee" ],     
             [ dataText[lang].settings_global_videoPlayback,  "homeVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoMute,  "homeVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
             ].forEach(function(element) {

@@ -282,6 +282,8 @@ FocusScope {
             settings_global_backgroundImg: "Background image",
             settings_global_videoPlayback: "Video playback",
             settings_global_videoMute: "Mute video",
+            settings_global_ImgPrecompose: "Use precomposed image",
+            settings_global_ImgPrecompose: "Precomposed image type",
             settings_collection_showAll: 'Show "All games" collection',
             settings_collection_showFavorites: 'Show "Favorites" collection',
             settings_collection_showLastPlayed: 'Show "Last Played" collection',
@@ -353,6 +355,8 @@ FocusScope {
             settings_global_backgroundImg: "背景图片",
             settings_global_videoPlayback: "视频播放",
             settings_global_videoMute: "静音视频",
+            settings_global_ImgPrecompose: "使用预合成的图像",
+            settings_global_ImgPrecomposePref: "预合成的图像类型",
             settings_collection_showAll: '显示 "全部游戏" ',
             settings_collection_showFavorites: '显示“收藏夹”',
             settings_collection_showLastPlayed: '显示“最后游玩”',
@@ -424,6 +428,8 @@ FocusScope {
             settings_global_backgroundImg: "Hintergrundbild",
             settings_global_videoPlayback: "Videowiedergabe",
             settings_global_videoMute: "Video stummschalten",
+            settings_global_ImgPrecompose: "Vorgefertigte Bilder verwenden",
+            settings_global_ImgPrecomposePref: "Vorgefertigte Bildart",
             settings_collection_showAll: 'Sammlung "Alle Spiele" anzeigen',
             settings_collection_showFavorites: 'Sammlung "Favoriten" anzeigen',
             settings_collection_showLastPlayed: 'Sammlung "Zuletzt gespielt" anzeigen',
@@ -495,6 +501,8 @@ FocusScope {
             settings_global_backgroundImg: "Image de fond",
             settings_global_videoPlayback: "Activer les vidéos",
             settings_global_videoMute: "Désactiver le son des vidéos",
+            settings_global_ImgPrecompose: "Utiliser des images pré-composées",
+            settings_global_ImgPrecomposePref: "Type d'image pré-composée",
             settings_collection_showAll: 'Afficher la collection "Tous"',
             settings_collection_showFavorites: 'Afficher la collection "Favoris"',
             settings_collection_showLastPlayed: 'Afficher la collection "Dernière lecture"',
@@ -566,6 +574,8 @@ FocusScope {
             settings_global_backgroundImg: "Imagem de fundo",
             settings_global_videoPlayback: "Reprodução de vídeo",
             settings_global_videoMute: "Silenciar vídeo",
+            settings_global_ImgPrecompose: "Utilizar imagem pré-composta",
+            settings_global_ImgPrecomposePref: "Tipo de imagem pré-composta",
             settings_collection_showAll: 'Mostrar a coleção "Todos jogos"',
             settings_collection_showFavorites: 'Mostrar coleção "Favoritos"',
             settings_collection_showLastPlayed: 'Mostrar coleção "Últimas jogadas"',
@@ -633,6 +643,20 @@ FocusScope {
             return "0.0";
         } else {
             return "1.0";
+        }
+    }
+    property bool homeImgPrecompose: {
+        if (api.memory.get('homeImgPrecomposeIndex') == "1") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    property string homeImgPrecomposePref: {
+        if (api.memory.get('homeImgPrecomposePrefIndex') == "1") {
+            return "marquee";
+        } else {
+            return "steam";
         }
     }
     property int homeVideo: api.memory.get('homeVideoIndex') || 0
