@@ -195,6 +195,14 @@ shows fanart / screenshot of currently selected item
 |--|--|
 | **Yes** | shows background image |
 | No | disables background image|
+### Prefered boxart image
+preference for shown boxart image
+| setting |  |
+|--|--|
+| **Boxfront** | prefer boxfront |
+| Poster | prefer poster |
+| Steam | prefer Steam grid |
+| Marquee | prefer marquee|
 ### Game grid - LT/RT function
 changes behaviour of the trigger buttons
 | setting |  |

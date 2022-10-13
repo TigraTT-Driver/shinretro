@@ -293,6 +293,7 @@ FocusScope {
             settings_games_layout: "Games layout",
             settings_games_gridItemsPerRow: "Game grid - items per row",
             settings_games_gridItemsViewableRows: "Game grid - viewable rows",
+            settings_games_BoxArtPref: "Prefered boxart image",
             settings_games_page_updown_function: "Game grid - LT/RT button function",
             menu_settings: "settings",
             menu_home: "home",
@@ -366,6 +367,7 @@ FocusScope {
             settings_games_layout: "游戏布局",
             settings_games_gridItemsPerRow: "游戏网格 - 每行项目",
             settings_games_gridItemsViewableRows: "游戏网格 - 可查看的行",
+            settings_games_BoxArtPref: "首选的盒画图片。",
             settings_games_page_updown_function: "游戏网格-LT/RT按钮功能",
             menu_settings: "设置",
             menu_home: "主页",
@@ -439,6 +441,7 @@ FocusScope {
             settings_games_layout: "Spiele-Layout",
             settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
             settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
+            settings_games_BoxArtPref: "Bevorzugtes Boxart-Bild",
             settings_games_page_updown_function: "Spiel Raster - LT/RT-Tastenfunktion",
             menu_settings: "Optionen",
             menu_home: "Start",
@@ -512,6 +515,7 @@ FocusScope {
             settings_games_layout: "Mise en page des jeux",
             settings_games_gridItemsPerRow: "Grille - nombre de jeux par ligne",
             settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
+            settings_games_BoxArtPref: "Image de boxart préférée",
             settings_games_page_updown_function: "Grille - Fonction bouton LT/RT",
             menu_settings: "Réglages",
             menu_home: "Accueil",
@@ -585,6 +589,7 @@ FocusScope {
             settings_games_layout: "Layout do jogos",
             settings_games_gridItemsPerRow: "Grade - Jogos por fileira",
             settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
+            settings_games_BoxArtPrev: "Imagem de boxart preferida",
             settings_games_page_updown_function: "Grade - função do botão LT/RT",
             menu_settings: "ajustes",
             menu_home: "início",
@@ -700,7 +705,18 @@ FocusScope {
             return false;
         }
     }
-
+    property string gamesBoxArtPref: {
+        if (api.memory.get('gamesBoxArtPrefIndex') == "1") {
+            return "poster";
+        } else if (api.memory.get('gamesBoxArtPrefIndex') == "2") {
+            return "steam";
+        } else if (api.memory.get('gamesBoxArtPrefIndex') == "3") {
+            return "marquee";
+        } else {
+            return "boxfront";
+        }
+    }
+    
     // [0] = Settings
     // [1] = HOME
     // [2] = COLLECTIONS
