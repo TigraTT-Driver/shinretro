@@ -953,6 +953,7 @@ FocusScope {
         "switch":             { manufacturer: "nintendo",      release: "2017", color: "#232323", altColor: "#0D0D0D", altColor2: "#FE0016", fullName: "Nintendo Switch"  },
         "ti99":               { manufacturer: "ti",            release: "1979", color: "#484141", altColor: "#363030", altColor2: "#000000", fullName: "TI-99"  },
         "tic80":              { manufacturer: "vadimGrigoruk", release: "2017", color: "#4E76B4", altColor: "#456AA1", altColor2: "#65A33D", fullName: "TIC-80"  },
+        "triforce":           { manufacturer: "sega",          release: "2002", color: "#5d4472", altColor: "#413050", altColor2: "#352bc0", fullName: "Triforce Arcade"  },
         "turbografx16":       { manufacturer: "nec",           release: "1987", color: "#333333", altColor: "#1a1a1a", altColor2: "#F79226", fullName: "TurboGrafx 16"  },
         "turbografxcd":       { manufacturer: "nec",           release: "1987", color: "#F79226", altColor: "#D97408", altColor2: "#1E1C1A", fullName: "TurboGrafx CD"  },
         "uzebox":             { manufacturer: "belogic",       release: "2008", color: "#EDC63D", altColor: "#E9BB16", altColor2: "#C9C2BF", fullName: "Uzebox"  },
