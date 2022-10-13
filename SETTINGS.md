@@ -74,6 +74,18 @@ changes the used button layout for onscreen controls
 | PS | Playstation like onscreen buttons |
 | PS-JP | Playstation like onscreen buttons, Japanese Layout (Swapped Accept and Back) |
 ## Home
+### Use precomposed image
+use precomposed images on home screen instead of dynamic ones 
+| setting |  |
+|--|--|
+| **No** | use dynamic generated images for games |
+| Yes | prefer precomposed images |
+### Precomposed image type
+which image type should be used if precomposed images are used 
+| setting |  |
+|--|--|
+| **Steam** | use Steam grids |
+| Marquee | use marquees |
 ### Video playback
 controls video playback on the home screen
 | setting |  |
@@ -183,6 +195,14 @@ shows fanart / screenshot of currently selected item
 |--|--|
 | **Yes** | shows background image |
 | No | disables background image|
+### Prefered boxart image
+preference for shown boxart image
+| setting |  |
+|--|--|
+| **Boxfront** | prefer boxfront |
+| Poster | prefer poster |
+| Steam | prefer Steam grid |
+| Marquee | prefer marquee|
 ### Game grid - LT/RT function
 changes behaviour of the trigger buttons
 | setting |  |

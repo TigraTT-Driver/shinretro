@@ -56,7 +56,7 @@ Item {
         } else {
             fadescreenshot.stop();
             screenshot.opacity = 1;
-            marquee.opacity = 1;
+            imgPrecompose.opacity = 1;
             container.opacity = 1;
         }
     }
@@ -67,7 +67,7 @@ Item {
         interval: 1200
         onTriggered: {
             screenshot.opacity = 0;
-            marquee.opacity = 0;
+            imgPrecompose.opacity = 0;
         }
     }
 
@@ -83,17 +83,30 @@ Item {
             sound: homeVideoMute
         }
 
-        Image {
-            id: marquee
-            anchors.fill: parent
-            source: gameData ? gameData.assets.marquee : ""
-            fillMode: Image.PreserveAspectCrop
-            sourceSize: Qt.size(screenshot.width, screenshot.height)
-            smooth: false
-            asynchronous: true
-            visible: gameData.assets.marquee && !doubleFocus
+        Item {
+            id: imgPrecompose
+            Image {
+                id: marquee
+                anchors.fill: parent
+                source: gameData ? gameData.assets.marquee : ""
+                sourceSize: Qt.size(screenshot.width, screenshot.height)
+                smooth: false
+                asynchronous: true
+                visible: homeImgPrecomposePref == "marquee" && gameData.assets.marquee
+            }
+            Image {
+                id: steamgrid
+                anchors.fill: parent
+                source: gameData ? gameData.assets.steam : ""
+                sourceSize: Qt.size(screenshot.width, screenshot.height)
+                smooth: false
+                asynchronous: true
+                visible: homeImgPrecomposePref == "steam" && gameData.assets.steam
+            }
+            anchors.fill:parent
             Behavior on opacity { NumberAnimation { duration: 200 } } 
             z: 11
+            visible: homeImgPrecompose && !doubleFocus && (homeImgPrecomposePref == "marquee" && gameData.assets.marquee || homeImgPrecomposePref == "steam" && gameData.assets.steam)
         }
 
         Image {
@@ -105,7 +118,7 @@ Item {
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
-            visible: !gameData.assets.marquee || doubleFocus
+            visible: imgPrecompose.opacity !== 1 || (!marquee.visible && !steamgrid.visible)
             Behavior on opacity { NumberAnimation { duration: 200 } }
 
             CompletedIcon {
@@ -125,7 +138,7 @@ Item {
             fillMode: Image.PreserveAspectFit
             asynchronous: true
             smooth: true
-            visible: !gameData.assets.marquee || doubleFocus
+            visible: imgPrecompose.opacity !== 1 || (!marquee.visible && !steamgrid.visible)
             z: 10
         }
 

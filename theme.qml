@@ -282,6 +282,8 @@ FocusScope {
             settings_global_backgroundImg: "Background image",
             settings_global_videoPlayback: "Video playback",
             settings_global_videoMute: "Mute video",
+            settings_global_ImgPrecompose: "Use precomposed image",
+            settings_global_ImgPrecompose: "Precomposed image type",
             settings_collection_showAll: 'Show "All games" collection',
             settings_collection_showFavorites: 'Show "Favorites" collection',
             settings_collection_showLastPlayed: 'Show "Last Played" collection',
@@ -291,6 +293,7 @@ FocusScope {
             settings_games_layout: "Games layout",
             settings_games_gridItemsPerRow: "Game grid - items per row",
             settings_games_gridItemsViewableRows: "Game grid - viewable rows",
+            settings_games_BoxArtPref: "Prefered boxart image",
             settings_games_page_updown_function: "Game grid - LT/RT button function",
             menu_settings: "settings",
             menu_home: "home",
@@ -353,6 +356,8 @@ FocusScope {
             settings_global_backgroundImg: "背景图片",
             settings_global_videoPlayback: "视频播放",
             settings_global_videoMute: "静音视频",
+            settings_global_ImgPrecompose: "使用预合成的图像",
+            settings_global_ImgPrecomposePref: "预合成的图像类型",
             settings_collection_showAll: '显示 "全部游戏" ',
             settings_collection_showFavorites: '显示“收藏夹”',
             settings_collection_showLastPlayed: '显示“最后游玩”',
@@ -362,6 +367,7 @@ FocusScope {
             settings_games_layout: "游戏布局",
             settings_games_gridItemsPerRow: "游戏网格 - 每行项目",
             settings_games_gridItemsViewableRows: "游戏网格 - 可查看的行",
+            settings_games_BoxArtPref: "首选的盒画图片。",
             settings_games_page_updown_function: "游戏网格-LT/RT按钮功能",
             menu_settings: "设置",
             menu_home: "主页",
@@ -424,6 +430,8 @@ FocusScope {
             settings_global_backgroundImg: "Hintergrundbild",
             settings_global_videoPlayback: "Videowiedergabe",
             settings_global_videoMute: "Video stummschalten",
+            settings_global_ImgPrecompose: "Vorgefertigte Bilder verwenden",
+            settings_global_ImgPrecomposePref: "Vorgefertigte Bildart",
             settings_collection_showAll: 'Sammlung "Alle Spiele" anzeigen',
             settings_collection_showFavorites: 'Sammlung "Favoriten" anzeigen',
             settings_collection_showLastPlayed: 'Sammlung "Zuletzt gespielt" anzeigen',
@@ -433,6 +441,7 @@ FocusScope {
             settings_games_layout: "Spiele-Layout",
             settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
             settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
+            settings_games_BoxArtPref: "Bevorzugtes Boxart-Bild",
             settings_games_page_updown_function: "Spiel Raster - LT/RT-Tastenfunktion",
             menu_settings: "Optionen",
             menu_home: "Start",
@@ -495,6 +504,8 @@ FocusScope {
             settings_global_backgroundImg: "Image de fond",
             settings_global_videoPlayback: "Activer les vidéos",
             settings_global_videoMute: "Désactiver le son des vidéos",
+            settings_global_ImgPrecompose: "Utiliser des images pré-composées",
+            settings_global_ImgPrecomposePref: "Type d'image pré-composée",
             settings_collection_showAll: 'Afficher la collection "Tous"',
             settings_collection_showFavorites: 'Afficher la collection "Favoris"',
             settings_collection_showLastPlayed: 'Afficher la collection "Dernière lecture"',
@@ -504,6 +515,7 @@ FocusScope {
             settings_games_layout: "Mise en page des jeux",
             settings_games_gridItemsPerRow: "Grille - nombre de jeux par ligne",
             settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
+            settings_games_BoxArtPref: "Image de boxart préférée",
             settings_games_page_updown_function: "Grille - Fonction bouton LT/RT",
             menu_settings: "Réglages",
             menu_home: "Accueil",
@@ -566,6 +578,8 @@ FocusScope {
             settings_global_backgroundImg: "Imagem de fundo",
             settings_global_videoPlayback: "Reprodução de vídeo",
             settings_global_videoMute: "Silenciar vídeo",
+            settings_global_ImgPrecompose: "Utilizar imagem pré-composta",
+            settings_global_ImgPrecomposePref: "Tipo de imagem pré-composta",
             settings_collection_showAll: 'Mostrar a coleção "Todos jogos"',
             settings_collection_showFavorites: 'Mostrar coleção "Favoritos"',
             settings_collection_showLastPlayed: 'Mostrar coleção "Últimas jogadas"',
@@ -575,6 +589,7 @@ FocusScope {
             settings_games_layout: "Layout do jogos",
             settings_games_gridItemsPerRow: "Grade - Jogos por fileira",
             settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
+            settings_games_BoxArtPrev: "Imagem de boxart preferida",
             settings_games_page_updown_function: "Grade - função do botão LT/RT",
             menu_settings: "ajustes",
             menu_home: "início",
@@ -635,6 +650,20 @@ FocusScope {
             return "1.0";
         }
     }
+    property bool homeImgPrecompose: {
+        if (api.memory.get('homeImgPrecomposeIndex') == "1") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    property string homeImgPrecomposePref: {
+        if (api.memory.get('homeImgPrecomposePrefIndex') == "1") {
+            return "marquee";
+        } else {
+            return "steam";
+        }
+    }
     property int homeVideo: api.memory.get('homeVideoIndex') || 0
     property bool homeVideoMute: {
         if (api.memory.get('homeVideoMuteIndex') == "1") {
@@ -676,7 +705,18 @@ FocusScope {
             return false;
         }
     }
-
+    property string gamesBoxArtPref: {
+        if (api.memory.get('gamesBoxArtPrefIndex') == "1") {
+            return "poster";
+        } else if (api.memory.get('gamesBoxArtPrefIndex') == "2") {
+            return "steam";
+        } else if (api.memory.get('gamesBoxArtPrefIndex') == "3") {
+            return "marquee";
+        } else {
+            return "boxfront";
+        }
+    }
+    
     // [0] = Settings
     // [1] = HOME
     // [2] = COLLECTIONS
@@ -953,6 +993,7 @@ FocusScope {
         "switch":             { manufacturer: "nintendo",      release: "2017", color: "#232323", altColor: "#0D0D0D", altColor2: "#FE0016", fullName: "Nintendo Switch"  },
         "ti99":               { manufacturer: "ti",            release: "1979", color: "#484141", altColor: "#363030", altColor2: "#000000", fullName: "TI-99"  },
         "tic80":              { manufacturer: "vadimGrigoruk", release: "2017", color: "#4E76B4", altColor: "#456AA1", altColor2: "#65A33D", fullName: "TIC-80"  },
+        "triforce":           { manufacturer: "sega",          release: "2002", color: "#5d4472", altColor: "#413050", altColor2: "#352bc0", fullName: "Triforce Arcade"  },
         "turbografx16":       { manufacturer: "nec",           release: "1987", color: "#333333", altColor: "#1a1a1a", altColor2: "#F79226", fullName: "TurboGrafx 16"  },
         "turbografxcd":       { manufacturer: "nec",           release: "1987", color: "#F79226", altColor: "#D97408", altColor2: "#1E1C1A", fullName: "TurboGrafx CD"  },
         "uzebox":             { manufacturer: "belogic",       release: "2008", color: "#EDC63D", altColor: "#E9BB16", altColor2: "#C9C2BF", fullName: "Uzebox"  },

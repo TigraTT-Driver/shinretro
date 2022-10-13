@@ -75,7 +75,10 @@ Item {
     }
 
     function steamBoxFront(currentGame) {
-        return steamAppID(currentGame) + "/library_600x900_2x.jpg"
+        if (gamesBoxArtPref == "steam" || gamesBoxArtPref == "marquee")
+           return steamAppID(currentGame) + "/header.jpg"; 
+        else
+            return steamAppID(currentGame) + "/library_600x900_2x.jpg";
     }
 
     function boxArt(data) {
@@ -83,7 +86,15 @@ Item {
             if (data.assets.boxFront.includes("header.jpg")) 
                 return steamBoxFront(data);
             else {
-                if (data.assets.boxFront != "")
+                if (data.assets.boxFront != "" && gamesBoxArtPref == "boxfront")
+                    return data.assets.boxFront;
+                else if (data.assets.poster != "" && gamesBoxArtPref == "poster")
+                    return data.assets.poster;
+                else if (data.assets.steam != "" && gamesBoxArtPref == "steam")
+                    return data.assets.steam;
+                else if (data.assets.marquee != "" && gamesBoxArtPref == "marquee")
+                    return data.assets.marquee;
+                else if (data.assets.boxFront != "")
                     return data.assets.boxFront;
                 else if (data.assets.poster != "")
                     return data.assets.poster;
