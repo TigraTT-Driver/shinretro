@@ -295,6 +295,7 @@ FocusScope {
             settings_games_gridItemsViewableRows: "Game grid - viewable rows",
             settings_games_BoxArtPref: "Prefered boxart image",
             settings_games_page_updown_function: "Game grid - LT/RT button function",
+            settings_home_videoLogo: "Show logo when video plays",
             menu_settings: "settings",
             menu_home: "home",
             menu_collections: "collections",
@@ -369,6 +370,7 @@ FocusScope {
             settings_games_gridItemsViewableRows: "游戏网格 - 可查看的行",
             settings_games_BoxArtPref: "首选的盒画图片。",
             settings_games_page_updown_function: "游戏网格-LT/RT按钮功能",
+            settings_home_videoLogo: "视频播放时显示标识",
             menu_settings: "设置",
             menu_home: "主页",
             menu_collections: "游戏系统",
@@ -443,6 +445,7 @@ FocusScope {
             settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
             settings_games_BoxArtPref: "Bevorzugtes Boxart-Bild",
             settings_games_page_updown_function: "Spiel Raster - LT/RT-Tastenfunktion",
+            settings_home_videoLogo: "Logo während der Videowiedergabe anzeigen",
             menu_settings: "Optionen",
             menu_home: "Start",
             menu_collections: "Sammlungen",
@@ -517,6 +520,7 @@ FocusScope {
             settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
             settings_games_BoxArtPref: "Image de boxart préférée",
             settings_games_page_updown_function: "Grille - Fonction bouton LT/RT",
+            settings_home_videoLogo: "Afficher le logo lorsque la vidéo est lue",
             menu_settings: "Réglages",
             menu_home: "Accueil",
             menu_collections: "Collections",
@@ -591,6 +595,7 @@ FocusScope {
             settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
             settings_games_BoxArtPrev: "Imagem de boxart preferida",
             settings_games_page_updown_function: "Grade - função do botão LT/RT",
+            settings_home_videoLogo: "Mostrar o logótipo quando o vídeo toca",
             menu_settings: "ajustes",
             menu_home: "início",
             menu_collections: "coleções",
@@ -665,6 +670,13 @@ FocusScope {
         }
     }
     property int homeVideo: api.memory.get('homeVideoIndex') || 0
+    property bool homeVideoLogo: {
+        if (api.memory.get('homeVideoLogoIndex') == "1") {
+            return false;
+        } else {
+            return true;
+        }
+    }
     property bool homeVideoMute: {
         if (api.memory.get('homeVideoMuteIndex') == "1") {
             return true;
