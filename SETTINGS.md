@@ -92,6 +92,12 @@ controls video playback on the home screen
 |--|--|
 | **Yes** | video playback on selected item |
 | No | disable video playback on selceted item |
+### Show logo when video plays
+Shows logo of current game above playing video
+| setting |  |
+|--|--|
+| **Yes** | show logo |
+| No | hide logo on video playback |
 ### Mute video
 controls audio output of video playback on the home screen
 | setting |  |

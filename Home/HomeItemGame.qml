@@ -58,6 +58,9 @@ Item {
             screenshot.opacity = 1;
             imgPrecompose.opacity = 1;
             container.opacity = 1;
+            if (homeVideoLogo === false) {
+                favelogo.opacity = 1;
+            }
         }
     }
 
@@ -68,6 +71,9 @@ Item {
         onTriggered: {
             screenshot.opacity = 0;
             imgPrecompose.opacity = 0;
+            if (homeVideoLogo === false) {
+                favelogo.opacity = 0;
+            }
         }
     }
 
