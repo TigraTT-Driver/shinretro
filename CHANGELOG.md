@@ -1,4 +1,17 @@
 # Changelog
+## v0.20x
+
+ - Add virtual Keyboard in #59
+
+## v0.201
+
+ - Fix the favorite icon vertical alignment when using screenshot grid by @msheehan79 in #48
+ - Futher adjustment to the favorite icon color - the text property work… by @msheehan79 in #49
+ - Updated chinese translations by @TigraTT-Driver in #51
+ - fix: marquee layering fix by @TigraTT-Driver in #52
+ - added artwork for triforce arcade by @TigraTT-Driver in #53
+ - V201 by @TigraTT-Driver in #56
+
 ## v0.200
 
 **Optical changes**
