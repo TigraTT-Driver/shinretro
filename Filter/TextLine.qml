@@ -37,6 +37,14 @@ FocusScope {
             pixelSize: root.fontSize
             family: globalFonts.sans
         }
+        //virtualkeyboard
+        property bool active : false //set to false by default
+        Keys.onPressed: {
+            event.accepted, textInput.focus, active = virtualKeyboardOnPressed(event,textInput,active);
+        }
+        Keys.onReleased:{
+            event.accepted = virtualKeyboardOnReleased(event);
+        }
     }
 
     Text {
