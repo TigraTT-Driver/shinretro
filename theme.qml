@@ -401,7 +401,7 @@ FocusScope {
             collectionDetails_gamesAvailable: "Spiele verfügbar",
             games_na: "K.A.",
             games_developedBy: "Entwickelt von",
-            games_for: "zum",
+            games_for: "für",
             games_players: "SPIELER",
             games_player: "1 SPIELER",
             games_favorited: "FAVORISIERT",
