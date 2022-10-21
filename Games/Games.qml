@@ -14,7 +14,7 @@ FocusScope {
     readonly property string collectionType: currentCollection.extra.collectiontype !== undefined ? currentCollection.extra.collectiontype.toString() : 'System'
     readonly property var customSystemLogoCategories: ['Custom', 'Series']
     readonly property bool customCollection: customSystemLogoCategories.includes(collectionType)
-    readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : ""
+    readonly property string systemName: (currentGame !== null && dataConsoles[currentGame.extra.system] !== undefined) ? dataConsoles[currentGame.extra.system].fullName : currentGame.collections.get(0).name
 
     property string clearedShortname: clearShortname(currentCollection.shortName)
     readonly property string alt_color2: (dataConsoles[clearedShortname] !== undefined) ? dataConsoles[clearedShortname].altColor2 : dataConsoles["default"].altColor2
@@ -281,7 +281,8 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== ""
+
+                                    visible: showPlatformName()
                                 }
 
                                 Text {
@@ -292,7 +293,8 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== ""
+
+                                    visible: showPlatformName()
                                 }
                             }
 
@@ -881,6 +883,13 @@ FocusScope {
         } else {
             return sortLabels[sortField];
         }
+    }
+
+    function showPlatformName() {
+        return (customCollection && systemName !== "") || 
+               (currentCollection.shortName === "all") || 
+               (currentCollection.shortName === "favorites") || 
+               (currentCollection.shortName === "lastplayed") ? true : false;
     }
 
 }
