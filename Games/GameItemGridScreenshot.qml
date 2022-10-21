@@ -74,32 +74,6 @@ Item {
         Behavior on opacity { NumberAnimation { duration: 200 } }
 
         Image {
-            id: marquee
-            anchors.fill: parent
-            source: gameData ? gameData.assets.marquee : ""
-            fillMode: Image.PreserveAspectFit
-            sourceSize: Qt.size(screenshot.width, screenshot.height)
-            smooth: false
-            asynchronous: true
-            visible: gameData.assets.marquee && !doubleFocus
-            Behavior on opacity { NumberAnimation { duration: 200 } }
-        }
-
-        DropShadow {
-            anchors.fill: parent
-            horizontalOffset: 0
-            verticalOffset: 5
-            radius: 20
-            samples: 20
-            color: "#000000"
-            source: marquee
-            opacity: visible ? 0.5 : 0
-            visible: gameData.assets.marquee && !doubleFocus
-            Behavior on opacity { NumberAnimation {duration: 200 } }
-            z: -5
-        }
-
-        Image {
             id: screenshot
             anchors.fill: parent
             anchors.margins: vpx(3)
@@ -108,7 +82,6 @@ Item {
             sourceSize: Qt.size(screenshot.width, screenshot.height)
             smooth: false
             asynchronous: true
-            visible: !gameData.assets.marquee || doubleFocus
             Behavior on opacity { NumberAnimation { duration: 200 } }
 
             Image {
@@ -122,7 +95,6 @@ Item {
                 fillMode: Image.PreserveAspectFit
                 asynchronous: true
                 smooth: true
-                visible: !gameData.assets.marquee || doubleFocus
                 z: 10
             }
 
