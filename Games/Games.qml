@@ -281,7 +281,7 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== ""
+                                    visible: showPlatformName()
                                 }
 
                                 Text {
@@ -292,7 +292,7 @@ FocusScope {
                                         pixelSize: vpx(14)
                                     }
                                     color: text_color
-                                    visible: customCollection && systemName !== ""
+                                    visible: showPlatformName()
                                 }
                             }
 
@@ -881,6 +881,13 @@ FocusScope {
         } else {
             return sortLabels[sortField];
         }
+    }
+
+    function showPlatformName() {
+        return (customCollection && systemName !== "") || 
+               (currentCollection.shortName === "all") || 
+               (currentCollection.shortName === "favorites") || 
+               (currentCollection.shortName === "lastplayed") ? true : false;
     }
 
 }
