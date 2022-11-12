@@ -835,13 +835,13 @@ FocusScope {
                 }
             }
 
-            FilterLayer {
-                id: filter
-                anchors.fill: parent
-                onCloseRequested: gv_games.focus = true
-            }
-
         }
+
+		FilterLayer {
+			id: filter
+			anchors.fill: parent
+			onCloseRequested: gv_games.focus = true
+		}		
     }
 
     function findCurrentGameFromProxy(idx, collection) {

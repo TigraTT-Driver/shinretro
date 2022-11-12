@@ -36,8 +36,8 @@ FocusScope {
             name: "open"; when: root.focus
             AnchorChanges {
                 target: panel
-                anchors.bottom: parent.bottom
-                anchors.top: undefined
+                anchors.bottom: undefined
+                anchors.top: parent.top
             }
         }
     ]
