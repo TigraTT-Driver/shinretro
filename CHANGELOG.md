@@ -1,7 +1,7 @@
 # Changelog
 ## v0.20x
-**New Features**
- - 
+
+ - Add virtual Keyboard in #59
 
 ## v0.201
 
