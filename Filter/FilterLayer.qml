@@ -27,7 +27,7 @@ FocusScope {
         z: 400
         focus: true
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.bottom
+        anchors.bottom: parent.top
         visible: false
     }
 
