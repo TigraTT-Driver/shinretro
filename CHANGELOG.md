@@ -3,7 +3,7 @@
 
 ## v0.201.1
 
- - Add virtual Keyboard in #59
+ - Add virtual Keyboard in #67
 
  - Add virtual Keyboard in #59
 
