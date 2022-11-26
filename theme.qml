@@ -665,6 +665,10 @@ FocusScope {
     property string homeImgPrecomposePref: {
         if (api.memory.get('homeImgPrecomposePrefIndex') == "1") {
             return "marquee";
+        } else if (api.memory.get('homeImgPrecomposePrefIndex') == "2") {
+            return "fanart";
+        } else if (api.memory.get('homeImgPrecomposePrefIndex') == "3") {
+            return "box";
         } else {
             return "steam";
         }
@@ -724,6 +728,8 @@ FocusScope {
             return "steam";
         } else if (api.memory.get('gamesBoxArtPrefIndex') == "3") {
             return "marquee";
+        } else if (api.memory.get('gamesBoxArtPrefIndex') == "4") {
+            return "fanart";
         } else {
             return "boxfront";
         }

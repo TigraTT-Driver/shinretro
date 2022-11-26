@@ -89,7 +89,7 @@ FocusScope {
         Component.onCompleted: {
             [
             [ dataText[lang].settings_global_ImgPrecompose,  "homeImgPrecompose",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_global_ImgPrecomposePref,  "homeImgPrecomposePref",  "",  "Steam" + "," + "Marquee" ],     
+            [ dataText[lang].settings_global_ImgPrecomposePref,  "homeImgPrecomposePref",  "",  "Steam" + "," + "Marquee" + "," + "fanart" + "," + "box" ],
             [ dataText[lang].settings_home_videoLogo,  "homeVideoLogo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoPlayback,  "homeVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoMute,  "homeVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ]
@@ -151,7 +151,7 @@ FocusScope {
             [ dataText[lang].settings_global_backgroundImg,  "gamesBGImg",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoPlayback,  "gamesVideo",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_global_videoMute,  "gamesVideoMute",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
-            [ dataText[lang].settings_games_BoxArtPref,  "gamesBoxArtPref",  "",  "Boxfront,Poster,Steam,Marquee" ],
+            [ dataText[lang].settings_games_BoxArtPref,  "gamesBoxArtPref",  "",  "Boxfront,Poster,Steam,Marquee,FanArt" ],
             [ dataText[lang].settings_games_page_updown_function,  "gamesPageUpDownFunction",  "",  "Collections,Games" ]
             ].forEach(function(element) {
                 append({

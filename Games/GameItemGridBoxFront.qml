@@ -168,6 +168,8 @@ Item {
                 return data.assets.steam;
             else if (data.assets.marquee != "" && gamesBoxArtPref == "marquee")
                 return data.assets.marquee;
+            else if (data.assets.fanart != "" && gamesBoxArtPref == "fanart")
+                return data.assets.background;
             else if (data.assets.boxFront != "")
                 return data.assets.boxFront;
             else if (data.assets.poster != "")

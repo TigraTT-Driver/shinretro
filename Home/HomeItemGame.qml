@@ -109,10 +109,28 @@ Item {
                 asynchronous: true
                 visible: homeImgPrecomposePref == "steam" && gameData.assets.steam
             }
+            Image {
+                id: fanart
+                anchors.fill: parent
+                source: gameData ? gameData.assets.background : ""
+                sourceSize: Qt.size(screenshot.width, screenshot.height)
+                smooth: false
+                asynchronous: true
+                visible: homeImgPrecomposePref == "fanart" && gameData.assets.background
+            }
+            Image {
+                id: box
+                anchors.fill: parent
+                source: gameData ? gameData.assets.boxFront : ""
+                sourceSize: Qt.size(screenshot.width, screenshot.height)
+                smooth: false
+                asynchronous: true
+                visible: homeImgPrecomposePref == "box" && gameData.assets.boxFront
+            }
             anchors.fill:parent
             Behavior on opacity { NumberAnimation { duration: 200 } } 
             z: 11
-            visible: homeImgPrecompose && !doubleFocus && (homeImgPrecomposePref == "marquee" && gameData.assets.marquee || homeImgPrecomposePref == "steam" && gameData.assets.steam)
+            visible: homeImgPrecompose && !doubleFocus && (homeImgPrecomposePref == "marquee" && gameData.assets.marquee || homeImgPrecomposePref == "steam" && gameData.assets.steam || homeImgPrecomposePref == "fanart" && gameData.assets.background || homeImgPrecomposePref == "box" && gameData.assets.boxFront)
         }
 
         Image {
