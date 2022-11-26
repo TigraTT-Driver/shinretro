@@ -1,6 +1,8 @@
 # Changelog
 ## [pixL-master] - 202a-mm-dd - v0.20x.x
-- 
+
+- in home page add other media (fanart,box)
+- in game page add other media (fanart)
 
 ## [pixL-master] - 2022-11-16 - v0.201.1
 
