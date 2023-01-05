@@ -7,14 +7,14 @@ Item {
     property string manufacturer: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].manufacturer !== undefined) ? dataConsoles[clearedShortname].manufacturer : ""
     property string release: (dataConsoles[clearedShortname] !== undefined && dataConsoles[clearedShortname].release !== undefined) ? dataConsoles[clearedShortname].release : ""
     readonly property string manufacturerColor: {
-        if (manuColor === 1) {
+        if (menuColor === 1) {
             return (manufacturer !== "") ? dataManufacturers[manufacturer].color : "black"
         } else {
             return "transparent"
         }
     }
     readonly property string yearColor: {
-        if (manuColor === 1) {
+        if (menuColor === 1) {
             return (manufacturerColor !== '#FFFFFF') ? manufacturerColor : "black"
         } else {
             return colorScheme[theme].icons
@@ -127,13 +127,13 @@ Item {
                             sourceSize.height: height
                             source: (manufacturer !== "") ? "../assets/manufacturers/logo/" + manufacturer : ""
                             fillMode: Image.PreserveAspectFit
-                            visible: manuColor === 1
+                            visible: menuColor === 1
                         }
                         ColorOverlay {
                             anchors.fill: img_manufacturer
                             source: img_manufacturer
                             color: colorScheme[theme].icons
-                            visible: manuColor !== 1
+                            visible: menuColor !== 1
                             antialiasing: true
                         }
                     }
