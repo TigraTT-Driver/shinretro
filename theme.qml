@@ -289,7 +289,7 @@ FocusScope {
             settings_collection_showLastPlayed: 'Show "Last Played" collection',
             settings_collection_accentColor: "Accent color brightness",
             settings_collection_accentColorNr: "Accent colors",
-            settings_collection_manuColor: "Manufacturer logo variant",
+            settings_collection_menuColor: "Manufacturer logo variant",
             settings_games_layout: "Games layout",
             settings_games_gridItemsPerRow: "Game grid - items per row",
             settings_games_gridItemsViewableRows: "Game grid - viewable rows",
@@ -364,7 +364,7 @@ FocusScope {
             settings_collection_showLastPlayed: '显示“最后游玩”',
             settings_collection_accentColor: "强调颜色亮度",
             settings_collection_accentColorNr: "强调色",
-            settings_collection_manuColor: "制造商徽标变体",
+            settings_collection_menuColor: "制造商徽标变体",
             settings_games_layout: "游戏布局",
             settings_games_gridItemsPerRow: "游戏网格 - 每行项目",
             settings_games_gridItemsViewableRows: "游戏网格 - 可查看的行",
@@ -439,7 +439,7 @@ FocusScope {
             settings_collection_showLastPlayed: 'Sammlung "Zuletzt gespielt" anzeigen',
             settings_collection_accentColor: "Akzentfarbhelligkeit",
             settings_collection_accentColorNr: "Akzentfarben",
-            settings_collection_manuColor: "Hersteller Logo-Variation",
+            settings_collection_menuColor: "Hersteller Logo-Variation",
             settings_games_layout: "Spiele-Layout",
             settings_games_gridItemsPerRow: "Spiele Raster - Objekte pro Reihe",
             settings_games_gridItemsViewableRows: "Spiele Raster - Sichtbare Reihen",
@@ -514,7 +514,7 @@ FocusScope {
             settings_collection_showLastPlayed: 'Afficher la collection "Dernière lecture"',
             settings_collection_accentColor:  "Accentuer la luminosité des couleurs",
             settings_collection_accentColorNr: "Accentuer les couleurs",
-            settings_collection_manuColor: "Style des fabricant logos",
+            settings_collection_menuColor: "Style des fabricant logos",
             settings_games_layout: "Mise en page des jeux",
             settings_games_gridItemsPerRow: "Grille - nombre de jeux par ligne",
             settings_games_gridItemsViewableRows: "Grille - nombre de lignes",
@@ -589,7 +589,7 @@ FocusScope {
             settings_collection_showLastPlayed: 'Mostrar coleção "Últimas jogadas"',
             settings_collection_accentColor: "Brilho da cor de destaque",
             settings_collection_accentColorNr: "Cores de destaque",
-            settings_collection_manuColor: "Estilo dos fabricantes de logos",
+            settings_collection_menuColor: "Estilo dos fabricantes de logos",
             settings_games_layout: "Layout do jogos",
             settings_games_gridItemsPerRow: "Grade - Jogos por fileira",
             settings_games_gridItemsViewableRows: "Grade - Fileiras visíveis",
@@ -692,7 +692,7 @@ FocusScope {
         }
     }
     property int accentColorNr: api.memory.get('accentColorNrIndex') || 0
-    property int manuColor: api.memory.get('manuColorIndex') || 0
+    property int menuColor: api.memory.get('menuColorIndex') || 0
     property int allGamesCollection: api.memory.get('allGamesCollectionIndex') || 0
     property int favoritesCollection: api.memory.get('favoritesCollectionIndex') || 0
     property int lastPlayedCollection: api.memory.get('lastPlayedCollectionIndex') || 0
