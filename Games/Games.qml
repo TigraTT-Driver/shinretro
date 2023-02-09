@@ -865,7 +865,9 @@ FocusScope {
 
         // We need to check if there is a custom sort value for the games in this collection
         // If at least 1 is found add Custom sort as an additional option
-        if (root.state === "games") {
+        // Excludes the special collections favorites/lastplayed as its a bit trickier filters and custom sorting probably wouldn't make sense anyway
+        var excludedCollections = ['lastplayed', 'favorites'];
+        if (root.state === "games" && !excludedCollections.includes(currentCollection.shortName)) {
             var games = currentCollection.games.toVarArray();
             for (let i = 0; i < games.length; i++) {
                 if (getCollectionSortValue(games[i], currentCollection.shortName) !== "") {
