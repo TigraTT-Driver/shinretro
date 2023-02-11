@@ -283,7 +283,7 @@ FocusScope {
             settings_global_videoPlayback: "Video playback",
             settings_global_videoMute: "Mute video",
             settings_global_ImgPrecompose: "Use precomposed image",
-            settings_global_ImgPrecompose: "Precomposed image type",
+            settings_global_ImgPrecomposePref: "Precomposed image type",
             settings_collection_showAll: 'Show "All games" collection',
             settings_collection_showFavorites: 'Show "Favorites" collection',
             settings_collection_showLastPlayed: 'Show "Last Played" collection',

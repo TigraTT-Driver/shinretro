@@ -105,6 +105,54 @@ FocusScope {
         ]
     }
 
+    SortFilterProxyModel {
+        id: allFavoritesFiltered
+        sourceModel: api.allGames
+        filters: [
+            ValueFilter { roleName: "favorite"; value: true; },
+            RegExpFilter {
+                roleName: "title"
+                pattern: filter.withTitle
+                caseSensitivity: Qt.CaseInsensitive
+                enabled: filter.withTitle
+            },
+            RangeFilter {
+                roleName: "players"
+                minimumValue: 2
+                enabled: filter.withMultiplayer
+            },
+            ValueFilter {
+                roleName: "favorite"
+                value: true
+                enabled: filter.withFavorite
+            }
+        ]
+    }
+
+    SortFilterProxyModel {
+        id: lastPlayedFiltered
+        sourceModel: api.allGames
+        sorters: RoleSorter { roleName: "lastPlayed"; sortOrder: Qt.DescendingOrder; }
+        filters: [
+            RegExpFilter {
+                roleName: "title"
+                pattern: filter.withTitle
+                caseSensitivity: Qt.CaseInsensitive
+                enabled: filter.withTitle
+            },
+            RangeFilter {
+                roleName: "players"
+                minimumValue: 2
+                enabled: filter.withMultiplayer
+            },
+            ValueFilter {
+                roleName: "favorite"
+                value: true
+                enabled: filter.withFavorite
+            }
+        ]
+    }
+
     Behavior on focus {
         ParallelAnimation {
             PropertyAnimation {
@@ -847,9 +895,9 @@ FocusScope {
     function findCurrentGameFromProxy(idx, collection) {
         // Last Played collection uses 2 filters chained together
         if (collection.shortName == "lastplayed") {
-            return api.allGames.get(lastPlayedBase.mapToSource(idx));
+            return api.allGames.get(lastPlayedFiltered.mapToSource(idx));
         } else if (collection.shortName == "favorites") {
-            return api.allGames.get(allFavorites.mapToSource(idx));
+            return api.allGames.get(allFavoritesFiltered.mapToSource(idx));
         } else {
             return currentCollection.games.get(filteredGames.mapToSource(idx))
         }
@@ -865,7 +913,9 @@ FocusScope {
 
         // We need to check if there is a custom sort value for the games in this collection
         // If at least 1 is found add Custom sort as an additional option
-        if (root.state === "games") {
+        // Excludes the special collections favorites/lastplayed as its a bit trickier filters and custom sorting probably wouldn't make sense anyway
+        var excludedCollections = ['lastplayed', 'favorites'];
+        if (root.state === "games" && !excludedCollections.includes(currentCollection.shortName)) {
             var games = currentCollection.games.toVarArray();
             for (let i = 0; i < games.length; i++) {
                 if (getCollectionSortValue(games[i], currentCollection.shortName) !== "") {
