@@ -235,6 +235,8 @@ FocusScope {
             settings_general_colorScheme_SteamOS: "SteamOS",
             settings_general_logoVariant_mono: "mono",
             settings_general_logoVariant_color: "color",
+            settings_general_logoVariant_carbon: "carbon",
+            settings_general_logoVariant_steel: "steel",
             global_yes: "Yes",
             global_no: "No",
             global_back: "GO <b>BACK</b>",
@@ -310,6 +312,8 @@ FocusScope {
             settings_general_colorScheme_SteamOS: "蒸汽主题",
             settings_general_logoVariant_mono: "黑色logo",
             settings_general_logoVariant_color: "彩色logo",
+            settings_general_logoVariant_carbon: "Carbonlogo",
+            settings_general_logoVariant_steel: "Steellogo",
             global_yes: "是",
             global_no: "否",
             global_back: "取消<b>返回</b>",
@@ -385,6 +389,8 @@ FocusScope {
             settings_general_colorScheme_SteamOS: "SteamOS",
             settings_general_logoVariant_mono: "Einfarbig",
             settings_general_logoVariant_color: "Bunt",
+            settings_general_logoVariant_carbon: "Carbon",
+            settings_general_logoVariant_steel: "Steel",
             global_yes: "Ja",
             global_no: "Nein",
             global_back: "<b>ZURÜCK</b>",
@@ -460,6 +466,8 @@ FocusScope {
             settings_general_colorScheme_SteamOS: "SteamOS",
             settings_general_logoVariant_mono: "Monochrome",
             settings_general_logoVariant_color: "Couleur",
+            settings_general_logoVariant_carbon: "Carbone",
+            settings_general_logoVariant_steel: "Acier",
             global_yes: "Oui",
             global_no: "Non",
             global_back: "<b>RETOUR</b>",
@@ -535,6 +543,8 @@ FocusScope {
             settings_general_colorScheme_SteamOS: "SteamOS",
             settings_general_logoVariant_mono: "mono",
             settings_general_logoVariant_color: "color",
+            settings_general_logoVariant_carbon: "carbon",
+            settings_general_logoVariant_steel: "steel",
             global_yes: "Sim",
             global_no: "Não",
             global_back: "<b>VOLTAR</b>",
@@ -628,6 +638,10 @@ FocusScope {
     property string logoVariant: {
         if (api.memory.get('logoVariantIndex') == "1") {
             return "color";
+        } else if (api.memory.get('logoVariantIndex') == "2") {
+            return "carbon";
+        } else if (api.memory.get('logoVariantIndex') == "3") {
+            return "steel";
         } else {
             return "mono";
         }

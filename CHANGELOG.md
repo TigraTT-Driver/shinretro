@@ -3,6 +3,9 @@
 
  - in home page add other media (fanart,box)
  - in game page add other media (fanart)
+ - in settings General Logo variation add (steel, carbon)
+ - in collections page add other logo (steel,carbon) for system
+ - in games page add other logo (steel,carbon) for system
 
 ## [pixL-master] - 2022-11-16 - v0.201.1
 

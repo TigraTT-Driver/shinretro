@@ -60,7 +60,7 @@ FocusScope {
             [ dataText[lang].settings_general_dynamicFontScaling,  "dynamicFontScaling",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_colorScheme,  "theme",  "",  dataText[lang].settings_general_colorScheme_Dark + "," + dataText[lang].settings_general_colorScheme_Light + "," + dataText[lang].settings_general_colorScheme_OzoneDark + "," + dataText[lang].settings_general_colorScheme_SteamOS ],
             [ dataText[lang].settings_general_selectionFrame,  "selectionFrame",  "", dataText[lang].menu_collections + "," + dataText[lang].settings_general_colorScheme ],
-            [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color ],
+            [ dataText[lang].settings_general_logoVariant,  "logoVariant",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color+ "," + dataText[lang].settings_general_logoVariant_carbon+ "," + dataText[lang].settings_general_logoVariant_steel ],
             [ dataText[lang].settings_general_region,  "region",  "",  "pal,ntsc,ntscj" ],
             [ dataText[lang].settings_general_hideOSC,  "osc",  "",  dataText[lang].global_no + "," + dataText[lang].global_yes ],
             [ dataText[lang].settings_general_OSCScheme,  "controlScheme",  "",  "Universal,Universal-JP,XBOX,PS,PS-JP" ],
@@ -117,7 +117,7 @@ FocusScope {
             [
             [ dataText[lang].settings_collection_accentColor,  "accentColor",  "",  dataText[lang].settings_collection_accentColor_dimm + "," + dataText[lang].settings_collection_accentColor_bright ],
             [ dataText[lang].settings_collection_accentColorNr,  "accentColorNr",  "",  "2,1" ],
-            [ dataText[lang].settings_collection_menuColor,  "menuColor",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color ],
+            [ dataText[lang].settings_collection_menuColor,  "menuColor",  "",  dataText[lang].settings_general_logoVariant_mono+ "," + dataText[lang].settings_general_logoVariant_color+ "," + dataText[lang].settings_general_logoVariant_carbon+ "," + dataText[lang].settings_general_logoVariant_steel ],
             [ dataText[lang].settings_collection_showAll,  "allGamesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_collection_showFavorites,  "favoritesCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
             [ dataText[lang].settings_collection_showLastPlayed,  "lastPlayedCollection",  "",  dataText[lang].global_yes + "," + dataText[lang].global_no ],
